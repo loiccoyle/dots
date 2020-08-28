@@ -1,0 +1,1 @@
+/home/lcoyle/.cache/wal/bspwm_colors.sh

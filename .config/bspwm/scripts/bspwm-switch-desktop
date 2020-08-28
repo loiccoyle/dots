@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# Switch to dekstop of switch to last dekstop if already on it.
+
+get_current_desktop () {
+    echo "$(bspc query --desktop focused --desktops --names)"
+}
+
+[ "$1" == $(get_current_desktop) ] && bspc desktop -f last || bspc desktop -f $1
