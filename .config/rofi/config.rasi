@@ -1,5 +1,5 @@
 configuration {
 	modi: "run,drun";
 	show-icons: true;
-	theme: "simple_dark.rasi";
+	theme: "rofi_simple_dark.rasi";
 }
