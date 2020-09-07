@@ -1,0 +1,17 @@
+#!/bin/sh
+while read file
+do
+        case "$1" in
+        "C-d")
+                trash-put $file ;;
+        "C-r")
+                convert -rotate 90 "$file" "$file" ;;
+        "C-c")
+                echo -n "$file" | xclip -selection clipboard ;;
+        "C-m")
+                echo "$file" >> sxiv_selection ;;
+        # "C-w")
+        #         nitrogen --save --set-zoom-fill "$file" ;;
+        esac
+done
+
