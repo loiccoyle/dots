@@ -1,0 +1,38 @@
+#/usr/bin/env sh
+# This file runs when a DM logs you into a graphical session.
+# If you use startx/xinit, this file will also be sourced.
+
+# Keyring daemon
+# gnome-keyring-daemon --start --components=pkcs11 &
+#
+# keyboard rate
+kbdrate -d 400 -r 50
+xset r rate 400 50
+xset s 3600 3600
+
+# nvidia settings
+nvidia-settings --load-config-only &
+
+# Set the screenlayout
+# ~/.config/screenlayout/dual.sh
+
+# Set the wallpaper
+hsetroot -cover "$(cat ~/.cache/wal/wal)" &
+
+# mouse pointer
+xsetroot -cursor_name left_ptr &
+
+# polybar
+$HOME/.config/polybar/launch.sh &
+
+# start sxhkd
+sxhkd &
+
+# start compositor
+picom &
+
+# notification server
+dunst &
+
+# clipboard manager
+greenclip daemon &
