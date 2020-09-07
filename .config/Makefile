@@ -9,4 +9,7 @@ sxhkd:
 	yay -S rofi-bluetooth-git greenclipa
 	sudo pacman -S libpulse
 
-.PHONY: lf polybar sxhkd
+sxiv:
+	sudo pacman -S imagemagick
+
+.PHONY: lf polybar sxhkd sxiv
