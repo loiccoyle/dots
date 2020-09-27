@@ -41,6 +41,8 @@ alias gc="git commit"
 alias gp="git push"
 alias gs="git status"
 alias lg="lazygit"
+# wal reload
+alias wal="wal -o walreload"
 # functions
 edit () {
     $EDITOR $(which $1)
