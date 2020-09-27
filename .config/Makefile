@@ -5,7 +5,7 @@ lf:
 	sudo pacman -S xclip
 
 polybar:
-	yay -S rofi-bluetooth-git polybar-git
+	yay -S rofi-bluetooth-git polybar-git pavucontrol-qt
 
 sxhkd:
 	yay -S rofi-bluetooth-git rofi-greenclip greenclip sxhkd-git
@@ -22,4 +22,13 @@ rofi:
 	sudo pacman -S rofi
 	yay -S rofi-bluetooth-git rofi-greenclip rofi-emoji rofi-dmenu
 
-.PHONY: lf polybar sxhkd sxiv vim rofi
+ui-theme:
+	sudo pacman -S qt5ct
+	yay -S adwaita-qt
+
+qutebrowser:
+	sudo pacman -S qutebrowser
+	git clone https://gitlab.com/jjzmajic/qutewal ~/.config/qutebrowser/qutewal
+	ln -s ~/.config/qutebrowser/qutewal/qutewal.py ~/.config/qutebrowser/qutewal.py
+
+.PHONY: lf polybar sxhkd sxiv vim rofi ui-theme qutebrowser
