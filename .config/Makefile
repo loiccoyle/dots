@@ -4,12 +4,13 @@ lf:
 	yay -S lf-git vidir dragon-drag-and-drop
 	sudo pacman -S xclip
 
-polybar:
-	yay -S rofi-bluetooth-git polybar-git pavucontrol-qt
+polybar: rofi
+	sudo pacman -S ttf-hack ttf-unifont
+	yay -S siji-git polybar-git pavucontrol-qt
 
-sxhkd:
-	yay -S rofi-bluetooth-git rofi-greenclip greenclip sxhkd-git
-	sudo pacman -S libpulse rofi
+sxhkd: rofi
+	sudo pacman -S libpulse
+	yay -S sxhkd-git
 
 sxiv:
 	sudo pacman -S imagemagick sxiv sxiv-rifle perl-image-exiftool
@@ -20,7 +21,7 @@ vim:
 
 rofi:
 	sudo pacman -S rofi
-	yay -S rofi-bluetooth-git rofi-greenclip rofi-emoji rofi-dmenu
+	yay -S greenclip rofi-bluetooth-git rofi-greenclip rofi-emoji rofi-dmenu
 
 ui-theme:
 	sudo pacman -S qt5ct
