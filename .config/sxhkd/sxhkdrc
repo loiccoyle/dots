@@ -105,6 +105,9 @@ super + {_,shift + }{h,j,k,l}
 # focus the next/previous desktop in the current monitor
 super + bracket{left,right}
 	bspc desktop -f {prev,next}.local
+# move node to the next/previous desktop in the current monitor
+super + shift + bracket{left,right}
+	bspc node --to-desktop {prev,next}
 # focus the last node/desktop
 super + Tab
 	bspc desktop -f last
