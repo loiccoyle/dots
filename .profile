@@ -28,7 +28,7 @@ export TERM="xterm-termite"
 export TERMINAL="termite"
 # Some path
 export STOWDIR="$HOME/data/stow"
-export WALLDIR="$HOME/pictures/wallpapers"
+export WALLDIR="$HOME/pictures/walls"
 export BOOKMARKS="$HOME/.config/qutebrowser/bookmarks/urls"
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export PASSWORD_STORE_DIR="$XDG_CONFIG_HOME/pass-store"
