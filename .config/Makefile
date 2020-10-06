@@ -18,6 +18,8 @@ sxiv:
 vim:
 	sudo pacman -S neovim
 	yay -S fzf-git
+	pipx install black isort pylint
+	cd ~/.config/nvim && ./make_venv && cd -
 
 rofi:
 	sudo pacman -S rofi
