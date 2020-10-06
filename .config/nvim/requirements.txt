@@ -1,5 +1,0 @@
-greenlet==0.4.16
-jedi==0.17.0
-msgpack==1.0.0
-parso==0.7.0
-pynvim==0.4.1
