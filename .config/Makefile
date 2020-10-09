@@ -1,11 +1,13 @@
-# Makefile to install the packages.
+# Makefile to install the packages on Arch.
+# Note: requires yay.
 
 lf:
 	yay -S lf-git vidir dragon-drag-and-drop
 	sudo pacman -S xclip
 
 polybar: rofi fonts
-	yay -S polybar-git pavucontrol-qt
+	yay -S polybar-git
+	sudo pacman -S pavucontrol-qt
 
 sxhkd: rofi
 	sudo pacman -S libpulse
