@@ -9,7 +9,7 @@
     separator_height = 3
     padding = 2
     horizontal_padding = 8
-    frame_width = 3
+    frame_width = 1
     frame_color = "{foreground}"
     separator_color = frame
     sort = yes
