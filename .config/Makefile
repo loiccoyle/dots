@@ -14,11 +14,14 @@ sxhkd: rofi
 sxiv:
 	sudo pacman -S imagemagick sxiv sxiv-rifle perl-image-exiftool
 
-vim:
+vim: python_dev
 	sudo pacman -S neovim
 	yay -S fzf-git
-	pipx install black isort pylint
 	cd ~/.config/nvim && ./make_venv && cd -
+
+python_dev:
+	sudo pacman -S python-pip python-pipx python-poetry ipython
+	pipx install black isort pylint
 
 rofi:
 	sudo pacman -S rofi
@@ -37,4 +40,4 @@ fonts:
 	sudo pacman -S noto-fonts noto-fonts-emoji ttf-unifont ttf-hack
 	yay -S siji-git
 
-.PHONY: lf polybar sxhkd sxiv vim rofi ui-theme qutebrowser
+.PHONY: lf polybar sxhkd sxiv vim python_dev rofi ui-theme qutebrowser fonts
