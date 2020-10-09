@@ -4,9 +4,8 @@ lf:
 	yay -S lf-git vidir dragon-drag-and-drop
 	sudo pacman -S xclip
 
-polybar: rofi
-	sudo pacman -S ttf-hack ttf-unifont
-	yay -S siji-git polybar-git pavucontrol-qt
+polybar: rofi fonts
+	yay -S polybar-git pavucontrol-qt
 
 sxhkd: rofi
 	sudo pacman -S libpulse
