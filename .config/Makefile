@@ -17,7 +17,7 @@ sxiv:
 	sudo pacman -S imagemagick sxiv sxiv-rifle perl-image-exiftool
 
 vim: python_dev
-	sudo pacman -S neovim
+	sudo pacman -S neovim nodejs
 	yay -S fzf-git
 	cd ~/.config/nvim && ./make_venv && cd -
 
