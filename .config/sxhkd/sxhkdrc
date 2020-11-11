@@ -40,6 +40,9 @@ shift + Print
 # greenclip rofi
 super + v
 	rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
+# passmeny
+super + p
+	passmenu
 
 
 # media key hotkeys

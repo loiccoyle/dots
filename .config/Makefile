@@ -10,7 +10,7 @@ polybar: rofi fonts
 	sudo pacman -S pavucontrol-qt
 
 sxhkd: rofi
-	sudo pacman -S libpulse
+	sudo pacman -S libpulse pass
 	yay -S sxhkd-git
 
 sxiv:
