@@ -3,7 +3,6 @@
 # refresh bspc rules
 bspc rule -r "*"
 
-# bspc monitor DP-0 -d 1 2 3 4 5 6 7 8 9 10
 bspc monitor HDMI-0 -d 0
 bspc monitor DP-0 -d 1 2 3 4 5 6 7 8 9 10
 bspc desktop -f 1
@@ -17,14 +16,11 @@ bspc config borderless_monocle    true
 bspc config gapless_monocle       true
 bspc config focus_follows_pointer true
 bspc config single_monocle 	      true
+# Set the colors
 ~/.config/bspwm/bspwm_colors.sh &
 
 # Dropdown terminal
 bspc rule -a dropdown sticky=on state=floating hidden=on
 
-# bspc rule -a Gimp desktop='^8' state=floating follow=on
-# bspc rule -a mplayer2 state=floating
-# bspc rule -a Kupfer.py focus=on
-# bspc rule -a Screenkey manage=off
 bspc rule -a Zathura state=tiled
 bspc rule -a Sxiv:float state=floating
