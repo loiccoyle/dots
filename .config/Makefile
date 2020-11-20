@@ -42,4 +42,8 @@ fonts:
 	sudo pacman -S noto-fonts noto-fonts-emoji ttf-unifont ttf-hack
 	yay -S siji-git
 
-.PHONY: lf polybar sxhkd sxiv vim python_dev rofi ui-theme qutebrowser fonts
+flavours:
+	yay -S flavours
+	flavours update all
+
+.PHONY: lf polybar sxhkd sxiv vim python_dev rofi ui-theme qutebrowser fonts flavours
