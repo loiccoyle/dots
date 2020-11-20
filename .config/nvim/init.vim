@@ -21,7 +21,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'vimwiki/vimwiki'
 Plug 'itchyny/lightline.vim'
-Plug 'dylanaraps/wal.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'kovetskiy/sxhkd-vim'
 call plug#end()
@@ -36,8 +35,8 @@ set nohlsearch
 set clipboard+=unnamedplus
 set noshowmode
 syntax on
-" set termguicolors
-colorscheme wal
+" colorscheme base16-solarized-dark
+" let base16colorspace=256
 
 " Some basics:
 	nnoremap c "_c
@@ -51,7 +50,6 @@ colorscheme wal
     set expandtab
 
 " lightline
-    let g:lightline = {'colorscheme': 'wal'}
     let g:lightline = {
  	  \ 'active': {
  	  \   'left': [ [ 'mode', 'paste' ],

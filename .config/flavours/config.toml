@@ -1,0 +1,46 @@
+[[item]]
+file='$XDG_CONFIG_HOME/termite/config'
+template='termite'
+subtemplate='transparent'
+hook='killall -USR1 termite'
+
+[[item]]
+file='~/.Xresources'
+template='xresources'
+subtemplate='default-256'
+rewrite=true
+
+[[item]]
+file='$XDG_CONFIG_HOME/qutebrowser/colours.py'
+template='qutebrowser'
+subtemplate='minimal'
+rewrite=true
+hook='sh -c "pgrep -x qutebrowser && qutebrowser :config-source"'
+
+[[item]]
+file='$XDG_CONFIG_HOME/zathura/zathurarc'
+template='zathura'
+
+[[item]]
+file='$XDG_CONFIG_HOME/dunst/dunstrc'
+template='dunst'
+subtemplate='background'
+hook = 'killall dunst'
+
+[[item]]
+file='$XDG_CONFIG_HOME/polybar/config'
+template='polybar'
+hook='polybar-msg cmd restart'
+
+[[item]]
+file='$XDG_CONFIG_HOME/bspwm/bspwm_colors.sh'
+template='bspwm'
+hook='sh -c "$XDG_CONFIG_HOME/bspwm/bspwm_colors.sh"'
+rewrite=true
+
+[[item]]
+file='$XDG_CONFIG_HOME/rofi/themes/rofi_simple_dark.rasi'
+template='rofi'
+subtemplate='colors_minimal'
+start= '/* Start flavours */'
+end = '/* End flavours */'

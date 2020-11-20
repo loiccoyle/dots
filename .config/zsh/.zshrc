@@ -70,8 +70,6 @@ zinit light 'whjvenyl/fasd'
 # load custom stuff
 zinit ice wait'0c' lucid multisrc"{keys,aliases}.zsh" pick"/dev/null"
 zinit light $ZDOTDIR
-# set the wal colors
-(cat ~/.cache/wal/sequences &)
 # set the correct cursor
 source "$ZDOTDIR/cursor.zsh"
 # add to beginning of fpath

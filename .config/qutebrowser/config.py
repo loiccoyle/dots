@@ -1965,5 +1965,5 @@ config.bind(',p', 'spawn --userscript qute-pass')
 config.bind(',u', 'spawn --userscript qute-pass --username-only')
 config.bind(',P', 'spawn --userscript qute-pass --password-only')
 
-# pywal theme
-config.source("qutewal.py")
+# base 16
+config.source("colours.py")
