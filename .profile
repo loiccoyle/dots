@@ -29,7 +29,7 @@ export TERMINAL="termite"
 # Some path
 export STOWDIR="$HOME/data/stow"
 export WALLDIR="$HOME/pictures/walls"
-export BOOKMARKS="$HOME/.config/qutebrowser/bookmarks/urls"
+export BOOKMARKS="$XDG_CONFIG_HOME/qutebrowser/bookmarks/urls"
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export PASSWORD_STORE_DIR="$XDG_CONFIG_HOME/pass-store"
 # Settings
@@ -50,31 +50,34 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 export GTK_THEME=Adwaita:dark
 
 # zsh config folder
-export ZDOTDIR="$HOME/.config/zsh"
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
-#Go env
+# Rust config
+export CARGO_HOME="$XDG_CONFIG_HOME/cargo/"
+
+# Go env
 # export GOPATH="$HOME/.local/go"
 
 # nvidia var for folder location
 export __GL_SHADER_DISK_CACHE_PATH="$HOME/.cache/nv/"
 
 # fasd .fasd location
-export _FASD_DATA="$HOME/.config/fasd"
+export _FASD_DATA="$XDG_CONFIG_HOME/fasd"
 
 # less histfile
 export LESSHISTFILE="-"
 
 # gnupg location
-export GNUPGHOME="$HOME/.config/gnupg"
+export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
 
 # sqlite history
 export SQLITE_HISTORY="$HOME/.cache/sqlite/hist"
 
 # ipython config files
-export IPYTHONDIR="$HOME/.config/ipython"
+export IPYTHONDIR="$XDG_CONFIG_HOME/ipython"
 
 # jupyter config dir
-export JUPYTER_CONFIG_DIR="$HOME/.config/jupyter"
+export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME/jupyter"
 
 # pylint
 export PYLINTHOME="$HOME/.cache/pylint"
