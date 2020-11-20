@@ -18,7 +18,8 @@ export XDG_PICTURES_DIR="$HOME/pictures"
 export XDG_VIDEOS_DIR="$HOME/videos"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
-# programs
+
+# Programs
 export EDITOR="vim"
 export VISUAL="vim"
 export BROWSER="qutebrowser"
@@ -26,12 +27,13 @@ export PAGER="less"
 export OPENER="xdg-open"
 export TERM="xterm-termite"
 export TERMINAL="termite"
+
 # Some path
 export STOWDIR="$HOME/data/stow"
-export WALLDIR="$HOME/pictures/walls"
+export WALLDIR="$XDG_PICTURES_DIR/walls"
 export BOOKMARKS="$XDG_CONFIG_HOME/qutebrowser/bookmarks/urls"
-export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export PASSWORD_STORE_DIR="$XDG_CONFIG_HOME/pass-store"
+
 # Settings
 export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 
@@ -56,10 +58,10 @@ export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export CARGO_HOME="$XDG_CONFIG_HOME/cargo/"
 
 # Go env
-# export GOPATH="$HOME/.local/go"
+export GOPATH="$XDG_DATA_HOME/go"
 
 # nvidia var for folder location
-export __GL_SHADER_DISK_CACHE_PATH="$HOME/.cache/nv/"
+export __GL_SHADER_DISK_CACHE_PATH="$XDG_CACHE_HOME/nv/"
 
 # fasd .fasd location
 export _FASD_DATA="$XDG_CONFIG_HOME/fasd"
@@ -71,7 +73,7 @@ export LESSHISTFILE="-"
 export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
 
 # sqlite history
-export SQLITE_HISTORY="$HOME/.cache/sqlite/hist"
+export SQLITE_HISTORY="$XDG_CACHE_HOME/sqlite/hist"
 
 # ipython config files
 export IPYTHONDIR="$XDG_CONFIG_HOME/ipython"
@@ -80,7 +82,7 @@ export IPYTHONDIR="$XDG_CONFIG_HOME/ipython"
 export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME/jupyter"
 
 # pylint
-export PYLINTHOME="$HOME/.cache/pylint"
+export PYLINTHOME="$XDG_CACHE_HOME/pylint"
 
 # Start graphical server on tty1 if not already running.
 [ "$(tty)" = "/dev/tty1" ] && ! pgrep -x Xorg >/dev/null && exec startx
