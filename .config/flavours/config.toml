@@ -39,8 +39,7 @@ hook='sh -c "$XDG_CONFIG_HOME/bspwm/bspwm_colors.sh"'
 rewrite=true
 
 [[item]]
-file='$XDG_CONFIG_HOME/rofi/themes/rofi_simple_dark.rasi'
+file='$XDG_CONFIG_HOME/rofi/themes/colors/colors.rasi'
 template='rofi'
 subtemplate='colors_minimal'
-start= '/* Start flavours */'
-end = '/* End flavours */'
+rewrite=true
