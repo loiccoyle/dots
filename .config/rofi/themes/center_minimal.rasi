@@ -3,42 +3,7 @@ configuration {
     show-icons: true;
 }
 
-/* Start flavours */
-/**
- * Base16 Generated ROFI Color theme
- *
- * Authors
- *  Scheme: Flavours
- *  Template: Jordi Pakey-Rodriguez (https://github.com/0xdec), Andrea Scarpino (https://github.com/ilpianista)
- */
-
-* {
-    red:                         rgba ( 120, 120, 120, 100 % );
-    blue:                        rgba ( 64, 131, 131, 100 % );
-    lightfg:                     rgba ( 202, 212, 218, 100 % );
-    lightbg:                     rgba ( 57, 83, 84, 100 % );
-    foreground:                  rgba ( 193, 204, 211, 100 % );
-    background:                  rgba ( 23, 52, 52, 100 % );
-    background-color:            rgba ( 23, 52, 52, 0 % );
-    separatorcolor:              @foreground;
-    border-color:                @foreground;
-    selected-normal-foreground:  @lightbg;
-    selected-normal-background:  @lightfg;
-    selected-active-foreground:  @background;
-    selected-active-background:  @blue;
-    selected-urgent-foreground:  @background;
-    selected-urgent-background:  @red;
-    normal-foreground:           @foreground;
-    normal-background:           @background;
-    active-foreground:           @blue;
-    active-background:           @background;
-    urgent-foreground:           @red;
-    urgent-background:           @background;
-    alternate-normal-foreground: @foreground;
-    alternate-active-foreground: @blue;
-    alternate-urgent-foreground: @red;
-}
-/* End flavours */
+@import "colors/colors.rasi"
 
 * {
     spacing: 2px;
@@ -178,3 +143,4 @@ configuration {
     spacing: 0;
     text-color: @normal-foreground;
 }
+/* vim:ft=css
