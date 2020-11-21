@@ -1578,4 +1578,4 @@ config.bind(',u', 'spawn --userscript qute-pass --username-only')
 config.bind(',P', 'spawn --userscript qute-pass --password-only')
 
 # base 16
-config.source("colours.py")
+config.source("colors.py")
