@@ -17,7 +17,7 @@ nvidia-settings --load-config-only &
 # ~/.config/screenlayout/dual.sh
 
 # Set the wallpaper
-hsetroot -cover "$(cat ~/.cache/wal/wal)" &
+hsetroot -cover "$(cat $XDG_CACHE_HOME/wall)" &
 
 # mouse pointer
 xsetroot -cursor_name left_ptr &
