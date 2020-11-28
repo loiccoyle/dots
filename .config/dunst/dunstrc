@@ -1,21 +1,21 @@
 # Start flavours
-frame_color = "#173434"
-separator_color = "#173434"
+frame_color = "#172134"
+separator_color = "#172134"
 
 [base16_low]
     msg_urgency = low
-    background = "#173434"
-    foreground = "#7d8f94"
+    background = "#172134"
+    foreground = "#9b9fa6"
 
 [base16_normal]
     msg_urgency = normal
-    background = "#173434"
-    foreground = "#c1ccd3"
+    background = "#172134"
+    foreground = "#f4f3f2"
 
 [base16_critical]
     msg_urgency = critical
-    background = "#787878"
-    foreground = "#cad4da"
+    background = "#d8ebfa"
+    foreground = "#f5f4f3"
 # End flavours
 
 [global]
