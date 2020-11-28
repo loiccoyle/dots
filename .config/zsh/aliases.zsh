@@ -37,8 +37,8 @@ alias cwm="$EDITOR $XDG_CONFIG_HOME/bspwm/bspwmrc"
 alias chk="$EDITOR $XDG_CONFIG_HOME/sxhkd/sxhkdrc"
 alias cvim="$EDITOR $XDG_CONFIG_HOME/nvim/init.vim"
 # dotfile git
-alias config='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-alias lgconfig='lazygit --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias dots='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias lgdots='lazygit --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 # vimwiki
 alias vimwiki="vim -c \"VimwikiIndex\""
 # fasd
