@@ -35,8 +35,6 @@ set nohlsearch
 set clipboard+=unnamedplus
 set noshowmode
 syntax on
-" colorscheme base16-solarized-dark
-" let base16colorspace=256
 
 " Some basics:
 	nnoremap c "_c
@@ -82,9 +80,7 @@ syntax on
 	set splitbelow splitright
 
 " Explorer
-	" map <leader>n :CocCommand explorer<CR>
 	map <leader>n :Files<CR>
-	" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " Shortcutting split navigation, saving a keypress:
 	map <C-h> <C-w>h
@@ -143,7 +139,6 @@ syntax on
 " Ensure files are read as what I want:
 	let g:vimwiki_ext2syntax = {'.Rmd': 'markdown', '.rmd': 'markdown','.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
 	let g:vimwiki_list = [{'path': '~/projects/vimwiki', 'syntax': 'markdown', 'ext': '.md'}]
-	autocmd BufRead,BufNewFile /tmp/calcurse*,~/.calcurse/notes/* set filetype=markdown
 	autocmd BufRead,BufNewFile *.ms,*.me,*.mom,*.man set filetype=groff
 	autocmd BufRead,BufNewFile *.tex set filetype=tex
 
@@ -253,7 +248,6 @@ syntax on
 	autocmd FileType html inoremap ì &igrave;
 	autocmd FileType html inoremap ò &ograve;
 	autocmd FileType html inoremap ù &ugrave;
-
 
 """.bib
 	autocmd FileType bib inoremap ,a @article{<Enter>author<Space>=<Space>{<++>},<Enter>year<Space>=<Space>{<++>},<Enter>title<Space>=<Space>{<++>},<Enter>journal<Space>=<Space>{<++>},<Enter>volume<Space>=<Space>{<++>},<Enter>pages<Space>=<Space>{<++>},<Enter>}<Enter><++><Esc>8kA,<Esc>i
