@@ -11,7 +11,7 @@ subtemplate='default-256'
 rewrite=true
 
 [[item]]
-file='$XDG_CONFIG_HOME/qutebrowser/colours.py'
+file='$XDG_CONFIG_HOME/qutebrowser/colors.py'
 template='qutebrowser'
 subtemplate='minimal'
 rewrite=true
@@ -28,9 +28,10 @@ subtemplate='background'
 hook = 'killall dunst'
 
 [[item]]
-file='$XDG_CONFIG_HOME/polybar/config'
+file='$XDG_CONFIG_HOME/polybar/colors.ini'
 template='polybar'
 hook='polybar-msg cmd restart'
+rewrite=true
 
 [[item]]
 file='$XDG_CONFIG_HOME/bspwm/bspwm_colors.sh'
