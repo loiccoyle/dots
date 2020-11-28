@@ -10,7 +10,7 @@ alias df='df -h'                                                # Human-readable
 alias psyu='sudo pacman -Syu'
 alias ysyu='yay -Syu'
 # full upgrade
-alias sysupdate='sudo pacman -Syu && yay -Syu && pipx upgrade-all && zinit update --all && vim --headless +PlugUpdate +qall > /dev/null'
+alias sysupdate='sudo pacman -Syu && pipx upgrade-all && zinit update --all && vim --headless +PlugUpdate +qall > /dev/null'
 # mount gdrive
 alias gdrivemount="rclone mount --daemon 'gdrive:' ~/data/gdrive"
 # python venv
@@ -22,12 +22,13 @@ alias ipy="ipython"
 alias jup="jupyter notebook"
 # config edits
 alias czsh="$EDITOR $ZDOTDIR"
-alias clf="$EDITOR ~/.config/lf/lfrc"
-alias cwm="$EDITOR ~/.config/bspwm/bspwmrc"
-alias chk="$EDITOR ~/.config/sxhkd/sxhkdrc"
-alias cvim="$EDITOR ~/.config/nvim/init.vim"
+alias clf="$EDITOR $XDG_CONFIG_HOME/lf/lfrc"
+alias cwm="$EDITOR $XDG_CONFIG_HOME/bspwm/bspwmrc"
+alias chk="$EDITOR $XDG_CONFIG_HOME/sxhkd/sxhkdrc"
+alias cvim="$EDITOR $XDG_CONFIG_HOME/nvim/init.vim"
 # dotfile git
-alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias config='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias lgconfig='lazygit --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 # vimwiki
 alias vimwiki="vim -c \"VimwikiIndex\""
 # fasd
