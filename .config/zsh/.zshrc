@@ -1,3 +1,10 @@
+#          _
+#  _______| |__
+# |_  / __| '_ \
+#  / /\__ \ | | |
+# /___|___/_| |_|
+
+
 # Options section
 setopt correct                                                  # Auto correct mistakes
 setopt extendedglob                                             # Extended globbing. Allows using regular expressions with *

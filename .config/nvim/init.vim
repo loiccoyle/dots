@@ -1,3 +1,9 @@
+"        _
+" __   _(_)_ __ ___
+" \ \ / / | '_ ` _ \
+"  \ V /| | | | | | |
+"   \_/ |_|_| |_| |_|
+
 let mapleader =","
 
 if ! filereadable(expand('~/.config/nvim/autoload/plug.vim'))
