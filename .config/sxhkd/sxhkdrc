@@ -117,9 +117,12 @@ super + bracket{left,right}
 # move & follow node to the next/previous desktop in the current monitor
 super + shift + bracket{left,right}
 	bspc node --to-desktop {prev,next} --follow
-# focus the last node/desktop
+# focus the last desktop
 super + Tab
 	bspc desktop -f last
+# move window to last desktop
+super + shift + Tab
+	bspc node --to-desktop last
 # alt tab like behaviour
 alt + {_, shift + } Tab
     bspc wm -h off; \
