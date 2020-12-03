@@ -22,8 +22,7 @@ vim: python_dev
 	cd ~/.config/nvim && ./make_venv && cd -
 
 python_dev:
-	sudo pacman -S python-pip python-pipx python-poetry ipython
-	pipx install black isort pylint
+	sudo pacman -S python-pip python-pipx python-poetry ipython python-black python-isort python-pylint
 
 rofi:
 	sudo pacman -S rofi
