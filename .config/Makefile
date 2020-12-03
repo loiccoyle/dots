@@ -31,6 +31,7 @@ rofi:
 ui-theme:
 	sudo pacman -S qt5ct
 	yay -S adwaita-qt
+	echo "Run 'qt5ct' and select adwaita"
 
 qutebrowser:
 	sudo pacman -S qutebrowser
