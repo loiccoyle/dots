@@ -34,8 +34,6 @@ ui-theme:
 
 qutebrowser:
 	sudo pacman -S qutebrowser
-	git clone https://gitlab.com/jjzmajic/qutewal ~/.config/qutebrowser/qutewal
-	ln -s ~/.config/qutebrowser/qutewal/qutewal.py ~/.config/qutebrowser/qutewal.py
 
 fonts:
 	sudo pacman -S noto-fonts noto-fonts-emoji ttf-unifont ttf-hack
