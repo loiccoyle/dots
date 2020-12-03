@@ -1,10 +1,10 @@
 {
     "python.poetryPath": "/home/lcoyle/.local/share/poetry/bin/poetry",
-    "python.linting.pylintPath": "/home/lcoyle/.local/pipx/venvs/pylint/bin/pylint",
-    "python.sortImports.path": "/home/lcoyle/.local/pipx/venvs/isort/bin/isort",
+    "python.linting.pylintPath": "pylint",
+    "python.sortImports.path": "isort",
     "python.jediPath": "/home/lcoyle/.config/nvim/venv/lib/python3.8/site-packages/",
     "python.formatting.provider": "black",
-    "python.formatting.blackPath": "/home/lcoyle/.local/pipx/venvs/black/bin/black",
+    "python.formatting.blackPath": "black",
     "python.venvPath": "/home/lcoyle/.cache/pypoetry/virtualenvs",
     "python.linting.pylintArgs": [
         "--disable",
