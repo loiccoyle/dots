@@ -246,6 +246,10 @@ c.url.searchengines = {
 ## Type: Bool
 c.window.hide_decoration = True
 
+## Main window transparency.
+## Type: bool
+c.window.transparent = True
+
 ## Bindings for normal mode
 # config.bind("'", 'enter-mode jump_mark')
 # config.bind('+', 'zoom-in')
