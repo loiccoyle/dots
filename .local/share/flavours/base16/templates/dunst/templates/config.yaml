@@ -1,0 +1,7 @@
+default:
+    extension: .dunstrc
+    output: themes
+
+background:
+    extension: .dunstrc
+    output: themes
