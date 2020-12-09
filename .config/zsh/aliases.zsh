@@ -19,6 +19,7 @@ alias df='df -h'                                                # Human-readable
 # pacman
 alias psyu='sudo pacman -Syu'
 alias ysyu='yay -Syu'
+alias pacdiff='sudo -E pacdiff'
 # full upgrade
 alias sysupdate='sudo pacman -Syu && pipx upgrade-all && zinit update --all && vim --headless +PlugUpdate +qall > /dev/null'
 # mount gdrive
