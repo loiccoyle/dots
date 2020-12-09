@@ -29,6 +29,9 @@
     urgent-foreground:           @red;
     urgent-background:           @background;
     alternate-normal-foreground: @foreground;
+    alternate-normal-background: @lightbg;
     alternate-active-foreground: @blue;
+    alternate-active-background: @lightbg;
     alternate-urgent-foreground: @red;
+    alternate-urgent-background: @lightbg;
 }
