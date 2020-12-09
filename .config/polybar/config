@@ -182,7 +182,7 @@ bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${bar/top.dimmed}
 
 click-right = pavucontrol-qt &
-click-middle = rofi-sink &
+click-middle = rofi-sink-port &
 
 [module/powermenu]
 type = custom/menu
