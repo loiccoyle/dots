@@ -42,5 +42,5 @@ rewrite=true
 [[item]]
 file='$XDG_CONFIG_HOME/rofi/themes/colors/colors.rasi'
 template='rofi'
-subtemplate='colors_minimal'
+subtemplate='colors'
 rewrite=true
