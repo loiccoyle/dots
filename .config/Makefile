@@ -2,7 +2,7 @@
 # Note: requires yay.
 
 lf:
-	yay -S lf-git vidir dragon-drag-and-drop
+	yay -S lf vidir dragon-drag-and-drop
 	sudo pacman -S xclip
 
 polybar: rofi fonts
@@ -11,15 +11,14 @@ polybar: rofi fonts
 
 sxhkd: rofi
 	sudo pacman -S libpulse pass
-	yay -S sxhkd-git
+	yay -S sxhkd
 
 sxiv:
 	sudo pacman -S imagemagick sxiv sxiv-rifle perl-image-exiftool
 
 vim: python_dev
-	sudo pacman -S neovim nodejs
-	yay -S fzf-git
-	cd ~/.config/nvim && ./make_venv && cd -
+	sudo pacman -S neovim nodejs python-pynvim
+	yay -S fzf
 
 python_dev:
 	sudo pacman -S python-pip python-pipx python-poetry ipython python-black python-isort python-pylint

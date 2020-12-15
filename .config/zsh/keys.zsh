@@ -47,10 +47,10 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 bindkey '^[[Z' reverse-menu-complete  # Shift+tab
 # fzf keys: ctrl + t, alt + c, ctrl + r
-[ -f "/usr/share/zsh/site-functions/_fzf" ] && . /etc/profile.d/fzf.zsh
+[ -f "/usr/share/fzf/key-bindings.zsh" ] && . /usr/share/fzf/key-bindings.zsh
 # edit line in $EDITOR
 autoload edit-command-line; zle -N edit-command-line
-bindkey '^e' edit-command-line                                  # ctrl-e to edit line in editor
+bindkey '^e' edit-command-line  # ctrl-e to edit line in editor
 # Termite specific ctrl+alt+t hotkey
 if [[ "$TERM" == "xterm-termite" ]]; then
   . /etc/profile.d/vte.sh
