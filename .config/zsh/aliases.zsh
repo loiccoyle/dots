@@ -12,10 +12,11 @@
 alias ls="ls --color=auto --group-directories-first"
 alias ll="ls -lha"
 alias l="ls -lh"
-alias cp="cp -i"                                                # Confirm before overwriting something
-alias mv="mv -i"                                                # Confirm before overwriting something
-alias df='df -h'                                                # Human-readable sizes
-# alias free='free -m'                                            # Show sizes in MB
+alias cp="cp -i"  # Confirm before overwriting something
+alias mv="mv -i"  # Confirm before overwriting something
+alias rm="rm -i"  # Confirm on removal
+alias df='df -h'  # Human-readable sizes
+alias free='free -h'  # Human-readable sizes
 # pacman
 alias psyu='sudo pacman -Syu'
 alias ysyu='yay -Syu'
@@ -53,8 +54,6 @@ alias gc="git commit"
 alias gp="git push"
 alias gs="git status"
 alias lg="lazygit"
-# wal reload
-alias wal="wal -o walreload"
 # functions
 edit () {
     $EDITOR $(which $1)
