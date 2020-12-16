@@ -2,7 +2,7 @@
 # Note: requires yay.
 
 lf:
-	yay -S lf vidir dragon-drag-and-drop
+	yay -S lf-git vidir dragon-drag-and-drop
 	sudo pacman -S xclip
 
 polybar: rofi fonts
