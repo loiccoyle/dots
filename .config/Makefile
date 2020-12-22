@@ -46,7 +46,7 @@ flavours:
 
 tpb:
 	pipx install rofi-tpb
-	sudo pacman -S transmission-cli
+	sudo pacman -S transmission-cli mpv
 	yay -S webtorrent-cli
 
 .PHONY: lf polybar sxhkd sxiv vim python_dev rofi ui-theme qutebrowser fonts flavours
