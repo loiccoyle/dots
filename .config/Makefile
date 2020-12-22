@@ -14,7 +14,8 @@ sxhkd: rofi
 	yay -S sxhkd
 
 sxiv:
-	sudo pacman -S imagemagick sxiv sxiv-rifle perl-image-exiftool
+	sudo pacman -S imagemagick sxiv perl-image-exiftool
+	yay -S sxiv-rifle
 
 vim: python_dev
 	sudo pacman -S neovim nodejs python-pynvim
@@ -47,4 +48,5 @@ tpb:
 	pipx install rofi-tpb
 	sudo pacman -S transmission-cli
 	yay -S webtorrent-cli
+
 .PHONY: lf polybar sxhkd sxiv vim python_dev rofi ui-theme qutebrowser fonts flavours
