@@ -1,1 +1,78 @@
-/home/lcoyle/.cache/wal/termite.config
+#  _                      _ _
+# | |_ ___ _ __ _ __ ___ (_) |_ ___
+# | __/ _ \ '__| '_ ` _ \| | __/ _ \
+# | ||  __/ |  | | | | | | | ||  __/
+#  \__\___|_|  |_| |_| |_|_|\__\___|
+
+[options]
+scroll_on_output = false
+scroll_on_keystroke = true
+audible_bell = false
+mouse_autohide = false
+allow_bold = true
+dynamic_title = true
+urgent_on_bell = true
+clickable_url = true
+font = Hack 10
+scrollback_lines = 10000
+search_wrap = true
+icon_name = utilities-terminal
+clickable_url = true
+cursor_blink = system
+cursor_shape = block
+browser = qutebrowser
+filter_unmatched_urls = true
+
+# *************************
+# Start flavours
+[colors]
+# Base16 Generated
+# Author: Flavours
+
+foreground          = #ddc5cd
+foreground_bold     = #ddc5cd
+cursor              = #ddc5cd
+cursor_foreground   = #272242
+background          = rgba(39, 34, 66, 0.92)
+
+# 16 color space
+
+# Black, Gray, Silver, White
+color0  = #272242
+color8  = #948496
+color7  = #ddc5cd
+color15 = #e7d6dc
+
+# Red
+color1  = #64799c
+color9  = #64799c
+
+# Green
+color2  = #c4563d
+color10 = #c4563d
+
+# Yellow
+color3  = #7272b5
+color11 = #7272b5
+
+# Blue
+color4  = #aa608f
+color12 = #aa608f
+
+# Purple
+color5  = #7e93da
+color13 = #7e93da
+
+# Teal
+color6  = #a36c2e
+color14 = #a36c2e
+
+# Extra colors
+color16 = #6d798e
+color17 = #636aea
+color18 = #4c425e
+color19 = #70637a
+color20 = #b9a4b1
+color21 = #e2cdd5
+# End flavours
+# vim: ft=cfg
