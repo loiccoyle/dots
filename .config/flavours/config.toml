@@ -13,7 +13,7 @@ rewrite=true
 [[item]]
 file='$XDG_CONFIG_HOME/qutebrowser/colors.py'
 template='qutebrowser'
-subtemplate='minimal_transparent'
+subtemplate='minimal'
 rewrite=true
 hook='sh -c "pgrep -x qutebrowser && qutebrowser :config-source"'
 
