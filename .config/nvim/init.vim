@@ -37,13 +37,12 @@ call plug#end()
 set bg=dark
 set go=a
 set mouse=a
-set nohlsearch
 set clipboard+=unnamedplus
 set noshowmode
-syntax on
 
 " Some basics:
 	nnoremap c "_c
+    " Required for wimwiki
 	set nocompatible
 	filetype plugin on
 	syntax on
@@ -52,6 +51,11 @@ syntax on
 	set tabstop=4
 	set shiftwidth=4
     set expandtab
+    " Ignore case when searching
+    set ignorecase
+    set smartcase
+    " Ignore compiled files and VCS files
+    set wildignore=*.o,*~,*.pyc*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 
 " lightline
     let g:lightline = {
@@ -94,15 +98,16 @@ syntax on
 	map <C-k> <C-w>k
 	map <C-l> <C-w>l
 
+" Clear highlighting on escape in normal mode
+    nnoremap <esc> :noh<return><esc>
+    nnoremap <esc>^[ <esc>^[
+
 " Ctrl backspace
-    " imap <C-BS> <C-W>
     noremap! <C-BS> <C-w>
     noremap! <C-h> <C-w>
 
 " Shortcutting tab navigation:
 	nnoremap K :tabprevious<CR>
-	" map <A-j> <C-w>j
-	" map <A-k> <C-w>k
 	nnoremap J :tabnext<CR>
     " Go to tab by number
     noremap <A-1> 1gt
