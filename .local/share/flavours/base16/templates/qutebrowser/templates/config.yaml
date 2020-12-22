@@ -5,7 +5,3 @@ default:
 minimal:
     extension: .config.py
     output: themes/minimal
-
-minimal:
-    extension: .config.py
-    output: themes/minimal_transparent
