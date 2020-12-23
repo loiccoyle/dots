@@ -44,9 +44,9 @@ flavours:
 	yay -S flavours
 	flavours update all
 
-tpb:
+tpb: python_dev
 	pipx install rofi-tpb
 	sudo pacman -S transmission-cli mpv
 	yay -S webtorrent-cli
 
-.PHONY: lf polybar sxhkd sxiv vim python_dev rofi ui-theme qutebrowser fonts flavours
+.PHONY: lf polybar sxhkd sxiv vim python_dev rofi ui-theme qutebrowser fonts flavours tpb
