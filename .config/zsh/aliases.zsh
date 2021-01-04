@@ -27,7 +27,6 @@ alias sysupdate='sudo pacman -Syu && pipx upgrade-all && zinit update --all && v
 alias gdrivemount="rclone mount --daemon 'gdrive:' ~/data/gdrive"
 # python venv
 alias venv="python3 -m venv"
-alias ae="[ -f venv/bin/activate ] && source venv/bin/activate || poetry shell"
 alias de="deactivate"
 alias ipy="ipython"
 # python jupyter notebook
@@ -56,7 +55,18 @@ alias gs="git status"
 alias lg="lazygit"
 # functions
 edit () {
-    $EDITOR $(which $1)
+    # Open command in EDITOR
+    $EDITOR "$(which "$1")"
+}
+ae () {
+    # Activate python venv
+    if [ -f "venv/bin/activate" ]
+    then
+        source "venv/bin/activate"
+    else
+        VENV_PATH="$(poetry env list --full-path | grep "Activated" | cut -d' ' -f1)"
+        [ -z "$VENV_PATH" ] || source "$VENV_PATH/bin/activate"
+    fi
 }
 # globals
 alias -g G="| grep"
