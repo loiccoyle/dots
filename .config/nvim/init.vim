@@ -32,7 +32,7 @@ Plug 'kovetskiy/sxhkd-vim'
 call plug#end()
 
 " python nvim environment
-" let g:python3_host_prog = "~/.config/nvim/venv/bin/python"
+let g:python3_host_prog = "/usr/bin/python"
 
 set bg=dark
 set go=a
