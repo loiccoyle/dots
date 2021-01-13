@@ -51,7 +51,7 @@ bindkey '^[[Z' reverse-menu-complete  # Shift+tab
 # edit line in $EDITOR
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line  # ctrl-e to edit line in editor
-# Termite specific ctrl+alt+t hotkey
+# Termite specific ctrl+shift+t hotkey
 if [[ "$TERM" == "xterm-termite" ]]; then
   . /etc/profile.d/vte.sh
   __vte_osc7
