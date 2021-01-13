@@ -34,7 +34,7 @@ ui-theme:
 	echo "Run 'qt5ct' and select adwaita"
 
 qutebrowser:
-	sudo pacman -S qutebrowser
+	yay -S qutebrowser-git python-adblock
 
 fonts:
 	sudo pacman -S noto-fonts noto-fonts-emoji ttf-unifont ttf-hack

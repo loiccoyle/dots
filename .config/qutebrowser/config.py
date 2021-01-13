@@ -44,6 +44,15 @@ c.colors.webpage.darkmode.enabled = False
 ##   - never: Never show a confirmation.
 c.confirm_quit = ["downloads"]
 
+## What happens when last tab of a window is closed.
+## Type: str
+## Valid values:
+##   - close
+##   - default_page
+##   - ignore
+##   - startpage
+c.tabs.last_close = "close"
+
 ## Allow pdf.js to view PDF files in the browser. Note that the files can
 ## still be downloaded by clicking the download button in the pdf.js
 ## viewer.
@@ -249,6 +258,11 @@ c.window.hide_decoration = True
 ## Main window transparency.
 ## Type: bool
 c.window.transparent = True
+
+## Blocking method. "adblock": brave style adblocking, "hosts"
+## host file.
+## Type: str
+c.content.blocking.method = "adblock"
 
 ## Bindings for normal mode
 # config.bind("'", 'enter-mode jump_mark')
