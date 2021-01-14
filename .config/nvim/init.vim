@@ -14,6 +14,7 @@ if ! filereadable(expand('~/.config/nvim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.config/nvim/plugged')
+" General quality of life
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-commentary'
@@ -21,26 +22,36 @@ Plug 'tpope/vim-repeat'
 Plug 'machakann/vim-highlightedyank'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'kovetskiy/sxhkd-vim'
+" Focus mode
 Plug 'junegunn/goyo.vim'
+" FZF
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+" Git status
 Plug 'airblade/vim-gitgutter'
+" vimwiki for notes
 Plug 'vimwiki/vimwiki'
-Plug 'itchyny/lightline.vim'
+" LSP client (to change out with nvim's client when it is stable)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'kovetskiy/sxhkd-vim'
+" Status bar
+Plug 'itchyny/lightline.vim'
+" Theme that uses terminal colours
+Plug 'noahfrederick/vim-noctu'
 call plug#end()
 
 " python nvim environment
-let g:python3_host_prog = "/usr/bin/python"
+    let g:python3_host_prog = "/usr/bin/python"
 
-set bg=dark
-set go=a
-set mouse=a
-set clipboard+=unnamedplus
-set noshowmode
+" Theme
+    set bg=dark
+    colorscheme noctu
 
-" Some basics:
+" Some basics
+    set go=a
+    set mouse=a
+    set clipboard+=unnamedplus
+    set noshowmode
     nnoremap c "_c
     " Required for wimwiki
     set nocompatible
