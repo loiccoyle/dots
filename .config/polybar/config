@@ -32,7 +32,7 @@ font-0 = Hack:size=8:antialias=false;2
 font-1 = Wuncon Siji:pixelsize=10;2
 font-2 = unifont:size=7;2
 
-modules-left = cpu memory pulseaudio
+modules-left = cpu memory pulseaudio xwindow
 ; modules-center = mpd
 modules-center = bspwm
 modules-right = record temp updates-arch-combined bluetooth vpn wireless-network date powermenu
@@ -233,7 +233,7 @@ click-left = rofi-bluetooth &
 
 [module/vpn]
 type = custom/script
-exec = rofi-nordvpn --status
+exec = rofi-nordvpn -s 
 interval = 10
 click-left = rofi-nordvpn &
 
@@ -248,4 +248,7 @@ hook-0 = rofi-record bar
 initial = 2
 click-left = rofi-record kill
 format-foreground = ${bar/top.accent}
+
+[module/xwindow]
+type = internal/xwindow
 ; vim:ft=dosini
