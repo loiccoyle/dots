@@ -49,4 +49,7 @@ tpb: python_dev
 	sudo pacman -S transmission-cli mpv
 	yay -S webtorrent-cli
 
-.PHONY: lf polybar sxhkd sxiv vim python_dev rofi ui-theme qutebrowser fonts flavours tpb
+hooks:
+	yay -S pacman-cleanup-hook reflector-mirrorlist-update
+
+.PHONY: lf polybar sxhkd sxiv vim python_dev rofi ui-theme qutebrowser fonts flavours tpb hooks
