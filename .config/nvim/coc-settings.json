@@ -1,4 +1,5 @@
 {
+    "python.formatting.blackPath": "/usr/bin/black",
     "python.formatting.provider": "black",
     "python.venvPath": "/home/lcoyle/.cache/pypoetry/virtualenvs",
     "python.linting.pylintArgs": [
@@ -9,5 +10,19 @@
     ],
     "python.linting.pylintEnabled": true,
     "python.linting.enabled": true,
-    "coc.preferences.formatOnSaveFiletypes": []
+    "coc.preferences.formatOnSaveFiletypes": [],
+    "languageserver": {
+        "bash": {
+            "command": "bash-language-server",
+            "args": [
+                "start"
+            ],
+            "filetypes": [
+                "sh"
+            ],
+            "ignoredRootPaths": [
+                "~"
+            ]
+        }
+    }
 }
