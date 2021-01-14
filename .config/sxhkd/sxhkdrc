@@ -95,10 +95,16 @@ super + f
 super + shift + f
 	bspc desktop -l next
 # tiled,pseudo_tiled,floating,fullscreen}
-# set the node flags
-# super + ctrl + {m,x,y,z}
-# 	bspc node -g {marked,locked,sticky,private}
-
+# set the node flags and pseudo tiled
+super + s
+	flag="$(printf "%b" "sticky\nlocked\nprivate\npseudo tiled" | rofi -dmenu -p "Select" -no-custom -l 4)";\
+	if [ -n "$flag" ]; then;\
+		if [ "$flag" = "pseudo tiled" ]; then;\
+			bspc node --state '~pseudo_tiled';\
+		else;\
+			bspc node --flag "$flag";\
+		fi;\
+	fi;
 
 # focus/swap
 
