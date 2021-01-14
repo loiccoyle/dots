@@ -56,8 +56,9 @@ export LESS_TERMCAP_us=$'\E[01;36m'
 export LESS=-r
 
 # Themes
-export QT_QPA_PLATFORMTHEME=qt5ct
-export GTK_THEME=Adwaita:dark
+export QT_QPA_PLATFORMTHEME="qt5ct"
+export GTK_THEME="Adwaita:dark"
+export FLAVOURS_THEME_MODE="dark"
 
 # zsh config folder
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
