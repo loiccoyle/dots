@@ -33,9 +33,8 @@ font-1 = Wuncon Siji:pixelsize=10;2
 font-2 = unifont:size=7;2
 
 modules-left = cpu memory pulseaudio xwindow
-; modules-center = mpd
 modules-center = bspwm
-modules-right = record temp updates-arch-combined bluetooth vpn wireless-network date powermenu
+modules-right = record temperature updates-arch-combined bluetooth vpn wireless-network date powermenu
 
 enable-ipc = true
 tray-position = right
@@ -237,11 +236,6 @@ exec = rofi-nordvpn -s 
 interval = 10
 click-left = rofi-nordvpn &
 
-[module/temp]
-type = custom/script
-exec = printf ' %.0f°C' $(sensors -j 2> /dev/null | jq '."k10temp-pci-00c3".Tdie.temp2_input')
-interval = 5
-
 [module/record]
 type = custom/ipc
 hook-0 = rofi-record bar
@@ -251,4 +245,29 @@ format-foreground = ${bar/top.accent}
 
 [module/xwindow]
 type = internal/xwindow
+label-maxlen = 50
+
+[module/temperature]
+type = internal/temperature
+interval = 5
+
+; Thermal zone to use
+; To list all the zone types, run
+; $ for i in /sys/class/thermal/thermal_zone*; do echo "$i: $(<$i/type)"; done
+; Default: 0
+thermal-zone = 0
+
+; Full path of temperature sysfs path
+; Use `sensors` to find preferred temperature source, then run
+; $ for i in /sys/class/hwmon/hwmon*/temp*_input; do echo "$(<$(dirname $i)/name): $(cat ${i%_*}_label 2>/dev/null || echo $(basename ${i%_*})) $(readlink -f $i)"; done
+; to find path to desired file
+; Default reverts to thermal zone setting
+hwmon-path = /sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon1/temp2_input
+warn-temperature = 80
+units = true
+format =  <label>
+format-warn =  <label-warn>
+label = %temperature-c%
+label-warn = %temperature-c%
+label-warn-foreground = ${bar/top.accent}
 ; vim:ft=dosini
