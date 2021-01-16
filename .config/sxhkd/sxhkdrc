@@ -8,7 +8,7 @@
 
 # terminal emulator
 super + {_,shift + } Return
-	{$TERMINAL, scratchpad.sh dropdown}
+	{$TERMINAL, scratchpad dropdown}
 # start lfcd in a terminal
 super + o
     $TERMINAL -e "zsh -i $HOME/.config/lf/lfcd"
