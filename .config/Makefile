@@ -38,7 +38,7 @@ qutebrowser:
 
 fonts:
 	sudo pacman -S noto-fonts noto-fonts-emoji ttf-unifont ttf-hack
-	yay -S siji-git
+	yay -S siji
 
 flavours:
 	yay -S flavours
