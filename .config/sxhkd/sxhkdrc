@@ -97,7 +97,7 @@ super + shift + f
 # tiled,pseudo_tiled,floating,fullscreen}
 # set the node flags and pseudo tiled
 super + s
-	flag="$(printf "%b" "sticky\nlocked\nprivate\npseudo tiled" | rofi -dmenu -p "Select" -no-custom -l 4)";\
+	flag="$(printf "%b" "sticky\nlocked\nprivate\npseudo tiled\nhidden" | rofi -dmenu -p "Select" -no-custom -l 5)";\
 	if [ -n "$flag" ]; then;\
 		if [ "$flag" = "pseudo tiled" ]; then;\
 			bspc node --state '~pseudo_tiled';\
@@ -105,6 +105,13 @@ super + s
 			bspc node --flag "$flag";\
 		fi;\
 	fi;
+# hide node
+super + BackSpace
+	bspc node --flag hidden
+# unhide node
+super + shift + BackSpace
+	bspc query -N -n .hidden | xargs -I node_id sh -c 'xprop -id node_id | grep -q "dropdown" || bspc node node_id --flag hidden'
+
 
 # focus/swap
 
@@ -129,11 +136,14 @@ super + Tab
 # move window to last desktop
 super + shift + Tab
 	bspc node --to-desktop last
+# alt tab with rofi
+alt + Tab
+	rofi -show window
 # alt tab like behaviour
-alt + {_, shift + } Tab
-    bspc wm -h off; \
-    bspc node {older,newer} -f; \
-    bspc wm -h on
+# alt + {_, shift + } Tab
+#     bspc wm -h off; \
+#     bspc node {older,newer} -f; \
+#     bspc wm -h on
 # focus next monitor
 super + {_, shift + } grave
 	bspc {monitor -f next, node -m next --follow}
