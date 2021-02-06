@@ -31,6 +31,7 @@ alias de="deactivate"
 alias ipy="ipython"
 # python jupyter notebook
 alias jup="jupyter notebook"
+
 # config edits
 alias czsh="$EDITOR $ZDOTDIR"
 alias clf="$EDITOR $XDG_CONFIG_HOME/lf/lfrc"

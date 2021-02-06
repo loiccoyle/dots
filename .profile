@@ -36,7 +36,6 @@ export OPENER="xdg-open"
 export TERM="xterm-termite"
 export TERMINAL="termite"
 
-# Some path
 # Some paths
 export STOWDIR="$HOME/data/stow"
 export WALLDIR="$XDG_PICTURES_DIR/walls"

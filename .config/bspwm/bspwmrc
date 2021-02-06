@@ -14,15 +14,15 @@ bspc monitor HDMI-0 -d 0
 bspc monitor DP-0 -d 1 2 3 4 5 6 7 8 9 10
 bspc desktop -f 1
 
-bspc config border_width          1
-bspc config window_gap            7
+bspc config border_width 1
+bspc config window_gap 7
 
-bspc config -m $BAR_MONITOR top_padding   $BAR_HEIGHT
-bspc config split_ratio           0.52
-bspc config borderless_monocle    true
-bspc config gapless_monocle       true
+bspc config -m $BAR_MONITOR top_padding $BAR_HEIGHT
+bspc config split_ratio 0.52
+bspc config borderless_monocle true
+bspc config gapless_monocle true
 bspc config focus_follows_pointer true
-bspc config single_monocle 	      true
+bspc config single_monocle true
 # Set the colors
 ~/.config/bspwm/bspwm_colors.sh &
 
