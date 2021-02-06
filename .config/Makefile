@@ -10,7 +10,7 @@ polybar: rofi fonts
 	sudo pacman -S pavucontrol-qt
 
 sxhkd: rofi
-	sudo pacman -S libpulse pass
+	sudo pacman -S libpulse pass xorg-xprop
 	yay -S sxhkd
 
 sxiv:
@@ -52,4 +52,7 @@ tpb: python_dev
 hooks:
 	yay -S pacman-cleanup-hook reflector-mirrorlist-update
 
-.PHONY: lf polybar sxhkd sxiv vim python_dev rofi ui-theme qutebrowser fonts flavours tpb hooks
+audio:
+	sudo pacman -S pipewire pipewire-pulse
+
+.PHONY: lf polybar sxhkd sxiv vim python_dev rofi ui-theme qutebrowser fonts flavours tpb hooks audio
