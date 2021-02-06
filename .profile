@@ -37,6 +37,7 @@ export TERM="xterm-termite"
 export TERMINAL="termite"
 
 # Some path
+# Some paths
 export STOWDIR="$HOME/data/stow"
 export WALLDIR="$XDG_PICTURES_DIR/walls"
 export BOOKMARKS="$XDG_CONFIG_HOME/qutebrowser/bookmarks/urls"
@@ -60,6 +61,11 @@ export QT_QPA_PLATFORMTHEME="qt5ct"
 export GTK_THEME="Adwaita:dark"
 export FLAVOURS_THEME_MODE="dark"
 
+# Bar settings
+export BAR_HEIGHT=16
+export BAR_MONITOR="DP-0"
+
+# Cleanup home folder
 # zsh config folder
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 

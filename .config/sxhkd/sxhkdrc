@@ -36,7 +36,7 @@ super + shift + w
 # toggle the bar and the top padding
 super + b
     polybar-msg cmd toggle & \
-	switch "bspc config -m DP-0 top_padding 0" "bspc config -m DP-0 top_padding 16"
+	switch "bspc config -m $BAR_MONITOR top_padding 0" "bspc config -m $BAR_MONITOR top_padding $BAR_HEIGHT"
 # screenshot
 Print
 	rofi-screenshot
