@@ -17,6 +17,7 @@ alias mv="mv -i"  # Confirm before overwriting something
 alias rm="rm -i"  # Confirm on removal
 alias df='df -h'  # Human-readable sizes
 alias free='free -h'  # Human-readable sizes
+alias open="$OPENER"
 # pacman
 alias psyu='sudo pacman -Syu'
 alias ysyu='yay -Syu'
