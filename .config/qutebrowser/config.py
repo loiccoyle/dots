@@ -149,7 +149,7 @@ c.editor.command = [terminal, "-e", editor + ' -c "normal {line}G{column0}l" -- 
 ## Enable smooth scrolling for web pages. Note smooth scrolling does not
 ## work with the `:scroll-px` command.
 ## Type: Bool
-c.scrolling.smooth = True
+c.scrolling.smooth = False
 
 ## Name of the session to save by default. If this is set to null, the
 ## session which was last loaded is saved.
@@ -260,9 +260,14 @@ c.window.hide_decoration = True
 c.window.transparent = True
 
 ## Blocking method. "adblock": brave style adblocking, "hosts"
-## host file.
+## host file. "both"
 ## Type: str
-c.content.blocking.method = "adblock"
+c.content.blocking.method = "both"
+
+# file handler
+c.fileselect.handler = "external"
+c.fileselect.single_file.command = [terminal, '--class=float', '-e', 'lf -selection-path {}']
+c.fileselect.multiple_files.command = c.fileselect.single_file.command
 
 ## Bindings for normal mode
 # config.bind("'", 'enter-mode jump_mark')
