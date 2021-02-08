@@ -40,6 +40,13 @@ Plug 'itchyny/lightline.vim'
 Plug 'noahfrederick/vim-noctu'
 call plug#end()
 
+let g:coc_global_extensions = [
+                            \ 'coc-pyright',
+                            \ 'coc-json',
+                            \ 'coc-sh',
+                            \ 'coc-snippets'
+                            \]
+
 " python nvim environment
     let g:python3_host_prog = "/usr/bin/python"
 
