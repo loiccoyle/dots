@@ -29,7 +29,7 @@ $HOME/.config/polybar/launch.sh &
 sxhkd &
 
 # start compositor
-picom &
+picom --experimental-backends -b &
 
 # notification server
 dunst &
