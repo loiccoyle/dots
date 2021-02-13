@@ -244,6 +244,8 @@ c.url.searchengines = {
     "DEFAULT": "https://start.duckduckgo.com/?kak=-1&kal=-1&kao=-1&kaq=-1&kp=-2&kaj=m&kax=-1&kap=-1&kau=-1&kam=google-maps&k1=-1&km=m&kae=d&q={}",
     "ggl": "https://www.google.com/search?&q={}",
     "gdr": "https://drive.google.com/drive/search?q={}",
+    "aw": "https://wiki.archlinux.org/index.php?search={}",
+    "aur": "https://aur.archlinux.org/packages/?K={}",
 }
 
 ## Page(s) to open at the start.
