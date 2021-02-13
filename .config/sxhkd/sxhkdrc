@@ -46,9 +46,12 @@ shift + Print
 # greenclip rofi
 super + v
 	rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
-# passmeny
+# passmenu
 super + p
 	passmenu
+# rice control pannel
+super + Home
+	rofi-rice
 
 
 # media key hotkeys
@@ -84,6 +87,12 @@ super + q
 # swap the current node and the biggest node
 super + g
 	bspc node -s biggest.local
+# change gaps
+super + Next
+	gap=$(($(bspc config window_gap) - 2));\
+	bspc config window_gap $((gap>0 ? gap : 0))
+super + Prior
+	bspc config window_gap $(($(bspc config window_gap) + 2))
 
 
 # state/flags
@@ -108,7 +117,7 @@ super + s
 # hide node
 super + BackSpace
 	bspc node --flag hidden
-# unhide node
+# unhide nodes
 super + shift + BackSpace
 	bspc query -N -n .hidden | xargs -I node_id sh -c 'xprop -id node_id | grep -q "dropdown" || bspc node node_id --flag hidden'
 
