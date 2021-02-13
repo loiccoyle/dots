@@ -9,6 +9,7 @@ file='~/.Xresources'
 template='xresources'
 subtemplate='default-256'
 rewrite=true
+hook='xrdb ~/.Xresources'
 
 [[item]]
 file='$XDG_CONFIG_HOME/qutebrowser/colors.py'
