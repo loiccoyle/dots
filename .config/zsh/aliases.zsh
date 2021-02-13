@@ -23,7 +23,7 @@ alias psyu='sudo pacman -Syu'
 alias ysyu='yay -Syu'
 alias pacdiff='sudo -E pacdiff'
 # full upgrade
-alias sysupdate='sudo pacman -Syu && pipx upgrade-all && zinit update --all && vim --headless +PlugUpdate +qall > /dev/null'
+alias sysupdate='yay && pipx upgrade-all && zinit update --all && vim --headless +PlugUpdate +qall > /dev/null'
 # mount gdrive
 alias gdrivemount="rclone mount --daemon 'gdrive:' ~/data/gdrive"
 # python venv
@@ -32,7 +32,6 @@ alias de="deactivate"
 alias ipy="ipython"
 # python jupyter notebook
 alias jup="jupyter notebook"
-
 # config edits
 alias czsh="$EDITOR $ZDOTDIR"
 alias clf="$EDITOR $XDG_CONFIG_HOME/lf/lfrc"
@@ -55,6 +54,7 @@ alias gc="git commit"
 alias gp="git push"
 alias gs="git status"
 alias lg="lazygit"
+
 # functions
 edit () {
     # Open command in EDITOR
