@@ -27,8 +27,11 @@ bspc config single_monocle true
 ~/.config/bspwm/bspwm_colors.sh &
 
 # Dropdown terminal
-bspc rule -a dropdown sticky=on state=floating hidden=on
 bspc rule -a float state=floating
+bspc rule -a \*:float state=floating
+bspc rule -a \*:\*:float state=floating
+bspc rule -a dropdown sticky=on state=floating hidden=on
+bspc rule -a Rofi state=floating
 bspc rule -a Zathura state=tiled
 bspc rule -a Sxiv:float state=floating
 bspc rule -a Dragon-drag-and-drop:\* sticky=on
