@@ -34,5 +34,8 @@ picom --experimental-backends -b &
 # notification server
 dunst &
 
+# usb mounting
+udiskie --smart --file-manager "$TERMINAL -e \"lf\" -d" &
+
 # clipboard manager
 greenclip daemon &
