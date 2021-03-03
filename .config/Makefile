@@ -6,7 +6,7 @@ lf:
 	sudo pacman -S xclip
 
 polybar: rofi fonts
-	yay -S polybar-git
+	yay -S polybar
 	sudo pacman -S pavucontrol-qt
 
 sxhkd: rofi

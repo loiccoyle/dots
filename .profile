@@ -42,6 +42,10 @@ export WALLDIR="$XDG_PICTURES_DIR/walls"
 export BOOKMARKS="$XDG_CONFIG_HOME/qutebrowser/bookmarks/urls"
 export PASSWORD_STORE_DIR="$XDG_CONFIG_HOME/pass-store"
 
+# Wallets
+export ETH_WALLET="0x95ac91C7684A98f1Be23AF48502b192F5E0E0eBc"
+export BTC_WALLET="bc1qvqcjx79rr7mak66vf0fz4tet70xehqurup3jv5"
+
 # Settings
 export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 
