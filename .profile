@@ -18,7 +18,7 @@ export XDG_CACHE_HOME="$HOME/.cache"
 
 # pyenv setup
 export PYENV_ROOT="$XDG_DATA_HOME/pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
+[ -d "$PYENV_ROOT/bin" ] && export PATH="$PYENV_ROOT/bin:$PATH"
 if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init -)"
 fi
@@ -28,8 +28,8 @@ export POETRY_HOME="$XDG_DATA_HOME/poetry"
 [ -d "$POETRY_HOME/bin" ] && export PATH="$POETRY_HOME/bin:$PATH"
 
 # Programs
-export EDITOR="vim"
-export VISUAL="vim"
+export EDITOR="nvim"
+export VISUAL="nvim"
 export BROWSER="qutebrowser"
 export PAGER="less"
 export OPENER="xdg-open"
