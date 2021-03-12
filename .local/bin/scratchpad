@@ -1,0 +1,21 @@
+#!/bin/sh
+#
+# Simulate an i3 scratchpad in BSPWM. Spawn terminal if the scratchpad is
+# empty, if not toggle visibility.
+# Requires bspwm, xdotool.
+
+if [ -z $1 ]; then
+	echo "Usage: $0 <name of hidden scratchpad window>"
+	exit 1
+fi
+
+pids=$(xdotool search --class ${1})
+if [ -z "$pids" ];
+then
+	"$TERMINAL" --class "${1}" &
+	sleep 0.2
+	pids=$(xdotool search --class "${1}")
+fi
+for pid in $pids; do
+	bspc node "$pid" --flag hidden -f
+done
