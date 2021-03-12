@@ -22,10 +22,9 @@ FILE_EXTENSION="${FILE_PATH##*.}"
 FILE_EXTENSION_LOWER=$(echo ${FILE_EXTENSION} | tr '[:upper:]' '[:lower:]')
 
 # Settings
-# HIGHLIGHT_SIZE_MAX=262143  # 256KiB
+HIGHLIGHT_SIZE_MAX=262143  # 256KiB
 # HIGHLIGHT_TABWIDTH=4
 # HIGHLIGHT_STYLE='/usr/share/highlight/themes/base16/solarized-dark.theme'
-# PYGMENTIZE_STYLE='/usr/share/highlight/themes/base16/solarized-dark'
 
 
 handle_extension() {
@@ -78,22 +77,22 @@ handle_mime() {
     local mimetype="${1}"
     case "${mimetype}" in
         # Text
-        text/* | */xml | application/json | application/csv)
+        text/* | */xml | */json | */csv)
             # Syntax highlight
-            # if [ "$( stat --printf='%s' -- "${FILE_PATH}" )" -gt "${HIGHLIGHT_SIZE_MAX}" ]; then
-            #     exit 2
-            # fi
+            if [ "$( stat --printf='%s' -- "${FILE_PATH}" )" -gt "${HIGHLIGHT_SIZE_MAX}" ]; then
+                # Skip if file too long
+                cat "${FILE_PATH}"
+                exit 2
+            fi
             # if [ "$( tput colors )" -ge 256 ]; then
-            #     local pygmentize_format='terminal256'
             #     local highlight_format='xterm256'
             # else
-            #     local pygmentize_format='terminal'
             #     local highlight_format='ansi'
             # fi
-            # pygmentize -f "${pygmentize_format}" -O "style=${PYGMENTIZE_STYLE}" -- "${FILE_PATH}"
             # highlight --replace-tabs="${HIGHLIGHT_TABWIDTH}" --out-format="${highlight_format}" \
             #     --config-file="${HIGHLIGHT_STYLE}" --force -- "${FILE_PATH}"
-            cat "${FILE_PATH}"
+            highlight --style "flavours" --out-format "ansi" --force -- "${FILE_PATH}"
+            # cat "${FILE_PATH}"
             exit 2
             ;;
 
