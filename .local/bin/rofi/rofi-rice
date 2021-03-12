@@ -1,0 +1,65 @@
+#!/bin/sh
+
+# Ricing control panel.
+# Requires rofi, flavours, sxiv
+
+menu() {
+    rofi -dmenu -p "Select" -no-custom "$@"
+}
+
+init_menu() {
+    printf "Select a background\\nSelect a colour scheme\\nGenerate colour scheme for the current background\nToggle compositor" | menu -l 4
+}
+
+background() {
+    local selected_bg
+    selected_bg="$(find "$WALLDIR" -type f | shuf | sxiv -tio -N "float" | shuf -n 1)"
+    if [ -n "$selected_bg" ]; then
+        flavours generate "$FLAVOURS_THEME_MODE" "$selected_bg" && setwall "$selected_bg" && flavours apply generated && notify-send --icon="$selected_bg" "Changed background"
+    fi
+}
+
+colour_scheme() {
+    declare -a schemes
+    declare -i return_code
+    declare -i scheme_index
+    local selected_scheme
+    local current_theme
+    schemes=($(flavours list -l))
+    current_theme="$(flavours current)"
+    while true; do
+        scheme_index="$(echo "${schemes[@]}" | menu -mesg "<b>Alt-Return</b> to preview" -format i -sep " " -selected-row "$scheme_index" -markup -kb-custom-1 "Alt-Return")"
+        return_code=$?
+        if [ ${return_code} = 1 ]; then
+            # escape was pressed
+            flavours apply "$current_theme" && notify-send "Changed colour scheme" "Scheme: $current_theme"
+            return 1
+        elif [ -n "$scheme_index" ]; then
+            # either preview or selection
+            selected_scheme="${schemes[$scheme_index]}"
+            flavours apply "$selected_scheme" && notify-send "Changed colour scheme" "Scheme: $selected_scheme"
+            [ ${return_code} = 0 ] && return 0  # selection
+        fi
+    done
+}
+
+generate() {
+    local current_wall
+    current_wall="$(cat "$XDG_CACHE_HOME/wall")"
+    setwall "$current_wall" && flavours generate "$FLAVOURS_THEME_MODE" "$current_wall" && flavours apply generated && notify-send --icon="$current_wall" "Generated colour scheme"
+}
+
+case "$(init_menu)" in
+    "Select a background"*)
+        background
+        ;;
+    "Select a colour scheme")
+        colour_scheme
+        ;;
+    "Generate colour scheme for the current background")
+        generate
+        ;;
+    "Toggle compositor")
+        pgrep -x picom > /dev/null && (killall picom && notify-send "Stopping picom") || (picom --experimental-backends -b && notify-send "Starting picom")
+        ;;
+esac
