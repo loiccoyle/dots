@@ -1,0 +1,109 @@
+#!/bin/sh
+#
+# Usage:
+# `$0`: Ask for recording type via dmenu
+# `$0 screencast`: Record both audio and screen
+# `$0 video`: Record only screen
+# `$0 audio`: Record only audio
+# `$0 kill`: Kill existing recording
+#
+# If there is already a running instance, user will be prompted to end it.
+# Requires rofi, ffmpeg.
+
+RECORD_DIR="${XDG_VIDEOS_DIR:-$HOME}"
+
+killrecording() {
+	recpid="$(cat /tmp/recordingpid)"
+	# kill with SIGTERM, allowing finishing touches.
+	kill -15 "$recpid"
+	rm -f /tmp/recordingpid
+	# even after SIGTERM, ffmpeg may still run, so SIGKILL it.
+	# sleep 3
+	# kill -9 "$recpid"
+    updatepolybar
+	exit
+	}
+
+screencast() { \
+	ffmpeg -y \
+	-f x11grab \
+	-framerate 60 \
+	-s "$(xrandr | grep '*' | awk '{print $1}')" \
+	-i "$DISPLAY" -itsoffset 00:00:00.25 \
+    -f alsa -ac 2 -i default \
+    -async 1 \
+	-r 30 \
+ 	-c:v h264 -crf 0 -preset ultrafast -c:a aac \
+	"$RECORD_DIR/screencast-$(date '+%y%m%d-%H%M-%S').mp4" &
+	echo $! > /tmp/recordingpid
+       	}
+
+video() { \
+    ffmpeg \
+	-f x11grab \
+	-s "$(xrandr | grep '*' | awk '{print $1}')" \
+	-i "$DISPLAY" \
+ 	-c:v libx264 -qp 0 -r 30 \
+	"$RECORD_DIR/video-$(date '+%y%m%d-%H%M-%S').mkv" &
+	echo $! > /tmp/recordingpid
+	}
+
+webcamhidef() { \
+    ffmpeg \
+	-f v4l2 \
+	-i /dev/video0 \
+	-video_size 1920x1080 \
+	"$RECORD_DIR/webcam-$(date '+%y%m%d-%H%M-%S').mkv" &
+	echo $! > /tmp/recordingpid
+	}
+
+webcam() { \
+    ffmpeg \
+	-f v4l2 \
+	-i /dev/video0 \
+	-video_size 640x480 \
+	"$RECORD_DIR/webcam-$(date '+%y%m%d-%H%M-%S').mkv" &
+	echo $! > /tmp/recordingpid
+	}
+
+audio() { \
+	ffmpeg \
+	-f alsa -i default \
+	-c:a flac \
+	"$RECORD_DIR/audio-$(date '+%y%m%d-%H%M-%S').flac" &
+	echo $! > /tmp/recordingpid
+	}
+
+askrecording() { \
+	choice=$(printf "screencast\\nvideo\\naudio\\nwebcam\\nwebcam (hi-def)" | rofi -dmenu -i -l 5 -p "Select recording style")
+	case "$choice" in
+		screencast) screencast;;
+		audio) audio;;
+		video) video;;
+		webcam) webcam;;
+		"webcam (hi-def)") webcamhidef;;
+	esac
+	}
+
+asktoend() { \
+	response=$(printf "Yes\\nNo" | rofi -dmenu -i -l 2 -p "Recording still active. End recording?") &&
+	[ "$response" = "Yes" ] && killrecording
+	}
+
+bar() {
+    [ -f /tmp/recordingpid ] && echo ""
+}
+
+updatepolybar() {
+    polybar-msg hook record 1 > /dev/null 2>&1
+}
+
+
+case "$1" in
+	screencast) screencast;;
+	audio) audio;;
+	video) video;;
+	kill) killrecording;;
+    bar) bar;;
+    *) ([ -f /tmp/recordingpid ] && asktoend && exit) || askrecording && updatepolybar;;
+esac
