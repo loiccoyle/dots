@@ -3,7 +3,7 @@
 
 lf:
 	yay -S lf vidir dragon-drag-and-drop
-	sudo pacman -S xclip
+	sudo pacman -S xclip highlight
 
 polybar: rofi fonts
 	yay -S polybar
