@@ -1,8 +1,16 @@
-# Dots
+# dotfiles
 
 ## Personal dotfiles
 
 > A clean & versatile rice.
+
+## Installation
+
+```shell
+curl -Ls loiccoyle.com/dots/install | bash
+```
+
+This will clone the repository into your `$HOME` and will create the git dir at `~/.dotfiles`. It will also move any conflicting files into `~/.config-backup`
 
 ### Screenshots
 
@@ -55,3 +63,7 @@ In `~/.profile` there a a bunch of environment variables to keep files out the h
 * **`python` dev environment**:
 
 Virtual environment: [`poetry`](https://github.com/python-poetry/poetry)
+
+* **Maintaining dotfiles**:
+
+These dotfiles are maintained using a [git bare repository](https://www.atlassian.com/git/tutorials/dotfiles)
