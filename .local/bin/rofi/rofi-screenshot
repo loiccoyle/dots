@@ -1,0 +1,50 @@
+#!/bin/sh
+
+# This is bound to PrintScreen by default.
+# Requires maim, xdotool, xclip and rofi.
+
+# strict
+set -e
+
+DEFAULT_FILENAME="$(date '+%y%m%d-%H%M-%S').png"
+
+input() {
+    local mesg="""Screenshot will be saved in <b>${XDG_PICTURES_DIR:-$HOME}</b>
+Leave blank for default filename <b>${DEFAULT_FILENAME}</b>"""
+    rofi -dmenu -show -l 0 -p "filename" -mesg "$mesg"
+}
+
+SELECTION="$(printf "selected area\\ncurrent window\\nfull screen\\nselected area (copy)\\ncurrent window (copy)\\nfull screen (copy)" | rofi -dmenu -l 6 -i -p "Screenshot")"
+
+# filename required
+if [[ "$SELECTION" != *"(copy)" ]]; then
+    # ask for flename
+    FILENAME="$(input)"
+    sleep 0.2
+    # no filename provided
+    [ -z "$FILENAME" ] && FILENAME="$DEFAULT_FILENAME"
+    # filename doesn't have an extension
+    [ -z "${FILENAME##*.*}" ] || FILENAME="$FILENAME.png"
+    FILEPATH="${XDG_PICTURES_DIR:-$HOME}/$FILENAME"
+fi
+
+case "$SELECTION" in
+	"selected area")
+        maim -s "$FILEPATH"
+        ;;
+	"current window")
+        maim -i "$(xdotool getactivewindow)" "$FILEPATH"
+        ;;
+	"full screen")
+        maim "$FILEPATH"
+        ;;
+	"selected area (copy)")
+        maim -s | xclip -selection clipboard -t image/png
+        ;;
+	"current window (copy)")
+        maim -i "$(xdotool getactivewindow)" | xclip -selection clipboard -t image/png
+        ;;
+	"full screen (copy)")
+        maim | xclip -selection clipboard -t image/png
+        ;;
+esac
