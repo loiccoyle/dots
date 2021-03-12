@@ -1,6 +1,4 @@
-# dotfiles
-
-## Personal dotfiles
+# Personal dotfiles
 
 > A clean & versatile rice.
 
