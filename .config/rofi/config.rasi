@@ -1,5 +1,0 @@
-configuration {
-	modi: "run,drun";
-	show-icons: true;
-	theme: "center_minimal.rasi";
-}

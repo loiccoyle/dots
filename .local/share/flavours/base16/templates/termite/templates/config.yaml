@@ -1,7 +1,0 @@
-default:
-    extension: .config
-    output: themes
-
-transparent:
-    extension: .config
-    output: themes
