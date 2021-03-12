@@ -18,11 +18,11 @@ Check `~/.config/Makefile` to install dependencies (requires `yay`).
 
 ### Screenshots
 
-![Green`](https://i.imgur.com/jG794AK.png)
+![Green](https://i.imgur.com/jG794AK.png)
 
-![Blue`](https://i.imgur.com/ml9aaRP.png)
+![Blue](https://i.imgur.com/ml9aaRP.png)
 
-![Black & White`](https://i.imgur.com/F8VkwtS.png)
+![Black & White](https://i.imgur.com/F8VkwtS.png)
 
 ### Applications
 
@@ -56,13 +56,13 @@ Quick jump: [`fasd`](https://github.com/clvv/fasd)
 
 * **neovim**:
 
-Plugins: see the the `init.vim` file.
+Plugin manager: [`vim-plug`](https://github.com/junegunn/vim-plug)
 
 Lanquage Server Client: [`coc`](https://github.com/neoclide/coc.nvim)
 
 * **Keeping the `$HOME` clean**:
 
-In `~/.profile` there a a bunch of environment variables to keep files out of the home dir.
+In `~/.profile` there are a bunch of environment variables to keep files out of the home dir.
 
 * **`python` dev environment**:
 
