@@ -1,6 +1,6 @@
 #!/bin/sh
 #
 # Choose a bookmark, or search query and run browser.
-# Requires rofi.
+# Requires rofi, browser (qutebrowser).
 
-SELECTION=$(cat "$BOOKMARKS" | rofi -dmenu -p "Search/Bookmark") && $BROWSER "$(echo "$SELECTION" | cut -d ' ' -f 1)" > /dev/null 2>&1
+SELECTION=$(cat "$BOOKMARKS" | rofi -dmenu -p "Search/Bookmark") && $BROWSER --target window "$(echo "$SELECTION" | cut -d ' ' -f 1)" > /dev/null 2>&1
