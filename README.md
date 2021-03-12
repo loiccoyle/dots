@@ -4,6 +4,8 @@
 
 > A clean & versatile rice.
 
+These are my personal dotfiles, feel free to take inspiration.
+
 ## Installation
 
 ```shell
@@ -11,6 +13,8 @@ curl -Ls loiccoyle.com/dots/install | bash
 ```
 
 This will clone the repository into your `$HOME` and will create the git dir at `~/.dotfiles`. It will also move any conflicting files into `~/.config-backup`
+
+Check `~/.config/Makefile` to install dependencies (requires `yay`).
 
 ### Screenshots
 
@@ -58,7 +62,7 @@ Lanquage Server Client: [`coc`](https://github.com/neoclide/coc.nvim)
 
 * **Keeping the `$HOME` clean**:
 
-In `~/.profile` there a a bunch of environment variables to keep files out the home dir.
+In `~/.profile` there a a bunch of environment variables to keep files out of the home dir.
 
 * **`python` dev environment**:
 
