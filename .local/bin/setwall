@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# Set the wallpaper and log the current wallapaper the file.
+# Requires hsetroot
+
+hsetroot -cover "$1" && echo "$(readlink -f "$1")" > "$XDG_CACHE_HOME/wall"
