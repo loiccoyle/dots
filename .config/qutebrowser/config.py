@@ -30,7 +30,7 @@ config.load_autoconfig()
 
 ## Force `prefers-color-scheme: dark` colors for websites.
 ## Type: Bool
-c.colors.webpage.prefers_color_scheme_dark = True
+c.colors.webpage.preferred_color_scheme = "dark"
 
 ## Enable darkmode
 c.colors.webpage.darkmode.enabled = False
