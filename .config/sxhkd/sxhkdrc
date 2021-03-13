@@ -136,6 +136,9 @@ super + {_,shift + }{h,j,k,l}
 # focus the next/previous desktop in the current monitor
 super + bracket{left,right}
 	bspc desktop -f {prev,next}.local
+# scroll to cycle desktops
+super + button{5,4}
+	bspc desktop -f {prev,next}.local
 # move & follow node to the next/previous desktop in the current monitor
 super + shift + bracket{left,right}
 	bspc node --to-desktop {prev,next} --follow
