@@ -40,8 +40,8 @@ qutebrowser: ## Install qutebrowser and adblock
 	yay -S qutebrowser python-adblock
 
 fonts: ## Install fonts
-	sudo pacman -S noto-fonts noto-fonts-emoji ttf-unifont ttf-hack
-	yay -S siji
+	sudo pacman -S noto-fonts noto-fonts-emoji ttf-hack
+	yay -S siji ttf-unifont
 
 flavours: ## Install flavours
 	yay -S flavours
