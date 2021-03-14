@@ -21,7 +21,7 @@ sxiv: ## Install sxiv and dependencies
 	sudo pacman -S imagemagick sxiv perl-image-exiftool
 
 vim: python_dev ## Install vim
-	sudo pacman -S neovim nodejs python-pynvim
+	sudo pacman -S neovim nodejs npm python-pynvim
 	yay -S fzf neovim-symlinks
 
 python_dev: ## Install python dev setup
