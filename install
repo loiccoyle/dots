@@ -1,5 +1,3 @@
-set -e
-
 git clone --bare https://github.com/loiccoyle/dots $HOME/.dotfiles
 function dots {
    /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@
