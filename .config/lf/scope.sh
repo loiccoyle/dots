@@ -91,7 +91,7 @@ handle_mime() {
             # fi
             # highlight --replace-tabs="${HIGHLIGHT_TABWIDTH}" --out-format="${highlight_format}" \
             #     --config-file="${HIGHLIGHT_STYLE}" --force -- "${FILE_PATH}"
-            highlight --style "flavours" --out-format "ansi" --force -- "${FILE_PATH}"
+            highlight --style "$XDG_CONFIG_HOME/highlight/themes/flavours.theme" --out-format "ansi" --force -- "${FILE_PATH}"
             # cat "${FILE_PATH}"
             exit 2
             ;;
