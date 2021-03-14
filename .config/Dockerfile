@@ -2,7 +2,7 @@ FROM archlinux:latest
 
 ARG USERNAME=lcoyle
 ARG PASSWORD=dots
-ARG REPOSITORY=/home/${USERNAME}/src/github.com/lcoyle
+ARG REPOSITORY=/home/${USERNAME}/src/github.com/loiccoyle
 
 ENV HOME /home/${USERNAME}
 
@@ -17,7 +17,7 @@ RUN export LANG=C
 RUN useradd -m -r -G wheel -s /bin/bash ${USERNAME}
 RUN echo "root:${PASSWORD}" | chpasswd
 RUN echo "${USERNAME}:${PASSWORD}" | chpasswd
-RUN echo '%wheel ALL=(ALL) ALL' | EDITOR='tee -a' visudo
+RUN echo '%wheel ALL=(ALL) NOPASSWD:ALL' | EDITOR='tee -a' visudo
 
 RUN pacman -Syy
 RUN pacman -S xdg-user-dirs --noconfirm
@@ -25,6 +25,7 @@ RUN pacman -S git --noconfirm
 RUN pacman -S curl --noconfirm
 RUN pacman -S zsh --noconfirm
 RUN pacman -S termite-terminfo --noconfirm
+RUN pacman -S go --noconfirm
 
 ENV HOME /home/${USERNAME}
 WORKDIR /home/${USERNAME}
@@ -34,15 +35,13 @@ RUN LANG=C xdg-user-dirs-update --force &&\
 
 USER ${USERNAME}
 WORKDIR /tmp
-RUN curl -L https://github.com/Jguer/yay/releases/download/v10.1.2/yay_10.1.2_x86_64.tar.gz -O &&\
-	tar xzvf yay_10.1.2_x86_64.tar.gz
 USER root
-RUN cp /tmp/yay_10.1.2_x86_64/yay /usr/bin/yay
-RUN chsh -s /usr/bin/zsh lcoyle
+RUN chsh -s /usr/bin/zsh ${USERNAME}
 USER ${USERNAME}
+# install yay
+RUN git clone https://aur.archlinux.org/yay.git && cd yay/ && makepkg -si --noconfirm
 WORKDIR /home/${USERNAME}
 # update yay
-RUN yay -S yay
 RUN curl -Ls loiccoyle.com/dots/install | bash
 # git config causing issues
 RUN rm -rf ~/.config/git
