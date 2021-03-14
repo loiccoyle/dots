@@ -42,7 +42,7 @@ RUN chsh -s /usr/bin/zsh lcoyle
 USER ${USERNAME}
 WORKDIR /home/${USERNAME}
 # update yay
-USER yay -S yay
+RUN yay -S yay
 RUN curl -Ls loiccoyle.com/dots/install | bash
 # git config causing issues
 RUN rm -rf ~/.config/git
