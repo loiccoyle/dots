@@ -10,7 +10,7 @@ if [ $? = 0 ]; then
   echo "Checked out dots."
   else
     echo "Backing up pre-existing dot files to ~/.config-backup"
-    dots checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} sh -c 'mkdir --parents $(dirname {}) && mv {} .config-backup/{}'
+    dots checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} sh -c 'mkdir --parents $(dirname {}) && mv -v {} .config-backup/{}'
     dots checkout
 fi;
 dots config status.showUntrackedFiles no
