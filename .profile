@@ -64,9 +64,6 @@ export FLAVOURS_THEME_MODE="dark"
 export BAR_HEIGHT=16
 export BAR_MONITOR="DP-0"
 
-# Highlight data dir
-export HIGHLIGHT_DATADIR="$XDG_CONFIG_HOME/highlight/"
-
 # Cleanup home folder
 # zsh config folder
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
