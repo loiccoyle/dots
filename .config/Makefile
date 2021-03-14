@@ -63,9 +63,9 @@ help:
 	| sort \
 	| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-test: ## Test this Makefile with docker without backup directory
-	docker build -t dotfiles ${PWD};\
-	docker run -it --name maketest -d dotfiles:latest;\
+test: ## Test this Makefile with docker
+	docker build --rm -t dotfiles ${PWD};\
+	docker run --rm -it --name maketest -d dotfiles:latest;\
 	docker exec -it maketest sh -c "cd ${PWD}; make all";\
 
 all: termite lf polybar sxhkd sxiv vim python_dev rofi ui-theme qutebrowser fonts flavours torrents hooks scripts ## Install everything
