@@ -2,13 +2,12 @@ git clone --bare https://github.com/loiccoyle/dots $HOME/.dotfiles || exit 1
 function dots {
    /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@
 }
-mkdir -p ~/.config-backup
 dots checkout
 if [ $? = 0 ]; then
   echo "Checked out dots."
   else
-    echo "Backing up pre-existing dot files to ~/.config-backup"
-    dots checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} sh -c 'mkdir --parents $(dirname {}) && mv -v {} .config-backup/{}'
+    echo "Backing up conflicting dotfiles to ~/.config-backup/"
+    dots checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} sh -c 'mkdir --parents ~/.config-backup/$(dirname {}) && mv -v {} ~/.config-backup/{}'
     dots checkout
 fi;
 dots config status.showUntrackedFiles no
