@@ -4,11 +4,12 @@ function dots {
 }
 dots checkout
 if [ $? = 0 ]; then
-  echo "Checked out dots."
+  echo "Checked out dotfiles."
   else
     echo "Backing up conflicting dotfiles to ~/.config-backup/"
-    dots checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} sh -c 'mkdir --parents ~/.config-backup/$(dirname {}) && mv -v {} ~/.config-backup/{}'
+    dots checkout 2>&1 | grep -E "\s+\." | tr -d "[:blank:]" | xargs -I{} sh -c 'mkdir --parents ~/.config-backup/$(dirname {}) && mv -v {} ~/.config-backup/{}'
     dots checkout
+    echo "Checked out dotfiles."
 fi;
 dots config status.showUntrackedFiles no
 echo "It's probably a good idea to relog."
