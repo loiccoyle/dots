@@ -5,10 +5,12 @@ function dots {
 mkdir -p ~/.config-backup
 dots checkout
 if [ $? = 0 ]; then
-  echo "Checked out dots.";
+  echo "Checked out dots."
   else
-    echo "Backing up pre-existing dot files.";
-    dots checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .config-backup/{}
+    echo "Backing up pre-existing dot files to ~/.config-backup"
+    dots checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} sh -c 'mkdir --parents $(dirname {}) && mv {} .config-backup/{}'
+    dots checkout
 fi;
-dots checkout
 dots config status.showUntrackedFiles no
+echo "It's probably a good idea to relog."
+echo "See ~/.config/Makefile to install dependencies."
