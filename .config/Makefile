@@ -34,7 +34,7 @@ rofi: ## Install rofi and rofi extensions
 ui-theme: ## Install ui themes
 	sudo pacman -S qt5ct
 	yay -S adwaita-qt
-	echo "Run 'qt5ct' and select adwaita"
+	@echo "Run 'qt5ct' and select adwaita"
 
 qutebrowser: ## Install qutebrowser and adblock
 	yay -S qutebrowser python-adblock
