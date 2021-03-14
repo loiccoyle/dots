@@ -122,7 +122,7 @@ super + BackSpace
 	bspc node --flag hidden
 # unhide nodes
 super + shift + BackSpace
-	bspc query -N -n .hidden | xargs -I node_id sh -c 'xprop -id node_id | grep -q "dropdown" || bspc node node_id --flag hidden'
+	bspc query -N -n .hidden | xargs -I node_id sh -c 'xprop -id node_id | grep "CLASS" | grep -q -v "dropdown" && bspc node node_id --flag hidden'
 
 
 # focus/swap
