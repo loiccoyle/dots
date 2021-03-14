@@ -7,7 +7,7 @@ These are my personal dotfiles, feel free to take inspiration.
 ## Installation
 
 ```shell
-curl -Ls loiccoyle.com/dots/install | bash
+curl -L loiccoyle.com/dots/install | bash
 ```
 
 This will clone the repository into your `$HOME` and will create the git dir at `~/.dotfiles`. It will also move any conflicting files into `~/.config-backup`
