@@ -8,7 +8,7 @@ menu() {
 }
 
 init_menu() {
-    printf "Select a background\\nSelect a colour scheme\\nGenerate colour scheme for the current background\nToggle compositor" | menu -l 4
+    printf "Select a background\\nSelect a colour scheme\\nGenerate colour scheme for the current background" | menu -l 3
 }
 
 background() {
@@ -58,8 +58,5 @@ case "$(init_menu)" in
         ;;
     "Generate colour scheme for the current background")
         generate
-        ;;
-    "Toggle compositor")
-        pgrep -x picom > /dev/null && (killall picom && notify-send "Stopping picom") || (picom --experimental-backends -b && notify-send "Starting picom")
         ;;
 esac

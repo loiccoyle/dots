@@ -52,6 +52,9 @@ super + p
 # rice control pannel
 super + Home
 	rofi-rice
+# server toggling
+super + End
+	rofi-toggle
 # Set a random wallpaper
 super + shift + Home
 	randwall
