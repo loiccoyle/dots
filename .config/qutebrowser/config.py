@@ -246,6 +246,7 @@ c.url.searchengines = {
     "gdr": "https://drive.google.com/drive/search?q={}",
     "aw": "https://wiki.archlinux.org/index.php?search={}",
     "aur": "https://aur.archlinux.org/packages/?K={}",
+    "pkg": "https://archlinux.org/packages/?q={}",
 }
 
 ## Page(s) to open at the start.
