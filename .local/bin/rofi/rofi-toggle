@@ -1,0 +1,104 @@
+#!/bin/sh
+#
+# Toggle various servers.
+# Requires rofi, openssh (optional), thqm (optional), transmission-cli (optional), picom (optional)
+
+RUNNING="✔"
+STOPPED="✖"
+HTTP_PID_FILE="/tmp/python_http_pid"
+
+menu() {
+    # Menu command.
+    rofi -dmenu -p "Select" -no-custom "$@"
+}
+
+input() {
+    # User input command.
+    rofi -dmenu -p "Input" -lines 0 -filter "$HOME/"
+}
+
+# Checks
+check_ssh() {
+    [ "$(systemctl is-active sshd.service)" = "active" ]
+}
+
+check_transmission() {
+    pgrep -x "transmission-da" > /dev/null
+}
+
+check_thqm() {
+    pgrep -x thqm > /dev/null
+}
+
+check_http() {
+    [ -f "$HTTP_PID_FILE" ]
+}
+
+check_picom() {
+    pgrep -x picom > /dev/null
+}
+
+# Toggles
+toggle_ssh() {
+    check_ssh && (sudo systemctl stop sshd.service && notify-send -i process-stop "ssh" "Stopped ssh") || (sudo systemctl start sshd.service && notify-send -i terminal "ssh" "Started ssh")
+}
+
+toggle_thqm() {
+    local temp_img="/tmp/thqm.png"
+    local url
+    check_thqm && (killall thqm && notify-send -i process-stop "thqm" "Stopped thqm") || (thqm-media --save-qrcode "$temp_img" & sleep 0.1 && notify-send -i "$temp_img" "thqm" "Started thqm")
+}
+
+toggle_transmission() {
+    check_transmission && (killall transmission-da && notify-send -i process-stop "Transmission" "Stopped Transmission") || (transmission-daemon && notify-send -i transmission "Transmission" "Started Transmission")
+}
+
+toggle_http() {
+    local http_pid
+    if check_http; then
+        http_pid="$(cat "$HTTP_PID_FILE")" && kill $http_pid && rm "$HTTP_PID_FILE" && notify-send -i process-stop "http" "Stopped http server"
+    else
+        local server_path="$(input)"
+        python3 -m http.server -d "$server_path" & echo "$!" > "$HTTP_PID_FILE" && notify-send -i network-connect "http" "Started http server\nhttp://0.0.0.0:8000/"
+    fi
+}
+
+toggle_picom() {
+    check_picom && (killall picom && notify-send -i process-stop "picom" "Stopped picom") || (picom -b && notify-send -i display "picom" "Started picom")
+}
+
+
+# Menu
+init_menu() {
+    local thqm_status="$(check_thqm && echo $RUNNING || echo $STOPPED)"
+    local ssh_status="$(check_ssh && echo $RUNNING || echo $STOPPED)"
+    local transmission_status="$(check_transmission && echo $RUNNING || echo $STOPPED)"
+    local http_status="$(check_http && echo $RUNNING || echo $STOPPED)"
+    local picom_status="$(check_picom && echo $RUNNING || echo $STOPPED)"
+
+    local menu_string=""
+    type thqm > /dev/null && menu_string="$menu_string$thqm_status Toggle thqm\\n"
+    type ssh > /dev/null && menu_string="$menu_string$ssh_status Toggle ssh\\n"
+    type transmission-daemon > /dev/null && menu_string="$menu_string$transmission_status Toggle transmission\\n"
+    type python3 > /dev/null && menu_string="$menu_string$http_status Toggle http\\n"
+    type picom > /dev/null && menu_string="$menu_string$picom_status Toggle picom"
+    printf "$menu_string" | menu -l 5
+}
+
+case "$(init_menu)" in
+    *"Toggle ssh")
+        toggle_ssh
+        ;;
+    *"Toggle thqm")
+        toggle_thqm
+        ;;
+    *"Toggle transmission")
+        toggle_transmission
+        ;;
+    *"Toggle http")
+        toggle_http
+        ;;
+    *"Toggle picom")
+        toggle_picom
+        ;;
+esac
