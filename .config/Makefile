@@ -61,8 +61,8 @@ hooks: ## Install pacman cleanup and mirrorlist hooks
 scripts: ## Install script dependencies
 	$(INSTALL) ffmpeg xdotool hsetroot maim xclip
 
-startup: sxhkd ## Startup programs (.xprofile)
-	$(INSTALL) kbd xorg-xset xorg-xsetroot hsetroot picom dunst udiskie
+startup: sxhkd ## Startup programs (xinit and .xprofile)
+	$(INSTALL) xorg-xinit kbd xorg-xset xorg-xsetroot hsetroot picom dunst udiskie
 
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
