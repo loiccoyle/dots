@@ -40,7 +40,7 @@ font-2 = unifont:size=7;2
 
 modules-left = cpu memory pulseaudio xwindow
 modules-center = bspwm
-modules-right = record temperature updates-arch-combined bluetooth vpn wireless-network date powermenu
+modules-right = record temperature updates-arch-combined bluetooth vpn wireless-network network date powermenu
 
 enable-ipc = true
 tray-position = right
@@ -137,7 +137,7 @@ ping-interval = 600
 
 format-connected = <ramp-signal><label-connected>
 label-connected = %{A1:rofi-wifi &:}%essid%%{A}
-label-disconnected = %{A1:rofi-wifi &:}%{A}
+label-disconnected = ""
 label-disconnected-foreground = #66
 
 ramp-signal-0 = 
@@ -157,8 +157,28 @@ type = internal/network
 interface = enp5s0
 interval = 10.0
 
-label-connected =    %{T3}%local_ip%%{T-}
+label-connected = 
 label-disconnected-foreground = #66
+
+[module/network]
+type = internal/network
+; Loopback interface with accumulate-stats true to get the speeds accross all
+; the interfaces
+interface = lo
+accumulate-stats = true
+interval = 10.0
+; ping-interval = 3
+udspeed-minwidth = 3
+unknown-as-up = true
+label-connected = %downspeed% %upspeed%
+format-disconnected = disconnected
+label-disconnected-foreground = #66
+format-packetloss = <animation-packetloss> <label-connected>
+animation-packetloss-0 = 
+animation-packetloss-0-foreground = ${variables.accent}
+animation-packetloss-1 = 
+animation-packetloss-1-foreground = ${bar/top.foreground}
+animation-packetloss-framerate = 500
 
 [module/pulseaudio]
 type = internal/pulseaudio
