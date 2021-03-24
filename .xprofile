@@ -1,11 +1,11 @@
-#/bin/sh
+#!/bin/sh
 # This file runs when a DM logs you into a graphical session.
 # If you use startx/xinit, this file will also be sourced.
 
 # Set keyboard rate
-kbdrate -d 400 -r 50
-xset r rate 400 50
-xset s 3600 3600
+kbdrate -d 400 -r 50 &
+xset r rate 400 50 &
+xset s 3600 3600 &
 
 # Start nvidia settings
 type nvidia-settings && nvidia-settings --load-config-only &
