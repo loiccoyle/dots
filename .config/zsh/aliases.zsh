@@ -9,6 +9,7 @@
 # | (_| | | | (_| \__ \  __/\__ \
 #  \__,_|_|_|\__,_|___/\___||___/
 
+# Aliases
 alias ls="ls --color=auto --group-directories-first"
 alias ll="ls -lha"
 alias l="ls -lh"
@@ -20,7 +21,6 @@ alias free='free -h'  # Human-readable sizes
 alias open="$OPENER"
 # pacman
 alias psyu='sudo pacman -Syu'
-alias ysyu='yay -Syu'
 alias pacdiff='sudo -E pacdiff'
 # full upgrade
 alias sysupdate='yay && pipx upgrade-all && zinit update --all && vim --headless +PlugUpdate +qall > /dev/null'
@@ -45,17 +45,17 @@ alias lgdots='lazygit --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias vimwiki="vim -c \"VimwikiIndex\""
 # fasd
 alias v='fasd -f -e vim'
-# colors
+# colours
 alias diff="diff --color=auto"
 alias grep="grep --colour=auto"
-## git aliases
+# git aliases
 alias ga="git add"
 alias gc="git commit"
 alias gp="git push"
 alias gs="git status"
 alias lg="lazygit"
 
-# functions
+# Functions
 edit () {
     # Open command in EDITOR
     $EDITOR "$(which "$1")"
@@ -70,17 +70,7 @@ ae () {
         [ -z "$VENV_PATH" ] || source "$VENV_PATH/bin/activate"
     fi
 }
-# globals
-alias -g G="| grep"
-
-# WORK RELATED
-# beabp tunnel
-beabp_tunnel () {
-    ssh -A -t -l lcoyle afs -L "$1":localhost:"$1" ssh -A -t -l lcoyle cs-ccr-dev1 -L "$1":localhost:"$1" ssh -A -t -l lcoyle cs-ccr-beabp1 -L "$1":localhost:"$1"
 }
-# alias beabp_tun="ssh -A -t -l lcoyle afs -L 8901:localhost:8901 ssh -A -t -l lcoyle cs-ccr-dev1 -L 8901:localhost:8901 ssh -A -t -l lcoyle cs-ccr-beabp1 -L 8901:localhost:8901"
-alias afs="kdestroy && kinit -kt /etc/krb5.keytab lcoyle -l 7d -r 1d ; aklog CERN.CH"
 
-# Hash directories
-# add a hash shortcut for afs work directories. Usage: `cd ~work`
-hash -d work="/afs/cern.ch/work/l/lcoyle"
+# Globals
+alias -g G="| grep"
