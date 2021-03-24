@@ -5,7 +5,6 @@
 #  \__, |\__,_|\__\___|_.__/|_|  \___/ \_/\_/ |___/\___|_|
 #     |_|
 
-import sys
 import os
 # qutebrowser settings: https://qutebrowser.org/doc/help/settings.html
 
@@ -260,7 +259,7 @@ c.window.hide_decoration = True
 
 ## Main window transparency.
 ## Type: bool
-c.window.transparent = True
+c.window.transparent = False
 
 ## Blocking method. "adblock": brave style adblocking, "hosts"
 ## host file. "both"
