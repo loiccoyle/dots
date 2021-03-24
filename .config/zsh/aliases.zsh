@@ -24,8 +24,6 @@ alias psyu='sudo pacman -Syu'
 alias pacdiff='sudo -E pacdiff'
 # full upgrade
 alias sysupdate='yay && pipx upgrade-all && zinit update --all && vim --headless +PlugUpdate +qall > /dev/null'
-# mount gdrive
-alias gdrivemount="rclone mount --daemon 'gdrive:' ~/data/gdrive"
 # python venv
 alias venv="python3 -m venv"
 alias de="deactivate"
