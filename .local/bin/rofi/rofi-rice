@@ -13,7 +13,7 @@ init_menu() {
 
 background() {
     local selected_bg
-    selected_bg="$(find "$WALLDIR" -type f | shuf | sxiv -tio -N "float" | shuf -n 1)"
+    selected_bg="$(find "$WALLPAPER_DIR" -type f | shuf | sxiv -tio -N "float" | shuf -n 1)"
     if [ -n "$selected_bg" ]; then
         flavours generate "$FLAVOURS_THEME_MODE" "$selected_bg" && setwall "$selected_bg" && flavours apply generated && notify-send --icon="$selected_bg" "Changed background"
     fi

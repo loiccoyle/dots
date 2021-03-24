@@ -1,9 +1,9 @@
-#!/bin/bash
+#!/bin/sh
 # Profile file. Runs on login. Environmental variables are set here.
 
 # set PATH so it includes user's private bin if it exists
 # add script dir and any subdirectories
-[ -d "$HOME/.local/bin" ] && export PATH="$PATH$( find "$HOME/.local/bin" -type d -printf ":%p" )"
+[ -d "$HOME/.local/bin" ] && export PATH="$PATH$(find "$HOME/.local/bin" -type d -printf ":%p")"
 
 # XDG paths
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -37,10 +37,8 @@ export TERM="xterm-termite"
 export TERMINAL="termite"
 
 # Some paths
-export STOWDIR="$HOME/data/stow"
-export WALLDIR="$XDG_PICTURES_DIR/walls"
+export WALLPAPER_DIR="$XDG_PICTURES_DIR/walls"
 export BOOKMARKS="$XDG_CONFIG_HOME/qutebrowser/bookmarks/urls"
-export PASSWORD_STORE_DIR="$XDG_CONFIG_HOME/pass-store"
 
 # Settings
 export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
@@ -65,6 +63,9 @@ export BAR_HEIGHT=16
 export BAR_MONITOR="DP-0"
 
 # Cleanup home folder
+# Pass storage location
+export PASSWORD_STORE_DIR="$XDG_CONFIG_HOME/pass-store"
+
 # zsh config folder
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
