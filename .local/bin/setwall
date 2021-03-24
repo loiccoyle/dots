@@ -1,6 +1,37 @@
 #!/bin/sh
 #
-# Set the wallpaper and log the current wallapaper the file.
-# Requires hsetroot
+# Set the wallpaper, generate colour scheme and log the current wallpaper file to $XDG_CACHE_HOME/wall.
+# Use -r to set a random wallpaper.
+# Requires hsetroot, flavours
 
-hsetroot -cover "$1" && echo "$(readlink -f "$1")" > "$XDG_CACHE_HOME/wall"
+set -e
+
+usage() {
+    printf """Usage: %s WALLPAPER
+
+Set the wallpaper and generate colour scheme using flavours.
+The wallpaper is written to %s/wall
+
+Arguments:
+    -r        Set a random wallpaper from \$WALLPAPER_DIR
+              (%s)
+""" $(basename $0) $XDG_CACHE_HOME $WALLPAPER_DIR
+}
+
+set_wallpaper() {
+    local abspath="$(readlink -f $1)"
+    flavours generate "$FLAVOURS_THEME_MODE" "$abspath"
+    flavours apply generated &
+    hsetroot -cover "$abspath" > /dev/null
+    printf "%s" $abspath > "$XDG_CACHE_HOME/wall"
+    notify-send --icon="$abspath" "Set wallpaper" "$(basename $abspath)"
+}
+
+if [ "$1" = "-r" ]; then
+    WALL="$(find "$WALLPAPER_DIR" -type f | shuf -n 1)"
+    [ ! -z "$WALL" ] && set_wallpaper "$WALL"
+elif [ -f "$1" ]; then
+    set_wallpaper "$1"
+else
+    usage
+fi

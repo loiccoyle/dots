@@ -8,14 +8,14 @@ menu() {
 }
 
 init_menu() {
-    printf "Select a background\\nSelect a colour scheme\\nGenerate colour scheme for the current background" | menu -l 3
+    printf "Select a wallpaper\\nSelect a colour scheme\\nGenerate colour scheme for the current wallpaper" | menu -l 3
 }
 
-background() {
+wallpaper() {
     local selected_bg
     selected_bg="$(find "$WALLPAPER_DIR" -type f | shuf | sxiv -tio -N "float" | shuf -n 1)"
     if [ -n "$selected_bg" ]; then
-        flavours generate "$FLAVOURS_THEME_MODE" "$selected_bg" && setwall "$selected_bg" && flavours apply generated && notify-send --icon="$selected_bg" "Changed background"
+        setwall "$selected_bg"
     fi
 }
 
@@ -46,17 +46,17 @@ colour_scheme() {
 generate() {
     local current_wall
     current_wall="$(cat "$XDG_CACHE_HOME/wall")"
-    setwall "$current_wall" && flavours generate "$FLAVOURS_THEME_MODE" "$current_wall" && flavours apply generated && notify-send --icon="$current_wall" "Generated colour scheme"
+    flavours generate "$FLAVOURS_THEME_MODE" "$current_wall" && flavours apply generated && notify-send --icon="$current_wall" "Generated colour scheme" "$(basename $current_wall)"
 }
 
 case "$(init_menu)" in
-    "Select a background"*)
-        background
+    "Select a wallpaper")
+        wallpaper
         ;;
     "Select a colour scheme")
         colour_scheme
         ;;
-    "Generate colour scheme for the current background")
+    "Generate colour scheme for the current wallpaper")
         generate
         ;;
 esac

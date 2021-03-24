@@ -57,7 +57,7 @@ super + End
 	rofi-toggle
 # Set a random wallpaper
 super + shift + Home
-	randwall
+	setwall -r
 
 
 # media key hotkeys
