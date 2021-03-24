@@ -1,16 +1,15 @@
 git clone --bare https://github.com/loiccoyle/dots $HOME/.dotfiles || exit 1
 function dots {
-   /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@
+    git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@
 }
-dots checkout
+checkout_log="$(dots checkout 2>&1)"
 if [ $? = 0 ]; then
-  echo "Checked out dotfiles."
+  printf "Checked out dotfiles."
   else
-    echo "Backing up conflicting dotfiles to ~/.config-backup/"
-    dots checkout 2>&1 | grep -E "\s+\." | tr -d "[:blank:]" | xargs -I{} sh -c 'mkdir --parents ~/.config-backup/$(dirname {}) && mv -v {} ~/.config-backup/{}'
-    dots checkout
-    echo "Checked out dotfiles."
-fi;
+    printf "Backing up conflicting dotfiles to ~/.config-backup/\n"
+    printf "$checkout_log" | grep -E "\s+\." | tr -d "[:blank:]" | xargs -I{} sh -c 'mkdir --parents ~/.config-backup/$(dirname {}) && mv -v {} ~/.config-backup/{}'
+    dots checkout && printf "Checked out dotfiles.\n" || exit 1
+fi
 dots config status.showUntrackedFiles no
-echo "It's probably a good idea to relog."
-echo "See ~/.config/Makefile to install dependencies."
+printf "It's probably a good idea to relog.\n"
+printf "See ~/.config/Makefile to install dependencies.\n"
