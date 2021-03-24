@@ -1,6 +1,6 @@
 FROM archlinux:latest
 
-ARG USERNAME=lcoyle
+ARG USERNAME=dots
 ARG PASSWORD=dots
 ARG REPOSITORY=/home/${USERNAME}/src/github.com/loiccoyle
 
@@ -10,7 +10,7 @@ RUN pacman -Syu --noconfirm
 RUN pacman -S base base-devel --noconfirm
 
 RUN echo dotfiles > /etc/hostname
-RUN echo 'en_US.UTF-8 UTF-8' >> /etc/locale.gen
+RUN echo 'en_US.UTF-8 UTF-8' > /etc/locale.gen
 RUN locale-gen
 RUN export LANG=C
 
@@ -24,6 +24,7 @@ RUN pacman -S xdg-user-dirs --noconfirm
 RUN pacman -S git --noconfirm
 RUN pacman -S curl --noconfirm
 RUN pacman -S zsh --noconfirm
+RUN chsh -s /usr/bin/zsh ${USERNAME}
 RUN pacman -S termite-terminfo --noconfirm
 RUN pacman -S go --noconfirm
 
@@ -33,16 +34,6 @@ USER ${USERNAME}
 RUN LANG=C xdg-user-dirs-update --force &&\
 	mkdir -p ${REPOSITORY}
 
-USER ${USERNAME}
-WORKDIR /tmp
-USER root
-RUN chsh -s /usr/bin/zsh ${USERNAME}
-USER ${USERNAME}
-# install yay
-RUN git clone https://aur.archlinux.org/yay.git && cd yay/ && makepkg -si --noconfirm
-WORKDIR /home/${USERNAME}
-# update yay
-RUN curl -Ls loiccoyle.com/dots/install | bash
-# git config causing issues
-RUN rm -rf ~/.config/git
-CMD ["su", "-", "lcoyle", "-c", "/bin/zsh"]
+RUN git clone https://aur.archlinux.org/yay.git ~/src/yay && cd ~/src/yay/ && makepkg -si --noconfirm
+RUN curl -L loiccoyle.com/dots/install | bash
+CMD ["su", "-", "dots", "-c", "/bin/zsh"]
