@@ -68,7 +68,6 @@ ae () {
         [ -z "$VENV_PATH" ] || source "$VENV_PATH/bin/activate"
     fi
 }
-}
 
 # Globals
 alias -g P="| $PAGER"
