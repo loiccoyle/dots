@@ -65,39 +65,28 @@ export BAR_MONITOR="DP-0"
 # Cleanup home folder
 # Pass storage location
 export PASSWORD_STORE_DIR="$XDG_CONFIG_HOME/pass-store"
-
 # zsh config folder
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
-
 # Rust config
-export CARGO_HOME="$XDG_CONFIG_HOME/cargo/"
-
-# Go env
-export GOPATH="$XDG_DATA_HOME/go"
-
-# nvidia folder location
-export __GL_SHADER_DISK_CACHE_PATH="$XDG_CACHE_HOME/nv/"
-
-# fasd .fasd location
+export CARGO_HOME="$XDG_CONFIG_HOME/cargo"
+# fasd location
 export _FASD_DATA="$XDG_CONFIG_HOME/fasd"
-
 # less histfile
 export LESSHISTFILE="-"
-
 # gnupg location
 export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
-
-# sqlite history
-export SQLITE_HISTORY="$XDG_CACHE_HOME/sqlite/hist"
-
 # ipython config files
 export IPYTHONDIR="$XDG_CONFIG_HOME/ipython"
-
 # jupyter config dir
 export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME/jupyter"
-
+# Go env
+export GOPATH="$XDG_DATA_HOME/go"
 # pylint
 export PYLINTHOME="$XDG_CACHE_HOME/pylint"
+# nvidia folder location
+export __GL_SHADER_DISK_CACHE_PATH="$XDG_CACHE_HOME/nv"
+# sqlite history
+export SQLITE_HISTORY="$XDG_CACHE_HOME/sqlite/hist"
 
 # Start graphical server on tty1 if not already running.
 [ "$(tty)" = "/dev/tty1" ] && ! pgrep -x Xorg >/dev/null && exec startx
