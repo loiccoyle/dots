@@ -26,8 +26,13 @@ zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.cache/zsh
 zstyle ':completion:*' menu select
 
-source "$ZDOTDIR/history.zsh"
 WORDCHARS=${WORDCHARS//\/[&.;]}                                 # Don't consider certain characters part of the word
+
+# History settings
+HISTFILE="$XDG_CACHE_HOME/zsh/history"
+HISTSIZE=10000
+SAVEHIST=10000
+
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.config/zsh/.zinit/bin/zinit.zsh ]]; then
@@ -75,9 +80,7 @@ zinit ice wait'0b' lucid pick'fasd.plugin.zsh'
 zinit light 'whjvenyl/fasd'
 
 # load custom stuff
-zinit ice wait'0c' lucid multisrc"{keys,aliases}.zsh" pick"/dev/null"
-zinit light $ZDOTDIR
-# set the correct cursor
-source "$ZDOTDIR/cursor.zsh"
+zinit ice wait'0c' lucid multisrc"*.zsh" pick"/dev/null"
+zinit light "$ZDOTDIR"
 # add to beginning of fpath
-fpath=("$ZDOTDIR/autocomplete" "${fpath[@]}")
+fpath=("$ZDOTDIR/completions" "${fpath[@]}")

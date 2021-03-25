@@ -15,5 +15,6 @@ zle -N zle-keymap-select
 _fix_cursor() {
     echo -ne '\e[5 q'
 }
-
+# run it to force the correct cursor
+_fix_cursor
 precmd_functions+=(_fix_cursor)
