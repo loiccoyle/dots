@@ -1,3 +1,4 @@
+#!/bin/sh
 git clone --bare https://github.com/loiccoyle/dots $HOME/.dotfiles || exit 1
 function dots {
     git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@
