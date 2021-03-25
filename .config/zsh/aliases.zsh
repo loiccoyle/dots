@@ -71,4 +71,8 @@ ae () {
 }
 
 # Globals
+alias -g P="| $PAGER"
 alias -g G="| grep"
+alias -g H="| head"
+alias -g T="| tail"
+alias -g C="| wc -l"  # count lines
