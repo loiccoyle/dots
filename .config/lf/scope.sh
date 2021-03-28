@@ -106,7 +106,7 @@ handle_mime() {
             ;;
 
         # Video and audio
-        video/* | audio/* | application/octet-stream)
+        video/* | audio/*)
             # mediainfo "${FILE_PATH}"
             exiftool "${FILE_PATH}"
             ;;
