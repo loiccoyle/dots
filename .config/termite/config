@@ -26,53 +26,53 @@ filter_unmatched_urls = true
 # *************************
 # Start flavours
 [colors]
-# Base16 Generated
-# Author: Flavours
+# Base16 Gruvbox dark, hard
+# Author: Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)
 
-foreground          = #ddc5cd
-foreground_bold     = #ddc5cd
-cursor              = #ddc5cd
-cursor_foreground   = #272242
-background          = rgba(39, 34, 66, 0.92)
+foreground          = #d5c4a1
+foreground_bold     = #d5c4a1
+cursor              = #d5c4a1
+cursor_foreground   = #1d2021
+background          = rgba(29, 32, 33, 0.92)
 
 # 16 color space
 
 # Black, Gray, Silver, White
-color0  = #272242
-color8  = #948496
-color7  = #ddc5cd
-color15 = #e7d6dc
+color0  = #1d2021
+color8  = #665c54
+color7  = #d5c4a1
+color15 = #fbf1c7
 
 # Red
-color1  = #64799c
-color9  = #64799c
+color1  = #fb4934
+color9  = #fb4934
 
 # Green
-color2  = #c4563d
-color10 = #c4563d
+color2  = #b8bb26
+color10 = #b8bb26
 
 # Yellow
-color3  = #7272b5
-color11 = #7272b5
+color3  = #fabd2f
+color11 = #fabd2f
 
 # Blue
-color4  = #aa608f
-color12 = #aa608f
+color4  = #83a598
+color12 = #83a598
 
 # Purple
-color5  = #7e93da
-color13 = #7e93da
+color5  = #d3869b
+color13 = #d3869b
 
 # Teal
-color6  = #a36c2e
-color14 = #a36c2e
+color6  = #8ec07c
+color14 = #8ec07c
 
 # Extra colors
-color16 = #6d798e
-color17 = #636aea
-color18 = #4c425e
-color19 = #70637a
-color20 = #b9a4b1
-color21 = #e2cdd5
+color16 = #fe8019
+color17 = #d65d0e
+color18 = #3c3836
+color19 = #504945
+color20 = #bdae93
+color21 = #ebdbb2
 # End flavours
 # vim: ft=cfg

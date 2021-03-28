@@ -1,28 +1,23 @@
 # base16-qutebrowser (https://github.com/theova/base16-qutebrowser)
 # Base16 qutebrowser template by theova and Daniel Mulford
-# Generated scheme by Flavours
+# Gruvbox dark, hard scheme by Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)
 
-base00 = "#172134"
-base00_transparent = "#EB172134"  # 92% opaque
-base01 = "#434b5a"
-base01_transparent = "#EB434b5a"
-base02 = "#6f7580"
-base02_transparent = "#EB6f7580"
-base03 = "#9b9fa6"
-base04 = "#c7c9cc"
-base05 = "#f4f3f2"
-base06 = "#f5f4f3"
-base07 = "#f7f6f5"
-base08 = "#d8ebfa"
-base09 = "#eefcbe"
-base0A = "#fcbfd0"
-base0B = "#c1def5"
-base0B_transparent = "#EBc1def5"
-base0C = "#fc719b"
-base0D = "#e0fc90"
-base0D_transparent = "#EBe0fc90"
-base0E = "#fc91b3"
-base0F = "#f4f2f2"
+base00 = "#1d2021"
+base01 = "#3c3836"
+base02 = "#504945"
+base03 = "#665c54"
+base04 = "#bdae93"
+base05 = "#d5c4a1"
+base06 = "#ebdbb2"
+base07 = "#fbf1c7"
+base08 = "#fb4934"
+base09 = "#fe8019"
+base0A = "#fabd2f"
+base0B = "#b8bb26"
+base0C = "#8ec07c"
+base0D = "#83a598"
+base0E = "#d3869b"
+base0F = "#d65d0e"
 
 # set qutebrowser colors
 
@@ -164,58 +159,58 @@ c.colors.prompts.border = base00
 c.colors.prompts.bg = base00
 
 # Background color for the selected item in filename prompts.
-c.colors.prompts.selected.bg = base02_transparent
+c.colors.prompts.selected.bg = base02
 
 # Foreground color of the statusbar.
 c.colors.statusbar.normal.fg = base05
 
 # Background color of the statusbar.
-c.colors.statusbar.normal.bg = base00_transparent
+c.colors.statusbar.normal.bg = base00
 
 # Foreground color of the statusbar in insert mode.
 c.colors.statusbar.insert.fg = base0C
 
 # Background color of the statusbar in insert mode.
-c.colors.statusbar.insert.bg = base00_transparent
+c.colors.statusbar.insert.bg = base00
 
 # Foreground color of the statusbar in passthrough mode.
 c.colors.statusbar.passthrough.fg = base0A
 
 # Background color of the statusbar in passthrough mode.
-c.colors.statusbar.passthrough.bg = base00_transparent
+c.colors.statusbar.passthrough.bg = base00
 
 # Foreground color of the statusbar in private browsing mode.
 c.colors.statusbar.private.fg = base0E
 
 # Background color of the statusbar in private browsing mode.
-c.colors.statusbar.private.bg = base00_transparent
+c.colors.statusbar.private.bg = base00
 
 # Foreground color of the statusbar in command mode.
 c.colors.statusbar.command.fg = base04
 
 # Background color of the statusbar in command mode.
-c.colors.statusbar.command.bg = base01_transparent
+c.colors.statusbar.command.bg = base01
 
 # Foreground color of the statusbar in private browsing + command mode.
 c.colors.statusbar.command.private.fg = base0E
 
 # Background color of the statusbar in private browsing + command mode.
-c.colors.statusbar.command.private.bg = base01_transparent
+c.colors.statusbar.command.private.bg = base01
 
 # Foreground color of the statusbar in caret mode.
 c.colors.statusbar.caret.fg = base0D
 
 # Background color of the statusbar in caret mode.
-c.colors.statusbar.caret.bg = base00_transparent
+c.colors.statusbar.caret.bg = base00
 
 # Foreground color of the statusbar in caret mode with a selection.
 c.colors.statusbar.caret.selection.fg = base0D
 
 # Background color of the statusbar in caret mode with a selection.
-c.colors.statusbar.caret.selection.bg = base00_transparent
+c.colors.statusbar.caret.selection.bg = base00
 
 # Background color of the progress bar.
-c.colors.statusbar.progress.bg = base0D_transparent
+c.colors.statusbar.progress.bg = base0D
 
 # Default foreground color of the URL in the statusbar.
 c.colors.statusbar.url.fg = base05
@@ -238,7 +233,7 @@ c.colors.statusbar.url.success.https.fg = base0B
 c.colors.statusbar.url.warn.fg = base0E
 
 # Background color of the tab bar.
-c.colors.tabs.bar.bg = base00_transparent
+c.colors.tabs.bar.bg = base00
 
 # Color gradient start for the tab indicator.
 c.colors.tabs.indicator.start = base0D
@@ -253,34 +248,34 @@ c.colors.tabs.indicator.error = base08
 c.colors.tabs.odd.fg = base05
 
 # Background color of unselected odd tabs.
-c.colors.tabs.odd.bg = base00_transparent
+c.colors.tabs.odd.bg = base00
 
 # Foreground color of unselected even tabs.
 c.colors.tabs.even.fg = base05
 
 # Background color of unselected even tabs.
-c.colors.tabs.even.bg = base00_transparent
+c.colors.tabs.even.bg = base00
 
 # Background color of pinned unselected even tabs.
-c.colors.tabs.pinned.even.bg = base0B_transparent
+c.colors.tabs.pinned.even.bg = base0B
 
 # Foreground color of pinned unselected even tabs.
 c.colors.tabs.pinned.even.fg = base00
 
 # Background color of pinned unselected odd tabs.
-c.colors.tabs.pinned.odd.bg = base0B_transparent
+c.colors.tabs.pinned.odd.bg = base0B
 
 # Foreground color of pinned unselected odd tabs.
 c.colors.tabs.pinned.odd.fg = base00
 
 # Background color of pinned selected even tabs.
-c.colors.tabs.pinned.selected.even.bg = base02_transparent
+c.colors.tabs.pinned.selected.even.bg = base02
 
 # Foreground color of pinned selected even tabs.
 c.colors.tabs.pinned.selected.even.fg = base05
 
 # Background color of pinned selected odd tabs.
-c.colors.tabs.pinned.selected.odd.bg = base02_transparent
+c.colors.tabs.pinned.selected.odd.bg = base02
 
 # Foreground color of pinned selected odd tabs.
 c.colors.tabs.pinned.selected.odd.fg = base05
@@ -289,13 +284,13 @@ c.colors.tabs.pinned.selected.odd.fg = base05
 c.colors.tabs.selected.odd.fg = base05
 
 # Background color of selected odd tabs.
-c.colors.tabs.selected.odd.bg = base02_transparent
+c.colors.tabs.selected.odd.bg = base02
 
 # Foreground color of selected even tabs.
 c.colors.tabs.selected.even.fg = base05
 
 # Background color of selected even tabs.
-c.colors.tabs.selected.even.bg = base02_transparent
+c.colors.tabs.selected.even.bg = base02
 
 # Background color for webpages if unset (or empty to use the theme's
 # color).
