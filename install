@@ -5,7 +5,7 @@ function dots {
 }
 checkout_log="$(dots checkout 2>&1)"
 if [ $? = 0 ]; then
-  printf "Checked out dotfiles."
+  printf "Checked out dotfiles.\n"
   else
     printf "Backing up conflicting dotfiles to ~/.config-backup/\n"
     printf "$checkout_log" | grep -E "\s+\." | tr -d "[:blank:]" | xargs -I{} sh -c 'mkdir --parents ~/.config-backup/$(dirname {}) && mv -v {} ~/.config-backup/{}'
