@@ -13,7 +13,7 @@ init_menu() {
 
 wallpaper() {
     local selected_bg
-    selected_bg="$(find "$WALLPAPER_DIR" -type f | shuf | sxiv -tio -N "float" | shuf -n 1)"
+    selected_bg="$(find "$WALLPAPER_DIR" -type f -not -path "*/.git*" | shuf | sxiv -tio -N "float" | shuf -n 1)"
     if [ -n "$selected_bg" ]; then
         setwall "$selected_bg"
     fi

@@ -28,7 +28,7 @@ set_wallpaper() {
 }
 
 if [ "$1" = "-r" ]; then
-    WALL="$(find "$WALLPAPER_DIR" -type f | shuf -n 1)"
+    WALL="$(find "$WALLPAPER_DIR" -type f -not -path "*/.git*"  | shuf -n 1)"
     [ ! -z "$WALL" ] && set_wallpaper "$WALL"
 elif [ -f "$1" ]; then
     set_wallpaper "$1"
