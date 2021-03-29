@@ -14,7 +14,7 @@ This will clone the repository into your `$HOME` and will create the git dir at 
 
 Check `~/.config/Makefile` to install dependencies (requires `yay`).
 
-> Disclaimer: don't run a random person's code without understanding [it](https://github.com/loiccoyle/dots/blob/web/install).
+> Disclaimer: don't run a random person's code without understanding [it](https://github.com/loiccoyle/dots/blob/gh-pages/install).
 
 ### Screenshots
 
