@@ -46,6 +46,8 @@ Check `~/.config/Makefile` to install dependencies (requires `yay`).
 
 ### Details
 
+* **Wallpapers**:
+    * My wallpapers can be found [here](https://loiccoyle.com/walls).
 * **zsh**:
     * Plugin manager: [`zinit`](https://github.com/zdharma/zinit)
     * Prompt: [`pure`](https://github.com/sindresorhus/pure)
