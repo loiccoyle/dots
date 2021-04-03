@@ -1,3 +1,5 @@
+shell = "sh -c '{}'"
+
 [[item]]
 file='$XDG_CONFIG_HOME/termite/config'
 template='termite'
@@ -9,14 +11,14 @@ file='~/.Xresources'
 template='xresources'
 subtemplate='default-256'
 rewrite=true
-hook='sh -c "xrdb ~/.Xresources"'
+hook='xrdb ~/.Xresources'
 
 [[item]]
 file='$XDG_CONFIG_HOME/qutebrowser/colors.py'
 template='qutebrowser'
 subtemplate='minimal'
 rewrite=true
-hook='sh -c "pgrep -x qutebrowser && qutebrowser :config-source"'
+hook='pgrep -x qutebrowser && qutebrowser :config-source'
 
 [[item]]
 file='$XDG_CONFIG_HOME/zathura/zathurarc'
@@ -26,7 +28,7 @@ template='zathura'
 file='$XDG_CONFIG_HOME/dunst/dunstrc'
 template='dunst'
 subtemplate='background'
-hook = 'killall dunst'
+hook='killall dunst'
 
 [[item]]
 file='$XDG_CONFIG_HOME/polybar/colors.ini'
@@ -37,7 +39,7 @@ rewrite=true
 [[item]]
 file='$XDG_CONFIG_HOME/bspwm/bspwm_colors.sh'
 template='bspwm'
-hook='sh -c "$XDG_CONFIG_HOME/bspwm/bspwm_colors.sh"'
+hook='$XDG_CONFIG_HOME/bspwm/bspwm_colors.sh'
 rewrite=true
 
 [[item]]
