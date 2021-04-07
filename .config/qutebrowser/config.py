@@ -246,6 +246,7 @@ c.url.searchengines = {
     "aw": "https://wiki.archlinux.org/index.php?search={}",
     "aur": "https://aur.archlinux.org/packages/?K={}",
     "pkg": "https://archlinux.org/packages/?q={}",
+    "pip": "https://pypi.org/search/?q={}",
 }
 
 ## Page(s) to open at the start.
