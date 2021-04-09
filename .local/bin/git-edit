@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# List files currently tracked in the git repository in fzf and open selected file in $EDITOR
+# Requires fzf, git
+
+FILE="$(git ls-files | fzf --height=100%)"
+[ -f "$FILE" ] && $EDITOR "$FILE"
