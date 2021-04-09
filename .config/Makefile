@@ -9,7 +9,7 @@ termite: ## Install termite and terminfo
 	$(INSTALL_AUR) vte3-ng
 
 lf: ## Install lf and dependencies
-	$(INSTALL_AUR) lf vidir dragon-drag-and-drop
+	$(INSTALL_AUR) lf vidir dragon-drag-and-drop ix
 	$(INSTALL) xclip highlight
 
 polybar: rofi fonts ## Install polybar and dependencies
@@ -23,7 +23,7 @@ sxhkd: rofi ## Install sxhkd and related programs
 sxiv: ## Install sxiv and dependencies
 	$(INSTALL) imagemagick sxiv perl-image-exiftool
 
-vim: python_dev ## Install vim
+vim: python_dev ## Install neovim and related
 	$(INSTALL) neovim nodejs npm python-pynvim fzf
 	$(INSTALL_AUR) neovim-symlinks
 
@@ -46,7 +46,7 @@ fonts: ## Install fonts
 	$(INSTALL) noto-fonts noto-fonts-emoji ttf-hack
 	$(INSTALL_AUR) siji ttf-unifont
 
-flavours: ## Install flavours
+flavours: ## Install flavours and run 'flavours update'
 	$(INSTALL_AUR) flavours
 	flavours update all
 
@@ -55,7 +55,7 @@ torrents: python_dev ## Install torrenting setup, with transmission
 	$(INSTALL) transmission-cli mpv
 	$(INSTALL_AUR) webtorrent-cli
 
-hooks: ## Install pacman cleanup and mirrorlist hooks
+hooks: ## Install pacman hooks
 	$(INSTALL_AUR) pacman-cleanup-hook reflector-mirrorlist-update
 
 scripts: ## Install script dependencies
@@ -64,17 +64,20 @@ scripts: ## Install script dependencies
 startup: sxhkd ## Startup programs (xinit and .xprofile)
 	$(INSTALL) xorg-xinit kbd xorg-xset xorg-xsetroot hsetroot picom dunst udiskie
 
-help:
-	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
-	| sort \
-	| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+other: ## Other useful software
+	$(INSTALL) lazygit
 
 test: ## Test this Makefile with docker
 	docker build --rm -t dotfiles ${PWD};\
 	docker run --rm -it --name maketest -d dotfiles:latest;\
 	docker exec -it maketest sh -c "cd ${PWD}; make all";\
 
-all: termite lf polybar sxhkd sxiv vim python_dev rofi ui-theme qutebrowser fonts flavours torrents hooks scripts startup ## Install everything
+help:
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
+		| sort \
+		| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+
+all: termite lf polybar sxhkd sxiv vim python_dev rofi ui-theme qutebrowser fonts flavours torrents hooks scripts startup other ## Install everything
 
 .DEFAULT_GOAL := help
 
