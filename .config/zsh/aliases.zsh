@@ -39,7 +39,7 @@ alias lgdots="lazygit --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 # vimwiki
 alias vimwiki="vim +VimwikiIndex"
 # fasd
-alias v="fasd -f -e vim"
+alias v="fasd -f -e $EDITOR"
 # colours
 alias diff="diff --color=auto"
 alias grep="grep --colour=auto"
