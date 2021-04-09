@@ -120,31 +120,32 @@ cmd fasd_cd ${{
     lf -remote "send $id cd $(fasd -dlR | fzf)"
 }}
 
+# Share files through https://ix.io
 cmd share ${{
     ixurl="$(ix $fx 2> /dev/null)"
     notify-send --icon share "Uploaded to ix.io" "$ixurl"
     echo "$ixurl" | xclip -selection c
 }}
 
+# Start a http server in the current folder
 cmd serve ${{
     python -m http.server 8000
 }}
 
+# Make files dragable
 cmd drag ${{
     dragon-drag-and-drop --and-exit $fx
 }}
 
 # directories
-map gt cd ~/.config/wal/templates
 map gD cd ~/projects
 map gc cd ~/.config
-map gd cd ~/data
 map ge cd /etc
 map gb cd ~/.local/bin
 map D delete
 # fasd_cd fzf
 map gf fasd_cd
-# vim in dir
-map E $vim .
+# $EDITOR in dir
+map E $$EDITOR .
 # bulkrename
 map R $vidir
