@@ -22,6 +22,10 @@ check_ssh() {
     [ "$(systemctl is-active sshd.service)" = "active" ]
 }
 
+check_jackett() {
+    [ "$(systemctl is-active jackett.service)" = "active" ]
+}
+
 check_transmission() {
     pgrep -x "transmission-da" > /dev/null
 }
@@ -41,6 +45,10 @@ check_picom() {
 # Toggles
 toggle_ssh() {
     check_ssh && (sudo systemctl stop sshd.service && notify-send -i process-stop "ssh" "Stopped ssh") || (sudo systemctl start sshd.service && notify-send -i terminal "ssh" "Started ssh")
+}
+
+toggle_jackett() {
+    check_jackett && (sudo systemctl stop jackett.service && notify-send -i process-stop "ssh" "Stopped Jackett") || (sudo systemctl start jackett.service && notify-send -i download "ssh" "Started Jackett")
 }
 
 toggle_thqm() {
@@ -72,33 +80,41 @@ toggle_picom() {
 init_menu() {
     local thqm_status="$(check_thqm && echo $RUNNING || echo $STOPPED)"
     local ssh_status="$(check_ssh && echo $RUNNING || echo $STOPPED)"
+    local jackett_status="$(check_jackett && echo $RUNNING || echo $STOPPED)"
     local transmission_status="$(check_transmission && echo $RUNNING || echo $STOPPED)"
     local http_status="$(check_http && echo $RUNNING || echo $STOPPED)"
     local picom_status="$(check_picom && echo $RUNNING || echo $STOPPED)"
 
     local menu_string=""
+    declare -i n_lines
     type thqm > /dev/null && menu_string="$menu_string$thqm_status Toggle thqm\\n"
     type ssh > /dev/null && menu_string="$menu_string$ssh_status Toggle ssh\\n"
-    type transmission-daemon > /dev/null && menu_string="$menu_string$transmission_status Toggle transmission\\n"
+    sudo systemctl list-unit-files jackett.service > /dev/null && menu_string="$menu_string$jackett_status Toggle Jackett\\n"
+    type transmission-daemon > /dev/null && menu_string="$menu_string$transmission_status Toggle Transmission\\n"
     type python3 > /dev/null && menu_string="$menu_string$http_status Toggle http\\n"
-    type picom > /dev/null && menu_string="$menu_string$picom_status Toggle picom"
-    printf "$menu_string" | menu -l 5
+    type picom > /dev/null && menu_string="$menu_string$picom_status Toggle Picom"
+
+    n_lines=$(echo -e "$menu_string" | wc -l)
+    printf "$menu_string" | menu -l $n_lines
 }
 
 case "$(init_menu)" in
-    *"Toggle ssh")
-        toggle_ssh
-        ;;
     *"Toggle thqm")
         toggle_thqm
         ;;
-    *"Toggle transmission")
+    *"Toggle ssh")
+        toggle_ssh
+        ;;
+    *"Toggle Jackett")
+        toggle_jackett
+        ;;
+    *"Toggle Transmission")
         toggle_transmission
         ;;
     *"Toggle http")
         toggle_http
         ;;
-    *"Toggle picom")
+    *"Toggle Picom")
         toggle_picom
         ;;
 esac
