@@ -109,6 +109,7 @@ let g:coc_global_extensions = [
 
 " Explorer
     map <leader>n :Files<CR>
+    map <leader>N :GFiles<CR>
 
 " Shortcutting split navigation, saving a keypress:
     map <C-h> <C-w>h
