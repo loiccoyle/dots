@@ -16,17 +16,6 @@ export XDG_VIDEOS_DIR="$HOME/videos"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 
-# pyenv setup
-export PYENV_ROOT="$XDG_DATA_HOME/pyenv"
-[ -d "$PYENV_ROOT/bin" ] && export PATH="$PYENV_ROOT/bin:$PATH"
-if command -v pyenv 1>/dev/null 2>&1; then
-    eval "$(pyenv init -)"
-fi
-
-# add poetry to the path
-export POETRY_HOME="$XDG_DATA_HOME/poetry"
-[ -d "$POETRY_HOME/bin" ] && export PATH="$POETRY_HOME/bin:$PATH"
-
 # Programs
 export EDITOR="nvim"
 export VISUAL="nvim"
