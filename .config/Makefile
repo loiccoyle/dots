@@ -28,7 +28,7 @@ vim: python_dev ## Install neovim and related
 	$(INSTALL_AUR) neovim-symlinks
 
 python_dev: ## Install python dev setup
-	$(INSTALL) python-pip python-pipx python-poetry ipython python-black python-isort python-pylint
+	$(INSTALL) python-pip python-pipx python-poetry pyenv ipython python-black python-isort python-pylint
 
 rofi: ## Install rofi and rofi extensions
 	$(INSTALL) rofi
