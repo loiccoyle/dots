@@ -57,12 +57,14 @@ edit() {
 }
 ae() {
     # Activate python venv
-    if [ -f "venv/bin/activate" ]
+    local venv_dir="${1:-venv}"
+    local venv_poetry
+    if [ -f "$venv_dir/bin/activate" ]
     then
-        source "venv/bin/activate"
+        source "$venv_dir/bin/activate"
     else
-        VENV_PATH="$(poetry env list --full-path | grep "Activated" | cut -d' ' -f1)"
-        [ -z "$VENV_PATH" ] || source "$VENV_PATH/bin/activate"
+        venv_poetry="$(poetry env list --full-path | grep "Activated" | cut -d' ' -f1)"
+        [ -z "$venv_poetry" ] || source "$venv_poetry/bin/activate"
     fi
 }
 
