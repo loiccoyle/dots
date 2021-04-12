@@ -32,7 +32,7 @@ WORDCHARS=${WORDCHARS//\/[&.;]}                                 # Don't consider
 HISTFILE="$XDG_CACHE_HOME/zsh/history"
 HISTSIZE=10000
 SAVEHIST=10000
-
+CORRECT_IGNORE_FILE='notebooks'
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.config/zsh/.zinit/bin/zinit.zsh ]]; then
