@@ -16,6 +16,7 @@ setopt nobeep                                                   # No beep
 setopt sharehistory                                             # Immediately append history instead of overwriting
 setopt histignorealldups                                        # If a new command is a duplicate, remove the older one
 setopt autocd                                                   # If only directory path is entered, cd there.
+setopt globdots                                                 # Include .* files and folders in completion
 
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'       # Case insensitive tab completion
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"         # Colored completion (different colors for dirs/files/etc)
@@ -26,13 +27,14 @@ zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.cache/zsh
 zstyle ':completion:*' menu select
 
-WORDCHARS=${WORDCHARS//\/[&.;]}                                 # Don't consider certain characters part of the word
-
+# Don't consider certain characters part of the word
+WORDCHARS=${WORDCHARS//\/[&.;]}
+# Don't trigger correction with these files
+CORRECT_IGNORE_FILE='notebooks'
 # History settings
 HISTFILE="$XDG_CACHE_HOME/zsh/history"
 HISTSIZE=10000
 SAVEHIST=10000
-CORRECT_IGNORE_FILE='notebooks'
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.config/zsh/.zinit/bin/zinit.zsh ]]; then
@@ -68,7 +70,6 @@ zinit light 'sindresorhus/pure'
 zinit wait'0b' lucid light-mode for \
         zsh-users/zsh-history-substring-search \
         hlissner/zsh-autopair \
-    atinit"zicompinit; zicdreplay" \
         zdharma/fast-syntax-highlighting \
     atload"_zsh_autosuggest_start" \
         zsh-users/zsh-autosuggestions \
@@ -79,8 +80,11 @@ zinit wait'0b' lucid light-mode for \
 zinit ice wait'0b' lucid pick'fasd.plugin.zsh'
 zinit light 'whjvenyl/fasd'
 
-# load custom stuff
-zinit ice wait'0c' lucid multisrc"*.zsh" pick"/dev/null"
-zinit light "$ZDOTDIR"
+# load personal config
+# any completions (compdef) after this won't work
+zinit wait'0c' lucid light-mode for \
+    atload"zicompinit; zicdreplay" \
+        multisrc"*.zsh" pick"/dev/null" "$ZDOTDIR"
+
 # add to beginning of fpath
 fpath=("$ZDOTDIR/completions" "${fpath[@]}")

@@ -52,7 +52,7 @@ alias lg="lazygit"
 
 # Functions
 edit() {
-    # Open command in EDITOR
+    # Open command in $EDITOR
     $EDITOR "$(which "$1")"
 }
 ae() {
@@ -67,6 +67,10 @@ ae() {
         [ -z "$venv_poetry" ] || source "$venv_poetry/bin/activate"
     fi
 }
+
+# Function completions
+compdef _path_commands edit
+compdef '_files -/' ae  # folders
 
 # Globals
 alias -g P="| $PAGER"
