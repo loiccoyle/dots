@@ -19,6 +19,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-sleuth'
 Plug 'machakann/vim-highlightedyank'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'terryma/vim-multiple-cursors'
@@ -29,7 +30,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " Git status
-Plug 'airblade/vim-gitgutter'
+Plug 'mhinz/vim-signify'
 " vimwiki for notes
 Plug 'vimwiki/vimwiki'
 " LSP client (to change out with nvim's client when it is stable)
@@ -107,9 +108,33 @@ let g:coc_global_extensions = [
 " Splits open at the bottom and right, which is non-retarded, unlike vim defaults.
     set splitbelow splitright
 
-" Explorer
+" File selection
     map <leader>n :Files<CR>
     map <leader>N :GFiles<CR>
+    map <leader>b :Buffers<CR>
+    map <leader>l :Blines<CR>
+    command! -bang -nargs=* GGrep
+                \ call fzf#vim#grep(
+                \   'git grep --line-number -- '.shellescape(<q-args>), 0,
+                \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
+    map <leader>g :GGrep<CR>
+
+" Hotkey reminders
+    nmap <leader>? <plug>(fzf-maps-n)
+    xmap <leader>? <plug>(fzf-maps-x)
+    omap <leader>? <plug>(fzf-maps-o)
+
+" Git hunk navigation
+    nmap ]h <plug>(signify-next-hunk)
+    nmap [h <plug>(signify-prev-hunk)
+    nmap ]H 9999]h
+    nmap [H 9999[H
+    omap ih <plug>(signify-motion-inner-pending)
+    xmap ih <plug>(signify-motion-inner-visual)
+    omap ah <plug>(signify-motion-outer-pending)
+    xmap ah <plug>(signify-motion-outer-visual)
+    map hp :SignifyHunkDiff<CR>
+    map hu :SignifyHunkUndo<CR>
 
 " Shortcutting split navigation, saving a keypress:
     map <C-h> <C-w>h
