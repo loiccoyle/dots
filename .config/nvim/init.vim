@@ -133,8 +133,8 @@ let g:coc_global_extensions = [
     xmap ih <plug>(signify-motion-inner-visual)
     omap ah <plug>(signify-motion-outer-pending)
     xmap ah <plug>(signify-motion-outer-visual)
-    map hp :SignifyHunkDiff<CR>
-    map hu :SignifyHunkUndo<CR>
+    map ,hp :SignifyHunkDiff<CR>
+    map ,hu :SignifyHunkUndo<CR>
 
 " Shortcutting split navigation, saving a keypress:
     map <C-h> <C-w>h
