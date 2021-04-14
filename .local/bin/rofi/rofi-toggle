@@ -89,7 +89,7 @@ init_menu() {
     declare -i n_lines
     type thqm > /dev/null && menu_string="$menu_string$thqm_status Toggle thqm\\n"
     type ssh > /dev/null && menu_string="$menu_string$ssh_status Toggle ssh\\n"
-    sudo systemctl list-unit-files jackett.service > /dev/null && menu_string="$menu_string$jackett_status Toggle Jackett\\n"
+    systemctl list-unit-files jackett.service > /dev/null && menu_string="$menu_string$jackett_status Toggle Jackett\\n"
     type transmission-daemon > /dev/null && menu_string="$menu_string$transmission_status Toggle Transmission\\n"
     type python3 > /dev/null && menu_string="$menu_string$http_status Toggle http\\n"
     type picom > /dev/null && menu_string="$menu_string$picom_status Toggle Picom"
