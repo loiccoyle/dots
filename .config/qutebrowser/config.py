@@ -272,6 +272,10 @@ c.content.blocking.method = "both"
 c.fileselect.handler = "external"
 c.fileselect.single_file.command = [terminal, '--class=float', '-e', 'lf -selection-path {}']
 c.fileselect.multiple_files.command = c.fileselect.single_file.command
+c.fileselect.folder.command = c.fileselect.single_file.command
+
+# Notifications
+c.content.notifications.presenter = 'libnotify'
 
 ## Bindings for normal mode
 # config.bind("'", 'enter-mode jump_mark')
