@@ -78,3 +78,4 @@ alias -g G="| grep"
 alias -g H="| head"
 alias -g T="| tail"
 alias -g C="| wc -l"  # count lines
+alias -g N="> /dev/null"
