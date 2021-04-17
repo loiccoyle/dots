@@ -30,9 +30,6 @@ super + shift + c
 # browser
 super + w
     $BROWSER
-# browser through rofi
-super + shift + w
-    rofi-browser
 # toggle the bar and the top padding
 super + b
     polybar-msg cmd toggle & \
