@@ -23,7 +23,7 @@ alias open="$OPENER"
 alias psyu="sudo pacman -Syu"
 alias pacdiff="sudo -E pacdiff"
 # full upgrade
-alias sysupdate="yay &&\
+alias sysupdate="paru &&\
     pipx upgrade-all &&\
     zinit self-update && zinit update --all &&\
     vim --headless +PlugUpgrade +PlugUpdate +qall > /dev/null"

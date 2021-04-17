@@ -243,7 +243,7 @@ menu-2-1-exec = menu-open-0
 [module/updates-arch-combined]
 type = custom/script
 exec = $XDG_CONFIG_HOME/polybar/scripts/updates-arch-combined.sh
-click-left = $TERMINAL --hold -e "yay" &
+click-left = $TERMINAL --hold -e "paru" &
 interval = 600
 
 [module/bluetooth]

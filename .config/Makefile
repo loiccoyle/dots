@@ -1,8 +1,8 @@
 # Makefile to install the packages on Arch.
-# Requires yay.
+# Requires paru
 
 INSTALL = sudo pacman -S --needed
-INSTALL_AUR = yay -S --needed --removemake
+INSTALL_AUR = paru -S --needed --removemake
 
 termite: ## Install termite and terminfo
 	$(INSTALL) termite termite-terminfo
