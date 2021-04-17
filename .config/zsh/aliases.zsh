@@ -20,7 +20,7 @@ alias df="df -h"  # Human-readable sizes
 alias free="free -h"  # Human-readable sizes
 alias open="$OPENER"
 # pacman
-alias psyu="sudo pacman -Syu"
+alias pacman="sudo pacman"
 alias pacdiff="sudo -E pacdiff"
 # full upgrade
 alias sysupdate="paru &&\
