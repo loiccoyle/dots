@@ -16,7 +16,6 @@ FILE_EXTENSION="${FILE_PATH##*.}"
 FILE_EXTENSION_LOWER="$(printf "${FILE_EXTENSION}" | tr "[:upper:]" "[:lower:]")"
 
 # Settings
-# HIGHLIGHT_SIZE_MAX=262143  # 256KiB
 BSDTAR_SIZE_MAX=524288000  # 500 MiB
 
 
@@ -81,20 +80,7 @@ handle_mime() {
     case "${mimetype}" in
         # Text
         text/* | */xml | */json | */csv)
-            # Syntax highlight
-            # if [ "$(stat --dereference --printf="%s" -- "${FILE_PATH}" )" -gt "${HIGHLIGHT_SIZE_MAX}"]; then
-            #     # Skip if file too long
-            #     cat "${FILE_PATH}"
-            #     return
-            # fi
-            # if [ "$( tput colors )" -ge 256 ]; then
-            #     local highlight_format="xterm256"
-            # else
-            #     local highlight_format="ansi"
-            # fi
-            # highlight --replace-tabs="${HIGHLIGHT_TABWIDTH}" --out-format="${highlight_format}" \
-            #     --config-file="${HIGHLIGHT_STYLE}" --force -- "${FILE_PATH}"
-            highlight --style "$XDG_CONFIG_HOME/highlight/themes/flavours.theme" --out-format "ansi" --force -- "${FILE_PATH}" ||\
+            highlight --line-range="0-100" --out-format "ansi" --force -- "${FILE_PATH}" || \
             cat "${FILE_PATH}"
             ;;
 
