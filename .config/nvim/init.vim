@@ -29,8 +29,9 @@ Plug 'junegunn/goyo.vim'
 " FZF ':help fzf'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-" Git status
+" Git
 Plug 'mhinz/vim-signify'
+Plug 'kdheepak/lazygit.nvim', { 'branch': 'nvim-v0.4.3' }
 " Vimwiki for notes
 Plug 'vimwiki/vimwiki'
 " LSP client (to change out with nvim's client when it is stable)
@@ -80,6 +81,7 @@ set expandtab
 set smartcase
 " Ignore compiled files and VCS files
 set wildignore=*.o,*~,*.pyc*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
+set colorcolumn=80
 
 " lightline
 let g:lightline = {
@@ -136,6 +138,9 @@ omap ah <plug>(signify-motion-outer-pending)
 xmap ah <plug>(signify-motion-outer-visual)
 map ,hp :SignifyHunkDiff<CR>
 map ,hu :SignifyHunkUndo<CR>
+
+" Lazy git
+nnoremap <silent> <leader>lg :LazyGit<CR>
 
 " Shortcutting split navigation, saving a keypress:
 map <C-h> <C-w>h
