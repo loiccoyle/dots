@@ -57,34 +57,37 @@ zinit wait'0a' lucid light-mode for \
     zinit-zsh/z-a-patch-dl \
     zinit-zsh/z-a-bin-gem-node
 
-# add pure prompt
-zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
-zinit light 'sindresorhus/pure'
 # LS_COLORS
 # zinit ice atclone"dircolors -b LS_COLORS > clrs.zsh" \
 #     atpull'%atclone' pick"clrs.zsh" nocompile'!' \
 #     atload'zstyle ":completion:*" list-colors “${(s.:.)LS_COLORS}”'
 # zinit light trapd00r/LS_COLORS
 
-# Load some plugins
+# BEFORE COMPINIT
+# Load some plugins and personal config
 zinit wait'0b' lucid light-mode for \
         zsh-users/zsh-history-substring-search \
         hlissner/zsh-autopair \
         zdharma/fast-syntax-highlighting \
-    atload"_zsh_autosuggest_start" \
-        zsh-users/zsh-autosuggestions \
-    blockf atpull'zinit creinstall -q .' \
-       zsh-users/zsh-completions
-
-# fasd hook
-zinit ice wait'0b' lucid pick'fasd.plugin.zsh'
-zinit light 'whjvenyl/fasd'
-
-# load personal config
-# any completions (compdef) after this won't work
-zinit wait'0c' lucid light-mode for \
     atload"zicompinit; zicdreplay" \
         multisrc"*.zsh" pick"/dev/null" "$ZDOTDIR"
 
+# AFTER COMPINIT
+zinit wait'0c' lucid light-mode for \
+    atload"_zsh_autosuggest_start" \
+        zsh-users/zsh-autosuggestions \
+    blockf atpull'zinit creinstall -q .' \
+       zsh-users/zsh-completions \
+    pick'fasd.plugin.zsh' \
+        whjvenyl/fasd
+
+# add pure prompt
+zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
+zinit light 'sindresorhus/pure'
+
 # add to beginning of fpath
 fpath=("$ZDOTDIR/completions" "${fpath[@]}")
+
+# Plugin settings:
+ZSH_AUTOSUGGEST_USE_ASYNC=1
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
