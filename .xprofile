@@ -3,12 +3,12 @@
 # If you use startx/xinit, this file will also be sourced.
 
 # Set keyboard rate
-kbdrate -d 400 -r 50 &
-xset r rate 400 50 &
+kbdrate -d 300 -r 50 &
+xset r rate 300 50 &
 xset s 3600 3600 &
 
 # Start nvidia settings
-type nvidia-settings && nvidia-settings --load-config-only &
+type nvidia-settings > /dev/null && nvidia-settings --load-config-only &
 
 # Set the screenlayout
 # ~/.config/screenlayout/dual.sh
