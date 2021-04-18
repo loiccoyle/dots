@@ -195,6 +195,7 @@ let g:vimwiki_list = [{'path': '~/projects/vimwiki', 'syntax': 'markdown', 'ext'
 " Filetypes
 autocmd BufRead,BufNewFile *.ms,*.me,*.mom,*.man set filetype=groff
 autocmd BufRead,BufNewFile *.tex set filetype=tex
+autocmd BufRead,BufNewFile *.conf,*.ini set filetype=dosini
 
 " Enable Goyo by default for mutt writting
     " Goyo's width will be the line limit in mutt.
