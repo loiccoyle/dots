@@ -51,7 +51,8 @@ let g:coc_global_extensions = [
                             \ 'coc-pyright',
                             \ 'coc-json',
                             \ 'coc-sh',
-                            \ 'coc-snippets'
+                            \ 'coc-snippets',
+                            \ 'coc-diagnostic',
                             \]
 
 " python nvim environment
