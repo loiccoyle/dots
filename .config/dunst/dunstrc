@@ -69,10 +69,10 @@ separator_color = "#d5c4a1"
     mouse_right_click = close_all
 
 [shortcuts]
-    close = ctrl+space
-    close_all = ctrl+shift+space
-    history = ctrl+grave
-    context = ctrl+shift+period
+    close = mod4+n
+    # close_all = mod4+ctrl+n
+    history = mod4+shift+n
+    context = mod4+ctrl+n
 
 [urgency_low]
     timeout = 10
