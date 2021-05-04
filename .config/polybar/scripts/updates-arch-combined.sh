@@ -1,21 +1,21 @@
 #!/bin/sh
+#
+# Check for pakages updates, from pacman and the AUR.
+# Requires pacman-contrib, paru
 
-if ! updates_arch=$(checkupdates 2> /dev/null | wc -l ); then
-    updates_arch=0
+if ! UPDATES_ARCH=$(checkupdates 2> /dev/null | wc -l ); then
+    UPDATES_ARCH=0
 fi
 
-if ! updates_aur=$(yay -Qum 2> /dev/null | wc -l); then
-# if ! updates_aur=$(cower -u 2> /dev/null | wc -l); then
-# if ! updates_aur=$(trizen -Su --aur --quiet | wc -l); then
-# if ! updates_aur=$(pikaur -Qua 2> /dev/null | wc -l); then
-# if ! updates_aur=$(rua upgrade --printonly 2> /dev/null | wc -l); then
-    updates_aur=0
+# if ! UPDATES_AUR=$(yay -Qum 2> /dev/null | wc -l); then
+if ! UPDATES_AUR=$(paru -Qum 2> /dev/null | wc -l); then
+    UPDATES_AUR=0
 fi
 
-updates=$(("$updates_arch" + "$updates_aur"))
+UPDATES=$(("$UPDATES_ARCH" + "$UPDATES_AUR"))
 
-if [ "$updates" -gt 0 ]; then
-    echo " $updates"
+if [ "$UPDATES" -gt 0 ]; then
+    printf " %s" "$UPDATES"
 else
-    echo ""
+    printf "\n"
 fi
