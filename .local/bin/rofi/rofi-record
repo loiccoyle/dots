@@ -90,20 +90,15 @@ asktoend() { \
 	[ "$response" = "Yes" ] && killrecording
 	}
 
-bar() {
-    [ -f /tmp/recordingpid ] && echo ""
-}
-
 updatepolybar() {
     polybar-msg hook record 1 > /dev/null 2>&1
 }
 
 
 case "$1" in
-	screencast) screencast;;
-	audio) audio;;
-	video) video;;
-	kill) killrecording;;
-    bar) bar;;
+    screencast) screencast;;
+    audio) audio;;
+    video) video;;
+    kill) killrecording;;
     *) ([ -f /tmp/recordingpid ] && asktoend && exit) || askrecording && updatepolybar;;
 esac
