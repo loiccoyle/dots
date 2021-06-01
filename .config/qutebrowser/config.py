@@ -277,6 +277,9 @@ c.fileselect.folder.command = c.fileselect.single_file.command
 # Notifications
 c.content.notifications.presenter = 'libnotify'
 
+# Dont raise when reloading config
+c.new_instance_open_target = "tab-silent"
+
 ## Bindings for normal mode
 # config.bind("'", 'enter-mode jump_mark')
 # config.bind('+', 'zoom-in')
