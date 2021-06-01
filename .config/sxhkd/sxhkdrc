@@ -169,7 +169,13 @@ super + shift + {1-9,0}
     bspc node -d '{1-9,10}'
 # if already on desktop, go to previous desktop
 super + {1-9,0}
-    ~/.config/bspwm/scripts/bspwm-switch-desktop '{1-9,10}'
+    dest="{1-9,10}";\
+    current="$(bspc query --desktop focused --desktops --names)";\
+    if [ "$dest" = "$current" ]; then;\
+        bspc desktop -f last;\
+    else;\
+        bspc desktop -f "$dest";\
+    fi;
 # float window
 super + space
     bspc node focused -t \~floating
