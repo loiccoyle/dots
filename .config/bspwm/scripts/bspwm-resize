@@ -5,7 +5,7 @@
 amount=10
 
 # set a smaller percentage when floating
-bspc query -N -n focused.floating > /dev/null && amount=5
+bspc query -N -n focused.floating > /dev/null && amount=10
 
 case $1 in
     east)  dim=w; dir=right; falldir=left;   sign=+;;
