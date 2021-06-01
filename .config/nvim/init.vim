@@ -38,8 +38,8 @@ Plug 'vimwiki/vimwiki'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Status bar
 Plug 'itchyny/lightline.vim'
-" Theme that uses terminal colours
-Plug 'noahfrederick/vim-noctu'
+" Theme that uses terminal colours comes with lightline theme
+Plug 'dylanaraps/wal.vim'
 " Syntaxes
 Plug 'kovetskiy/sxhkd-vim'
 Plug 'zinit-zsh/zinit-vim-syntax'
@@ -60,7 +60,8 @@ let g:python3_host_prog = "/usr/bin/python"
 
 " Theme
 set bg=dark
-colorscheme noctu
+colorscheme wal
+hi IncSearch cterm=NONE
 
 " Some basics
 " tpope/vim-sensible configures the basics, see:
@@ -76,16 +77,22 @@ set nocompatible
 " syntax on
 " set encoding=utf-8
 set number
+" set signcolumn=number
 set tabstop=4
 set shiftwidth=4
 set expandtab
 set smartcase
-" Ignore compiled files and VCS files
-set wildignore=*.o,*~,*.pyc*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 set colorcolumn=80
+highlight ColorColumn ctermbg=0 ctermfg=7
+" Ignore files
+set wildignore=*.o,*~
+set wildignore+=*.pyc,*/venv/*,*/.venv/*
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
+set wildignore+=*/.DS_Store
 
 " lightline
 let g:lightline = {
+  \ 'colorscheme': 'wal',
   \ 'active': {
   \   'left': [ [ 'mode', 'paste' ],
   \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
@@ -99,6 +106,17 @@ autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 
 " Source Coc configuraion
 source ~/.config/nvim/coc-config.vim
+
+" Mutiple cursors
+let g:VM_maps = {}
+let g:VM_maps["Undo"] = 'u'
+let g:VM_maps["Redo"] = '<C-r>'
+
+" Reindentation
+nnoremap <Tab> >>_
+nnoremap <S-Tab> <<_
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
 
 " Hotkey reminders
 nmap <leader>? <plug>(fzf-maps-n)
