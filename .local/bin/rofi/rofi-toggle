@@ -1,10 +1,11 @@
 #!/bin/sh
 #
-# Toggle various services.
-# Requires rofi, openssh (optional), thqm (optional), transmission-cli (optional), picom (optional)
+# Toggle various services, programs & servers.
+# Requires rofi, openssh (optional), thqm (optional), transmission-cli (optional), picom (optional),
+# glava (optional)
 
 RUNNING="✅"
-STOPPED="❎"
+STOPPED="❌"
 HTTP_PID_FILE="/tmp/python_http_pid"
 THQM_TEMP_IMG="/tmp/thqm.png"
 
@@ -41,6 +42,10 @@ check_http() {
 
 check_picom() {
     pgrep -x picom > /dev/null
+}
+
+check_glava() {
+    pgrep -x glava > /dev/null
 }
 
 # Toggles
@@ -99,6 +104,14 @@ toggle_picom() {
     fi
 }
 
+toggle_glava() {
+    if check_glava; then
+        killall glava && notify-send -i "process-stop" "glava" "Stopped glava"
+    else
+        glava & notify-send -i "music" "glava" "Started glava"
+    fi
+}
+
 
 # Menu
 init_menu() {
@@ -108,12 +121,14 @@ init_menu() {
     local transmission_status
     local http_status
     local picom_status
+    local glava_status
     thqm_status="$(check_thqm && echo $RUNNING || echo $STOPPED)"
     ssh_status="$(check_ssh && echo $RUNNING || echo $STOPPED)"
     jackett_status="$(check_jackett && echo $RUNNING || echo $STOPPED)"
     transmission_status="$(check_transmission && echo $RUNNING || echo $STOPPED)"
     http_status="$(check_http && echo $RUNNING || echo $STOPPED)"
     picom_status="$(check_picom && echo $RUNNING || echo $STOPPED)"
+    glava_status="$(check_glava && echo $RUNNING || echo $STOPPED)"
 
     local menu_string
     menu_string=""
@@ -124,6 +139,7 @@ init_menu() {
     type transmission-daemon > /dev/null && menu_string="$menu_string$transmission_status Toggle Transmission\\n"
     type python3 > /dev/null && menu_string="$menu_string$http_status Toggle http\\n"
     type picom > /dev/null && menu_string="$menu_string$picom_status Toggle Picom\\n"
+    type glava > /dev/null && menu_string="$menu_string$glava_status Toggle glava\\n"
 
     n_lines="$(printf "%b" "$menu_string" | wc -l)"
     printf "%b" "$menu_string" | menu -l "$n_lines"
@@ -147,5 +163,8 @@ case "$(init_menu)" in
         ;;
     *"Toggle Picom")
         toggle_picom
+        ;;
+    *"Toggle glava")
+        toggle_glava
         ;;
 esac
