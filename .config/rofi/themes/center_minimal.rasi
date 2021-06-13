@@ -7,7 +7,7 @@ configuration {
 
 * {
     spacing: 2px;
-    /* remove the alternating backgorund colors */
+    /* remove the alternating background colors */
     alternate-normal-background: @background;
     alternate-active-background: @background;
     alternate-urgent-background: @background;
