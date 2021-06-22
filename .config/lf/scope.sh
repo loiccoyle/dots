@@ -46,7 +46,7 @@ handle_extension() {
             ;;
 
         h5)
-            printf "HDF keys:\n"
+            # Show hdf files keys
             h5ls "${FILE_PATH}"
             ;;
 
@@ -79,7 +79,7 @@ handle_mime() {
     local mimetype="${1}"
     case "${mimetype}" in
         # Text
-        text/* | */xml | */json | */csv)
+        text/* | */xml | */json | */csv | application/javascript)
             highlight --line-range="0-100" --out-format "ansi" --force -- "${FILE_PATH}" || \
             cat "${FILE_PATH}"
             ;;

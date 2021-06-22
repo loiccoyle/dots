@@ -33,6 +33,7 @@ set hidden on
 set incsearch on
 set icons on
 set info size
+set autoquit
 
 # use enter for shell commands
 map <enter> shell
