@@ -4,7 +4,6 @@
 #  / /\__ \ | | |
 # /___|___/_| |_|
 
-
 # Options section
 setopt correct                                                  # Auto correct mistakes
 setopt extendedglob                                             # Extended globbing. Allows using regular expressions with *
@@ -24,9 +23,12 @@ zstyle ':completion:*' rehash true                              # Automatically 
 # Speed up completions
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path ~/.cache/zsh
+zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zcompcache"
 zstyle ':completion:*' menu select
 
+# Create cache folders
+[ ! -d "$XDG_CACHE_HOME/zsh" ] && mkdir "$XDG_CACHE_HOME/zsh"
+[ ! -d "$XDG_CACHE_HOME/zsh/zcompcache" ] && mkdir "$XDG_CACHE_HOME/zsh/zcompcache"
 # Don't consider certain characters part of the word
 WORDCHARS=${WORDCHARS//\/[&.;]}
 # Don't trigger correction with these files
@@ -88,6 +90,6 @@ zinit light 'sindresorhus/pure'
 # add to beginning of fpath
 fpath=("$ZDOTDIR/completions" "${fpath[@]}")
 
-# Plugin settings:
+# Plugin settings
 ZSH_AUTOSUGGEST_USE_ASYNC=1
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
