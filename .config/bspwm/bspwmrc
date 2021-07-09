@@ -18,7 +18,7 @@ bspc desktop -f 1
 bspc config border_width 1
 bspc config window_gap 8
 
-bspc config -m $BAR_MONITOR top_padding $BAR_HEIGHT
+bspc config -m "$BAR_MONITOR" top_padding "$BAR_HEIGHT"
 bspc config split_ratio 0.52
 bspc config borderless_monocle true
 bspc config gapless_monocle true
@@ -32,8 +32,10 @@ bspc config pointer_motion_interval 7  # ~1/144
 bspc rule -a float state=floating
 bspc rule -a \*:float state=floating
 bspc rule -a \*:\*:float state=floating
-bspc rule -a dropdown sticky=on state=floating hidden=on
-bspc rule -a Rofi state=floating
+bspc rule -a \*:dropdown sticky=on state=floating hidden=on
 bspc rule -a Zathura state=tiled
 bspc rule -a Sxiv:float state=floating
-bspc rule -a Dragon-drag-and-drop:\* sticky=on
+bspc rule -a Dragon-drag-and-drop sticky=on
+bspc rule -a Rofi state=floating
+bspc rule -a Blueman-manager state=floating
+bspc rule -a matplotlib state=floating
