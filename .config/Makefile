@@ -62,7 +62,6 @@ flavours: ## Install flavours and run 'flavours update'
 	flavours update all
 
 torrents: ## Install torrenting setup, with transmission
-	# pipx install rofi-tpb
 	$(INSTALL) transmission-cli mpv
 	$(INSTALL_AUR) jackett-bin rofi-cuff-git webtorrent-cli
 
