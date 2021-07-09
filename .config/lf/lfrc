@@ -118,7 +118,7 @@ cmd tar ${{
 
 cmd fasd_cd ${{
     set -f
-    lf -remote "send $id cd $(fasd -dlR | fzf)"
+    lf -remote "send $id cd $(fasd -dlR | fzf --no-sort +m)"
 }}
 
 # Share files through https://ix.io
