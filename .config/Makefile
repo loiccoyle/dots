@@ -17,7 +17,7 @@ polybar: rofi fonts ## Install polybar and dependencies
 	$(INSTALL) pavucontrol-qt
 
 sxhkd: rofi ## Install sxhkd and related programs
-	$(INSTALL) libpulse pass xorg-xprop
+	$(INSTALL) libpulse pass xorg-xprop playerctl
 	$(INSTALL_AUR) sxhkd
 
 sxiv: ## Install sxiv and dependencies
