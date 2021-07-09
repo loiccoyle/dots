@@ -3,7 +3,7 @@
 # If you use startx/xinit, this file will also be sourced.
 
 # Set keyboard rate
-kbdrate -d 300 -r 50 &
+# kbdrate -d 300 -r 50 &
 xset r rate 300 50 &
 xset s 3600 3600 &
 
@@ -14,7 +14,7 @@ type nvidia-settings > /dev/null && nvidia-settings --load-config-only &
 # ~/.config/screenlayout/dual.sh
 
 # Set the wallpaper
-hsetroot -cover "$(cat $XDG_CACHE_HOME/wall)" &
+hsetroot -cover "$(cat "$XDG_CACHE_HOME/wall")" &
 
 # Mouse pointer
 xsetroot -cursor_name left_ptr &
@@ -34,5 +34,14 @@ dunst &
 # Start usb mounting daemon
 udiskie --smart --file-manager="$TERMINAL --working-directory" &
 
+# Start network manager applet
+nm-applet --appindicator &
+
+# Start bluetooth applet
+blueman-applet &
+
 # Start clipboard manager
 greenclip daemon &
+
+# Start playerctl daemon
+playerctld daemon &
