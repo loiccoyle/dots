@@ -268,9 +268,16 @@ c.window.transparent = False
 ## Type: str
 c.content.blocking.method = "both"
 
+# c.content.blocking.adblock.lists = ['https://easylist.to/easylist/easylist.txt',
+#         'https://easylist.to/easylist/easyprivacy.txt',
+#         'https://easylist-downloads.adblockplus.org/easylistdutch.txt',
+#         'https://easylist-downloads.adblockplus.org/abp-filters-anti-cv.txt',
+#         'https://www.i-dont-care-about-cookies.eu/abp/',
+#         'https://secure.fanboy.co.nz/fanboy-cookiemonster.txt']
+
 # file handler
 c.fileselect.handler = "external"
-c.fileselect.single_file.command = [terminal, '--class=float', '-e', 'lf -selection-path {}']
+c.fileselect.single_file.command = [terminal, '--class=float', '-e', 'lf', '-selection-path', '{}']
 c.fileselect.multiple_files.command = c.fileselect.single_file.command
 c.fileselect.folder.command = c.fileselect.single_file.command
 
@@ -580,3 +587,5 @@ config.bind(',P', 'spawn --userscript qute-pass --password-only')
 
 # base 16
 config.source("colors.py")
+# changing the background colour can mess up some webpages
+c.colors.webpage.bg = "white"
