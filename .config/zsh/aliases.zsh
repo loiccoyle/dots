@@ -34,7 +34,7 @@ alias ipy="ipython"
 # python jupyter notebook
 alias jup="jupyter notebook"
 # dotfile git
-alias dots="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+# alias dots="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 alias lgdots="lazygit --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 # vimwiki
 alias vimwiki="vim +VimwikiIndex"
@@ -51,25 +51,47 @@ alias gs="git status"
 alias lg="lazygit"
 
 # Functions
+dots() {
+    # Dots git management.
+    if [ "$#" = 0 ]; then
+        dots edit
+    else
+        git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME" "$@"
+    fi
+}
 edit() {
     # Open command in $EDITOR
     $EDITOR "$(which "$1")"
 }
+pacwhich() {
+    # Find package that owns a command.
+    sudo pacman -Qo "$(which "$1")"
+}
+
+pacinspect() {
+    # List current explicit packages with package information preview.
+    # TODO: add autocompletion from `pacman -Qq`
+    pacman -Qe | fzf -q "$1" -m --preview 'pacman -Qi {1} && echo "Pactree:" && pactree {1}'\
+        --preview-window '80%:wrap' --height 100%
+}
+
 ae() {
     # Activate python venv
-    local venv_dir="${1:-venv}"
-    local venv_poetry
-    if [ -f "$venv_dir/bin/activate" ]
-    then
+    local venv_dir
+    venv_dir="${1:-venv}"
+    if [ -f "$venv_dir/bin/activate" ]; then
         source "$venv_dir/bin/activate"
-    else
+    elif type poetry > /dev/null; then
+        local venv_poetry
         venv_poetry="$(poetry env list --full-path | grep "Activated" | cut -d' ' -f1)"
-        [ -z "$venv_poetry" ] || source "$venv_poetry/bin/activate"
+        [ -n "$venv_poetry" ] && source "$venv_poetry/bin/activate"
     fi
 }
 
 # Function completions
-compdef _path_commands edit
+compdef dots=git
+compdef edit=which
+compdef pacwhich=which
 compdef '_files -/' ae  # folders
 
 # Globals
