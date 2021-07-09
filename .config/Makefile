@@ -42,8 +42,8 @@ qutebrowser: ## Install qutebrowser and adblock
 	$(INSTALL) qutebrowser python-adblock
 
 fonts: ## Install fonts
-	$(INSTALL) noto-fonts noto-fonts-emoji ttf-hack
-	$(INSTALL_AUR) siji ttf-unifont
+	$(INSTALL) noto-fonts noto-fonts-emoji ttf-hack ttf-font-awesome ttf-nerd-fonts-symbols
+	$(INSTALL_AUR) ttf-unifont 
 
 flavours: ## Install flavours and run 'flavours update'
 	$(INSTALL_AUR) flavours
