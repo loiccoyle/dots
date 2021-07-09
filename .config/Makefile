@@ -49,10 +49,10 @@ flavours: ## Install flavours and run 'flavours update'
 	$(INSTALL_AUR) flavours
 	flavours update all
 
-torrents: python_dev ## Install torrenting setup, with transmission
-	pipx install rofi-tpb
+torrents: ## Install torrenting setup, with transmission
+	# pipx install rofi-tpb
 	$(INSTALL) transmission-cli mpv
-	$(INSTALL_AUR) webtorrent-cli
+	$(INSTALL_AUR) jackett-bin rofi-cuff-git webtorrent-cli
 
 hooks: ## Install pacman hooks
 	$(INSTALL_AUR) pacman-cleanup-hook reflector-mirrorlist-update

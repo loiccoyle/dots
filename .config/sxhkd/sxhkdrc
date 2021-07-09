@@ -44,6 +44,9 @@ super + c
 # connections wifi
 super + shift + c
     rofi-wifi
+# Torrent search
+super + t
+    rofi-cuff -s -k
 # rice control pannel
 super + Home
     rofi-rice
@@ -74,7 +77,6 @@ XF86AudioLowerVolume
 # Raise volume
 XF86AudioRaiseVolume
     pactl set-sink-volume @DEFAULT_SINK@ +2%
-
 # play-pause
 XF86AudioPlay
     playerctl --all-players play-pause
@@ -111,7 +113,6 @@ super + Next
     bspc config window_gap $((gap>0 ? gap : 0))
 super + Prior
     bspc config window_gap $(($(bspc config window_gap) + 2))
-
 # change borders
 super + shift + Next
     width=$(($(bspc config border_width) - 2));\
@@ -219,6 +220,9 @@ super + {1-9,0}
 # float window
 super + space
     bspc node focused -t \~floating
+# # float next open window
+# super + shift + space
+#     bspc rule --add "*" state=floating --one-shot
 # rotate current node
 super + r
     bspc node @focused:parent -R 90
