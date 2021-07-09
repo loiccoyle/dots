@@ -3,7 +3,9 @@
 
 # set PATH so it includes user's private bin if it exists
 # add script dir and any subdirectories
-[ -d "$HOME/.local/bin" ] && export PATH="$PATH$(find "$HOME/.local/bin" -type d -printf ":%p")"
+[ -d "$HOME/.local/bin" ] && export PATH="$PATH:$(find "$HOME/.local/bin" -type d -printf ":%p")"
+# Gem executables
+[ -d "$HOME/.local/share/gem/ruby/3.0.0/bin/" ] && export PATH="$PATH:$HOME/.local/share/gem/ruby/3.0.0/bin/"
 
 # XDG paths
 export XDG_CONFIG_HOME="$HOME/.config"
