@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # This is bound to PrintScreen by default.
-# Requires maim, xdotool, xclip and rofi.
+# Requires shotgun, slop, xclip and rofi.
 
 # strict
 set -e
@@ -9,18 +9,17 @@ set -e
 DEFAULT_FILENAME="$(date '+%y%m%d-%H%M-%S').png"
 
 input() {
-    local mesg="""Screenshot will be saved in <b>${XDG_PICTURES_DIR:-$HOME}</b>
-Leave blank for default filename <b>${DEFAULT_FILENAME}</b>"""
+    local mesg="Screenshot will be saved in <b>${XDG_PICTURES_DIR:-$HOME}</b>
+Leave blank for default filename <b>${DEFAULT_FILENAME}</b>"
     rofi -dmenu -show -l 0 -p "filename" -mesg "$mesg"
 }
 
-SELECTION="$(printf "selected area\\ncurrent window\\nfull screen\\nselected area (copy)\\ncurrent window (copy)\\nfull screen (copy)" | rofi -dmenu -l 6 -i -p "Screenshot")"
+SELECTION="$(printf "selected window/area\\nfull screen\\nselected window/area (copy)\\nfull screen (copy)" | rofi -dmenu -l 4 -i -p "Select")"
 
 # filename required
 if [[ "$SELECTION" != *"(copy)" ]]; then
     # ask for flename
     FILENAME="$(input)"
-    sleep 0.2
     # no filename provided
     [ -z "$FILENAME" ] && FILENAME="$DEFAULT_FILENAME"
     # filename doesn't have an extension
@@ -29,22 +28,22 @@ if [[ "$SELECTION" != *"(copy)" ]]; then
 fi
 
 case "$SELECTION" in
-	"selected area")
-        maim -s "$FILEPATH"
-        ;;
-	"current window")
-        maim -i "$(xdotool getactivewindow)" "$FILEPATH"
+	"selected window/area")
+            sel=$(slop -f "-i %i -g %g") || exit
+            shotgun $sel "$FILEPATH" && \
+            notify-send -i "$FILEPATH" "Screenshot" "$FILENAME"
         ;;
 	"full screen")
-        maim "$FILEPATH"
+            shotgun "$FILEPATH" && \
+            notify-send -i "$FILEPATH" "Screenshot" "$FILENAME"
         ;;
-	"selected area (copy)")
-        maim -s | xclip -selection clipboard -t image/png
-        ;;
-	"current window (copy)")
-        maim -i "$(xdotool getactivewindow)" | xclip -selection clipboard -t image/png
+	"selected window/area (copy)")
+            sel=$(slop -f "-i %i -g %g") || exit
+            shotgun $sel - | xclip -selection clipboard -t image/png && \
+            notify-send -i "image-png" "Screenshot" "Copied to clipboard."
         ;;
 	"full screen (copy)")
-        maim | xclip -selection clipboard -t image/png
+            shotgun - | xclip -selection clipboard -t image/png && \
+            notify-send -i "image-png" "Screenshot" "Copied to clipboard."
         ;;
 esac

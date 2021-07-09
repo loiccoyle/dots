@@ -58,7 +58,7 @@ hooks: ## Install pacman hooks
 	$(INSTALL_AUR) pacman-cleanup-hook reflector-mirrorlist-update
 
 scripts: ## Install script dependencies
-	$(INSTALL) ffmpeg xdotool hsetroot maim xclip
+	$(INSTALL) ffmpeg hsetroot shotgun slop xclip
 
 startup: sxhkd ## Startup programs (xinit and .xprofile)
 	$(INSTALL) xorg-xinit kbd xorg-xset xorg-xsetroot hsetroot picom dunst udiskie network-manager-applet blueman
