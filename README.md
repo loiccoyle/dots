@@ -27,11 +27,11 @@ Check `~/.config/Makefile` to install dependencies (requires `yay`).
 ### Applications
 
 | Purpose              | Application                                                 | Configuration            |
-| ---                  | ---                                                         | ---                      |
+| -------------------- | ----------------------------------------------------------- | ------------------------ |
 | Window mananager     | [`BSPWM`](https://github.com/baskerville/bspwm)             | `~/.config/bspwm/`       |
 | Key bindings         | [`sxhkd`](https://github.com/baskerville/sxhkd)             | `~/.config/sxhkd/`       |
 | Status bar           | [`polybar`](https://github.com/polybar/polybar)             | `~/.config/polybar/`     |
-| Terminal<sup>1</sup> | [`termite`](https://github.com/thestinger/termite)          | `~/.config/termite/`     |
+| Terminal             | [`alacritty`](https://github.com/alacritty/alacritty)       | `~/.config/alacritty/`   |
 | Browser              | [`qutebrowser`](https://github.com/qutebrowser/qutebrowser) | `~/.config/qutebrowser/` |
 | Editor               | [`neovim`](https://github.com/neovim/neovim)                | `~/.config/nvim/`        |
 | Compositor           | [`picom`](https://github.com/yshui/picom)                   | `~/.config/picom/`       |
@@ -42,22 +42,20 @@ Check `~/.config/Makefile` to install dependencies (requires `yay`).
 | Colour management    | [`flavours`](https://github.com/Misterio77/flavours)        | `~/.config/flavours/`    |
 | Application launcher | [`rofi`](https://github.com/davatorium/rofi)                | `~/.config/rofi/`        |
 
-<sup>1</sup>: `termite` is currently unmaintained, should be switched out for another terminal, probably `alacritty`.
-
 ### Details
 
-* **Wallpapers**:
-    * My wallpapers can be found [here](https://loiccoyle.com/walls).
-* **zsh**:
-    * Plugin manager: [`zinit`](https://github.com/zdharma/zinit)
-    * Prompt: [`pure`](https://github.com/sindresorhus/pure)
-    * Quick jump: [`fasd`](https://github.com/clvv/fasd)
-* **neovim**:
-    * Plugin manager: [`vim-plug`](https://github.com/junegunn/vim-plug)
-    * Lanquage Server Client: [`coc`](https://github.com/neoclide/coc.nvim)
-* **Keeping the `$HOME` clean**:
-    * In `~/.profile` there are a bunch of environment variables to keep files out of the home dir.
-* **`python` dev environment**:
-    * Virtual environment: [`poetry`](https://github.com/python-poetry/poetry)
-* **Maintaining dotfiles**:
-    * These dotfiles are maintained using a [git bare repository](https://www.atlassian.com/git/tutorials/dotfiles)
+- **Wallpapers**:
+  - My wallpapers can be found [here](https://loiccoyle.com/walls).
+- **zsh**:
+  - Plugin manager: [`zinit`](https://github.com/zdharma/zinit)
+  - Prompt: [`pure`](https://github.com/sindresorhus/pure)
+  - Quick jump: [`fasd`](https://github.com/clvv/fasd)
+- **neovim**:
+  - Plugin manager: [`vim-plug`](https://github.com/junegunn/vim-plug)
+  - Lanquage Server Client: [`coc`](https://github.com/neoclide/coc.nvim)
+- **Keeping the `$HOME` clean**:
+  - In `~/.profile` there are a bunch of environment variables to keep files out of the home dir.
+- **`python` dev environment**:
+  - Virtual environment: [`poetry`](https://github.com/python-poetry/poetry)
+- **Maintaining dotfiles**:
+  - These dotfiles are maintained using a [git bare repository](https://www.atlassian.com/git/tutorials/dotfiles)
