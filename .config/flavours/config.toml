@@ -52,3 +52,9 @@ file='$XDG_CONFIG_HOME/rofi/themes/colors/colors.rasi'
 template='rofi'
 subtemplate='colors'
 rewrite=true
+
+[[item]]
+file='$XDG_CONFIG_HOME/vimiv/styles/base16'
+template='vimiv'
+rewrite=true
+
