@@ -35,7 +35,7 @@ rofi: ## Install rofi and rofi extensions
 
 ui-theme: ## Install ui themes
 	$(INSTALL) qt5ct
-	$(INSTALL_AUR) adwaita-qt
+	$(INSTALL_AUR) adwaita-qt la-capitaine-icon-theme
 	@echo "Run 'qt5ct' and select adwaita"
 
 qutebrowser: ## Install qutebrowser and adblock
