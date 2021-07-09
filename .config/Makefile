@@ -4,9 +4,8 @@
 INSTALL = sudo pacman -S --needed
 INSTALL_AUR = paru -S --needed --removemake
 
-termite: ## Install termite and terminfo
-	$(INSTALL) termite termite-terminfo
-	$(INSTALL_AUR) vte3-ng
+alacritty: ## Install alacritty
+	$(INSTALL_AUR) alacritty
 
 lf: ## Install lf and dependencies
 	$(INSTALL_AUR) lf vidir dragon-drag-and-drop ix

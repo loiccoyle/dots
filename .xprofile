@@ -32,7 +32,7 @@ picom --experimental-backends -b &
 dunst &
 
 # Start usb mounting daemon
-udiskie --smart --file-manager "$TERMINAL -e \"lf\" -d" &
+udiskie --smart --file-manager="$TERMINAL --working-directory" &
 
 # Start clipboard manager
 greenclip daemon &

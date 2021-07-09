@@ -22,8 +22,8 @@ export VISUAL="nvim"
 export BROWSER="qutebrowser"
 export PAGER="less"
 export OPENER="xdg-open"
-export TERM="xterm-termite"
-export TERMINAL="termite"
+export TERM="alacritty"
+export TERMINAL="alacritty"
 
 # Some paths
 export WALLPAPER_DIR="$XDG_PICTURES_DIR/walls"

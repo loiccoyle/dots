@@ -11,7 +11,7 @@ super + {_,shift + } Return
     {$TERMINAL,scratchpad dropdown}
 # start lfcd in a terminal
 super + o
-    $TERMINAL -e "zsh -i $HOME/.config/lf/lfcd"
+    $TERMINAL -e sh -c "$HOME/.config/lf/lfcd; zsh"
 # browser
 super + w
     $BROWSER
