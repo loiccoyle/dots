@@ -22,12 +22,24 @@ sxhkd: rofi ## Install sxhkd and related programs
 sxiv: ## Install sxiv and dependencies
 	$(INSTALL) imagemagick sxiv perl-image-exiftool
 
-vim: python_dev ## Install neovim and related
+vimiv: ## Install vimiv and dependencies
+	$(INSTALL_AUR) vimiv-qt-git python-exiv2
+
+vim: ## Install neovim and related
 	$(INSTALL) neovim nodejs npm python-pynvim fzf
 	$(INSTALL_AUR) neovim-symlinks
 
-python_dev: ## Install python dev setup
+dev: dev_python dev_bash dev_c ## Install dev setup
+
+dev_python: ## Python dev setup
 	$(INSTALL) python-pip python-pipx python-poetry pyenv ipython python-black python-isort python-pylint
+
+dev_sh: ## sh dev setup
+	$(INSTALL) bash-language-server
+	$(INSTALL_AUR) shellcheck-bin
+
+dev_c: ## C dev setup
+	$(INSTALL) ccls
 
 rofi: ## Install rofi and rofi extensions
 	$(INSTALL) rofi
@@ -76,8 +88,8 @@ help:
 		| sort \
 		| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-all: termite lf polybar sxhkd sxiv vim python_dev rofi ui-theme qutebrowser fonts flavours torrents hooks scripts startup other ## Install everything
+all: alacritty lf polybar sxhkd sxiv vim dev rofi ui-theme qutebrowser fonts flavours torrents hooks scripts startup other ## Install everything
 
 .DEFAULT_GOAL := help
 
-.PHONY: lf polybar sxhkd sxiv vim python_dev rofi ui-theme qutebrowser fonts flavours torrents hooks test help
+.PHONY: alacritty lf polybar sxhkd sxiv vimiv vim dev dev_python dev_bash dev_c rofi ui-theme qutebrowser fonts flavours torrents hooks test help
