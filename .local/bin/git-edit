@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 # List files currently tracked in the git repository in fzf and open selected file in $EDITOR
-# Requires fzf, git
+# Requires fzf, git, highlight (optional)
 
-FILE="$(git ls-files | fzf --height=100% -q "$*")"
-[ -f "$FILE" ] && $EDITOR "$FILE"
+FILE="$(git ls-files | fzf --height=100% -q "$*" --preview='highlight --out-format "ansi" --force -- {1} || cat {1}')"
+[ -f "$FILE" ] && "$EDITOR" "$FILE"
