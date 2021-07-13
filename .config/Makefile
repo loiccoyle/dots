@@ -72,7 +72,7 @@ scripts: ## Install script dependencies
 	$(INSTALL) ffmpeg hsetroot shotgun slop xclip
 
 startup: sxhkd ## Startup programs (xinit and .xprofile)
-	$(INSTALL) xorg-xinit kbd xorg-xset xorg-xsetroot hsetroot picom dunst udiskie network-manager-applet blueman
+	$(INSTALL) xorg-xinit kbd xorg-xset xorg-xsetroot hsetroot picom dunst udiskie network-manager-applet blueman unclutter
 
 other: ## Other useful software
 	$(INSTALL) lazygit
