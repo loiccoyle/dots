@@ -8,7 +8,7 @@ xset r rate 300 50 &
 xset s 3600 3600 &
 
 # Start nvidia settings
-type nvidia-settings > /dev/null && nvidia-settings --load-config-only &
+type nvidia-settings >/dev/null && nvidia-settings --load-config-only &
 
 # Set the screenlayout
 # ~/.config/screenlayout/dual.sh
@@ -20,7 +20,7 @@ hsetroot -cover "$(cat "$XDG_CACHE_HOME/wall")" &
 xsetroot -cursor_name left_ptr &
 
 # Start polybar
-$HOME/.config/polybar/launch.sh &
+"$HOME/.config/polybar/launch.sh" &
 
 # Start sxhkd
 sxhkd &
