@@ -24,6 +24,7 @@ alias pacman="sudo pacman"
 alias pacdiff="sudo -E pacdiff"
 # full upgrade
 alias sysupdate="paru &&\
+    qutebrowser ':adblock-update' 2>/dev/null &&\
     pipx upgrade-all &&\
     zinit self-update && zinit update --all &&\
     vim --headless +PlugUpgrade +PlugUpdate +qall > /dev/null"
@@ -35,7 +36,7 @@ alias ipy="ipython"
 alias jup="jupyter notebook"
 # dotfile git
 # alias dots="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
-alias lgdots="lazygit --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+alias lgdots="lazygit --git-dir=\"$HOME/.dotfiles/\" --work-tree=\"$HOME\""
 # vimwiki
 alias vimwiki="vim +VimwikiIndex"
 # fasd
