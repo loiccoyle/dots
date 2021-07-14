@@ -12,7 +12,7 @@ curl -L loiccoyle.com/dots/install | bash
 
 This will clone the repository into your `$HOME` and will create the git dir at `~/.dotfiles`. It will also move any conflicting files into `~/.config-backup`
 
-Check `~/.config/Makefile` to install dependencies (requires `yay`).
+Check `~/.config/Makefile` to install dependencies (requires `paru`).
 
 > Disclaimer: don't run a random person's code without understanding [it](https://github.com/loiccoyle/dots/blob/gh-pages/install).
 
