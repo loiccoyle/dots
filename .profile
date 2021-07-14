@@ -78,6 +78,8 @@ export PYLINTHOME="$XDG_CACHE_HOME/pylint"
 export __GL_SHADER_DISK_CACHE_PATH="$XDG_CACHE_HOME/nv"
 # sqlite history
 export SQLITE_HISTORY="$XDG_CACHE_HOME/sqlite/hist"
+# node history
+export NODE_REPL_HISTORY="$XDG_CACHE_HOME/node_history"
 
 # Start graphical server on tty1 if not already running.
 [ "$(tty)" = "/dev/tty1" ] && ! pgrep -x Xorg >/dev/null && exec startx
