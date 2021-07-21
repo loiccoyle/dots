@@ -8,15 +8,16 @@
 [ -d "$HOME/.local/share/gem/ruby/3.0.0/bin/" ] && export PATH="$PATH:$HOME/.local/share/gem/ruby/3.0.0/bin/"
 
 # XDG paths
-export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DOWNLOAD_DIR="$HOME/downloads"
 export XDG_TEMPLATES_DIR="$HOME/templates"
 export XDG_DOCUMENTS_DIR="$HOME/projects"
 export XDG_MUSIC_DIR="$HOME/music"
 export XDG_PICTURES_DIR="$HOME/pictures"
 export XDG_VIDEOS_DIR="$HOME/videos"
-export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_STATE_HOME="$HOME/.local/state"
+export XDG_DATA_HOME="$HOME/.local/share"
 
 # Programs
 export EDITOR="nvim"
@@ -61,7 +62,7 @@ export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 # Rust config
 export CARGO_HOME="$XDG_CONFIG_HOME/cargo"
 # fasd location
-export _FASD_DATA="$XDG_CONFIG_HOME/fasd"
+export _FASD_DATA="$XDG_STATE_HOME/fasd"
 # less histfile
 export LESSHISTFILE="-"
 # gnupg location
@@ -77,9 +78,9 @@ export PYLINTHOME="$XDG_CACHE_HOME/pylint"
 # nvidia folder location
 export __GL_SHADER_DISK_CACHE_PATH="$XDG_CACHE_HOME/nv"
 # sqlite history
-export SQLITE_HISTORY="$XDG_CACHE_HOME/sqlite/hist"
+export SQLITE_HISTORY="$XDG_STATE_HOME/sqlite_history"
 # node history
-export NODE_REPL_HISTORY="$XDG_CACHE_HOME/node_history"
+export NODE_REPL_HISTORY="$XDG_STATE_HOME/node_history"
 
 # Start graphical server on tty1 if not already running.
 [ "$(tty)" = "/dev/tty1" ] && ! pgrep -x Xorg >/dev/null && exec startx

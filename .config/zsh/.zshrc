@@ -5,36 +5,36 @@
 # /___|___/_| |_|
 
 # Options section
-setopt correct                                                  # Auto correct mistakes
-setopt extendedglob                                             # Extended globbing. Allows using regular expressions with *
-setopt nocaseglob                                               # Case insensitive globbing
-setopt rcexpandparam                                            # Array expension with parameters
-setopt nocheckjobs                                              # Don't warn about running processes when exiting
-setopt numericglobsort                                          # Sort filenames numerically when it makes sense
-setopt nobeep                                                   # No beep
-setopt sharehistory                                             # Immediately append history instead of overwriting
-setopt histignorealldups                                        # If a new command is a duplicate, remove the older one
-setopt autocd                                                   # If only directory path is entered, cd there.
-setopt globdots                                                 # Include .* files and folders in completion
+setopt correct                                             # Auto correct mistakes
+setopt extendedglob                                        # Extended globbing. Allows using regular expressions with *
+setopt nocaseglob                                          # Case insensitive globbing
+setopt rcexpandparam                                       # Array expension with parameters
+setopt nocheckjobs                                         # Don't warn about running processes when exiting
+setopt numericglobsort                                     # Sort filenames numerically when it makes sense
+setopt nobeep                                              # No beep
+setopt sharehistory                                        # Immediately append history instead of overwriting
+setopt histignorealldups                                   # If a new command is a duplicate, remove the older one
+setopt autocd                                              # If only directory path is entered, cd there.
+setopt globdots                                            # Include .* files and folders in completion
 
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'       # Case insensitive tab completion
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"         # Colored completion (different colors for dirs/files/etc)
-zstyle ':completion:*' rehash true                              # Automatically find new executables in path
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'  # Case insensitive tab completion
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"    # Colored completion (different colors for dirs/files/etc)
+zstyle ':completion:*' rehash true                         # Automatically find new executables in path
 # Speed up completions
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zcompcache"
 zstyle ':completion:*' menu select
 
-# Create cache folders
-[ ! -d "$XDG_CACHE_HOME/zsh" ] && mkdir "$XDG_CACHE_HOME/zsh"
-[ ! -d "$XDG_CACHE_HOME/zsh/zcompcache" ] && mkdir "$XDG_CACHE_HOME/zsh/zcompcache"
+# Create folders
+[ ! -d "$XDG_STATE_HOME/zsh" ] && mkdir "$XDG_STATE_HOME/zsh"
+[ ! -d "$XDG_CACHE_HOME/zsh/zcompcache" ] && mkdir -p "$XDG_CACHE_HOME/zsh/zcompcache"
 # Don't consider certain characters part of the word
 WORDCHARS=${WORDCHARS//\/[&.;]}
 # Don't trigger correction with these files
 CORRECT_IGNORE_FILE='notebooks'
 # History settings
-HISTFILE="$XDG_CACHE_HOME/zsh/history"
+HISTFILE="$XDG_STATE_HOME/zsh/history"
 HISTSIZE=10000
 SAVEHIST=10000
 
