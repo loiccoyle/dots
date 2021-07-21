@@ -219,7 +219,7 @@ super + {1-9,0}
     fi;
 # float window
 super + space
-    bspc node focused -t \~floating
+    bspc node focused -t '~floating'
 # # float next open window
 # super + shift + space
 #     bspc rule --add "*" state=floating --one-shot
