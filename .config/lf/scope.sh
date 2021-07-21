@@ -10,21 +10,20 @@ IFS=$'\n'
 # STDIN is disabled, so interactive scripts won't work properly
 
 # Script arguments
-FILE_PATH="${1}"  # Full path of the highlighted file
+FILE_PATH="${1}" # Full path of the highlighted file
 
 FILE_EXTENSION="${FILE_PATH##*.}"
-FILE_EXTENSION_LOWER="$(printf "${FILE_EXTENSION}" | tr "[:upper:]" "[:lower:]")"
+FILE_EXTENSION_LOWER="$(printf "%s" "${FILE_EXTENSION}" | tr "[:upper:]" "[:lower:]")"
 
 # Settings
-BSDTAR_SIZE_MAX=524288000  # 500 MiB
-
+BSDTAR_SIZE_MAX=524288000 # 500 MiB
 
 handle_extension() {
     # Preview based on the file extension.
     case "${FILE_EXTENSION_LOWER}" in
         # Archive
-        a|ace|alz|arc|arj|bz|bz2|cab|cpio|deb|gz|jar|lha|lz|lzh|lzma|lzo|\
-        rpm|rz|t7z|tar|tbz|tbz2|tgz|tlz|txz|tZ|tzo|war|xpi|xz|Z|zip)
+        a | ace | alz | arc | arj | bz | bz2 | cab | cpio | deb | gz | jar | lha | lz | lzh | lzma | lzo | \
+            rpm | rz | t7z | tar | tbz | tbz2 | tgz | tlz | txz | tZ | tzo | war | xpi | xz | Z | zip)
             if [ "$(stat --dereference --printf="%s" -- "${FILE_PATH}")" -gt "${BSDTAR_SIZE_MAX}" ]; then
                 # skip if bigger than 500 MiB
                 return 1
@@ -55,17 +54,17 @@ handle_extension() {
             ;;
 
         # OpenDocument
-        odt|ods|odp|sxw)
+        odt | ods | odp | sxw)
             # Preview as text conversion
             odt2txt "${FILE_PATH}"
             ;;
 
         # HTML
-        htm|html|xhtml)
+        htm | html | xhtml)
             # Preview as text conversion
-            w3m -dump "${FILE_PATH}" ||\
-            lynx -dump -- "${FILE_PATH}" ||\
-            elinks -dump "${FILE_PATH}"
+            w3m -dump "${FILE_PATH}" \
+                || lynx -dump -- "${FILE_PATH}" \
+                || elinks -dump "${FILE_PATH}"
             ;;
         *)
             # Fall through and try the next handler
@@ -80,8 +79,8 @@ handle_mime() {
     case "${mimetype}" in
         # Text
         text/* | */xml | */json | */csv | application/javascript)
-            highlight --line-range="0-100" --out-format "ansi" --force -- "${FILE_PATH}" || \
-            cat "${FILE_PATH}"
+            highlight --line-range="0-100" --out-format "ansi" --force -- "${FILE_PATH}" \
+                || cat "${FILE_PATH}"
             ;;
 
         # Image
@@ -107,7 +106,6 @@ handle_fallback() {
     echo "----- File Type Classification -----"
     file --dereference --brief -- "${FILE_PATH}"
 }
-
 
 MIMETYPE="$(file --dereference --brief --mime-type -- "${FILE_PATH}")"
 # Try handlers and stop when one doesn't fail
