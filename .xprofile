@@ -47,4 +47,4 @@ greenclip daemon &
 playerctld daemon &
 
 # Hide mouse on idle
-uncluter &
+unclutter &
