@@ -12,7 +12,7 @@ Set the wallpaper and generate colour scheme using flavours.
 The wallpaper is written to %s/wall
 
 Arguments:
-    -r        Set a random wallpaper from \$WALLPAPER_DIR
+    -r        Set a random wallpaper from $WALLPAPER_DIR
               (%s)
     -g        Generate colour scheme for the wallpaper with flavours.
 
@@ -23,18 +23,20 @@ Example:
       setwall -g /path/to/wallpaper.png
     Set a wallpaper.
       setwall /path/to/wallpaper.png
-" $(basename $0) $XDG_CACHE_HOME $WALLPAPER_DIR
+" "$(basename "$0")" "$XDG_STATE_HOME" "$WALLPAPER_DIR"
 }
 
 set_wallpaper() {
-    local abspath="$(readlink -f $1)"
-    hsetroot -cover "$abspath" > /dev/null
-    printf "%s" $abspath > "$XDG_CACHE_HOME/wall"
-    notify-send --icon="$abspath" "Set wallpaper" "$(basename $abspath)"
+    local abspath
+    abspath="$(readlink -f "$1")"
+    hsetroot -cover "$abspath" >/dev/null
+    printf "%s" "$abspath" >"$XDG_STATE_HOME/wall"
+    notify-send --icon="$abspath" "Set wallpaper" "$(basename "$abspath")"
 }
 
 generate() {
-    local abspath="$(readlink -f $1)"
+    local abspath
+    abspath="$(readlink -f "$1")"
     flavours generate "$FLAVOURS_THEME_MODE" "$abspath"
     flavours apply generated
 }
@@ -46,18 +48,18 @@ RANDOM_WALL=0
 # Parse options to the `setwall` command
 while getopts ":hrg" opt; do
     case ${opt} in
-        "h" )
+        "h")
             usage
             exit 0
             ;;
-        "r" )
+        "r")
             RANDOM_WALL=1
             ;;
-        "g" )
+        "g")
             GENERATE_COLOURS=1
             ;;
-        \? )
-            printf "Invalid Option: -%s\n" $OPTARG 1>&2
+        \?)
+            printf "Invalid Option: -%s\n" "$OPTARG" 1>&2
             usage
             exit 1
             ;;
@@ -66,7 +68,7 @@ done
 shift $((OPTIND - 1))
 
 if [ "$RANDOM_WALL" = 1 ]; then
-    WALL="$(find "$WALLPAPER_DIR" -type f -not -path "*/.git*"  | shuf -n 1)"
+    WALL="$(find "$WALLPAPER_DIR" -type f -not -path "*/.git*" | shuf -n 1)"
 else
     WALL="$(readlink -f "$1")"
 fi
