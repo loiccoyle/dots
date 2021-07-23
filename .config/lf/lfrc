@@ -138,11 +138,6 @@ cmd drag ${{
     dragon-drag-and-drop --and-exit $fx
 }}
 
-# directories
-map gD cd ~/projects
-map gc cd ~/.config
-map ge cd /etc
-map gb cd ~/.local/bin
 map D delete
 # fasd_cd fzf
 map gf fasd_cd
