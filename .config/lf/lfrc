@@ -142,6 +142,6 @@ map D delete
 # fasd_cd fzf
 map gf fasd_cd
 # $EDITOR in dir
-map E $$EDITOR .
+map E $$EDITOR
 # bulkrename
 map R $vidir
