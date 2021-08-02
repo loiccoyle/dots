@@ -8,7 +8,7 @@
 [global]
     monitor = 0
     follow = mouse
-    geometry = "380x5-0+16"
+    geometry = "320x5-0+16"
     indicate_hidden = yes
     shrink = no
     transparency = 0
@@ -19,7 +19,7 @@
     frame_width = 1
     sort = yes
     idle_threshold = 120
-    font = Monospace 10
+    font = Monospace 8
     line_height = 0
     markup = full
     format = "<span><b>%s %p</b></span>\n%b"
