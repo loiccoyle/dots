@@ -1,12 +1,6 @@
 shell = "sh -c '{}'"
 
 [[item]]
-file='$XDG_CONFIG_HOME/termite/config'
-template='termite'
-subtemplate='transparent'
-hook='killall -USR1 termite'
-
-[[item]]
 file='$XDG_CONFIG_HOME/alacritty/colors.yml'
 template='alacritty'
 rewrite=true
