@@ -58,3 +58,8 @@ file='$XDG_CONFIG_HOME/vimiv/styles/base16'
 template='vimiv'
 rewrite=true
 
+[[item]]
+file='$XDG_CONFIG_HOME/nvim/lua/plugin/nvim-base16-colors.lua'
+template='luakit'
+subtemplate='colors'
+rewrite=true
