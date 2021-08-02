@@ -27,7 +27,8 @@ alias sysupdate="paru &&\
     qutebrowser ':adblock-update' 2>/dev/null &&\
     pipx upgrade-all &&\
     zinit self-update && zinit update --all &&\
-    vim --headless +PlugUpgrade +PlugUpdate +qall > /dev/null"
+    vim --headless +TSUpdate  +qall > /dev/null &&\
+    vim +PackerUpdate"
 # python venv
 alias venv="python3 -m venv"
 alias de="deactivate"
