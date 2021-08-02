@@ -277,12 +277,19 @@ c.content.blocking.method = "both"
 
 # file handler
 c.fileselect.handler = "external"
-c.fileselect.single_file.command = [terminal, '--class=float', '-e', 'lf', '-selection-path', '{}']
+c.fileselect.single_file.command = [
+    terminal,
+    "--class=float",
+    "-e",
+    "lf",
+    "-selection-path",
+    "{}",
+]
 c.fileselect.multiple_files.command = c.fileselect.single_file.command
 c.fileselect.folder.command = c.fileselect.single_file.command
 
 # Notifications
-c.content.notifications.presenter = 'libnotify'
+c.content.notifications.presenter = "libnotify"
 
 # Dont raise when reloading config
 c.new_instance_open_target = "tab-silent"
@@ -581,9 +588,9 @@ c.new_instance_open_target = "tab-silent"
 
 # Custom bindings
 config.bind(",y", "spawn --userscript view_in_mpv")
-config.bind(',p', 'spawn --userscript qute-pass')
-config.bind(',u', 'spawn --userscript qute-pass --username-only')
-config.bind(',P', 'spawn --userscript qute-pass --password-only')
+config.bind(",p", "spawn --userscript qute-pass")
+config.bind(",u", "spawn --userscript qute-pass --username-only")
+config.bind(",P", "spawn --userscript qute-pass --password-only")
 
 # base 16
 config.source("colors.py")
