@@ -29,17 +29,23 @@ vim: ## Install neovim and related
 	$(INSTALL) neovim nodejs npm python-pynvim fzf
 	$(INSTALL_AUR) neovim-symlinks
 
-dev: dev_python dev_bash dev_c ## Install dev setup
+dev: dev_python dev_sh dev_c dev_lua dev_web ## Install dev setup
 
 dev_python: ## Python dev setup
-	$(INSTALL) python-pip python-pipx python-poetry pyenv ipython python-black python-isort python-pylint
+	$(INSTALL) python-pipx python-poetry pyenv ipython python-black python-pylint
 
 dev_sh: ## sh dev setup
-	$(INSTALL) bash-language-server
+	$(INSTALL) shfmt
 	$(INSTALL_AUR) shellcheck-bin
 
 dev_c: ## C dev setup
-	$(INSTALL) ccls
+	$(INSTALL) clang
+
+dev_lua: ## lua dev setup
+	$(INSTALL_AUR) stylua-git
+
+dev_web: ## web dev setup
+	$(INSTALL) prettier eslint
 
 rofi: ## Install rofi and rofi extensions
 	$(INSTALL) rofi
@@ -87,8 +93,8 @@ help:
 		| sort \
 		| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-all: alacritty lf polybar sxhkd sxiv vim dev rofi ui-theme qutebrowser fonts flavours torrents hooks scripts startup other ## Install everything
+all: alacritty lf polybar sxhkd sxiv vimiv vim dev rofi ui-theme qutebrowser fonts flavours torrents hooks scripts startup other ## Install everything
 
 .DEFAULT_GOAL := help
 
-.PHONY: alacritty lf polybar sxhkd sxiv vimiv vim dev dev_python dev_bash dev_c rofi ui-theme qutebrowser fonts flavours torrents hooks test help
+.PHONY: all test help
