@@ -1,25 +1,25 @@
--- Base16 {{ scheme-name }} color
+-- Base16 {{ scheme-name }} color 
 -- Author: {{ scheme-author }}
 -- to be use in your theme.lua
 -- symlink or copy to config folder `local color = require('color')`
 
 local M = {}
 
-M.base00 = "#162932" -- ----
-M.base01 = "#3b4d53" -- ---
-M.base02 = "#607174" -- --
-M.base03 = "#859594" -- -
-M.base04 = "#aab8b5" -- +
-M.base05 = "#cfdcd6" -- ++
-M.base06 = "#d6e2dc" -- +++
-M.base07 = "#dde7e2" -- ++++
-M.base08 = "#8d68b4" -- red
-M.base09 = "#8a6f91" -- orange
-M.base0A = "#2a8c8b" -- yellow
-M.base0B = "#2c81a2" -- green
-M.base0C = "#2182a4" -- aqua/cyan
-M.base0D = "#3a809c" -- blue
-M.base0E = "#2e7ace" -- purple
-M.base0F = "#2277e1" -- brown
+M.base00 = "#1d2021" -- ----
+M.base01 = "#3c3836" -- ---
+M.base02 = "#504945" -- --
+M.base03 = "#665c54" -- -
+M.base04 = "#bdae93" -- +
+M.base05 = "#d5c4a1" -- ++
+M.base06 = "#ebdbb2" -- +++
+M.base07 = "#fbf1c7" -- ++++
+M.base08 = "#fb4934" -- red
+M.base09 = "#fe8019" -- orange
+M.base0A = "#fabd2f" -- yellow
+M.base0B = "#b8bb26" -- green
+M.base0C = "#8ec07c" -- aqua/cyan
+M.base0D = "#83a598" -- blue
+M.base0E = "#d3869b" -- purple
+M.base0F = "#d65d0e" -- brown
 
 return M
