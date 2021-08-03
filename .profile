@@ -20,8 +20,8 @@ export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_DATA_HOME="$HOME/.local/share"
 
 # Programs
-export EDITOR="nvim"
-export VISUAL="nvim"
+export EDITOR="vim"
+export VISUAL="vim"
 export BROWSER="qutebrowser"
 export PAGER="less"
 export OPENER="xdg-open"
