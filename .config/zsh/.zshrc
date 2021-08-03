@@ -27,7 +27,7 @@ zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zcompcache"
 zstyle ':completion:*' menu select
 
 # Create folders
-[ ! -d "$XDG_STATE_HOME/zsh" ] && mkdir "$XDG_STATE_HOME/zsh"
+[ ! -d "$XDG_STATE_HOME/zsh" ] && mkdir -p "$XDG_STATE_HOME/zsh"
 [ ! -d "$XDG_CACHE_HOME/zsh/zcompcache" ] && mkdir -p "$XDG_CACHE_HOME/zsh/zcompcache"
 # Don't consider certain characters part of the word
 WORDCHARS=${WORDCHARS//\/[&.;]}
