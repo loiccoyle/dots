@@ -51,11 +51,10 @@ Check `~/.config/Makefile` to install dependencies (requires `paru`).
   - Prompt: [`pure`](https://github.com/sindresorhus/pure)
   - Quick jump: [`fasd`](https://github.com/clvv/fasd)
 - **neovim**:
-  - Plugin manager: [`vim-plug`](https://github.com/junegunn/vim-plug)
-  - Lanquage Server Client: [`coc`](https://github.com/neoclide/coc.nvim)
+  - Plugin manager: [`packer.nvim`](https://github.com/wbthomason/packer.nvim)
 - **Keeping the `$HOME` clean**:
   - In `~/.profile` there are a bunch of environment variables to keep files out of the home dir.
 - **`python` dev environment**:
   - Virtual environment: [`poetry`](https://github.com/python-poetry/poetry)
 - **Maintaining dotfiles**:
-  - These dotfiles are maintained using a [git bare repository](https://www.atlassian.com/git/tutorials/dotfiles)
+  - These dotfiles are maintained using a [git bare repository](https://www.atlassian.com/git/tutorials/dotfiles).
