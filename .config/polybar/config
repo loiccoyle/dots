@@ -35,7 +35,7 @@ module-margin = 1
 
 font-0 = Hack:size=8:antialias=true;2
 ; font-1 = Wuncon Siji:pixelsize=10;2
-font-1 = unifont:size=7;2
+font-1 = Hack:size=7;2
 font-2 = Font Awesome 5 free Solid:size=8;2.5
 font-3 = Font Awesome 5 free:size=8;2.5
 font-4 = Font Awesome 5 Brands:size=8;2.5
