@@ -103,9 +103,10 @@ alias -g H="| head"
 alias -g T="| tail"
 alias -g C="| wc -l"  # count lines
 alias -g N="> /dev/null"
+
 # Directory shortcuts
 # hash -d config="$XDG_CONFIG_HOME"
 # hash -d cache="$XDG_CACHE_HOME"
 hash -d state="$XDG_STATE_HOME"
 hash -d data="$XDG_DATA_HOME"
-hash -d bin="~/.local/bin/"
+hash -d bin="$HOME/.local/bin/"
