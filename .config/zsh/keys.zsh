@@ -51,11 +51,6 @@ bindkey '^[[Z' reverse-menu-complete  # Shift+tab
 # edit line in $EDITOR
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line  # ctrl-e to edit line in editor
-# Termite specific ctrl+shift+t hotkey
-if [[ "$TERM" == "xterm-termite" && -f "/etc/profile.d/vte.sh" ]]; then
-  . /etc/profile.d/vte.sh
-  __vte_osc7
-fi
 # history substring search
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
