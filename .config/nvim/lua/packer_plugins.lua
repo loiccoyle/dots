@@ -239,18 +239,17 @@ return packer.startup(function(use)
     -- Treesitter
     use({
         "nvim-treesitter/nvim-treesitter",
-        event = "BufRead",
-        module = "nvim-treesitter",
+        -- event = "BufRead",
         run = ":TSUpdate",
         config = function()
             require("plugins.nvim-treesitter")
         end,
         requires = {
-            { "p00f/nvim-ts-rainbow", module = "nvim-treesitter" },
-            { "windwp/nvim-ts-autotag", module = "nvim-treesitter" },
-            { "JoosepAlviste/nvim-ts-context-commentstring", module = "nvim-treesitter" },
-            { "nvim-treesitter/nvim-treesitter-textobjects", module = "nvim-treesitter" },
-            { "RRethy/nvim-treesitter-textsubjects", module = "nvim-treesitter" },
+            { "p00f/nvim-ts-rainbow", after = "nvim-treesitter" },
+            { "windwp/nvim-ts-autotag", after = "nvim-treesitter" },
+            { "JoosepAlviste/nvim-ts-context-commentstring", after = "nvim-treesitter" },
+            { "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter" },
+            { "RRethy/nvim-treesitter-textsubjects", after = "nvim-treesitter" },
         },
     })
     -- Which Key
