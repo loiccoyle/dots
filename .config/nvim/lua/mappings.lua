@@ -1,5 +1,6 @@
 local utils = require("utils")
 local map = utils.keymap.map
+local M = {}
 
 local function nmap(key, cmd, opts)
     map("n", key, cmd, opts)
@@ -31,16 +32,25 @@ nmap("<ESC>", '{-> v:hlsearch ? ":nohl\\<CR><ESC>" : "\\<ESC>"}()', { expr = tru
 nmap("<C-s>", "<cmd>w<CR>")
 nmap("<A-j>", "<cmd>m .+1<CR>==")
 nmap("<A-k>", "<cmd>m .-2<CR>==")
-nmap("<leader>?", "<cmd>WhichKey<CR>")
 nmap("S", ":%s//g<Left><Left>", { silent = false })
 nmap("<leader>Q", "<cmd>q<CR>")
 -- nmap('<C-n>', '*Nciw', {noremap = true}) -- Poor man's multi cursor
+M.whichkey = function()
+    nmap("<leader>?", "<cmd>WhichKey<CR>")
+end
 
 -- Buffers
 nmap("<Tab>", "<cmd>bn<CR>")
 nmap("<S-Tab>", "<cmd>bp<CR>")
-nmap("<leader>b", "<cmd>BufferLinePick<CR>")
-nmap("<leader>q", "<cmd>Bdelete<CR>")
+nmap("<S-t>", "<cmd>enew<CR>")
+M.bufferline = function()
+    nmap("<Tab>", "<cmd>BufferLineCycleNext<CR>")
+    nmap("<S-Tab>", "<cmd>BufferLineCyclePrev<CR>")
+    nmap("<leader>b", "<cmd>BufferLinePick<CR>")
+end
+M.bufdelete = function()
+    nmap("<leader>q", "<cmd>Bdelete<CR>")
+end
 -- nmap("<leader><space>", "<cmd>:TZFocus<CR>")
 
 -- nmap('<A-j>', '<cmd>:BufferLineCycleNext<CR>')
@@ -109,44 +119,55 @@ cmap("<C-h>", "<C-W>")
 
 -- Git
 -- nmap('<leader>G', '<cmd>Neogit<CR>')
-nmap("<leader>G", "<cmd>LazyGit<CR>")
-nmap("]h", "<cmd>Gitsigns next_hunk<CR>")
-nmap("[h", "<cmd>Gitsigns prev_hunk<CR>")
+M.lazygit = function()
+    nmap("<leader>G", "<cmd>LazyGit<CR>")
+end
+M.gitsigns = function()
+    nmap("]h", "<cmd>Gitsigns next_hunk<CR>")
+    nmap("[h", "<cmd>Gitsigns prev_hunk<CR>")
+end
 
 -- Telescope
-local opts = { noremap = true, silent = true }
-nmap("<leader>n", '<cmd>lua require("telescope.builtin").find_files()<CR>', opts)
-nmap("<leader>g", '<cmd>lua require("telescope.builtin").live_grep()<CR>', opts)
-nmap(
-    "<leader>fb",
-    '<cmd>lua require("telescope.builtin").buffers(require("telescope.themes").get_dropdown())<CR>',
-    opts
-)
-nmap("<leader>fh", '<cmd>lua require("telescope.builtin").help_tags()<CR>', opts)
-nmap("<leader>fo", '<cmd>lua require("telescope.builtin").oldfiles()<CR>', opts)
-nmap(
-    "<leader>fc",
-    '<cmd>lua require("telescope.builtin").find_files({prompt_title="Config", cwd="$XDG_CONFIG_HOME/nvim"})<CR>',
-    opts
-)
-nmap("<leader>f?", '<cmd>lua require("telescope.builtin").builtin()<CR>', opts)
--- Telescope LSP
-nmap("<leader>la", '<cmd>lua require("telescope.builtin").lsp_code_actions()<CR>', opts)
-nmap("<leader>lr", '<cmd>lua require("telescope.builtin").lsp_references()<CR>', opts)
-nmap("<leader>ld", '<cmd>lua require("telescope.builtin").lsp_definitions()<CR>', opts)
-nmap("<leader>ls", '<cmd>lua require("telescope.builtin").lsp_document_symbols()<CR>', opts)
-nmap("<leader>lS", '<cmd>lua require("telescope.builtin").lsp_workspace_symbols()<CR>', opts)
+M.telescope = function()
+    local opts = { noremap = true, silent = true }
+    nmap("<leader>n", '<cmd>lua require("telescope.builtin").find_files()<CR>', opts)
+    nmap("<leader>g", '<cmd>lua require("telescope.builtin").live_grep()<CR>', opts)
+    nmap(
+        "<leader>fb",
+        '<cmd>lua require("telescope.builtin").buffers(require("telescope.themes").get_dropdown())<CR>',
+        opts
+    )
+    nmap("<leader>fh", '<cmd>lua require("telescope.builtin").help_tags()<CR>', opts)
+    nmap("<leader>fo", '<cmd>lua require("telescope.builtin").oldfiles()<CR>', opts)
+    nmap(
+        "<leader>fc",
+        '<cmd>lua require("telescope.builtin").find_files({prompt_title="Config", cwd="$XDG_CONFIG_HOME/nvim"})<CR>',
+        opts
+    )
+    nmap("<leader>f?", '<cmd>lua require("telescope.builtin").builtin()<CR>', opts)
+    -- Telescope LSP
+    nmap("<leader>la", '<cmd>lua require("telescope.builtin").lsp_code_actions()<CR>', opts)
+    nmap("<leader>lr", '<cmd>lua require("telescope.builtin").lsp_references()<CR>', opts)
+    nmap("<leader>ld", '<cmd>lua require("telescope.builtin").lsp_definitions()<CR>', opts)
+    nmap("<leader>ls", '<cmd>lua require("telescope.builtin").lsp_document_symbols()<CR>', opts)
+    nmap("<leader>lS", '<cmd>lua require("telescope.builtin").lsp_workspace_symbols()<CR>', opts)
+end
 
 -- Extra toggles
-nmap("yoC", "<cmd>ColorizerToggle<CR>")
+M.colorizer = function()
+    nmap("yoC", "<cmd>ColorizerToggle<CR>")
+end
 
 -- Trouble
-nmap("<leader>xx", "<cmd>Trouble<cr>", { silent = true, noremap = true })
-nmap("<leader>xw", "<cmd>Trouble lsp_workspace_diagnostics<cr>", { silent = true, noremap = true })
-nmap("<leader>xd", "<cmd>Trouble lsp_document_diagnostics<cr>", { silent = true, noremap = true })
-nmap("<leader>xl", "<cmd>Trouble loclist<cr>", { silent = true, noremap = true })
-nmap("<leader>xq", "<cmd>Trouble quickfix<cr>", { silent = true, noremap = true })
-nmap("gR", "<cmd>Trouble lsp_references<cr>", { silent = true, noremap = true })
+M.trouble = function()
+    local opts = { noremap = true, silent = true }
+    nmap("<leader>xx", "<cmd>Trouble<cr>", opts)
+    nmap("<leader>xw", "<cmd>Trouble lsp_workspace_diagnostics<cr>", opts)
+    nmap("<leader>xd", "<cmd>Trouble lsp_document_diagnostics<cr>", opts)
+    nmap("<leader>xl", "<cmd>Trouble loclist<cr>", opts)
+    nmap("<leader>xq", "<cmd>Trouble quickfix<cr>", opts)
+    nmap("gR", "<cmd>Trouble lsp_references<cr>", opts)
+end
 
 -- fzf
 -- nmap('<leader>n', '<cmd>:Files<CR>')
@@ -164,7 +185,9 @@ nmap("gR", "<cmd>Trouble lsp_references<cr>", { silent = true, noremap = true })
 -- nmap('<leader>g', '<cmd>:GGrep<CR>')
 -- nmap('<leader>fd', '<cmd>:Dots<CR>')
 -- Tree
-nmap("<leader>N", "<cmd>NvimTreeToggle<CR>")
+M.nvimtree = function()
+    nmap("<leader>N", "<cmd>NvimTreeToggle<CR>")
+end
 -- -- Vim surround ( noremap need to be false to work)
 -- nmap('ds', '<Plug>Dsurround', {noremap = false})
 -- nmap('cs', '<Plug>Csurround', {noremap = false})
@@ -195,5 +218,7 @@ vim.cmd([[
     cnoreabbrev Qall qall
 ]])
 
--- Coommand to install the language servers I use.
+-- Command to install the language servers I use.
 vim.cmd([[command! LspInstallUsed lua require('utils').install_lsp()]])
+
+return M

@@ -25,10 +25,20 @@ return packer.startup(function(use)
             require("plugins.nvim-bufferline")
         end,
         requires = {
-            { "famiu/bufdelete.nvim", module = "bufdelete", cmd = "Bdelete" },
+            {
+                "famiu/bufdelete.nvim",
+                module = "bufdelete",
+                cmd = "Bdelete",
+                setup = function()
+                    require("mappings").bufdelete()
+                end,
+            },
             { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
         },
         after = "nvim-base16",
+        setup = function()
+            require("mappings").bufferline()
+        end,
     })
     -- Colorizer
     use({
@@ -36,6 +46,9 @@ return packer.startup(function(use)
         event = "BufRead",
         config = function()
             require("plugins.nvim-colorizer")
+        end,
+        setup = function()
+            require("mappings").colorizer()
         end,
     })
     -- Colorscheme
@@ -99,6 +112,7 @@ return packer.startup(function(use)
         module = "nvim-tree",
         setup = function()
             require("plugins.nvim-tree")
+            require("mappings").nvimtree()
         end,
     })
     -- Git
@@ -108,12 +122,18 @@ return packer.startup(function(use)
             config = function()
                 require("plugins.gitsigns")
             end,
+            setup = function()
+                require("mappings").gitsigns()
+            end,
             requires = { "nvim-lua/plenary.nvim", module = "plenary" },
             event = "BufRead",
         },
         {
             "kdheepak/lazygit.nvim",
             cmd = "LazyGit",
+            setup = function()
+                require("mappings").lazygit()
+            end,
         },
         {
             "sindrets/diffview.nvim",
@@ -154,7 +174,13 @@ return packer.startup(function(use)
                 vim.cmd([[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]])
             end,
         },
-        { "folke/trouble.nvim", cmd = "Trouble" },
+        {
+            "folke/trouble.nvim",
+            cmd = "Trouble",
+            setup = function()
+                require("mappings").trouble()
+            end,
+        },
     })
     -- use {'glepnir/lspsaga.nvim', config = function() require('plugins.lspsaga-nvim') end}
     -- Profiling
@@ -188,6 +214,9 @@ return packer.startup(function(use)
         cmd = "Telescope",
         config = function()
             require("plugins.telescope")
+        end,
+        setup = function()
+            require("mappings").telescope()
         end,
         -- opt = true,
     })
@@ -229,6 +258,9 @@ return packer.startup(function(use)
         "folke/which-key.nvim",
         config = function()
             require("which-key").setup({})
+        end,
+        setup = function()
+            require("mappings").whichkey()
         end,
         event = "BufRead",
     })
