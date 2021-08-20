@@ -13,11 +13,11 @@
 alias ls="ls --color=auto --group-directories-first"
 alias ll="ls -lha"
 alias l="ls -lh"
-alias cp="cp -i"  # Confirm before overwriting something
-alias mv="mv -i"  # Confirm before overwriting something
-alias rm="rm -i"  # Confirm on removal
-alias df="df -h"  # Human-readable sizes
-alias free="free -h"  # Human-readable sizes
+alias cp="cp -i"     # Confirm before overwriting something
+alias mv="mv -i"     # Confirm before overwriting something
+alias rm="rm -i"     # Confirm on removal
+alias df="df -h"     # Human-readable sizes
+alias free="free -h" # Human-readable sizes
 alias open="$OPENER"
 # pacman
 alias pacman="sudo pacman"
@@ -73,7 +73,7 @@ pacwhich() {
 pacinspect() {
     # List current explicit packages with package information preview.
     # TODO: add autocompletion from `pacman -Qq`
-    pacman -Qe | fzf -q "$1" -m --preview 'pacman -Qi {1} && echo "Pactree:" && pactree {1}'\
+    pacman -Qe | fzf -q "$1" -m --preview 'pacman -Qi {1} && echo "Pactree:" && pactree {1}' \
         --preview-window '80%:wrap' --height 100%
 }
 
@@ -94,14 +94,14 @@ ae() {
 compdef dots=git
 compdef edit=which
 compdef pacwhich=which
-compdef '_files -/' ae  # folders
+compdef '_files -/' ae # folders
 
 # Globals
 alias -g P="| $PAGER"
 alias -g G="| grep"
 alias -g H="| head"
 alias -g T="| tail"
-alias -g C="| wc -l"  # count lines
+alias -g C="| wc -l" # count lines
 alias -g N="> /dev/null"
 
 # Directory shortcuts
