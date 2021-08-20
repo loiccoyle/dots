@@ -83,7 +83,7 @@ ae() {
     venv_dir="${1:-venv}"
     if [ -f "$venv_dir/bin/activate" ]; then
         source "$venv_dir/bin/activate"
-    elif type poetry > /dev/null; then
+    elif type poetry >/dev/null 2>&1; then
         local venv_poetry
         venv_poetry="$(poetry env list --full-path | grep "Activated" | cut -d' ' -f1)"
         [ -n "$venv_poetry" ] && source "$venv_poetry/bin/activate"
@@ -110,3 +110,4 @@ alias -g N="> /dev/null"
 hash -d state="$XDG_STATE_HOME"
 hash -d data="$XDG_DATA_HOME"
 hash -d bin="$HOME/.local/bin/"
+hash -d usb="/run/media/$(whoami)" # udiski usb mount location
