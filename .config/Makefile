@@ -103,7 +103,7 @@ startup: sxhkd ## Startup programs (xinit and .xprofile)
 
 .PHONY: other
 other: ## Other useful software
-	$(INSTALL) lazygit
+	$(INSTALL) lazygit rsync
 
 .PHONY: test
 test: ## Test this Makefile with docker
