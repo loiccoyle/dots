@@ -213,7 +213,7 @@ label-open = 
 label-close = 
 
 label-separator = ""
-format-spacing = 0
+format-spacing = 1
 format-margin = 0
 format-label-spacing = 0
 format-label-margin=0
