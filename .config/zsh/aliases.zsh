@@ -23,11 +23,12 @@ alias open="$OPENER"
 alias pacman="sudo pacman"
 alias pacdiff="sudo -E pacdiff"
 # full upgrade
-alias sysupdate="paru &&\
-    qutebrowser ':adblock-update' 2>/dev/null &&\
-    pipx upgrade-all &&\
-    zinit self-update && zinit update --all &&\
-    vim --headless +TSUpdate  +qall > /dev/null &&\
+# TODO: figure out how to run PackerUpdate without fully starting vim.
+alias sysupdate="paru;\
+    { type qutebrowser > /dev/null && qutebrowser ':adblock-update' 2>/dev/null; };\
+    { type pipx > /dev/null && pipx upgrade-all; };\
+    zinit self-update && zinit update --all;\
+    vim --headless +TSUpdate  +qall > /dev/null;\
     vim +PackerUpdate"
 # python venv
 alias venv="python3 -m venv"
