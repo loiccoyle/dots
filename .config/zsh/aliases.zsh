@@ -110,4 +110,4 @@ alias -g N="> /dev/null"
 hash -d state="$XDG_STATE_HOME"
 hash -d data="$XDG_DATA_HOME"
 hash -d bin="$HOME/.local/bin/"
-hash -d usb="/run/media/$(whoami)" # udiski usb mount location
+hash -d usb="/run/media/$USER" # udiski usb mount location
