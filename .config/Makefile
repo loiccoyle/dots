@@ -23,10 +23,6 @@ sxhkd: rofi ## Install sxhkd and related programs
 	$(INSTALL) libpulse pass xorg-xprop playerctl
 	$(INSTALL_AUR) sxhkd
 
-.PHONY: sxiv
-sxiv: ## Install sxiv and dependencies
-	$(INSTALL) imagemagick sxiv perl-image-exiftool
-
 .PHONY: vimiv
 vimiv: ## Install vimiv and dependencies
 	$(INSTALL_AUR) vimiv-qt-git python-exiv2
@@ -118,6 +114,6 @@ help:
 		| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
 .PHONY: all
-all: alacritty lf polybar sxhkd sxiv vimiv vim dev rofi ui-theme qutebrowser fonts flavours torrents hooks scripts startup other ## Install everything
+all: alacritty lf polybar sxhkd vimiv vim dev rofi ui-theme qutebrowser fonts flavours torrents hooks scripts startup other ## Install everything
 
 .DEFAULT_GOAL := help
