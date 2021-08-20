@@ -2,6 +2,7 @@ require("utils").nvim_create_augroup({
     ftplugin = {
         { "BufRead", "NvimTree", "setl scl=no" }, -- TODO: fix this
         { "BufRead,BufNewFile", "*.conf,*.ini", "set filetype=dosini" },
+        { "BufRead,BufNewFile", "*.zsh", "set filetype=sh" },
         { "FileType", "man", "setl laststatus=0 noruler" },
         -- {'FileType', 'vim,lua,css,javascript,sh', 'setl sw=2'},
         { "TermOpen", "term://*", "setl nornu nonu nocul so=0 scl=no" },
