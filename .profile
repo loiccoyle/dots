@@ -30,7 +30,6 @@ export TERMINAL="alacritty"
 
 # Some paths
 export WALLPAPER_DIR="$XDG_PICTURES_DIR/walls"
-export BOOKMARKS="$XDG_CONFIG_HOME/qutebrowser/bookmarks/urls"
 
 # Settings
 export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
