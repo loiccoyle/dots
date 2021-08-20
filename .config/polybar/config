@@ -42,8 +42,7 @@ font-4 = Font Awesome 5 Brands:size=8;2.5
 
 modules-left = cpu memory pulseaudio xwindow
 modules-center = bspwm
-modules-right = record github updates network temperature bluetooth vpn wireless-network date separator
-; powermenu
+modules-right = record github updates network temperature bluetooth vpn wireless-network date separator powermenu
 
 tray-position = right
 tray-maxsize = 16
