@@ -20,9 +20,9 @@ return packer.startup(function(use)
     })
     -- Buffer Tabs
     use({
-        "akinsho/nvim-bufferline.lua",
+        "akinsho/bufferline.nvim",
         config = function()
-            require("plugins.nvim-bufferline")
+            require("plugins.bufferline")
         end,
         requires = {
             {
