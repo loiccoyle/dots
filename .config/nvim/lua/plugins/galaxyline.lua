@@ -108,16 +108,40 @@ gls.left = {
 gls.mid = {}
 
 gls.right = {
-    { DiagnosticError = { provider = "DiagnosticError", icon = "  ", highlight = { colors.red, colors.bg } } },
-    { DiagnosticWarn = { provider = "DiagnosticWarn", icon = "  ", highlight = { colors.orange, colors.bg } } },
-    { DiagnosticHint = { provider = "DiagnosticHint", icon = "  ", highlight = { colors.blue, colors.bg } } },
-    { DiagnosticInfo = { provider = "DiagnosticInfo", icon = "  ", highlight = { colors.blue, colors.bg } } },
+    {
+        DiagnosticError = {
+            provider = "DiagnosticError",
+            icon = "  ",
+            highlight = { colors.red, colors.bg },
+        },
+    },
+    {
+        DiagnosticWarn = {
+            provider = "DiagnosticWarn",
+            icon = "  ",
+            highlight = { colors.orange, colors.bg },
+        },
+    },
+    {
+        DiagnosticHint = {
+            provider = "DiagnosticHint",
+            icon = "  ",
+            highlight = { colors.blue, colors.bg },
+        },
+    },
+    {
+        DiagnosticInfo = {
+            provider = "DiagnosticInfo",
+            icon = "  ",
+            highlight = { colors.blue, colors.bg },
+        },
+    },
     {
         GetLspClient = {
             provider = "GetLspClient",
             separator = " ",
             separator_highlight = { "NONE", colors.bg },
-            highlight = { base16_colors.base05, colors.bg, "bold" },
+            highlight = { base16_colors.base0D, colors.bg, "bold" },
             icon = "  ",
             condition = function()
                 local tbl = { ["dashboard"] = true, [""] = true }
@@ -154,17 +178,10 @@ gls.right = {
             highlight = { colors.grey, colors.bg },
         },
     },
-    { PerCent = { provider = "LinePercent", highlight = { colors.grey, colors.bg, "bold" } } },
-}
-
-gls.short_line_left = {
     {
-        Separator = {
-            provider = function()
-                return "▊"
-            end,
-            separator = " ",
-            separator_highlight = { "NONE", colors.bg },
+        PerCent = {
+            provider = "LinePercent",
+            separator = "",
             highlight = { colors.grey, colors.bg, "bold" },
         },
     },
