@@ -35,7 +35,7 @@ return packer.startup(function(use)
             },
             { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
         },
-        after = "nvim-base16",
+        after = "nvim-base16.lua",
         setup = function()
             require("mappings").bufferline()
         end,
@@ -53,8 +53,7 @@ return packer.startup(function(use)
     })
     -- Colorscheme
     use({
-        "RRethy/nvim-base16",
-        -- event = "VimEnter",
+        "NvChad/nvim-base16.lua",
         config = function()
             require("plugins.nvim-base16")
         end,
@@ -193,7 +192,7 @@ return packer.startup(function(use)
         config = function()
             require("plugins.galaxyline")
         end,
-        after = "nvim-base16",
+        after = "nvim-base16.lua",
     })
     -- Scrolling
     -- use({
