@@ -10,33 +10,7 @@ table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
 -- symbols for completion
-vim.lsp.protocol.CompletionItemKind = {
-    "  (Text)",
-    "  (Method)",
-    "  (Function)",
-    "  (Constructor)",
-    "ﴲ  (Field)",
-    "  (Variable)",
-    "  (Class)",
-    "ﰮ  (Interface)",
-    "  (Module)",
-    "襁 (Property)",
-    "  (Unit)",
-    "  (Value)",
-    "練 (Enum)",
-    "  (Keyword)",
-    "  (Snippet)",
-    "  (Color)",
-    "  (File)",
-    "  (Reference)",
-    "  (Folder)",
-    "  (EnumMember)",
-    "ﲀ  (Constant)",
-    "ﳤ  (Struct)",
-    "  (Event)",
-    "  (Operator)",
-    "  (TypeParameter)",
-}
+require("lspkind").init()
 
 local servers = {
     efm = {

@@ -59,7 +59,7 @@ return packer.startup(function(use)
             require("plugins.nvim-base16")
         end,
     })
-    -- Completion
+    -- Completion menu
     use({
         "hrsh7th/nvim-compe",
         config = function()
@@ -164,6 +164,7 @@ return packer.startup(function(use)
                 -- { "jose-elias-alvarez/nvim-lsp-ts-utils", module = "nvim-lsp-ts-utils" },
                 { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
                 { "nvim-lua/lsp_extensions.nvim", module = "lsp_extensions" },
+                { "onsails/lspkind-nvim", module = "lspkind" },
                 "ray-x/lsp_signature.nvim", -- Lazy loading this doesn't seem to work
             },
         },
@@ -218,7 +219,6 @@ return packer.startup(function(use)
         setup = function()
             require("mappings").telescope()
         end,
-        -- opt = true,
     })
     -- use {'junegunn/fzf'}
     -- use {'junegunn/fzf.vim'}
