@@ -101,6 +101,10 @@ startup: sxhkd ## Startup programs (xinit and .xprofile)
 other: ## Other useful software
 	$(INSTALL) lazygit rsync
 
+.PHONY: walls
+walls: ## Fetch wallpapers
+	git clone https://github.com/loiccoyle/walls ${WALLPAPER_DIR}
+
 .PHONY: test
 test: ## Test this Makefile with docker
 	docker build --rm -t dotfiles ${PWD};\
@@ -114,6 +118,6 @@ help:
 		| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
 .PHONY: all
-all: alacritty lf polybar sxhkd vimiv vim dev rofi ui-theme qutebrowser fonts flavours torrents hooks scripts startup other ## Install everything
+all: alacritty lf polybar sxhkd vimiv vim dev rofi ui-theme qutebrowser fonts flavours torrents hooks scripts startup other walls ## Install everything
 
 .DEFAULT_GOAL := help
