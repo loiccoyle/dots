@@ -3,7 +3,7 @@ local o = vim.opt
 -- Appearance
 o.cmdheight = 1
 o.colorcolumn = "80"
-o.cursorline = false
+o.cursorline = true
 o.foldmethod = "expr"
 o.foldexpr = "nvim_treesitter#foldexpr()"
 o.foldlevelstart = 99
@@ -14,6 +14,8 @@ o.showmode = false
 o.signcolumn = "yes"
 o.termguicolors = true -- Required by colorizer
 o.wrap = true
+-- Removes ~ on eof
+o.fillchars = { eob = " " }
 
 -- Backups
 o.backup = false
@@ -23,9 +25,7 @@ o.undofile = true
 -- o.autoread = true -- Automatically read a file when it has been changed from outside vim
 
 -- Completion
-o.completeopt = "menuone,noselect"
-o.pumblend = 0 -- Popup menu transparency
-o.pumheight = 64 -- Popup menu height
+o.completeopt = { "menuone", "noselect" }
 
 -- General
 o.clipboard = "unnamedplus"
