@@ -21,13 +21,12 @@ hi NvimTreeNormal guibg=None
 hi NvimTreeStatusLineNC guibg=None
 hi NvimTreeVertSplit guibg=None
 hi NvimTreeNormal guibg=None
+hi DiffAdded guibg=None
+hi DiffChange guibg=None
+hi DiffRemoved guibg=None
 ]])
 
 -- Tweaks
-vim.cmd(string.format(
-    [[
+vim.cmd([[
 hi StatusLineNC gui=underline
-hi FloatBorder guibg=%s
-    ]],
-    colors.base01
-))
+hi FloatBorder guibg=]] .. colors.base01)
