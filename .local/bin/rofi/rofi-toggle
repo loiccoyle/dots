@@ -29,11 +29,11 @@ check_jackett() {
 }
 
 check_transmission() {
-    pgrep -x "transmission-da" > /dev/null
+    pgrep -x "transmission-da" >/dev/null
 }
 
 check_thqm() {
-    pgrep -x thqm > /dev/null
+    pgrep -x thqm >/dev/null
 }
 
 check_http() {
@@ -41,11 +41,11 @@ check_http() {
 }
 
 check_picom() {
-    pgrep -x picom > /dev/null
+    pgrep -x picom >/dev/null
 }
 
 check_glava() {
-    pgrep -x glava > /dev/null
+    pgrep -x glava >/dev/null
 }
 
 # Toggles
@@ -59,19 +59,20 @@ toggle_ssh() {
 
 toggle_jackett() {
     if check_jackett; then
-        sudo systemctl stop jackett.service && notify-send -i "process-stop" "ssh" "Stopped Jackett"
+        sudo systemctl stop jackett.service && notify-send -i "process-stop" "Jackett" "Stopped Jackett"
     else
-        sudo systemctl start jackett.service && notify-send -i "download" "ssh" "Started Jackett"
+        sudo systemctl start jackett.service && notify-send -i "downloading" "Jackett" "Started Jackett"
     fi
 }
 
 toggle_thqm() {
     if check_thqm; then
-        killall thqm && \
-            notify-send -i "process-stop" "thqm" "Stopped thqm"
+        killall thqm \
+            && notify-send -i "process-stop" "thqm" "Stopped thqm"
     else
-        thqm-media --save-qrcode "$THQM_TEMP_IMG" & sleep 0.1 && \
-            notify-send -i "$THQM_TEMP_IMG" "thqm" "Started thqm"
+        thqm-media --save-qrcode "$THQM_TEMP_IMG" &
+        sleep 0.1 \
+            && notify-send -i "$THQM_TEMP_IMG" "thqm" "Started thqm"
     fi
 }
 
@@ -86,13 +87,14 @@ toggle_transmission() {
 toggle_http() {
     if check_http; then
         local http_pid
-        http_pid="$(cat "$HTTP_PID_FILE")" && kill $http_pid && rm "$HTTP_PID_FILE" && \
-            notify-send -i "process-stop" "http" "Stopped http server"
+        http_pid="$(cat "$HTTP_PID_FILE")" && kill $http_pid && rm "$HTTP_PID_FILE" \
+            && notify-send -i "process-stop" "http" "Stopped http server"
     else
         local server_path
         server_path="$(input)" || exit
-        python3 -m http.server -d "$server_path" & echo "$!" > "$HTTP_PID_FILE" && \
-            notify-send -i "network-connect" "http" "Started http server\nhttp://0.0.0.0:8000/"
+        python3 -m http.server -d "$server_path" &
+        echo "$!" >"$HTTP_PID_FILE" \
+            && notify-send -i "network-connect" "http" "Started http server\nhttp://0.0.0.0:8000/"
     fi
 }
 
@@ -108,10 +110,10 @@ toggle_glava() {
     if check_glava; then
         killall glava && notify-send -i "process-stop" "glava" "Stopped glava"
     else
-        glava & notify-send -i "music" "glava" "Started glava"
+        glava &
+        notify-send -i "music" "glava" "Started glava"
     fi
 }
-
 
 # Menu
 init_menu() {
@@ -133,13 +135,13 @@ init_menu() {
     local menu_string
     menu_string=""
     declare -i n_lines
-    type thqm > /dev/null && menu_string="$menu_string$thqm_status Toggle thqm\\n"
-    type ssh > /dev/null && menu_string="$menu_string$ssh_status Toggle ssh\\n"
-    systemctl list-unit-files jackett.service > /dev/null && menu_string="$menu_string$jackett_status Toggle Jackett\\n"
-    type transmission-daemon > /dev/null && menu_string="$menu_string$transmission_status Toggle Transmission\\n"
-    type python3 > /dev/null && menu_string="$menu_string$http_status Toggle http\\n"
-    type picom > /dev/null && menu_string="$menu_string$picom_status Toggle Picom\\n"
-    type glava > /dev/null && menu_string="$menu_string$glava_status Toggle glava\\n"
+    type thqm >/dev/null && menu_string="$menu_string$thqm_status Toggle thqm\\n"
+    type ssh >/dev/null && menu_string="$menu_string$ssh_status Toggle ssh\\n"
+    systemctl list-unit-files jackett.service >/dev/null && menu_string="$menu_string$jackett_status Toggle Jackett\\n"
+    type transmission-daemon >/dev/null && menu_string="$menu_string$transmission_status Toggle Transmission\\n"
+    type python3 >/dev/null && menu_string="$menu_string$http_status Toggle http\\n"
+    type picom >/dev/null && menu_string="$menu_string$picom_status Toggle Picom\\n"
+    type glava >/dev/null && menu_string="$menu_string$glava_status Toggle glava\\n"
 
     n_lines="$(printf "%b" "$menu_string" | wc -l)"
     printf "%b" "$menu_string" | menu -l "$n_lines"
