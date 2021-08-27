@@ -1,12 +1,10 @@
 local actions = require("telescope.actions")
-local sorters = require("telescope.sorters")
 
 require("telescope").setup({
     defaults = {
         prompt_prefix = "❯ ",
         selection_caret = "❯ ",
         layout_config = { horizontal = { preview_width = 0.5 } },
-        file_sorter = sorters.get_fzy_sorter,
         file_ignore_patterns = { "node_modules/*", "venv/*", ".venv/*" },
         mappings = {
             i = {
@@ -17,18 +15,15 @@ require("telescope").setup({
             n = { ["<C-c>"] = actions.close },
         },
     },
-    extensions = { fzy_native = { override_generic_sorter = true, override_file_sorter = true } },
+    extensions = {
+        fzf = {
+            fuzzy = true, -- false will only do exact matching
+            override_generic_sorter = false, -- override the generic sorter
+            override_file_sorter = true, -- override the file sorter
+            case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+            -- the default case_mode is "smart_case"
+        },
+    },
 })
 
-require("telescope").load_extension("fzy_native")
-
--- local M = {}
-
--- M.find_project = function()
---     local ok = pcall(require("telescope.builtin").git_files)
---     if not ok then
---         require("telescope.builtin").find_files()
---     end
--- end
-
--- return M
+require("telescope").load_extension("fzf")
