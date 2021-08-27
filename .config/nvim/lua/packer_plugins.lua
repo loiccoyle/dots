@@ -10,20 +10,56 @@ end
 return packer.startup(function(use)
     -- Plugin Manager
     use({ "wbthomason/packer.nvim" })
+    -- Colorscheme
+    use({
+        "NvChad/nvim-base16.lua",
+        config = function()
+            require("plugins.nvim-base16")
+        end,
+    })
+    -- Completion menu
+    use({
+        "hrsh7th/nvim-cmp",
+        config = function()
+            require("plugins.nvim-cmp")
+        end,
+        event = "InsertEnter",
+        requires = {
+            { "onsails/lspkind-nvim", module = "lspkind" },
+            { "hrsh7th/cmp-buffer", after = "nvim-cmp" },
+            { "hrsh7th/cmp-nvim-lua", after = "nvim-cmp" },
+            {
+                "hrsh7th/cmp-nvim-lsp",
+                after = "nvim-cmp",
+                module = "cmp_nvim_lsp",
+            },
+            { "hrsh7th/cmp-path", after = "nvim-cmp" },
+            { "hrsh7th/cmp-calc", after = "nvim-cmp" },
+            { "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
+            {
+                "L3MON4D3/LuaSnip",
+                module = "luasnip",
+                wants = "friendly-snippets",
+                after = "nvim-cmp",
+            },
+            { "rafamadriz/friendly-snippets", module = "friendly-snippets" },
+        },
+    })
     -- Autopairs
     use({
         "windwp/nvim-autopairs",
-        after = "nvim-compe",
         config = function()
             require("plugins.nvim-autopairs")
         end,
+        after = "nvim-cmp",
     })
-    -- Buffer Tabs
+    -- Top bar
     use({
         "akinsho/bufferline.nvim",
         config = function()
             require("plugins.bufferline")
         end,
+        event = "BufReadPre",
         requires = {
             {
                 "famiu/bufdelete.nvim",
@@ -35,11 +71,68 @@ return packer.startup(function(use)
             },
             { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
         },
-        after = "nvim-base16.lua",
         setup = function()
             require("mappings").bufferline()
         end,
     })
+    -- Statusline
+    use({
+        "glepnir/galaxyline.nvim",
+        requires = { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
+        config = function()
+            require("plugins.galaxyline")
+        end,
+        after = "nvim-base16.lua",
+    })
+    -- Treesitter
+    use({
+        "nvim-treesitter/nvim-treesitter",
+        event = "BufRead",
+        run = ":TSUpdate",
+        config = function()
+            require("plugins.nvim-treesitter")
+        end,
+        requires = {
+            { "p00f/nvim-ts-rainbow", after = "nvim-treesitter" },
+            { "windwp/nvim-ts-autotag", after = "nvim-treesitter" },
+            { "JoosepAlviste/nvim-ts-context-commentstring", after = "nvim-treesitter" },
+            { "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter" },
+            { "RRethy/nvim-treesitter-textsubjects", after = "nvim-treesitter" },
+        },
+    })
+    -- Lsp
+    use({
+        {
+            "neovim/nvim-lspconfig",
+            config = function()
+                require("plugins.nvim-lspconfig")
+            end,
+            event = { "BufReadPre", "BufNewFile" },
+            requires = {
+                { "kabouzeid/nvim-lspinstall", module = "lspinstall" },
+                -- { "jose-elias-alvarez/nvim-lsp-ts-utils", module = "nvim-lsp-ts-utils" },
+                { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
+                { "nvim-lua/lsp_extensions.nvim", module = "lsp_extensions" },
+                { "onsails/lspkind-nvim", module = "lspkind" },
+                { "ray-x/lsp_signature.nvim", module = "lsp_signature" },
+            },
+        },
+        {
+            "kosayoda/nvim-lightbulb",
+            event = { "CursorHold", "CursorHoldI" },
+            config = function()
+                vim.cmd([[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]])
+            end,
+        },
+        {
+            "folke/trouble.nvim",
+            cmd = "Trouble",
+            setup = function()
+                require("mappings").trouble()
+            end,
+        },
+    })
+    -- use {'glepnir/lspsaga.nvim', config = function() require('plugins.lspsaga-nvim') end}
     -- Colorizer
     use({
         "norcalli/nvim-colorizer.lua",
@@ -51,35 +144,11 @@ return packer.startup(function(use)
             require("mappings").colorizer()
         end,
     })
-    -- Colorscheme
-    use({
-        "NvChad/nvim-base16.lua",
-        config = function()
-            require("plugins.nvim-base16")
-        end,
-    })
-    -- Completion menu
-    use({
-        "hrsh7th/nvim-compe",
-        config = function()
-            require("plugins.nvim-compe")
-        end,
-        event = "InsertEnter",
-        wants = "LuaSnip",
-        requires = {
-            {
-                "L3MON4D3/LuaSnip",
-                event = "InsertCharPre",
-                wants = "friendly-snippets",
-            },
-            { "rafamadriz/friendly-snippets", module = "friendly-snippets" },
-        },
-    })
     -- Cursor stuff
     use(
         {
             "mg979/vim-visual-multi",
-            event = "CursorHold",
+            event = "BufRead",
             config = function()
                 require("plugins.vim-visual-multi")
             end,
@@ -109,8 +178,10 @@ return packer.startup(function(use)
     use({
         "kyazdani42/nvim-tree.lua",
         module = "nvim-tree",
-        setup = function()
+        config = function()
             require("plugins.nvim-tree")
+        end,
+        setup = function()
             require("mappings").nvimtree()
         end,
     })
@@ -120,9 +191,6 @@ return packer.startup(function(use)
             "lewis6991/gitsigns.nvim",
             config = function()
                 require("plugins.gitsigns")
-            end,
-            setup = function()
-                require("mappings").gitsigns()
             end,
             requires = { "nvim-lua/plenary.nvim", module = "plenary" },
             event = "BufRead",
@@ -140,6 +208,7 @@ return packer.startup(function(use)
             config = function()
                 require("diffview.nvim").setup({})
             end,
+            disable = true,
         },
     })
     -- Indentline
@@ -150,50 +219,8 @@ return packer.startup(function(use)
         end,
         event = "BufRead",
     })
-    -- Lsp
-    -- Lazy loading this can cause issues where no LSP clients are attached.
-    use({
-        {
-            "neovim/nvim-lspconfig",
-            config = function()
-                require("plugins.nvim-lspconfig")
-            end,
-            requires = {
-                { "kabouzeid/nvim-lspinstall", module = "lspinstall" },
-                -- { "jose-elias-alvarez/nvim-lsp-ts-utils", module = "nvim-lsp-ts-utils" },
-                { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
-                { "nvim-lua/lsp_extensions.nvim", module = "lsp_extensions" },
-                { "onsails/lspkind-nvim", module = "lspkind" },
-                "ray-x/lsp_signature.nvim", -- Lazy loading this doesn't seem to work
-            },
-        },
-        {
-            "kosayoda/nvim-lightbulb",
-            event = { "CursorHold", "CursorHoldI" },
-            config = function()
-                vim.cmd([[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]])
-            end,
-        },
-        {
-            "folke/trouble.nvim",
-            cmd = "Trouble",
-            setup = function()
-                require("mappings").trouble()
-            end,
-        },
-    })
-    -- use {'glepnir/lspsaga.nvim', config = function() require('plugins.lspsaga-nvim') end}
     -- Profiling
     use({ "tweekmonster/startuptime.vim", cmd = "StartupTime" })
-    -- Statusline
-    use({
-        "glepnir/galaxyline.nvim",
-        requires = { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
-        config = function()
-            require("plugins.galaxyline")
-        end,
-        after = "nvim-base16.lua",
-    })
     -- Scrolling
     -- use({
     --     "karb94/neoscroll.nvim",
@@ -235,22 +262,6 @@ return packer.startup(function(use)
         { "tpope/vim-sleuth", event = "BufRead" }, -- Adapt tab size based on file and context
         { "tpope/vim-repeat", event = "BufRead" }, -- . repeats more stuff
     })
-    -- Treesitter
-    use({
-        "nvim-treesitter/nvim-treesitter",
-        -- event = "BufRead",
-        run = ":TSUpdate",
-        config = function()
-            require("plugins.nvim-treesitter")
-        end,
-        requires = {
-            { "p00f/nvim-ts-rainbow", after = "nvim-treesitter" },
-            { "windwp/nvim-ts-autotag", after = "nvim-treesitter" },
-            { "JoosepAlviste/nvim-ts-context-commentstring", after = "nvim-treesitter" },
-            { "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter" },
-            { "RRethy/nvim-treesitter-textsubjects", after = "nvim-treesitter" },
-        },
-    })
     -- Which Key
     use({
         "folke/which-key.nvim",
@@ -263,7 +274,8 @@ return packer.startup(function(use)
         event = "BufRead",
     })
     -- Vimwiki
-    -- Lazy loading this breaks my vimwiki alias
+    -- Lazy loading this breaks my vimwiki alias:
+    -- $ vim +VimwikiIndex
     use({
         "vimwiki/vimwiki",
         config = function()

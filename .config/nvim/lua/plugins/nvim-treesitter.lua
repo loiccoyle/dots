@@ -8,7 +8,6 @@ require("nvim-treesitter.configs").setup({
     highlight = { enable = true },
     ensure_installed = "maintained",
     indent = { enable = true },
-    autopairs = { enable = true },
     rainbow = { enable = true },
     autotag = { enable = true },
     context_commentstring = { enable = true },
@@ -37,7 +36,7 @@ require("nvim-treesitter.configs").setup({
     textsubjects = {
         enable = true,
         keymaps = {
-            ["."] = "textsubjects-smart",
+            ["<CR>"] = "textsubjects-smart",
             [";"] = "textsubjects-container-outer",
         },
     },

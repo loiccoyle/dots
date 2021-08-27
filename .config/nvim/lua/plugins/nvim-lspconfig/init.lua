@@ -5,12 +5,9 @@ local lspinstall = require("lspinstall")
 local languages = require("plugins.nvim-lspconfig.format")
 local on_attach = require("plugins.nvim-lspconfig.on-attach")
 
-local runtime_path = vim.split(package.path, ";")
-table.insert(runtime_path, "lua/?.lua")
-table.insert(runtime_path, "lua/?/init.lua")
-
--- symbols for completion
-require("lspkind").init()
+-- local runtime_path = vim.split(package.path, ";")
+-- table.insert(runtime_path, "lua/?.lua")
+-- table.insert(runtime_path, "lua/?/init.lua")
 
 local servers = {
     efm = {
@@ -22,15 +19,14 @@ local servers = {
     lua = {
         settings = {
             Lua = {
-                diagnostics = { globals = { "vim", "packer_plugins" } },
-                completion = { keywordSnippet = "Both" },
-                runtime = { version = "LuaJIT", path = runtime_path },
+                diagnostics = { globals = { "vim" } },
                 workspace = {
-                    library = vim.api.nvim_get_runtime_file("", true),
-                    -- library = {
-                    --     [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                    --     [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
-                    -- },
+                    library = {
+                        [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                        [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+                    },
+                    maxPreload = 100000,
+                    preloadFileSize = 10000,
                 },
                 telemetry = { enable = false },
             },
@@ -39,17 +35,18 @@ local servers = {
 }
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.resolveSupport = {
-    properties = { "documentation", "detail", "additionalTextEdits" },
-}
+capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
 -- configure LSP servers
 local function setup_servers()
     lspinstall.setup()
     local installed = lspinstall.installed_servers()
     for _, server in pairs(installed) do
-        local config = servers[server] or { root_dir = lspconfig.util.root_pattern({ ".git/", "." }) }
+        local config = servers[server] or { 
+            flags = {
+               debounce_text_changes = 500,
+            },
+        }
         config.capabilities = capabilities
         config.on_attach = on_attach
         lspconfig[server].setup(config)
@@ -76,7 +73,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
     signs = true,
     update_in_insert = false,
 })
-vim.cmd([[autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics{focusable=false, border="rounded"}]])
+vim.cmd([[autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics{focusable=false, border="single"}]])
 
 -- Enable type inlay hints for rust lsp_extensions
 vim.cmd(

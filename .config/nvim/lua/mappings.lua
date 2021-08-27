@@ -117,10 +117,6 @@ cmap("<C-h>", "<C-W>")
 M.lazygit = function()
     nmap("<leader>G", "<cmd>LazyGit<CR>")
 end
-M.gitsigns = function()
-    nmap("]h", "<cmd>Gitsigns next_hunk<CR>")
-    nmap("[h", "<cmd>Gitsigns prev_hunk<CR>")
-end
 
 -- Telescope
 M.telescope = function()
