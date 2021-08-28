@@ -83,6 +83,11 @@ imap("<C-BS>", "<C-W>")
 imap("<C-h>", "<C-W>")
 imap("<A-j>", "<ESC><cmd>m .+1<CR>==gi")
 imap("<A-k>", "<ESC><cmd>m .-2<CR>==gi")
+-- inset mode navigation
+imap("<C-h>", "<left>")
+imap("<C-j>", "<down>")
+imap("<C-k>", "<up>")
+imap("<C-l>", "<right>")
 
 -- Visual
 xmap("<", "<gv")
