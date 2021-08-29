@@ -1,6 +1,7 @@
 -- https://github.com/akinsho/nvim-bufferline.lua
 require("bufferline").setup({
     options = {
+        numbers = "ordinal",
         buffer_close_icon = "",
         modified_icon = "●",
         close_icon = "",
