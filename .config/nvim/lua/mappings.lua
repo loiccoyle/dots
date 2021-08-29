@@ -75,19 +75,13 @@ nmap("<leader>=", "<cmd>wincmd =<CR>")
 
 -- Insert
 imap("<C-c>", "<Esc>")
-imap("<S-CR>", "<Esc>o")
-imap("<C-CR>", "<Esc>O")
-imap("<Tab>", 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', { expr = true })
-imap("<S-Tab>", 'pumvisible() ? "\\<C-p>" : "\\<Tab>"', { expr = true })
 imap("<C-BS>", "<C-W>")
 imap("<C-h>", "<C-W>")
-imap("<A-j>", "<ESC><cmd>m .+1<CR>==gi")
-imap("<A-k>", "<ESC><cmd>m .-2<CR>==gi")
 -- inset mode navigation
-imap("<C-h>", "<left>")
-imap("<C-j>", "<down>")
-imap("<C-k>", "<up>")
-imap("<C-l>", "<right>")
+imap("<A-h>", "<left>")
+imap("<A-j>", "<down>")
+imap("<A-k>", "<up>")
+imap("<A-l>", "<right>")
 
 -- Visual
 xmap("<", "<gv")
