@@ -25,8 +25,8 @@ window:
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
   padding:
-   x: 2
-   y: 2
+    x: 2
+    y: 2
 
   # Spread additional padding evenly around the terminal content.
   dynamic_padding: true
@@ -66,7 +66,7 @@ live_config_reload: true
 
 #Spawn new instance in same directory
 key_bindings:
-  - { key: Return,   mods: Control|Shift, action: SpawnNewInstance }
+  - { key: Return, mods: Control|Shift, action: SpawnNewInstance }
 
 # Regex hints
 #
@@ -74,8 +74,9 @@ key_bindings:
 # and pipe it to other applications.
 hints:
   enabled:
-    - regex: "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)\
-              [^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
+    - regex:
+        "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)\
+        [^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
       command: xdg-open
       post_processing: true
       mouse:
