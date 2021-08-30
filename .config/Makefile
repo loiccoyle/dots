@@ -19,7 +19,7 @@ polybar: rofi fonts ## Install polybar and dependencies
 	$(INSTALL) pavucontrol-qt
 
 .PHONY: sxhkd
-sxhkd: rofi ## Install sxhkd and related programs
+sxhkd: rofi scripts ## Install sxhkd and related programs
 	$(INSTALL) libpulse pass xorg-xprop playerctl
 	$(INSTALL_AUR) sxhkd
 
@@ -91,7 +91,7 @@ hooks: ## Install pacman hooks
 
 .PHONY: scripts
 scripts: ## Install script dependencies
-	$(INSTALL) ffmpeg hsetroot shotgun slop xclip
+	$(INSTALL) ffmpeg hsetroot shotgun slop xclip xdotool
 
 .PHONY: startup
 startup: sxhkd ## Startup programs (xinit and .xprofile)
