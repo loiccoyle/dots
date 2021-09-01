@@ -67,10 +67,6 @@ nmap("<C-h>", "<cmd>wincmd h<CR>")
 nmap("<C-j>", "<cmd>wincmd j<CR>")
 nmap("<C-k>", "<cmd>wincmd k<CR>")
 nmap("<C-l>", "<cmd>wincmd l<CR>")
-nmap("<Up>", "<cmd>wincmd -<CR>")
-nmap("<Down>", "<cmd>wincmd +<CR>")
-nmap("<Left>", "<cmd>wincmd <<CR>")
-nmap("<Right>", "<cmd>wincmd ><CR>")
 nmap("<leader>=", "<cmd>wincmd =<CR>")
 
 -- Insert
