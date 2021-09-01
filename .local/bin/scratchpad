@@ -5,17 +5,16 @@
 # Requires bspwm, xdotool.
 
 if [ -z "$1" ]; then
-	echo "Usage: $0 <name of hidden scratchpad window>"
-	exit 1
+    echo "Usage: $0 <name of hidden scratchpad window>"
+    exit 1
 fi
 
-pids="$(xdotool search --classname ${1})"
-if [ -z "$pids" ];
-then
-	"$TERMINAL" --class "${1}" &
-	sleep 0.2
-	pids=$(xdotool search --classname "${1}")
+pids="$(xdotool search --classname "${1}")"
+if [ -z "$pids" ]; then
+    "$TERMINAL" --class "${1}" &
+    sleep 0.2
+    pids=$(xdotool search --classname "${1}")
 fi
 for pid in $pids; do
-	bspc node "$pid" --flag hidden -f
+    bspc node "$pid" --flag hidden -f
 done
