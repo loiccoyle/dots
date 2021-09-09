@@ -87,7 +87,7 @@ toggle_transmission() {
 toggle_http() {
     if check_http; then
         local http_pid
-        http_pid="$(cat "$HTTP_PID_FILE")" && kill $http_pid && rm "$HTTP_PID_FILE" \
+        http_pid="$(cat "$HTTP_PID_FILE")" && kill "$http_pid" && rm "$HTTP_PID_FILE" \
             && notify-send -i "process-stop" "http" "Stopped http server"
     else
         local server_path
@@ -135,6 +135,7 @@ init_menu() {
     local menu_string
     menu_string=""
     declare -i n_lines
+    type shazam-notif >/dev/null && menu_string="$menu_string🎶 Trigger shazam\\n"
     type thqm >/dev/null && menu_string="$menu_string$thqm_status Toggle thqm\\n"
     type ssh >/dev/null && menu_string="$menu_string$ssh_status Toggle ssh\\n"
     systemctl list-unit-files jackett.service >/dev/null && menu_string="$menu_string$jackett_status Toggle Jackett\\n"
@@ -168,5 +169,8 @@ case "$(init_menu)" in
         ;;
     *"Toggle glava")
         toggle_glava
+        ;;
+    *"Trigger shazam")
+        shazam-notif
         ;;
 esac

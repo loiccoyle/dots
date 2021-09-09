@@ -100,6 +100,7 @@ startup: sxhkd ## Startup programs (xinit and .xprofile)
 .PHONY: other
 other: ## Other useful software
 	$(INSTALL) lazygit rsync
+	$(INSTALL_AUR) shazam-cli-git
 
 .PHONY: walls
 walls: ## Fetch wallpapers
