@@ -99,7 +99,7 @@ startup: sxhkd ## Startup programs (xinit and .xprofile)
 
 .PHONY: other
 other: ## Other useful software
-	$(INSTALL) lazygit rsync
+	$(INSTALL) lazygit rsync arandr
 	$(INSTALL_AUR) shazam-cli-git
 
 .PHONY: walls
