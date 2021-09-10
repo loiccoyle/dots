@@ -6,7 +6,7 @@
 set -e
 
 usage() {
-    printf "Usage: %s [-r] [-g] [WALLPAPER]
+    printf 'Usage: %s [-r] [-g] [WALLPAPER]
 
 Set the wallpaper and generate colour scheme using flavours.
 The wallpaper is written to %s/wall
@@ -23,7 +23,7 @@ Example:
       setwall -g /path/to/wallpaper.png
     Set a wallpaper.
       setwall /path/to/wallpaper.png
-" "$(basename "$0")" "$XDG_STATE_HOME" "$WALLPAPER_DIR"
+' "$(basename "$0")" "$XDG_STATE_HOME" "$WALLPAPER_DIR"
 }
 
 set_wallpaper() {
