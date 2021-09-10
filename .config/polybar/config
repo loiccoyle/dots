@@ -23,7 +23,7 @@ dimmed=${colors.base03}
 margin-top=${variables.height}
 
 [bar/top]
-monitor = ${env:BAR_MONITOR:}
+monitor = ${env:PRIMARY_MONITOR:}
 width = 100%
 height = ${variables.height}
 

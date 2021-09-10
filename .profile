@@ -49,9 +49,9 @@ export QT_QPA_PLATFORMTHEME="qt5ct"
 export GTK_THEME="Adwaita:dark"
 export FLAVOURS_THEME_MODE="dark"
 
-# Bar settings
+# Desktop settings
+export PRIMARY_MONITOR="DP-0"
 export BAR_HEIGHT=16
-export BAR_MONITOR="DP-0"
 
 # Cleanup home folder
 # Pass storage location
