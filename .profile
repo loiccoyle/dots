@@ -5,7 +5,10 @@
 # add script dir and any subdirectories
 [ -d "$HOME/.local/bin" ] && export PATH="$PATH:$(find "$HOME/.local/bin" -type d -printf ":%p")"
 # Gem executables
-[ -d "$HOME/.local/share/gem/ruby/3.0.0/bin/" ] && export PATH="$PATH:$HOME/.local/share/gem/ruby/3.0.0/bin/"
+if type ruby >/dev/null; then
+    export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
+    export PATH="$PATH:$GEM_HOME/bin"
+fi
 
 # XDG paths
 export XDG_DOWNLOAD_DIR="$HOME/downloads"
