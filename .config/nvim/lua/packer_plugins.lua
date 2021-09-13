@@ -12,7 +12,7 @@ return packer.startup(function(use)
     use({ "wbthomason/packer.nvim" })
     -- Colorscheme
     use({
-        "NvChad/nvim-base16.lua",
+        "RRethy/nvim-base16",
         config = function()
             require("plugins.nvim-base16")
         end,

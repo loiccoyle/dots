@@ -1,32 +1,30 @@
 -- https://github.com/NvChad/nvim-base16.lua
 local colors = require("plugins.nvim-base16-colors")
-local base16 = require("base16")
+local base16 = require("base16-colorscheme")
 
 -- Remove the # from the start of the color strings
-local colors_stripped = {}
-for k, v in pairs(colors) do
-    colors_stripped[k] = string.sub(v, 2, -1)
-end
+-- local colors_stripped = {}
+-- for k, v in pairs(colors) do
+--     colors_stripped[k] = string.sub(v, 2, -1)
+-- end
 
-base16.apply_theme(colors_stripped)
+-- base16.apply_theme(colors_stripped)
+base16.setup(colors)
 
 -- Remove background colors
-vim.cmd([[
-hi Normal guibg=None
-hi NormalNC guibg=None
-hi Conceal guibg=None
-hi Folded guibg=None
-hi Folded guifg=None
-hi NvimTreeNormal guibg=None
-hi NvimTreeStatusLineNC guibg=None
-hi NvimTreeVertSplit guibg=None
-hi NvimTreeNormal guibg=None
-hi DiffAdded guibg=None
-hi DiffChange guibg=None
-hi DiffRemoved guibg=None
-]])
+base16.highlight.Normal = { guibg = "none" }
+base16.highlight.NormalNC = { guibg = "none" }
+base16.highlight.Conceal = { guibg = "none" }
+base16.highlight.Folded = { guibg = "none", guifg = "none" }
+base16.highlight.StatusLineNC = { guibg = "none", guifg = "none" }
+base16.highlight.NvimTreeNormal = { guibg = "none" }
+base16.highlight.NvimTreeStatusLineNC = { guibg = "none" }
+base16.highlight.NvimTreeVertSplit = { guibg = "none" }
+base16.highlight.NvimTreeNormal = { guibg = "none" }
+base16.highlight.DiffAdded = { guibg = "none" }
+base16.highlight.DiffChange = { guibg = "none" }
+base16.highlight.DiffRemoved = { guibg = "none" }
 
 -- Tweaks
-vim.cmd([[
-hi StatusLineNC gui=underline
-hi FloatBorder guibg=]] .. colors.base01)
+base16.highlight.StatusLineNC = { gui = "underline" }
+base16.highlight.FloatBorder = { guibg = colors.base01 }
