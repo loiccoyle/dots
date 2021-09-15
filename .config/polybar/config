@@ -265,7 +265,8 @@ type = custom/script
 exec = rofi-nordvpn -s
 label =  %output%
 interval = 10
-click-left = rofi-nordvpn &
+click-left = [ $(rofi-nordvpn -s) = "Off" ] && nordvpn connect || nordvpn disconnect
+click-right = rofi-nordvpn &
 
 [module/record]
 type = custom/ipc
