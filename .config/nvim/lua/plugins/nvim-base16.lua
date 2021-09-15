@@ -24,6 +24,8 @@ base16.highlight.NvimTreeNormal = { guibg = "none" }
 base16.highlight.DiffAdded = { guibg = "none" }
 base16.highlight.DiffChange = { guibg = "none" }
 base16.highlight.DiffRemoved = { guibg = "none" }
+base16.highlight.SignColumn = { guibg = "none" }
+base16.highlight.LineNr = { guibg = "none" }
 
 -- Tweaks
 base16.highlight.StatusLineNC = { gui = "underline" }
