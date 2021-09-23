@@ -82,7 +82,7 @@ return packer.startup(function(use)
         config = function()
             require("plugins.galaxyline")
         end,
-        after = "nvim-base16.lua",
+        after = "nvim-base16",
     })
     -- Treesitter
     use({
