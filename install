@@ -1,7 +1,7 @@
 #!/bin/sh
-git clone --bare https://github.com/loiccoyle/dots $HOME/.dotfiles || exit 1
+git clone --bare git@github.com:loiccoyle/dots.git "$HOME/.dotfiles" || exit 1
 function dots {
-    git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@
+    git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME" $@
 }
 checkout_log="$(dots checkout 2>&1)"
 if [ $? = 0 ]; then
