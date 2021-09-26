@@ -183,6 +183,7 @@ return packer.startup(function(use)
         setup = function()
             require("mappings").nvimtree()
         end,
+        requires = { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
     })
     -- Git
     use({
