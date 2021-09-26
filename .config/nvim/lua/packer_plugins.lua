@@ -109,7 +109,7 @@ return packer.startup(function(use)
             event = { "BufReadPre", "BufNewFile" },
             requires = {
                 { "kabouzeid/nvim-lspinstall", module = "lspinstall" },
-                -- { "jose-elias-alvarez/nvim-lsp-ts-utils", module = "nvim-lsp-ts-utils" },
+                { "jose-elias-alvarez/nvim-lsp-ts-utils", module = "nvim-lsp-ts-utils" },
                 { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
                 { "nvim-lua/lsp_extensions.nvim", module = "lsp_extensions" },
                 { "onsails/lspkind-nvim", module = "lspkind" },

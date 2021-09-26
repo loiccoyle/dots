@@ -66,7 +66,19 @@ end
 
 -- LspInstall helper
 function M.install_lsp()
-    local language_servers = { "efm", "python", "bash", "json", "html", "cpp", "dockerfile", "rust", "css", "lua" }
+    local language_servers = {
+        "efm",
+        "python",
+        "bash",
+        "json",
+        "html",
+        "cpp",
+        "dockerfile",
+        "rust",
+        "css",
+        "lua",
+        "typesscript",
+    }
     for _, value in ipairs(language_servers) do
         require("lspinstall").install_server(value)
     end
