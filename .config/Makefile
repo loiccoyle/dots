@@ -92,6 +92,8 @@ hooks: ## Install pacman hooks
 .PHONY: scripts
 scripts: ## Install script dependencies
 	$(INSTALL) ffmpeg hsetroot shotgun slop xclip xdotool
+	$(INSTALL) python-pipx
+	pipx install 'thqm[qrcode]'
 
 .PHONY: startup
 startup: sxhkd ## Startup programs (xinit and .xprofile)
