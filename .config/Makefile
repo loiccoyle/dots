@@ -68,7 +68,7 @@ ui-theme: ## Install ui themes
 	@echo "Run 'qt5ct' and select adwaita"
 
 .PHONY: qutebrowser
-qutebrowser: ## Install qutebrowser and adblock
+qutebrowser: lf ## Install qutebrowser and adblock
 	$(INSTALL) qutebrowser python-adblock
 
 .PHONY: fonts
