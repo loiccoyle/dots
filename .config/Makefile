@@ -106,7 +106,7 @@ other: ## Other useful software
 
 .PHONY: walls
 walls: ## Fetch wallpapers
-	git clone https://github.com/loiccoyle/walls ${WALLPAPER_DIR}
+	[ -d ${WALLPAPER_DIR} ] || git clone https://github.com/loiccoyle/walls ${WALLPAPER_DIR}
 
 .PHONY: test
 test: ## Test this Makefile with docker
