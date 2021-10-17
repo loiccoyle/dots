@@ -265,7 +265,7 @@ type = custom/script
 exec = rofi-nordvpn -s
 label =  %output%
 interval = 10
-click-left = [ $(rofi-nordvpn -s) = "Off" ] && nordvpn connect || nordvpn disconnect
+click-left = notify-send -i "info" "Toggling nordvpn"; [ $(rofi-nordvpn -s) = "Off" ] && nordvpn connect || nordvpn disconnect
 click-right = rofi-nordvpn &
 
 [module/record]
