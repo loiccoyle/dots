@@ -287,7 +287,16 @@ c.fileselect.single_file.command = [
     "{}",
 ]
 c.fileselect.multiple_files.command = c.fileselect.single_file.command
-c.fileselect.folder.command = c.fileselect.single_file.command
+c.fileselect.folder.command = [
+    terminal,
+    "--class=float",
+    "-e",
+    "lf",
+    "-command",
+    "set dironly",
+    "-last-dir-path",
+    "{}",
+]
 
 # Notifications
 c.content.notifications.presenter = "libnotify"
