@@ -66,6 +66,18 @@ super + v
 alt + Tab
     rofi -show window
 
+# notifcation hotkeys
+
+super + n
+    dunstctl close
+
+super + shift + n
+    dunstctl history-pop
+
+super + ctrl + n
+    dunstctl context
+
+
 # media key hotkeys
 
 # Mute

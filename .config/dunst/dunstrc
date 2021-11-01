@@ -8,7 +8,9 @@
 [global]
     monitor = 0
     follow = mouse
-    geometry = "320x5-0+16"
+    width = 320
+    origin = top-right
+    offset = 8x24
     indicate_hidden = yes
     shrink = no
     transparency = 0
