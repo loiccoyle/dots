@@ -5,30 +5,29 @@ INSTALL = sudo pacman -S --needed
 INSTALL_AUR = paru -S --needed --removemake
 
 .PHONY: terminal
-terminal: ## Install alacritty
+terminal: ## Install terminal application
 	$(INSTALL_AUR) alacritty
 
-.PHONY: lf
-lf: ## Install lf and dependencies
+.PHONY: file-manager
+file-manager: ## Install file manager and dependencies
 	$(INSTALL_AUR) lf vidir dragon-drag-and-drop ix
 	$(INSTALL) xclip highlight
 
-.PHONY: polybar
-polybar: rofi fonts ## Install polybar and dependencies
+.PHONY: bar
+bar: launcher fonts ## Install bar and dependencies
 	$(INSTALL_AUR) polybar
 	$(INSTALL) pavucontrol-qt
 
-.PHONY: sxhkd
-sxhkd: rofi scripts terminal ## Install sxhkd and related programs
-	$(INSTALL) libpulse pass xorg-xprop playerctl
-	$(INSTALL_AUR) sxhkd
+.PHONY: hotkeys
+hotkeys: launcher scripts terminal ## Install hotkey daemon and related programs
+	$(INSTALL) sxhkd libpulse pass xorg-xprop playerctl
 
-.PHONY: vimiv
-vimiv: ## Install vimiv and dependencies
+.PHONY: image-viewer
+image-viewer: ## Install image viewer and dependencies
 	$(INSTALL_AUR) vimiv-qt-git python-exiv2
 
-.PHONY: vim
-vim: ## Install neovim and related
+.PHONY: editor
+editor: ## Install text editor and dependencies
 	$(INSTALL) neovim nodejs npm python-pynvim
 	$(INSTALL_AUR) neovim-symlinks
 
@@ -56,10 +55,10 @@ dev_lua: ## lua dev setup
 dev_web: ## web dev setup
 	$(INSTALL) prettier eslint
 
-.PHONY: rofi
-rofi: ## Install rofi and rofi extensions
-	$(INSTALL) rofi
-	$(INSTALL_AUR) rofi-greenclip rofi-bluetooth-git rofi-nordvpn-git rofi-greenclip rofi-emoji rofi-dmenu
+.PHONY: launcher
+launcher: ## Install launcher and exentions
+	$(INSTALL) rofi rofi-emoji rofi-calc
+	$(INSTALL_AUR) rofi-greenclip rofi-bluetooth-git rofi-nordvpn-git rofi-greenclip rofi-dmenu
 
 .PHONY: ui-theme
 ui-theme: ## Install ui themes
@@ -67,8 +66,8 @@ ui-theme: ## Install ui themes
 	$(INSTALL_AUR) adwaita-qt la-capitaine-icon-theme
 	@echo "Run 'qt5ct' and select adwaita"
 
-.PHONY: qutebrowser
-qutebrowser: lf ## Install qutebrowser and adblock
+.PHONY: browser
+browser: file-manager ## Install browser and dependencies
 	$(INSTALL) qutebrowser python-adblock
 
 .PHONY: fonts
@@ -96,7 +95,7 @@ scripts: ## Install script dependencies
 	pipx install 'thqm[qrcode]'
 
 .PHONY: startup
-startup: sxhkd ## Startup programs (xinit and .xprofile)
+startup: hotkeys ## Startup programs (xinit and .xprofile)
 	$(INSTALL) xorg-xinit kbd xorg-xset xorg-xsetroot hsetroot picom dunst udiskie network-manager-applet blueman unclutter
 
 .PHONY: other
@@ -121,6 +120,6 @@ help:
 		| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
 .PHONY: all
-all: terminal lf polybar sxhkd vimiv vim dev rofi ui-theme qutebrowser fonts flavours torrents hooks scripts startup other walls ## Install everything
+all: terminal file-manager bar hotkeys image-viewer editor dev launcher ui-theme browser fonts flavours torrents hooks scripts startup other walls ## Install everything
 
 .DEFAULT_GOAL := help
