@@ -29,7 +29,7 @@ vimiv: ## Install vimiv and dependencies
 
 .PHONY: vim
 vim: ## Install neovim and related
-	$(INSTALL) neovim nodejs npm python-pynvim fzf
+	$(INSTALL) neovim nodejs npm python-pynvim
 	$(INSTALL_AUR) neovim-symlinks
 
 .PHONY: dev
@@ -101,7 +101,7 @@ startup: sxhkd ## Startup programs (xinit and .xprofile)
 
 .PHONY: other
 other: ## Other useful software
-	$(INSTALL) lazygit rsync arandr
+	$(INSTALL) lazygit rsync arandr yt-dlp fzf
 	$(INSTALL_AUR) shazam-cli-git
 
 .PHONY: walls
