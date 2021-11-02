@@ -4,8 +4,8 @@
 INSTALL = sudo pacman -S --needed
 INSTALL_AUR = paru -S --needed --removemake
 
-.PHONY: alacritty
-alacritty: ## Install alacritty
+.PHONY: terminal
+terminal: ## Install alacritty
 	$(INSTALL_AUR) alacritty
 
 .PHONY: lf
@@ -19,7 +19,7 @@ polybar: rofi fonts ## Install polybar and dependencies
 	$(INSTALL) pavucontrol-qt
 
 .PHONY: sxhkd
-sxhkd: rofi scripts ## Install sxhkd and related programs
+sxhkd: rofi scripts terminal ## Install sxhkd and related programs
 	$(INSTALL) libpulse pass xorg-xprop playerctl
 	$(INSTALL_AUR) sxhkd
 
@@ -50,7 +50,7 @@ dev_c: ## C dev setup
 
 .PHONY: dev_lua
 dev_lua: ## lua dev setup
-	$(INSTALL_AUR) stylua-git
+	$(INSTALL_AUR) stylua
 
 .PHONY: dev_web
 dev_web: ## web dev setup
@@ -121,6 +121,6 @@ help:
 		| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
 .PHONY: all
-all: alacritty lf polybar sxhkd vimiv vim dev rofi ui-theme qutebrowser fonts flavours torrents hooks scripts startup other walls ## Install everything
+all: terminal lf polybar sxhkd vimiv vim dev rofi ui-theme qutebrowser fonts flavours torrents hooks scripts startup other walls ## Install everything
 
 .DEFAULT_GOAL := help
