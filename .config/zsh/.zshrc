@@ -55,9 +55,9 @@ autoload -Uz _zinit
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
 zinit wait'0a' lucid light-mode for \
-    zdharma-continuum/z-a-as-monitor \
-    zdharma-continuum/z-a-patch-dl \
-    zdharma-continuum/z-a-bin-gem-node
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-bin-gem-node
 
 # LS_COLORS
 # zinit ice atclone"dircolors -b LS_COLORS > clrs.zsh" \
