@@ -33,5 +33,6 @@ bspc rule -a \*:dropdown sticky=on state=floating hidden=on
 bspc rule -a Zathura state=tiled
 bspc rule -a Dragon-drag-and-drop sticky=on
 bspc rule -a Rofi state=floating
+bspc rule -a pinentry-qt state=floating
 bspc rule -a Blueman-manager state=floating
 bspc rule -a matplotlib state=floating
