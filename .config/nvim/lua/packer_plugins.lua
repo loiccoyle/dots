@@ -35,6 +35,7 @@ return packer.startup(function(use)
             },
             { "hrsh7th/cmp-path", after = "nvim-cmp" },
             { "hrsh7th/cmp-calc", after = "nvim-cmp" },
+            { "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
             { "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
             {
                 "L3MON4D3/LuaSnip",
@@ -43,15 +44,14 @@ return packer.startup(function(use)
                 after = "nvim-cmp",
             },
             { "rafamadriz/friendly-snippets", module = "friendly-snippets" },
+            {
+                "windwp/nvim-autopairs",
+                config = function()
+                    require("nvim-autopairs").setup()
+                end,
+                module = "nvim-autopairs",
+            },
         },
-    })
-    -- Autopairs
-    use({
-        "windwp/nvim-autopairs",
-        config = function()
-            require("plugins.nvim-autopairs")
-        end,
-        after = "nvim-cmp",
     })
     -- Top bar
     use({
@@ -102,13 +102,25 @@ return packer.startup(function(use)
     -- Lsp
     use({
         {
+            "jose-elias-alvarez/null-ls.nvim",
+            after = "nvim-lspconfig",
+            config = function()
+                require("plugins.null-ls")
+                require("lspconfig")["null-ls"].setup({ on_attach = require("plugins.nvim-lspconfig.on-attach") })
+            end,
+            requires = {
+                { "nvim-lua/plenary.nvim", module = "plenary" },
+                { "neovim/nvim-lspconfig", module = "lspconfig" },
+            },
+        },
+        {
             "neovim/nvim-lspconfig",
             config = function()
                 require("plugins.nvim-lspconfig")
             end,
             event = { "BufReadPre", "BufNewFile" },
             requires = {
-                { "kabouzeid/nvim-lspinstall", module = "lspinstall" },
+                { "williamboman/nvim-lsp-installer", module = "nvim-lsp-installer" },
                 { "jose-elias-alvarez/nvim-lsp-ts-utils", module = "nvim-lsp-ts-utils" },
                 { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
                 { "nvim-lua/lsp_extensions.nvim", module = "lsp_extensions" },
@@ -161,17 +173,17 @@ return packer.startup(function(use)
             require("plugins.dashboard-nvim")
         end,
         requires = { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
-        cmd = {
-            "Dashboard",
-            "DashboardNewFile",
-            "DashboardJumpMarks",
-            "SessionLoad",
-            "SessionSave",
-        },
-        -- if no file is opened
-        cond = function()
-            return vim.api.nvim_buf_get_name(0):len() == 0
-        end,
+        -- -- if no file is opened
+        -- cond = function()
+        --     return vim.api.nvim_buf_get_name(0):len() == 0
+        -- end,
+        -- cmd = {
+        --     "Dashboard",
+        --     "DashboardNewFile",
+        --     "DashboardJumpMarks",
+        --     "SessionLoad",
+        --     "SessionSave",
+        -- },
     })
     -- File explorer
     use({

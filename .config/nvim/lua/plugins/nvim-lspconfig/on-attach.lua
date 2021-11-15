@@ -60,9 +60,10 @@ return function(client, buffnr)
         config_typescript()
     end
 
-    -- So that the only client with format capabilities is efm
-    if client.name ~= "efm" then
+    -- So that the only client with format capabilities is null-ls
+    if client.name ~= "null-ls" then
         client.resolved_capabilities.document_formatting = false
+        client.resolved_capabilities.document_range_formatting = false
     end
     if client.resolved_capabilities.document_formatting then
         vim.cmd([[

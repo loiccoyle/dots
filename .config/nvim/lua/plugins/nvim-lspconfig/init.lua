@@ -1,65 +1,41 @@
 -- https://github.com/neovim/nvim-lspconfig
--- https://github.com/kabouzeid/nvim-lspinstall
-local lspconfig = require("lspconfig")
-local lspinstall = require("lspinstall")
-local languages = require("plugins.nvim-lspconfig.format")
+-- https://github.com/williamboman/nvim-lsp-installer
 local on_attach = require("plugins.nvim-lspconfig.on-attach")
+local lsp_installer = require("nvim-lsp-installer")
 
--- local runtime_path = vim.split(package.path, ";")
--- table.insert(runtime_path, "lua/?.lua")
--- table.insert(runtime_path, "lua/?/init.lua")
-
-local servers = {
-    efm = {
-        init_options = { documentFormatting = true, codeAction = true },
-        root_dir = lspconfig.util.root_pattern({ ".git/", "." }),
-        filetypes = vim.tbl_keys(languages),
-        settings = { languages = languages, log_level = 1, log_file = "~/efm.log" },
-    },
-    lua = {
-        settings = {
-            Lua = {
-                diagnostics = { globals = { "vim" } },
-                workspace = {
-                    library = {
-                        [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                        [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
-                    },
-                    maxPreload = 100000,
-                    preloadFileSize = 10000,
-                },
-                telemetry = { enable = false },
-            },
-        },
-    },
-}
-
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 -- configure LSP servers
-local function setup_servers()
-    lspinstall.setup()
-    local installed = lspinstall.installed_servers()
-    for _, server in pairs(installed) do
-        local config = servers[server] or { 
-            flags = {
-               debounce_text_changes = 500,
+lsp_installer.on_server_ready(function(server)
+    local servers = {
+        sumneko_lua = {
+            fyletypes = { "lua" },
+            settings = {
+                Lua = {
+                    diagnostics = { globals = { "vim" } },
+                    workspace = {
+                        library = {
+                            [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                            [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+                        },
+                        maxPreload = 100000,
+                        preloadFileSize = 10000,
+                    },
+                    telemetry = { enable = false },
+                },
             },
-        }
-        config.capabilities = capabilities
-        config.on_attach = on_attach
-        lspconfig[server].setup(config)
-    end
-end
+        },
+    }
 
-setup_servers()
-
--- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
-require("lspinstall").post_install_hook = function()
-    setup_servers() -- reload installed servers
-    vim.cmd("bufdo e")
-end
+    local opts = servers[server.name] or { flags = { debounce_text_changes = 500 } }
+    opts.capabilities = capabilities
+    opts.on_attach = on_attach
+    -- I'm not sure why this is required
+    opts.filetypes = server:get_supported_filetypes()
+    -- This setup() function is exactly the same as lspconfig's setup function (:help lspconfig-quickstart)
+    server:setup(opts)
+    vim.cmd([[ do User LspAttachBuffers ]])
+end)
 
 local signs = { Error = " ", Warning = " ", Hint = " ", Information = " " }
 for type, icon in pairs(signs) do

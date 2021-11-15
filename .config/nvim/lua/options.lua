@@ -25,7 +25,7 @@ o.undofile = true
 -- o.autoread = true -- Automatically read a file when it has been changed from outside vim
 
 -- Completion
-o.completeopt = { "menuone", "noselect" }
+o.completeopt = { "menu", "menuone", "noselect" }
 
 -- General
 o.clipboard = "unnamedplus"

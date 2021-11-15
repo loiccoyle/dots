@@ -66,22 +66,28 @@ end
 
 -- LspInstall helper
 function M.install_lsp()
+    local lsp_servers = require("nvim-lsp-installer.servers")
     local language_servers = {
-        "efm",
-        "python",
-        "bash",
-        "json",
+        "pyright",
+        "bashls",
+        "jsonls",
         "html",
-        "cpp",
-        "dockerfile",
-        "rust",
-        "css",
-        "lua",
-        "typesscript",
+        "clangd",
+        "dockerls",
+        "rust_analyzer",
+        "cssls",
+        "sumneko_lua",
+        "tsserver",
     }
     for _, value in ipairs(language_servers) do
-        require("lspinstall").install_server(value)
+        local ok, server = lsp_servers.get_server(value)
+        if ok then
+            if not server:is_installed() then
+                server:install()
+            end
+        end
     end
+    require("nvim-lsp-installer").info_window.open()
 end
 
 return M
