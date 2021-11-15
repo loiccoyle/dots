@@ -287,7 +287,7 @@ return packer.startup(function(use)
     -- Extra Syntaxes
     use({
         { "kovetskiy/sxhkd-vim", event = "BufEnter sxhkdrc" },
-        { "zinit-zsh/zinit-vim-syntax", event = "BufEnter .zshrc" },
+        { "zdharma-continuum/zinit-vim-syntax", event = "BufEnter .zshrc" },
     })
 
     -- Autoinstall/compile plugins if bootstrap occurred
