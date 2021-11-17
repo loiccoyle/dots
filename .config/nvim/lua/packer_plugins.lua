@@ -40,6 +40,12 @@ return packer.startup(function(use)
             {
                 "L3MON4D3/LuaSnip",
                 module = "luasnip",
+                config = function()
+                    require("luasnip").config.setup({
+                        history = true,
+                    })
+                    require("luasnip/loaders/from_vscode").lazy_load()
+                end,
                 wants = "friendly-snippets",
                 after = "nvim-cmp",
             },
