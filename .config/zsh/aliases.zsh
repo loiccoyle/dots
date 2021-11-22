@@ -40,7 +40,7 @@ alias jup="jupyter notebook"
 # alias dots="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 alias lgdots="lazygit --git-dir=\"$HOME/.dotfiles/\" --work-tree=\"$HOME\""
 # vimwiki
-alias vimwiki="vim +VimwikiIndex"
+alias vimwiki="vim -c VimwikiIndex"
 # fasd
 alias v="fasd -f -e $EDITOR"
 # colours
