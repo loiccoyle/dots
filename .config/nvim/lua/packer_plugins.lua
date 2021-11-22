@@ -23,7 +23,7 @@ return packer.startup(function(use)
         config = function()
             require("plugins.nvim-cmp")
         end,
-        event = "InsertEnter",
+        event = {"InsertEnter", "CmdLineEnter"},
         requires = {
             { "onsails/lspkind-nvim", module = "lspkind" },
             { "hrsh7th/cmp-buffer", after = "nvim-cmp" },
