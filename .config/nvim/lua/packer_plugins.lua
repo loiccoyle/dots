@@ -265,9 +265,10 @@ return packer.startup(function(use)
     --   config = function() require('plugins.nvim-toggleterm') end,
     --   keys = '<C-t>'
     -- }
+    -- comment
+    use({ "b3nj5m1n/kommentary", event = "BufRead" })
     -- tpope
     use({
-        { "tpope/vim-commentary", event = "BufRead" }, -- Comment with gc
         { "tpope/vim-surround", event = "BufRead" }, -- Surround actions
         { "tpope/vim-unimpaired", event = "BufRead" }, -- Adds a bunch of bracket mappings see ':help unimpaired'
         { "tpope/vim-sleuth", event = "BufRead" }, -- Adapt tab size based on file and context
