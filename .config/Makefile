@@ -28,7 +28,7 @@ image-viewer: ## Install image viewer and dependencies
 
 .PHONY: editor
 editor: ## Install text editor and dependencies
-	$(INSTALL) neovim nodejs npm python-pynvim
+	$(INSTALL) neovim nodejs npm python-pynvim ripgrep
 	$(INSTALL_AUR) neovim-symlinks
 
 .PHONY: dev
