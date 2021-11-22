@@ -174,22 +174,15 @@ return packer.startup(function(use)
     )
     -- Dashboard
     use({
-        "glepnir/dashboard-nvim",
-        config = function()
-            require("plugins.dashboard-nvim")
+        "goolord/alpha-nvim",
+        requires = { "kyazdani42/nvim-web-devicons" },
+        cond = function()
+            -- If no file is provided
+            return vim.api.nvim_buf_get_name(0):len() == 0
         end,
-        requires = { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
-        -- -- if no file is opened
-        -- cond = function()
-        --     return vim.api.nvim_buf_get_name(0):len() == 0
-        -- end,
-        -- cmd = {
-        --     "Dashboard",
-        --     "DashboardNewFile",
-        --     "DashboardJumpMarks",
-        --     "SessionLoad",
-        --     "SessionSave",
-        -- },
+        config = function()
+            require("alpha").setup(require("alpha.themes.startify").opts)
+        end,
     })
     -- File explorer
     use({

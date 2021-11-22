@@ -3,7 +3,7 @@ local base16_colors = require("plugins.nvim-base16-colors")
 local gl = require("galaxyline")
 local condition = require("galaxyline.condition")
 local gls = gl.section
-gl.short_line_list = { "NvimTree", "packer", "term://*", "dashboard" }
+gl.short_line_list = { "NvimTree", "packer", "term://*", "alpha" }
 
 local colors = {
     bg = base16_colors.base00,
@@ -144,7 +144,7 @@ gls.right = {
             highlight = { base16_colors.base0D, colors.bg, "bold" },
             icon = "  ",
             condition = function()
-                local tbl = { ["dashboard"] = true, [""] = true }
+                local tbl = { ["alpha"] = true, [""] = true }
                 if tbl[vim.bo.filetype] then
                     return false
                 end
