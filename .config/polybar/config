@@ -168,7 +168,6 @@ type = internal/network
 interface = lo
 accumulate-stats = true
 interval = 5
-udspeed-minwidth = 0
 unknown-as-up = true
 format-connected =  <label-connected>
 label-connected = %{A1:rofi-wifi &:}%downspeed%%{A}
@@ -254,11 +253,9 @@ interval = 600
 type = custom/script
 # workaround because rofi-bluetooth hardcodes its icons
 ; exec = rofi-bluetooth --status
-exec = STATUS="$(rofi-bluetooth --status)"; [ "$STATUS" = "" ] && printf "Off" || printf "%s" "${STATUS:2}"
+exec = $XDG_CONFIG_HOME/polybar/scripts/bluetooth-status.sh
 label =  %output%
-;
 interval = 5
-click-left = rofi-bluetooth &
 
 [module/vpn]
 type = custom/script
@@ -292,7 +289,7 @@ thermal-zone = 0
 ; $ for i in /sys/class/hwmon/hwmon*/temp*_input; do echo "$(<$(dirname $i)/name): $(cat ${i%_*}_label 2>/dev/null || echo $(basename ${i%_*})) $(readlink -f $i)"; done
 ; to find path to desired file
 ; Default reverts to thermal zone setting
-hwmon-path = /sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon1/temp2_input
+hwmon-path = /sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon1/temp1_input
 warn-temperature = 80
 units = true
 format = <ramp> <label>
