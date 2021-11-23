@@ -29,7 +29,7 @@ alias sysupdate="paru;\
     { type pipx > /dev/null && pipx upgrade-all; };\
     zinit self-update && zinit update --all;\
     vim --headless +TSUpdate  +qall > /dev/null;\
-    vim +PackerUpdate"
+    vim -c PackerUpdate"
 # python venv
 alias venv="python3 -m venv"
 alias de="deactivate"
