@@ -58,7 +58,7 @@ export BAR_HEIGHT=16
 
 # Cleanup home folder
 # Pass storage location
-export PASSWORD_STORE_DIR="$XDG_CONFIG_HOME/pass-store"
+export PASSWORD_STORE_DIR="$XDG_DATA_HOME/password-store"
 # zsh config folder
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 # Rust config
