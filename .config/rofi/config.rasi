@@ -1,5 +1,8 @@
 configuration {
-	modi: "run,drun";
-	show-icons: true;
-	theme: "center_minimal.rasi";
+    modi: "run,drun,keys,emoji";
+    show-icons: true;
+    display-drun: "applications";
+    display-run: "commands";
 }
+
+@theme "center_minimal"
