@@ -11,6 +11,15 @@ require("nvim-treesitter.configs").setup({
     rainbow = { enable = true },
     autotag = { enable = true },
     context_commentstring = { enable = true },
+    incremental_selection = {
+        enable = true,
+        keymaps = {
+            init_selection = "<CR>",
+            node_incremental = "<CR>",
+            scope_incremental = "<TAB>",
+            node_decremental = "<S-TAB>",
+        },
+    },
     textobjects = {
         select = {
             enable = true,
@@ -33,11 +42,11 @@ require("nvim-treesitter.configs").setup({
             },
         },
     },
-    textsubjects = {
-        enable = true,
+    --[[ textsubjects = {
+        enable = false,
         keymaps = {
             ["<CR>"] = "textsubjects-smart",
             [";"] = "textsubjects-container-outer",
         },
-    },
+    }, ]]
 })

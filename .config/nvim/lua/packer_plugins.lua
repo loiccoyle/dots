@@ -102,7 +102,7 @@ return packer.startup(function(use)
             { "windwp/nvim-ts-autotag", after = "nvim-treesitter" },
             { "JoosepAlviste/nvim-ts-context-commentstring", after = "nvim-treesitter" },
             { "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter" },
-            { "RRethy/nvim-treesitter-textsubjects", after = "nvim-treesitter" },
+            -- { "RRethy/nvim-treesitter-textsubjects", after = "nvim-treesitter" },
         },
     })
     -- Lsp
@@ -138,7 +138,7 @@ return packer.startup(function(use)
             "kosayoda/nvim-lightbulb",
             event = { "CursorHold", "CursorHoldI" },
             config = function()
-                vim.cmd([[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]])
+                vim.cmd([[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb({ignore = {"null-ls"}})]])
             end,
         },
         {
