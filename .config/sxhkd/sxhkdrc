@@ -38,12 +38,6 @@ super + d
 # rofi to other rofi
 super + shift + d
     rofi -show run -filter "rofi-"
-# connections bluetooth
-super + c
-    rofi-bluetooth
-# connections wifi
-super + shift + c
-    rofi-wifi
 # Torrent search
 super + t
     rofi-cuff -s -k
@@ -70,10 +64,8 @@ alt + Tab
 
 super + n
     dunstctl close
-
 super + shift + n
     dunstctl history-pop
-
 super + ctrl + n
     dunstctl context
 
