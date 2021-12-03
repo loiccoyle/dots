@@ -138,7 +138,9 @@ return packer.startup(function(use)
             "kosayoda/nvim-lightbulb",
             event = { "CursorHold", "CursorHoldI" },
             config = function()
-                vim.cmd([[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb({ignore = {"null-ls"}})]])
+                vim.cmd(
+                    [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb({ignore = {"null-ls"}})]]
+                )
             end,
         },
         {
@@ -225,8 +227,21 @@ return packer.startup(function(use)
     -- Indentline
     use({
         "lukas-reineke/indent-blankline.nvim",
-        setup = function()
-            require("plugins.indent-blankline")
+        config = function()
+            require("indent_blankline").setup({
+                char = "▏",
+                show_current_context = true,
+                show_first_indent_level = false,
+                show_trailing_blankline_indent = false,
+                filetype_exclude = {
+                    "help",
+                    "NvimTree",
+                    "alpha",
+                    "packer",
+                    "TelescopePrompt",
+                },
+                buftype_exclude = { "terminal" },
+            })
         end,
         event = "BufRead",
     })
