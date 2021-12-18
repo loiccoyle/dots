@@ -112,7 +112,6 @@ return packer.startup(function(use)
             after = "nvim-lspconfig",
             config = function()
                 require("plugins.null-ls")
-                require("lspconfig")["null-ls"].setup({ on_attach = require("plugins.nvim-lspconfig.on-attach") })
             end,
             requires = {
                 { "nvim-lua/plenary.nvim", module = "plenary" },

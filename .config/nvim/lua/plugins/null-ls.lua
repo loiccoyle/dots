@@ -1,3 +1,4 @@
+local on_attach = require("plugins.nvim-lspconfig.on-attach")
 local null_ls = require("null-ls")
 
 local sources = {
@@ -12,4 +13,4 @@ local sources = {
     null_ls.builtins.code_actions.gitsigns,
 }
 
-null_ls.config({ sources = sources })
+null_ls.setup({ sources = sources, on_attach = on_attach })
