@@ -10,11 +10,12 @@ require("utils").nvim_create_augroup({
     on_save = {
         -- {'BufWritePre', '*', '%s/\s\+$//e'},            -- Remove whitespace on save
         -- reload configs
-        { "BufWritePost", "*.vim,*.lua", "source %" },
-        { "BufWritePost", "*bspwmrc", "!./%" },
-        { "BufWritePost", "*sxhkdrc", "!pkill -USR1 sxhkd" },
-        { "BufWritePost", "*polybar/config", "!polybar-msg cmd restart" },
-        { "BufWritePost", "*Xresources,*Xdefaults", "!xrdb %" },
+        -- { "BufWritePost", "*.vim,*.lua", "source %" },
+        { "BufWritePost", "*bspwmrc", "!./%; notify-send -i reload 'Running bspwmrc'" },
+        { "BufWritePost", "*dunstrc", "!killall dunst; notify-send -i reload 'Restarting dunst'" },
+        { "BufWritePost", "*sxhkdrc", "!pkill -USR1 sxhkd; notify-send -i reload 'Reloading sxhkd'" },
+        { "BufWritePost", "*polybar/config", "!polybar-msg cmd restart; notify-send -i reload 'Restarting polybar'" },
+        { "BufWritePost", "*Xresources,*Xdefaults", "!xrdb %; notify-send -i reload 'Setting xrdb'" },
     },
     general = {
         { "TextYankPost", "*", "silent! lua vim.highlight.on_yank { timeout = 300 }" },
