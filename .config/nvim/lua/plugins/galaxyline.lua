@@ -55,7 +55,7 @@ gls.left = {
     {
         FileIcon = {
             provider = "FileIcon",
-            highlight = { require("galaxyline.provider_fileinfo").get_file_icon_color(), colors.bg },
+            highlight = { require("galaxyline.providers.fileinfo").get_file_icon_color(), colors.bg },
         },
     },
     { FileName = { provider = "FileName", separator = " ", highlight = { colors.fg, colors.bg, "bold" } } },
