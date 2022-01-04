@@ -44,13 +44,13 @@ for type, icon in pairs(signs) do
 end
 
 -- Appearance
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+vim.diagnostic.config({ virtual_text = false, float = { focusable = false, border = "single" } })
+--[[ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
     virtual_text = false,
     signs = true,
     update_in_insert = false,
-})
-vim.cmd([[autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics{focusable=false, border="single"}]])
-
+}) ]]
+vim.cmd([[autocmd CursorHold * lua vim.diagnostic.open_float(0, {scope="line"})]])
 -- Enable type inlay hints for rust lsp_extensions
 vim.cmd(
     [[autocmd InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *.rs :lua require'lsp_extensions'.inlay_hints{ prefix = ' » ', highlight = "NonText", enabled = {"TypeHint", "ChainingHint", "ParameterHint"} }]]
