@@ -17,10 +17,10 @@ super + w
 # Toggle the bar and the top padding
 super + b
     polybar-msg cmd toggle;\
-    if [ "$(bspc config -m $BAR_MONITOR top_padding)" = "$BAR_HEIGHT" ]; then;\
-        bspc config -m $BAR_MONITOR top_padding 0;\
+    if [ "$(bspc config -m "$PRIMARY_MONITOR" top_padding)" = "$BAR_HEIGHT" ]; then;\
+        bspc config -m "$PRIMARY_MONITOR" top_padding 0;\
     else;\
-        bspc config -m $BAR_MONITOR top_padding $BAR_HEIGHT;\
+        bspc config -m "$PRIMARY_MONITOR" top_padding $BAR_HEIGHT;\
     fi;
 # Password manager
 super + p
