@@ -160,9 +160,14 @@ super + shift + BackSpace
 
 
 # focus/swap
-# Focus the node in the given direction
-super + {h,j,k,l}
-    bspc node -f {west,south,north,east}
+# Focus the node in the given direction (left, right)
+super + {h,l}
+    bspc node -f {west,east}
+# Focus node in the given direction (north, south) or cycle monocle stack
+super + {j,k}
+    selections={(south prev.local.!hidden.window),(north next.local.!hidden.window)};\
+    [ "$(bspc query --tree --desktop | jq -r ".layout")" != "monocle" ] && selection=${selections[1]} || selection=${selections[2]};\
+    bspc node -f "$selection"
 # Focus floating or tiled
 super + a
     if bspc query --node 'focused.floating' --nodes; then;\
