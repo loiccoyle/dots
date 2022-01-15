@@ -216,7 +216,7 @@ c.tabs.background = True
 ##   - persist: Retain the current mode.
 ##   - restore: Restore previously saved mode.
 ##   - normal: Always revert to normal mode.
-# c.tabs.mode_on_change = 'normal'
+c.tabs.mode_on_change = "restore"
 
 ## What search to start when something else than a URL is entered.
 ## Type: String
