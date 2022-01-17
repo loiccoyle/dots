@@ -11,6 +11,16 @@ power_on() {
     fi
 }
 
+# Checks if a device is connected
+device_connected() {
+    device_info=$(bluetoothctl info "$1")
+    if echo "$device_info" | grep -q "Connected: yes"; then
+        return 0
+    else
+        return 1
+    fi
+}
+
 if power_on; then
     mapfile -t paired_devices < <(bluetoothctl paired-devices | grep Device | cut -d ' ' -f 2)
     counter=0
