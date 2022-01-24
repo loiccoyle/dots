@@ -41,7 +41,8 @@ super + t
     rofi-cuff -s -k
 # Quick torrent search
 super + shift + t
-    cuff -s -k search -s "Seeders" $(rofi -dmenu -p 'Torrent Search' -l 0 -i && notify-send -i 'search' "Cuff" "Searching...") | \
+    QUERY="$(rofi -dmenu -p "Torrent Search" -l 0 -i && notify-send -i "search" "Cuff" "Searching...")" && \
+    cuff -s -k search -s "Seeders" "$QUERY" | \
     ROFI_CUFF_WEBTORRENT_PLAYER="mpv" rofi-cuff -
 # Rice control panel
 super + Home
