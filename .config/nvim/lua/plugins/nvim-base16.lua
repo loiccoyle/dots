@@ -29,4 +29,4 @@ base16.highlight.LineNr = { guibg = "none" }
 
 -- Tweaks
 base16.highlight.StatusLineNC = { gui = "underline" }
-base16.highlight.FloatBorder = { guibg = colors.base01 }
+base16.highlight.FloatBorder = { guibg = colors.base00 }
