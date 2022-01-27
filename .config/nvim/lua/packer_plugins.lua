@@ -261,9 +261,10 @@ return packer.startup(function(use)
             { "nvim-lua/popup.nvim", module = "popup" },
             { "nvim-lua/plenary.nvim", module = "plenary" },
             { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+            { "nvim-telescope/telescope-ui-select.nvim" },
         },
-        module = "telescope",
-        cmd = "Telescope",
+        --[[ module = "telescope",
+        cmd = "Telescope", ]]
         config = function()
             require("plugins.telescope")
         end,
@@ -280,7 +281,19 @@ return packer.startup(function(use)
     --   keys = '<C-t>'
     -- }
     -- comment
-    use({ "b3nj5m1n/kommentary", event = "BufRead" })
+    use({
+        "b3nj5m1n/kommentary",
+        event = "BufRead",
+        config = function()
+            require("kommentary.config").configure_language("default", {
+                single_line_comment_string = "auto",
+                multi_line_comment_strings = "auto",
+                hook_function = function()
+                    require("ts_context_commentstring.internal").update_commentstring()
+                end,
+            })
+        end,
+    })
     -- tpope
     use({
         { "tpope/vim-surround", event = "BufRead" }, -- Surround actions
@@ -314,6 +327,37 @@ return packer.startup(function(use)
     use({
         { "kovetskiy/sxhkd-vim", event = "BufEnter sxhkdrc" },
         { "zdharma-continuum/zinit-vim-syntax", event = "BufEnter .zshrc" },
+        -- { "elkowar/yuck.vim", event = "BufEnter *.yuck" },
+    })
+    -- Debuging
+    -- requires lldb
+    use({
+        "rcarriga/nvim-dap-ui",
+        requires = { "mfussenegger/nvim-dap" },
+        config = function()
+            require("dapui").setup({})
+        end,
+        setup = function()
+            require("mappings").dap()
+        end,
+    })
+    -- Language specific plugins
+    use({
+        {
+            -- currently somewhat broken, see:
+            -- https://github.com/simrat39/rust-tools.nvim/issues/124
+            "simrat39/rust-tools.nvim",
+            ft = { "rust" },
+            requires = {
+                { "neovim/nvim-lspconfig", module = "lspconfig" },
+                { "nvim-lua/plenary.nvim", module = "plenary" },
+            },
+        },
+        {
+            "akinsho/flutter-tools.nvim",
+            ft = { "dart" },
+            requires = { "nvim-lua/plenary.nvim", module = "plenary" },
+        },
     })
 
     -- Autoinstall/compile plugins if bootstrap occurred

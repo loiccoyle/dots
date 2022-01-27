@@ -91,4 +91,13 @@ function M.install_lsp()
     require("nvim-lsp-installer").info_window.open()
 end
 
+-- Check if module is available
+function M.prequire(module)
+    local ok, err = pcall(require, module)
+    if not ok then
+        return nil, err
+    end
+    return err
+end
+
 return M
