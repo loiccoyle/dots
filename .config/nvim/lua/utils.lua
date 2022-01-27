@@ -68,14 +68,15 @@ end
 function M.install_lsp()
     local lsp_servers = require("nvim-lsp-installer.servers")
     local language_servers = {
-        "pyright",
         "bashls",
-        "jsonls",
-        "html",
         "clangd",
-        "dockerls",
-        "rust_analyzer",
         "cssls",
+        "dartls",
+        "dockerls",
+        "html",
+        "jsonls",
+        "pyright",
+        "rust_analyzer",
         "sumneko_lua",
         "tsserver",
     }
