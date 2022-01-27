@@ -36,6 +36,7 @@ export WALLPAPER_DIR="$XDG_PICTURES_DIR/walls"
 
 # Settings
 export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
+export _JAVA_AWT_WM_NONREPARENTING=1
 
 # Color man pages
 export LESS_TERMCAP_mb=$'\E[01;32m'
@@ -50,6 +51,7 @@ export LESS=-r
 # Themes
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export GTK_THEME="Adwaita:dark"
+export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
 export FLAVOURS_THEME_MODE="dark"
 
 # Desktop settings
@@ -83,6 +85,12 @@ export __GL_SHADER_DISK_CACHE_PATH="$XDG_CACHE_HOME/nv"
 export SQLITE_HISTORY="$XDG_STATE_HOME/sqlite_history"
 # node history
 export NODE_REPL_HISTORY="$XDG_STATE_HOME/node_history"
+# dart pub cache
+export PUB_CACHE="$XDG_CACHE_HOME/pub-cache"
+# gradle home
+export GRADLE_USER_HOME="$XDG_DATA_HOME/gradle"
+# android emulators
+export ANDROID_SDK_HOME="$XDG_DATA_HOME/android"
 
 # Start graphical server on tty1 if not already running.
 [ "$(tty)" = "/dev/tty1" ] && ! pgrep -x Xorg >/dev/null && exec startx
