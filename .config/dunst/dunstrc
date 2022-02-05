@@ -44,8 +44,8 @@
     mouse_right_click = close_all
     enable_recursive_icon_lookup = true
     icon_theme = "la-capitaine, breeze-dark, Adwaita"
-    min_icon_size = 32
-    max_icon_size = 32
+    min_icon_size = 64
+    max_icon_size = 64
 # Start flavours
 frame_color = "#d5c4a1"
 separator_color = "#d5c4a1"
