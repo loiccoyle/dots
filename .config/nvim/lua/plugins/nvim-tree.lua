@@ -1,7 +1,7 @@
 -- https://github.com/kyazdani42/nvim-tree.lua
 require("nvim-tree").setup({
     auto_close = true,
-    view = { width = 40, side = "right" },
+    view = { width = 40, side = "left" },
     mappings = {
         list = {
             { key = "h", cb = ':lua require"nvim-tree".on_keypress("close_node")<CR>' },
