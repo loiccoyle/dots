@@ -53,7 +53,7 @@ super + End
 # Screenshot
 Print
     rofi-screenshot
-# Stop recording
+# Record
 shift + Print
     rofi-record
 # Clipboard manager
@@ -113,11 +113,11 @@ super + q
 # Swap the current node and the biggest node
 super + g
     bspc node -s biggest.local
-# Increase gaps
+# Decrease gaps
 super + Next
     gap=$(($(bspc config window_gap) - 2));\
     bspc config window_gap $((gap>0 ? gap : 0))
-# Decrease gaps
+# Increase gaps
 super + Prior
     bspc config window_gap $(($(bspc config window_gap) + 2))
 # Increase borders
@@ -161,7 +161,7 @@ super + shift + BackSpace
 
 
 # focus/swap
-# Focus the node in the given direction (left, right)
+# Focus the node in the given direction (east, west)
 super + {h,l}
     bspc node -f {west,east}
 # Focus node in the given direction (north, south) or cycle monocle stack
@@ -260,7 +260,7 @@ super + ctrl + shift + space
     bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
 
-# move/resize
+# resize
 # Expand a node by moving one of its side outward
 super + alt + {h,j,k,l}
     ~/.config/bspwm/scripts/bspwm-resize {west,south,north,east}
