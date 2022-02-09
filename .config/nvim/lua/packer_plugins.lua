@@ -149,6 +149,14 @@ return packer.startup(function(use)
                 require("mappings").trouble()
             end,
         },
+        {
+            "simrat39/symbols-outline.nvim",
+            cmd = "SymbolsOutline",
+            setup = function()
+                require("mappings").symbols_outline()
+                vim.g.symbols_outline = { width = 45 }
+            end,
+        },
     })
     -- use {'glepnir/lspsaga.nvim', config = function() require('plugins.lspsaga-nvim') end}
     -- Colorizer
@@ -163,16 +171,13 @@ return packer.startup(function(use)
         end,
     })
     -- Cursor stuff
-    use(
-        {
-            "mg979/vim-visual-multi",
-            event = "BufRead",
-            config = function()
-                require("plugins.vim-visual-multi")
-            end,
-        }
-        -- { "xiyaowong/nvim-cursorword" }, -- lazy loading this breaks stuff
-    )
+    use({
+        "mg979/vim-visual-multi",
+        event = "BufRead",
+        config = function()
+            require("plugins.vim-visual-multi")
+        end,
+    })
     -- Dashboard
     use({
         "goolord/alpha-nvim",
@@ -282,17 +287,14 @@ return packer.startup(function(use)
     -- }
     -- comment
     use({
-        "b3nj5m1n/kommentary",
+        "numToStr/Comment.nvim",
         event = "BufRead",
         config = function()
-            require("kommentary.config").configure_language("default", {
-                single_line_comment_string = "auto",
-                multi_line_comment_strings = "auto",
-                hook_function = function()
-                    require("ts_context_commentstring.internal").update_commentstring()
-                end,
-            })
+            require("plugins.comment")
         end,
+        requires = {
+            { "JoosepAlviste/nvim-ts-context-commentstring", after = "nvim-treesitter" },
+        },
     })
     -- tpope
     use({

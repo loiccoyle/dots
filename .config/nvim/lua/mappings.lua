@@ -175,6 +175,10 @@ M.nvimtree = function()
     nmap("<leader>N", "<cmd>NvimTreeToggle<CR>")
 end
 
+M.symbols_outline = function()
+    nmap("<leader>s", "<cmd>SymbolsOutline<CR>")
+end
+
 M.dap = function()
     local opts = { silent = true }
     nmap("<leader>d", "<cmd>lua require'dapui'.toggle()<CR>", opts)

@@ -10,7 +10,7 @@ require("nvim-treesitter.configs").setup({
     indent = { enable = false },
     rainbow = { enable = true },
     autotag = { enable = true },
-    context_commentstring = { enable = true },
+    context_commentstring = { enable = true, enable_autocmd = false },
     incremental_selection = {
         enable = true,
         keymaps = {

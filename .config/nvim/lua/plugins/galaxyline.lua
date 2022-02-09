@@ -3,7 +3,7 @@ local base16_colors = require("plugins.nvim-base16-colors")
 local gl = require("galaxyline")
 local condition = require("galaxyline.condition")
 local gls = gl.section
-gl.short_line_list = { "NvimTree", "packer", "term://*", "alpha" }
+gl.short_line_list = { "NvimTree", "packer", "term://*", "alpha", "Outline" }
 
 local colors = {
     bg = base16_colors.base00,
