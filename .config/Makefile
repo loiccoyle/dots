@@ -1,4 +1,4 @@
-# Makefile to install the packages on Arch.
+# Makefile to install dotfile related packages on ArchLinux.
 # Requires paru
 
 INSTALL = sudo pacman -S --needed
@@ -91,8 +91,8 @@ hooks: ## Install pacman hooks
 .PHONY: scripts
 scripts: ## Install script dependencies
 	$(INSTALL) ffmpeg hsetroot shotgun slop xclip xdotool
+	$(INSTALL) ffmpeg hsetroot shotgun slop xclip xdotool thqm
 	$(INSTALL) python-pipx
-	pipx install 'thqm[qrcode]'
 
 .PHONY: startup
 startup: hotkeys ## Startup programs (xinit and .xprofile)
