@@ -15,7 +15,7 @@ file-manager: ## Install file manager and dependencies
 
 .PHONY: bar
 bar: launcher fonts ## Install bar and dependencies
-	$(INSTALL_AUR) polybar
+	$(INSTALL_AUR) polybar bluez-utils
 	$(INSTALL) pavucontrol-qt
 
 .PHONY: hotkeys
@@ -91,8 +91,7 @@ hooks: ## Install pacman hooks
 .PHONY: scripts
 scripts: ## Install script dependencies
 	$(INSTALL) ffmpeg hsetroot shotgun slop xclip xdotool
-	$(INSTALL) ffmpeg hsetroot shotgun slop xclip xdotool thqm
-	$(INSTALL) python-pipx
+	$(INSTALL_AUR) thqm
 
 .PHONY: startup
 startup: hotkeys ## Startup programs (xinit and .xprofile)
