@@ -53,21 +53,17 @@ override-redirect = false
 [module/bspwm]
 type = internal/bspwm
 format = <label-state>
-label-focused = 
+label-focused = "  "
 label-focused-font = 4
-label-focused-padding = 1
 ; label-focused-foreground = ${variables.accent}
-label-occupied = 
+label-occupied = "  "
 label-occupied-font = 4
-label-occupied-padding = 1
 label-occupied-foreground = ${variables.dimmed}
-label-empty = 
+label-empty = "  "
 label-empty-font = 4
-label-empty-padding = 1
 label-empty-foreground = ${variables.dimmed}
-label-urgent = 
+label-urgent = "  "
 label-urgent-font = 4
-label-urgent-padding = 1
 label-urgent-foreground = ${variables.accent}
 
 [module/cpu]
