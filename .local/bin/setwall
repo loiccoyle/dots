@@ -31,6 +31,7 @@ set_wallpaper() {
     abspath="$(readlink -f "$1")"
     hsetroot -cover "$abspath" >/dev/null
     printf "%s" "$abspath" >"$XDG_STATE_HOME/wall"
+    ln -sf "$abspath" "$XDG_STATE_HOME/wallpaper"
     notify-send --icon="$abspath" "Set wallpaper" "$(basename "$abspath")"
 }
 
