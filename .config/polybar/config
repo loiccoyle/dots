@@ -26,23 +26,20 @@ margin-top=${variables.height}
 monitor = ${env:PRIMARY_MONITOR:}
 width = 100%
 height = ${variables.height}
-
 background = ${colors.base00}
 foreground = ${colors.base05}
-
 padding = 1
 module-margin = 1
-
 font-0 = Hack:size=8:antialias=true;2
-; font-1 = Wuncon Siji:pixelsize=10;2
-font-1 = Hack:size=7;2
-font-2 = Font Awesome 5 free Solid:size=8;2.5
-font-3 = Font Awesome 5 free:size=8;2.5
-font-4 = Font Awesome 5 Brands:size=8;2.5
+font-1 = Hack:size=5;1
+font-2 = Symbols Nerd Font:size=8;2
+font-3 = Symbols Nerd Font:size=10;3
+# just used for the github icon which seems too low by default
+font-4 = Symbols Nerd Font:size=10;2
 
 modules-left = cpu memory pulseaudio xwindow
 modules-center = bspwm
-modules-right = record github updates network temperature bluetooth vpn wireless-network date separator powermenu
+modules-right = mpris-song mpris-prev mpris-play-pause mpris-next record github updates network temperature bluetooth vpn wireless-network date powermenu
 
 tray-position = right
 tray-maxsize = 16
@@ -56,18 +53,20 @@ override-redirect = false
 [module/bspwm]
 type = internal/bspwm
 format = <label-state>
-
 label-focused = 
-label-occupied-font=4
+label-focused-font = 4
 label-focused-padding = 1
+; label-focused-foreground = ${variables.accent}
 label-occupied = 
+label-occupied-font = 4
 label-occupied-padding = 1
-label-empty-font=4
-label-empty = 
+label-occupied-foreground = ${variables.dimmed}
+label-empty = 
+label-empty-font = 4
 label-empty-padding = 1
 label-empty-foreground = ${variables.dimmed}
-
-label-urgent = 
+label-urgent = 
+label-urgent-font = 4
 label-urgent-padding = 1
 label-urgent-foreground = ${variables.accent}
 
@@ -75,8 +74,8 @@ label-urgent-foreground = ${variables.accent}
 type = internal/cpu
 interval = 10.0
 label = 
+label-font = 3
 format = <label> <bar-load>
-
 bar-load-width = ${variables.bar_module_width}
 bar-load-foreground-0 = ${bar/top.foreground}
 bar-load-indicator-font = 2
@@ -95,24 +94,56 @@ date-alt =  %{A3:notify-send -i "date" "$(cal)":}%g-%m-%d%{A}
 
 [module/memory]
 type = internal/memory
-format = <label> <bar-used>
-label = 
-
+format = %{T4}<label>%{T-} <bar-used>
+label = 
 bar-used-width = ${variables.bar_module_width}
 bar-used-foreground-0 = ${bar/top.foreground}
-bar-used-indicator-font = 2
 bar-used-indicator = |
+bar-used-indicator-font = 2
 bar-used-indicator-foreground = #ff
-bar-used-fill-font = 1
 bar-used-fill = ─
-bar-used-empty-font = 1
+bar-used-fill-font = 1
 bar-used-empty = ─
+bar-used-empty-font = 1
 bar-used-empty-foreground = ${variables.dimmed}
+
+[module/mpris-song]
+type = custom/ipc
+hook-0 = echo ""
+hook-1 = $XDG_CONFIG_HOME/polybar/scripts/mpris-song-icon.sh '{{ trunc(title, 70) }}'
+initial = 0
+click-left = polybar-msg -p %pid% hook mpris-song 2
+scroll-up = playerctl volume +0.5
+scroll-down = playerctl volume -0.5
+
+[module/mpris-play-pause]
+type = custom/script
+tail = true
+label = %output%
+exec = $XDG_CONFIG_HOME/polybar/scripts/mpris-status-icon.sh
+click-left = playerctl play-pause
+
+[module/mpris-prev]
+type = custom/ipc
+hook-0 = echo ""
+hook-1 = echo ""
+format-font = 3
+initial = 0
+format = %{T6}<output>%{T-}
+click-left = playerctl previous
+
+[module/mpris-next]
+type = custom/ipc
+hook-0 = echo ""
+hook-1 = echo ""
+format-font = 3
+initial = 0
+format = %{T6}<output>%{T-}
+click-left = playerctl next
 
 [module/mpd]
 type = internal/mpd
 format-online = <icon-prev> <icon-stop> <toggle> <icon-next>  <icon-repeat> <icon-random>  <bar-progress> <label-time>  <label-song>
-
 icon-play = 
 icon-pause = 
 icon-stop = 
@@ -120,10 +151,8 @@ icon-prev = 
 icon-next = 
 icon-random = 
 icon-repeat = 
-
 toggle-on-foreground =
 toggle-off-foreground = #55
-
 bar-progress-width = 45
 bar-progress-format = %{A4:mpdseek+2: A5:mpdseek-2:}%fill%%indicator%%empty%%{A A}
 bar-progress-indicator-font = 2
@@ -141,12 +170,10 @@ type = internal/network
 interface = wlp4s0
 interval = 5.0
 ping-interval = 5
-
-format-connected =  <label-connected>
-label-connected = %{A1:rofi-wifi &:}%essid%%{A}
+format-connected = %{T3}%{T-} <label-connected>
+label-connected = %essid%
 label-disconnected = ""
 label-disconnected-foreground = #66
-
 animation-packetloss-0 = 
 animation-packetloss-0-foreground = ${variables.accent}
 animation-packetloss-1 = 
@@ -157,7 +184,6 @@ animation-packetloss-framerate = 500
 type = internal/network
 interface = enp5s0
 interval = 10.0
-
 label-connected = 
 label-disconnected-foreground = #66
 
@@ -169,9 +195,9 @@ interface = lo
 accumulate-stats = true
 interval = 5
 unknown-as-up = true
-format-connected =  <label-connected>
-label-connected = %{A1:rofi-wifi &:}%downspeed%%{A}
-format-disconnected = %{A1:rofi-wifi &:}disconnected%{A}
+format-connected = %{T4}%{T-} <label-connected>
+label-connected = %downspeed:08%
+format-disconnected = disconnected
 label-disconnected-foreground = #66
 format-packetloss = <animation-packetloss> <label-connected>
 animation-packetloss-0 = 
@@ -182,28 +208,24 @@ animation-packetloss-framerate = 500
 
 [module/pulseaudio]
 type = internal/pulseaudio
-format-volume = <ramp-volume> <bar-volume>
-label-muted =  muted
+format-volume = %{T4}<ramp-volume>%{T-} <bar-volume>
+label-muted = %{T4}ﱝ%{T-} muted
 label-muted-foreground = ${variables.dimmed}
-
 ramp-volume-0 = 
 ramp-volume-1 = 
 ramp-volume-2 = 
-; ramp-volume-2 =
-
+; ramp-volume-3 =
 bar-volume-width = ${variables.bar_module_width}
 bar-volume-foreground-0 = ${bar/top.foreground}
-bar-volume-indicator-font = 2
 bar-volume-indicator = |
+bar-volume-indicator-font = 2
 bar-volume-indicator-foreground = #ff
-bar-volume-fill-font = 1
 bar-volume-fill = ─
-bar-volume-empty-font = 1
+bar-volume-fill-font = 1
 bar-volume-empty = ─
+bar-volume-empty-font = 1
 bar-volume-empty-foreground = ${variables.dimmed}
-
 click-right = pavucontrol-qt &
-click-middle = rofi-sink-port &
 
 [module/powermenu]
 type = custom/menu
@@ -215,10 +237,10 @@ label-separator = ""
 format-spacing = 1
 format-margin = 0
 format-label-spacing = 0
-format-label-margin=0
-format-label-padding=0
+format-label-margin = 0
+format-label-padding = 0
 
-menu-0-0 = Terminate WM
+menu-0-0 = Kill WM
 menu-0-0-foreground = ${variables.accent}
 menu-0-0-exec = bspc quit -1
 menu-0-1 = Reboot
@@ -234,6 +256,9 @@ menu-1-0-exec = menu-open-0
 menu-1-1 = Reboot
 menu-1-1-foreground = ${variables.accent}
 menu-1-1-exec = sudo reboot
+menu-1-2 = Windows
+menu-1-2-foreground = ${variables.accent}
+menu-1-2-exec = sudo grub-reboot "$(sudo grep -i "^menuentry 'windows" /boot/grub/grub.cfg | cut -d "'" -f 2)" && sudo reboot
 
 menu-2-0 = Cancel
 menu-2-0-foreground = ${variables.accent}
@@ -245,22 +270,20 @@ menu-2-1-exec = sudo poweroff
 [module/updates]
 type = custom/script
 exec = $XDG_CONFIG_HOME/polybar/scripts/updates-arch-combined.sh
-label =  %output%
+label = %{T4}%{T-} %output%
 click-left = $TERMINAL --hold --class=float -e "paru" &
 interval = 600
 
 [module/bluetooth]
 type = custom/script
-# workaround because rofi-bluetooth hardcodes its icons
-; exec = rofi-bluetooth --status
 exec = $XDG_CONFIG_HOME/polybar/scripts/bluetooth-status.sh
-label =  %output%
+label = %{T3}%{T-} %output%
 interval = 5
 
 [module/vpn]
 type = custom/script
 exec = rofi-nordvpn -s
-label =  %output%
+label = %{T3}%{T-} %output%
 interval = 10
 click-left = notify-send -i "info" "Toggling nordvpn"; [ $(rofi-nordvpn -s) = "Off" ] && nordvpn connect || nordvpn disconnect
 click-right = rofi-nordvpn &
@@ -274,7 +297,8 @@ format-foreground = ${variables.accent}
 
 [module/xwindow]
 type = internal/xwindow
-label-maxlen = 120
+label = %{T3}%{T-} %title%
+label-maxlen = 118
 
 [module/temperature]
 type = internal/temperature
@@ -292,8 +316,8 @@ thermal-zone = 0
 hwmon-path = /sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon1/temp1_input
 warn-temperature = 80
 units = true
-format = <ramp> <label>
-format-warn = <ramp> <label-warn>
+format = %{T3}<ramp>%{T-} <label>
+format-warn = %{T3}<ramp>%{T-} <label-warn>
 label = %temperature-c%
 label-warn = %temperature-c%
 label-warn-foreground = ${variables.accent}
@@ -312,7 +336,7 @@ user = ${file:$XDG_CONFIG_HOME/polybar/auth/gh_notif_user}
 empty-notifications = false
 interval = 600
 format = <label>
-label = %{A1:$BROWSER "https\://github.com/notifications":} %notifications%%{A}
+label = %{A1:$BROWSER "https\://github.com/notifications":}%{T5}%{T-} %notifications%%{A}
 label-offline = ""
 
 ; vim:ft=dosini
