@@ -72,7 +72,7 @@ browser: file-manager ## Install browser and dependencies
 
 .PHONY: fonts
 fonts: ## Install fonts
-	$(INSTALL) noto-fonts noto-fonts-emoji ttf-hack ttf-font-awesome ttf-nerd-fonts-symbols
+	$(INSTALL) noto-fonts noto-fonts-emoji ttf-hack ttf-nerd-fonts-symbols
 
 .PHONY: flavours
 flavours: ## Install flavours and run 'flavours update'
@@ -90,8 +90,9 @@ hooks: ## Install pacman hooks
 
 .PHONY: scripts
 scripts: ## Install script dependencies
-	$(INSTALL) ffmpeg hsetroot shotgun slop xclip xdotool
+	$(INSTALL) ffmpeg hsetroot shotgun slop xclip xdotool python-pipx
 	$(INSTALL_AUR) thqm
+	pipx install hag
 
 .PHONY: startup
 startup: hotkeys ## Startup programs (xinit and .xprofile)
