@@ -14,8 +14,8 @@
     shrink = no
     transparency = 0
     separator_height = 1
-    padding = 2
-    horizontal_padding = 8
+    padding = 1
+    horizontal_padding = 1
     frame_width = 1
     sort = yes
     idle_threshold = 120
