@@ -248,6 +248,8 @@ c.url.searchengines = {
     "aur": "https://aur.archlinux.org/packages/?K={}",
     "pkg": "https://archlinux.org/packages/?q={}",
     "pip": "https://pypi.org/search/?q={}",
+    "rs": "https://docs.rs/releases/search?query={}",
+    "crate": "https://crates.io/search?q={}",
     "gh": "https://github.com/search?q={}",
 }
 
