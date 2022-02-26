@@ -103,10 +103,10 @@ XF86AudioStop
 # backlight
 # decrease brightness
 XF86MonBrightnessDown
-    sudo xbacklight -dec 5
+    xbacklight -dec 5
 # increase brightness
 XF86MonBrightnessUp
-    sudo xbacklight -inc 5
+    xbacklight -inc 5
 
 # bspwm hotkeys
 # Quit/Restart bspwm
