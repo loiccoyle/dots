@@ -36,6 +36,9 @@ super + d
 # Rofi-ception
 super + shift + d
     rofi -show run -filter "rofi-"
+# Hotkey list
+super + question
+    rofi-hag
 # Torrent search
 super + t
     rofi-cuff -s -k
