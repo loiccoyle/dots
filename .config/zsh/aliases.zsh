@@ -52,6 +52,8 @@ alias gc="git commit"
 alias gp="git push"
 alias gs="git status"
 alias lg="lazygit"
+# other
+alias wifiqr="nmcli dev wifi show-password"
 
 # Functions
 dots() {
