@@ -7,19 +7,18 @@
 [global]
     monitor = 0
     follow = mouse
-    width = 320
+    width = (0, 320)
     origin = top-right
     offset = 8x24
     indicate_hidden = yes
-    shrink = no
     transparency = 0
     separator_height = 1
-    padding = 1
-    horizontal_padding = 1
+    padding = 2
+    horizontal_padding = 2
     frame_width = 1
     sort = yes
     idle_threshold = 120
-    font = Monospace 8
+    font = Monospace 10
     line_height = 0
     markup = full
     format = "<span><b>%s %p</b></span>\n%b"
@@ -44,8 +43,9 @@
     mouse_right_click = close_all
     enable_recursive_icon_lookup = true
     icon_theme = "la-capitaine, breeze-dark, Adwaita"
-    min_icon_size = 48
-    max_icon_size = 80
+    min_icon_size = 64
+    max_icon_size = 64
+    corner_radius = 4
 # Start flavours
 frame_color = "#d5c4a1"
 separator_color = "#d5c4a1"

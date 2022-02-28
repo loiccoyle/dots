@@ -42,13 +42,14 @@ modules-center = bspwm
 modules-right = mpris-song mpris-prev mpris-play-pause mpris-next record github updates network temperature bluetooth vpn wireless-network date powermenu
 
 tray-position = right
-tray-maxsize = 16
+tray-maxsize = ${variables.height}
 tray-padding = 2
 ; tray-background = ${bar.background}
 enable-ipc = true
 # to make the bar go behind windows
 wm-restack = bspwm
 override-redirect = false
+dpi=${xrdb:Xft.dpi:96}
 
 [module/bspwm]
 type = internal/bspwm
