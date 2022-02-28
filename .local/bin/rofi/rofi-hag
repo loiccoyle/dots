@@ -1,0 +1,9 @@
+#!/bin/sh
+# Requires rofi, hag
+
+set -e -o pipefail
+
+EXTRACTORS="$(hag -le)"
+N_EXTRACTORS="$(echo "$EXTRACTORS" | wc -l)"
+CHOICE="$(echo "$EXTRACTORS" | rofi -dmenu -show -no-custom -l "$N_EXTRACTORS" -p "Hotkeys")"
+hag "$CHOICE" | rofi -dmenu -i -no-custom -p "$CHOICE hotkeys"
