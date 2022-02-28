@@ -241,7 +241,7 @@ c.tabs.mode_on_change = "restore"
 ## `:open google qutebrowser`.
 ## Type: Dict
 c.url.searchengines = {
-    "DEFAULT": "https://start.duckduckgo.com/?kak=-1&kal=-1&kao=-1&kaq=-1&kp=-2&kaj=m&kax=-1&kap=-1&kau=-1&kam=google-maps&k1=-1&km=m&kae=d&q={}",
+    "DEFAULT": "https://start.duckduckgo.com/?kak=-1&kal=-1&kao=-1&kaq=-1&kp=-2&kaj=m&kap=-1&kau=-1&kax=-1&q={}",
     "ggl": "https://www.google.com/search?&q={}",
     "gdr": "https://drive.google.com/drive/search?q={}",
     "aw": "https://wiki.archlinux.org/index.php?search={}",

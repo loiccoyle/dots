@@ -6,7 +6,7 @@ template='alacritty'
 rewrite=true
 
 [[item]]
-file='~/.Xresources'
+file='$XDG_CONFIG_HOME/xresources/Xcolors'
 template='xresources'
 subtemplate='default-256'
 rewrite=true

@@ -18,10 +18,10 @@ hsetroot -cover "$XDG_STATE_HOME/wallpaper" &
 # Mouse pointer
 xsetroot -cursor_name left_ptr &
 
-# Start polybar
+# Start bar
 "$HOME/.config/polybar/launch.sh" &
 
-# Start sxhkd
+# Start hotkey daemon
 sxhkd &
 
 # Start compositor
