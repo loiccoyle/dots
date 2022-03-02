@@ -79,9 +79,10 @@ fonts: ## Install fonts
 	$(INSTALL) noto-fonts noto-fonts-emoji ttf-hack ttf-nerd-fonts-symbols
 
 .PHONY: flavours
-flavours: ## Install flavours and run 'flavours update'
+flavours: ## Colourscheme manager
 	$(INSTALL_AUR) flavours
 	flavours update all
+	flavours apply gruvbox-dark-hard
 
 .PHONY: torrents
 torrents: ## Install torrenting setup, with transmission
