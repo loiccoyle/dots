@@ -65,6 +65,8 @@ export PASSWORD_STORE_DIR="$XDG_DATA_HOME/password-store"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 # Rust config
 export CARGO_HOME="$XDG_CONFIG_HOME/cargo"
+# rustup home
+export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 # fasd location
 export _FASD_DATA="$XDG_STATE_HOME/fasd"
 # less histfile
