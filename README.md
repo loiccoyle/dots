@@ -37,7 +37,7 @@ Check `~/.config/Makefile` to install dependencies (requires `paru`).
 | Compositor           | [`picom`](https://github.com/yshui/picom)                   | `~/.config/picom/`       |
 | Shell                | [`zsh`](https://www.zsh.org/)                               | `~/.config/zsh/`         |
 | File viewer          | [`lf`](https://github.com/gokcehan/lf)                      | `~/.config/lf/`          |
-| Image viewer         | [`sxiv`](https://github.com/muennich/sxiv)                  | `~/.config/sxiv/`        |
+| Image viewer         | [`vimiv-qt`](https://github.com/karlch/vimiv-qt)            | `~/.config/vimiv/`        |
 | PDF viewer           | [`zathura`](https://github.com/pwmt/zathura)                | `~/.config/zathura/`     |
 | Colour management    | [`flavours`](https://github.com/Misterio77/flavours)        | `~/.config/flavours/`    |
 | Application launcher | [`rofi`](https://github.com/davatorium/rofi)                | `~/.config/rofi/`        |
@@ -47,7 +47,7 @@ Check `~/.config/Makefile` to install dependencies (requires `paru`).
 - **Wallpapers**:
   - My wallpapers can be found [here](https://loiccoyle.com/walls).
 - **zsh**:
-  - Plugin manager: [`zinit`](https://github.com/zdharma/zinit)
+  - Plugin manager: [`zinit`](https://github.com/zdharma-continuum/zinit)
   - Prompt: [`pure`](https://github.com/sindresorhus/pure)
   - Quick jump: [`fasd`](https://github.com/clvv/fasd)
 - **neovim**:
