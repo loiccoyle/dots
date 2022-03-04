@@ -4,46 +4,41 @@
 
 # Set keyboard rate
 xset r rate 300 50 &
+# Monitor off delay
 xset s 3600 3600 &
 
 # Start nvidia settings
 type nvidia-settings >/dev/null && nvidia-settings --load-config-only &
+
+# Start compositor
+picom --experimental-backends -b &
 
 # Set the screenlayout
 # ~/.config/screenlayout/dual.sh
 
 # Set the wallpaper
 hsetroot -cover "$XDG_STATE_HOME/wallpaper" &
-
 # Mouse pointer
 xsetroot -cursor_name left_ptr &
-
-# Start bar
+# Status bar
 "$HOME/.config/polybar/launch.sh" &
 
+# Daemons
 # Start hotkey daemon
 sxhkd &
-
-# Start compositor
-picom --experimental-backends -b &
-
 # Start notification server
 dunst &
-
-# Start usb mounting daemon
-udiskie --smart --file-manager="$TERMINAL --working-directory" &
-
-# Start network manager applet
-nm-applet --appindicator &
-
-# Start bluetooth applet
-blueman-applet &
-
 # Start clipboard manager
 greenclip daemon &
-
 # Start playerctl daemon
 playerctld daemon &
-
 # Hide mouse on idle
 unclutter &
+
+# Applets
+# Start usb mounting daemon
+udiskie --smart --file-manager="$TERMINAL --working-directory" &
+# Start network manager applet
+nm-applet --appindicator &
+# Start bluetooth applet
+blueman-applet &
