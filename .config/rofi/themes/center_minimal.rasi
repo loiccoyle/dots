@@ -1,27 +1,97 @@
 @import "colors/colors.rasi"
 
 * {
-    spacing: 0px;
     /* remove the alternating background colors */
     alternate-normal-background: @background;
     alternate-active-background: @background;
     alternate-urgent-background: @background;
+    radius: 8px;
+    border-width: 1px;
+    unit: 6px;
+    unit-h: 0px 6px;
+    unit-v: 6px 0px;
+    unit-small: 3px;
+    unit-small-h: 0px 3px;
+    unit-small-v: 3px 0px;
 }
 
 window {
     background-color: @background;
-    border: 1px;
+    text-color: @normal-foreground;
+    border: @border-width;
+    border-radius: @radius;
     location: "center";
+    width: 66%;
+    padding: @unit;
 }
 
 mainbox {
-    children: [inputbar, message, mode-switcher, listview];
+    children: [inputbar, message, listview];
+}
+
+inputbar {
+    text-color: @normal-foreground;
+    children: [ prompt,entry,mode-switcher,num-filtered-rows,textbox-slash,num-rows,case-indicator ];
+}
+
+prompt {
+    text-color: inherit;
+    text-color: @blue;
+    vertical-align: 0.5;
+    margin: @unit;
+}
+
+entry {
+    text-color: inherit;
+    background-color: @lightbg;
+    padding: @unit;
+    margin: @unit-h;
+    border: @border-width;
+    border-radius: @radius;
+}
+
+case-indicator {
+    text-color: @normal-foreground;
+    vertical-align: 0.5;
+}
+
+/* textbox-search-icon { */
+/*     expand: false; */
+/*     str: ""; */
+/*     margin: 0px 0.3em 0em 0em; */
+/*     text-color: @normal-foreground; */
+/*     vertical-align: 0.5; */
+/* } */
+textbox-space {
+    str: "";
+    expand: true;
+}
+
+num-filtered-rows {
+    text-color: @normal-foreground;
+    padding: @unit;
+    vertical-align: 0.5;
+}
+
+textbox-slash{
+    text-color: @normal-foreground;
+    str: "/";
+    expand: false;
+    vertical-align: 0.5;
+}
+
+num-rows {
+    text-color: @normal-foreground;
+    padding: @unit;
+    vertical-align: 0.5;
 }
 
 message {
-    border: 1px 0px 0px;
     border-color: @border-color;
-    padding: 1px;
+    text-color: inherit;
+    padding: @unit;
+    margin: @unit;
+    border-radius: @radius;
     background-color: @lightbg;
 }
 
@@ -29,38 +99,50 @@ textbox{
     text-color: @normal-foreground;
 }
 
-textbox-prompt-colon {
-    expand: false;
-    str: ":";
-    margin: 0px 0.3em 0em 0em;
+button {
     text-color: @normal-foreground;
+    horizontal-align: 0.5;
     vertical-align: 0.5;
+    padding: @unit-h;
+    margin: @unit;
+    expand: false;
+    border-radius: @radius;
+    border: @border-width;
+    border-color: @foreground;
+    width: 2em;
+}
+
+button.selected {
+    background-color: @selected-normal-background;
+    text-color: @selected-normal-foreground;
+    border: @border-width;
 }
 
 listview {
-    fixed-height: true;
-    lines: 32;
     border-color: @border-color;
-    spacing: 0px;
+    dynamic: true;
     scrollbar: true;
-    padding: 0px 0px 0px;
-    border: 1px 0px 0px 0px;
+    lines: 32;
+    spacing: 0px;
+    padding: @unit-v;
 }
 
 element {
-    padding: 1px;
+    padding: @unit-small-h;
+    border-radius: @radius;
+    margin: @unit-h;
+    padding: @unit-small-v;
 }
 
 element-icon {
-    size: 20;
-    vertical-align: 0.5;
+    size: 20px;
+    padding: @unit-small-h;
 }
 
 element-text {
     background-color: inherit;
     text-color: inherit;
     expand: true;
-    vertical-align: 0.5;
     highlight: bold;
 }
 
@@ -110,59 +192,10 @@ element.alternate.active {
 }
 
 scrollbar {
-    border: 0px 1px;
-    handle-width: 8px;
-    handle-color: @lightfg;
+    handle-width: @unit;
+    handle-color: @foreground;
     background-color: @lightbg;
+    border-radius: @radius;
 }
 
-button {
-    text-color: @normal-foreground;
-    horizontal-align: 0.5;
-    vertical-align: 0.5;
-    border:1px 1px 0px 1px;
-}
-
-button.selected {
-    background-color: @lightbg;
-    text-color: @normal-foreground;
-    vertical-align: 0.5;
-}
-
-inputbar {
-    text-color: @normal-foreground;
-    background-color: @lightbg;
-    padding: 6px;
-    vertical-align: 0.5;
-    children: [ prompt,textbox-prompt-colon,entry,case-indicator,num-filtered-rows,textbox-slash,num-rows ];
-}
-
-case-indicator {
-    text-color: @normal-foreground;
-}
-
-entry {
-    text-color: @normal-foreground;
-    vertical-align: 0.5;
-}
-
-prompt {
-    text-color: @normal-foreground;
-    vertical-align: 0.5;
-}
-
-num-filtered-rows {
-    text-color: @normal-foreground;
-
-}
-
-textbox-slash{
-    text-color: @normal-foreground;
-    str: "/";
-    expand: false;
-}
-
-num-rows {
-    text-color: @normal-foreground;
-}
 /* vim:ft=css */
