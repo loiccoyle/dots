@@ -14,11 +14,6 @@ menu() {
     rofi -dmenu -p "Select" -no-custom "$@"
 }
 
-input() {
-    # User input command.
-    rofi -dmenu -p "Input" -lines 0 -filter "$HOME/"
-}
-
 # Checks
 check_ssh() {
     [ "$(systemctl is-active sshd.service)" = "active" ]
@@ -91,7 +86,7 @@ toggle_http() {
             && notify-send -i "process-stop" "http" "Stopped http server"
     else
         local server_path
-        server_path="$(input)" || exit
+        server_path="$(find "$HOME" -type d -not -path "*/.*" | menu)" || exit
         python3 -m http.server -d "$server_path" &
         echo "$!" >"$HTTP_PID_FILE" \
             && notify-send -i "network-connect" "http" "Started http server\nhttp://0.0.0.0:8000/"
@@ -102,7 +97,7 @@ toggle_picom() {
     if check_picom; then
         killall picom && notify-send -i "process-stop" "picom" "Stopped picom"
     else
-        picom -b && notify-send -i "display" "picom" "Started picom"
+        picom -b --experimental-backends && notify-send -i "display" "picom" "Started picom"
     fi
 }
 
