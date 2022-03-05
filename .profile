@@ -64,7 +64,7 @@ export PASSWORD_STORE_DIR="$XDG_DATA_HOME/password-store"
 # zsh config folder
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 # Rust config
-export CARGO_HOME="$XDG_CONFIG_HOME/cargo"
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
 # rustup home
 export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 # fasd location
