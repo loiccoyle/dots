@@ -58,7 +58,7 @@ export FLAVOURS_THEME_MODE="dark"
 export PRIMARY_MONITOR="DP-0"
 export BAR_HEIGHT=16
 
-# Cleanup home folder
+# Cleanup home folder, see: https://wiki.archlinux.org/title/XDG_Base_Directory#Support
 # Pass storage location
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/password-store"
 # zsh config folder
@@ -93,6 +93,8 @@ export PUB_CACHE="$XDG_CACHE_HOME/pub-cache"
 export GRADLE_USER_HOME="$XDG_DATA_HOME/gradle"
 # android emulators
 export ANDROID_SDK_HOME="$XDG_DATA_HOME/android"
+# zoom folder
+export SSB_HOME="$XDG_DATA_HOME/zoom"
 
 # Start graphical server on tty1 if not already running.
 [ "$(tty)" = "/dev/tty1" ] && ! pgrep -x Xorg >/dev/null && exec startx
