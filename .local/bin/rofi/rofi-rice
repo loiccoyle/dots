@@ -15,9 +15,9 @@ init_menu() {
 wallpaper() {
     local selected_bg
     # selected_bg="$(find "$WALLPAPER_DIR" -type f -not -path "*/.git*" | shuf | sxiv -tio -N "float" | shuf -n 1)"
-    selected_bg="$(find "$WALLPAPER_DIR" -type f -not -path "*/.git*"| \
-        shuf | \
-        vimiv -i -o "%m" --qt-args "--name float" --command "enter thumbnail" | \
+    selected_bg="$(find "$WALLPAPER_DIR" -type f -not -path "*/.git*" |
+        shuf |
+        vimiv -i -o "%m" --qt-args "--name float" --command "enter thumbnail" |
         shuf -n 1)"
     if [ -n "$selected_bg" ]; then
         setwall "$@" "$selected_bg"
@@ -43,20 +43,19 @@ colour_scheme() {
             # either preview or selection
             selected_scheme="${schemes[$scheme_index]}"
             flavours apply "$selected_scheme" && notify-send "Changed colour scheme" "Scheme: $selected_scheme"
-            [ ${return_code} = 0 ] && return 0  # selection
+            [ ${return_code} = 0 ] && return 0 # selection
         fi
     done
 }
 
-
 case "$(init_menu)" in
-    "Select a wallpaper and generate a colour scheme")
-        wallpaper -g
-        ;;
-    "Select a wallpaper")
-        wallpaper
-        ;;
-    "Select a colour scheme")
-        colour_scheme
-        ;;
+"Select a wallpaper and generate a colour scheme")
+    wallpaper -g
+    ;;
+"Select a wallpaper")
+    wallpaper
+    ;;
+"Select a colour scheme")
+    colour_scheme
+    ;;
 esac

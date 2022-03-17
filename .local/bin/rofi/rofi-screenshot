@@ -28,22 +28,22 @@ if [[ "$SELECTION" != *"(copy)" ]]; then
 fi
 
 case "$SELECTION" in
-	"selected window/area")
-            sel=$(slop -f "-i %i -g %g") || exit
-            shotgun $sel "$FILEPATH" && \
-            notify-send -i "$FILEPATH" "Screenshot" "$FILENAME"
-        ;;
-	"full screen")
-            shotgun "$FILEPATH" && \
-            notify-send -i "$FILEPATH" "Screenshot" "$FILENAME"
-        ;;
-	"selected window/area (copy)")
-            sel=$(slop -f "-i %i -g %g") || exit
-            shotgun $sel - | xclip -selection clipboard -t image/png && \
-            notify-send -i "image-png" "Screenshot" "Copied to clipboard."
-        ;;
-	"full screen (copy)")
-            shotgun - | xclip -selection clipboard -t image/png && \
-            notify-send -i "image-png" "Screenshot" "Copied to clipboard."
-        ;;
+"selected window/area")
+    sel=$(slop -f "-i %i -g %g") || exit
+    shotgun $sel "$FILEPATH" &&
+        notify-send -i "$FILEPATH" "Screenshot" "$FILENAME"
+    ;;
+"full screen")
+    shotgun "$FILEPATH" &&
+        notify-send -i "$FILEPATH" "Screenshot" "$FILENAME"
+    ;;
+"selected window/area (copy)")
+    sel=$(slop -f "-i %i -g %g") || exit
+    shotgun $sel - | xclip -selection clipboard -t image/png &&
+        notify-send -i "image-png" "Screenshot" "Copied to clipboard."
+    ;;
+"full screen (copy)")
+    shotgun - | xclip -selection clipboard -t image/png &&
+        notify-send -i "image-png" "Screenshot" "Copied to clipboard."
+    ;;
 esac
