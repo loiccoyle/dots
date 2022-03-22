@@ -16,12 +16,10 @@ super + w
     $BROWSER
 # Toggle the bar and the top padding
 super + b
-    polybar-msg cmd toggle;\
-    if [ "$(bspc config -m "$PRIMARY_MONITOR" top_padding)" = "$BAR_HEIGHT" ]; then;\
+    if [ "$(bspc config -m "$PRIMARY_MONITOR" top_padding)" = "$BAR_HEIGHT" ]; then \
         bspc config -m "$PRIMARY_MONITOR" top_padding 0;\
-    else;\
-        bspc config -m "$PRIMARY_MONITOR" top_padding $BAR_HEIGHT;\
-    fi;
+    fi;\
+    polybar-msg cmd toggle;
 # Password manager
 super + p
     passmenu
@@ -44,7 +42,7 @@ super + t
     rofi-cuff -s -k
 # Quick torrent search
 super + shift + t
-    QUERY="$(rofi -dmenu -p "Torrent Search" -l 0 -i && notify-send -i "search" "Cuff" "Searching...")" && \
+    QUERY="$(echo '' | rofi -dmenu -p "Torrent Search" -l 0 -i && notify-send -i "search" "Cuff" "Searching...")" && \
     cuff -s -k search -s "Seeders" "$QUERY" | \
     ROFI_CUFF_WEBTORRENT_PLAYER="mpv" rofi-cuff -
 # Rice control panel
@@ -153,9 +151,9 @@ super + shift + f
 # Set the node flags/pseudo tiled state
 super + s
     flag="$(printf "%b" "sticky\nlocked\nprivate\npseudo tiled\nhidden" | rofi -dmenu -p "Select" -no-custom -l 5)";\
-    if [ -n "$flag" ]; then;\
+    if [ -n "$flag" ]; then \
         notify-send "Toggling flag: $flag";\
-        if [ "$flag" = "pseudo tiled" ]; then;\
+        if [ "$flag" = "pseudo tiled" ]; then \
             bspc node --state '~pseudo_tiled';\
         else;\
             bspc node --flag "$flag";\
@@ -182,7 +180,7 @@ super + {j,k}
     bspc node -f "$selection"
 # Focus floating or tiled
 super + a
-    if bspc query --node 'focused.floating' --nodes; then;\
+    if bspc query --node 'focused.floating' --nodes; then \
         bspc node -f last.local.tiled || bspc node -f any.local.tiled;\
     else;\
         bspc node -f last.local.floating || bspc node -f any.local.floating;\
@@ -190,7 +188,7 @@ super + a
 # Swap node or move floating nodes
 super + shift + {h,j,k,l}
     direction="{west,south,north,east}";\
-    if bspc query --node 'focused.floating' --nodes; then;\
+    if bspc query --node 'focused.floating' --nodes; then \
         delta=32;\
         case "$direction" in;\
             "north") bspc node -v 0 -$delta;;\
@@ -237,7 +235,7 @@ super + shift + {1-9,0}
 super + {1-9,0}
     dest="{1-9,10}";\
     current="$(bspc query --desktop focused --desktops --names)";\
-    if [ "$dest" = "$current" ]; then;\
+    if [ "$dest" = "$current" ]; then \
         bspc desktop -f last;\
     else;\
         bspc desktop -f "$dest";\

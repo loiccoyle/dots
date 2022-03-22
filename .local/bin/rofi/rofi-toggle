@@ -62,12 +62,12 @@ toggle_jackett() {
 
 toggle_thqm() {
     if check_thqm; then
-        killall thqm \
-            && notify-send -i "process-stop" "thqm" "Stopped thqm"
+        killall thqm &&
+            notify-send -i "process-stop" "thqm" "Stopped thqm"
     else
         thqm-media --save-qrcode "$THQM_TEMP_IMG" &
-        sleep 0.1 \
-            && notify-send -i "$THQM_TEMP_IMG" "thqm" "Started thqm"
+        notify-send -i "$THQM_TEMP_IMG" "thqm" "Started thqm"
+        vimiv --qt-args '--name float' "$THQM_TEMP_IMG" &
     fi
 }
 
@@ -82,14 +82,14 @@ toggle_transmission() {
 toggle_http() {
     if check_http; then
         local http_pid
-        http_pid="$(cat "$HTTP_PID_FILE")" && kill "$http_pid" && rm "$HTTP_PID_FILE" \
-            && notify-send -i "process-stop" "http" "Stopped http server"
+        http_pid="$(cat "$HTTP_PID_FILE")" && kill "$http_pid" && rm "$HTTP_PID_FILE" &&
+            notify-send -i "process-stop" "http" "Stopped http server"
     else
         local server_path
         server_path="$(find "$HOME" -type d -not -path "*/.*" | menu)" || exit
         python3 -m http.server -d "$server_path" &
-        echo "$!" >"$HTTP_PID_FILE" \
-            && notify-send -i "network-connect" "http" "Started http server\nhttp://0.0.0.0:8000/"
+        echo "$!" >"$HTTP_PID_FILE" &&
+            notify-send -i "network-connect" "http" "Started http server\nhttp://0.0.0.0:8000/"
     fi
 }
 
@@ -144,28 +144,28 @@ init_menu() {
 }
 
 case "$(init_menu)" in
-    *"Toggle thqm")
-        toggle_thqm
-        ;;
-    *"Toggle ssh")
-        toggle_ssh
-        ;;
-    *"Toggle Jackett")
-        toggle_jackett
-        ;;
-    *"Toggle Transmission")
-        toggle_transmission
-        ;;
-    *"Toggle http")
-        toggle_http
-        ;;
-    *"Toggle Picom")
-        toggle_picom
-        ;;
-    *"Toggle glava")
-        toggle_glava
-        ;;
-    *"Trigger shazam")
-        shazam-notif
-        ;;
+*"Toggle thqm")
+    toggle_thqm
+    ;;
+*"Toggle ssh")
+    toggle_ssh
+    ;;
+*"Toggle Jackett")
+    toggle_jackett
+    ;;
+*"Toggle Transmission")
+    toggle_transmission
+    ;;
+*"Toggle http")
+    toggle_http
+    ;;
+*"Toggle Picom")
+    toggle_picom
+    ;;
+*"Toggle glava")
+    toggle_glava
+    ;;
+*"Trigger shazam")
+    shazam-notif
+    ;;
 esac
