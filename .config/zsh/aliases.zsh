@@ -75,8 +75,7 @@ pacwhich() {
 
 pacinspect() {
     # List current explicit packages with package information preview.
-    # TODO: add autocompletion from `pacman -Qq`
-    pacman -Qe | fzf -q "$1" -m --preview 'pacman -Qi {1} && echo "Pactree:" && pactree {1}' \
+    pacman -Q "$@" | fzf -q "$1" -m --preview 'pacman -Qi {1} && echo "Pactree:" && pactree {1}' \
         --preview-window '80%:wrap' --height 100%
 }
 
