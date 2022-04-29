@@ -69,7 +69,17 @@ cmp.setup({
         { name = "path" },
     }),
 })
-
+-- Enable nvim_lua source in lua files
+cmp.setup.filetype("lua", {
+    sources = {
+        { name = "nvim_lsp" },
+        { name = "nvim_lua" },
+        { name = "luasnip" },
+        { name = "calc" },
+        { name = "buffer" },
+        { name = "path" },
+    },
+})
 cmp.setup.cmdline(":", {
     sources = cmp.config.sources({
         { name = "path" },
@@ -87,8 +97,3 @@ cmp.setup.cmdline("/", {
 -- autopairs
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
-
--- Setup buffer configuration (nvim-lua source only enables in Lua filetype).
-vim.cmd([[
-autocmd FileType lua lua require'cmp'.setup.buffer {sources={{name="buffer"}, {name="path"}, {name="calc"}, {name="luasnip"}, {name="nvim_lsp"}, {name='nvim_lua'}}}
-]])
