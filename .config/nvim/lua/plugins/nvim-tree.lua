@@ -5,14 +5,17 @@ require("nvim-tree").setup({
         enable = true,
         update_cwd = true,
     },
-    view = { width = 40, side = "left" },
-    diagnostics = { enable = true },
-    mappings = {
-        list = {
-            { key = "h", cb = ':lua require"nvim-tree".on_keypress("close_node")<CR>' },
-            { key = "l", cb = ':lua require"nvim-tree".on_keypress("edit")<CR>' },
-            { key = "v", cb = ':lua require"nvim-tree".on_keypress("vsplit")<CR>' },
-            { key = "s", cb = ':lua require"nvim-tree".on_keypress("split")<CR>' },
+    view = {
+        width = 32,
+        side = "left",
+        mappings = {
+            list = {
+                { key = "h", cb = ':lua require"nvim-tree".on_keypress("close_node")<CR>' },
+                { key = "l", cb = ':lua require"nvim-tree".on_keypress("edit")<CR>' },
+                { key = "v", cb = ':lua require"nvim-tree".on_keypress("vsplit")<CR>' },
+                { key = "s", cb = ':lua require"nvim-tree".on_keypress("split")<CR>' },
+            },
         },
     },
+    diagnostics = { enable = true },
 })
