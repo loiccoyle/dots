@@ -2,7 +2,7 @@
 #
 # lfcd in a script for launch at terminal startup.
 
-lfcd () {
+lfcd() {
     tmp="$(mktemp)"
     lf -last-dir-path="$tmp" "$@"
     if [ -f "$tmp" ]; then
