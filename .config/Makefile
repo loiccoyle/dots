@@ -10,7 +10,7 @@ terminal: ## Install terminal application
 
 .PHONY: file-manager
 file-manager: ## Install file manager and dependencies
-	$(INSTALL_AUR) lf vidir dragon-drag-and-drop ix
+	$(INSTALL_AUR) lf vidir dragon-drop ix
 	$(INSTALL) xclip highlight
 
 .PHONY: bar
