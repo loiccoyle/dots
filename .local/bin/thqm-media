@@ -41,4 +41,4 @@ function media_control {
     done
 }
 
-echo -e "fas fa-volume-mute\nfas fa-volume-down\nfas fa-volume-up\nfas fa-step-backward\nfas fa-play\nfas fa-step-forward\nfas fa-arrow-left\nfas fa-play-circle\nfas fa-arrow-right" | thqm --title="media control" --style fa-grid "$@" | media_control
+echo -e "fas fa-volume-mute\nfas fa-volume-down\nfas fa-volume-up\nfas fa-step-backward\nfas fa-play\nfas fa-step-forward\nfas fa-arrow-left\nfas fa-play-circle\nfas fa-arrow-right" | thqm --title="media control" --style fa-grid "$@" --port 8901 | media_control
