@@ -142,7 +142,7 @@ cmd serve ${{
 
 # Make files dragable
 cmd drag ${{
-    dragon-drag-and-drop $fx
+    dragon-drop $fx
 }}
 
 # Git prompt
