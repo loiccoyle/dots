@@ -9,7 +9,7 @@ local base16 = require("base16-colorscheme")
 -- end
 
 -- base16.apply_theme(colors_stripped)
-base16.setup(colors)
+base16.setup(colors, { telescope = false })
 
 -- Remove background colors
 base16.highlight.Normal = { guibg = "none" }

@@ -123,7 +123,7 @@ return packer.startup(function(use)
             config = function()
                 require("plugins.nvim-lspconfig")
             end,
-            event = { "BufReadPre", "BufNewFile" },
+            -- event = { "BufReadPre", "BufNewFile" },
             requires = {
                 { "williamboman/nvim-lsp-installer", module = "nvim-lsp-installer" },
                 { "jose-elias-alvarez/nvim-lsp-ts-utils", module = "nvim-lsp-ts-utils" },
