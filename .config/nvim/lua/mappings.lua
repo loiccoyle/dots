@@ -1,5 +1,4 @@
-local utils = require("utils")
-local map = utils.keymap.map
+local map = vim.keymap.set
 local M = {}
 
 local function nmap(key, cmd, opts)
@@ -116,27 +115,23 @@ end
 -- Telescope
 M.telescope = function()
     local opts = { noremap = true, silent = true }
-    nmap("<leader>n", '<cmd>lua require("telescope.builtin").find_files()<CR>', opts)
-    nmap("<leader>g", '<cmd>lua require("telescope.builtin").live_grep()<CR>', opts)
-    nmap(
-        "<leader>fb",
-        '<cmd>lua require("telescope.builtin").buffers(require("telescope.themes").get_dropdown())<CR>',
-        opts
-    )
-    nmap("<leader>fh", '<cmd>lua require("telescope.builtin").help_tags()<CR>', opts)
-    nmap("<leader>fo", '<cmd>lua require("telescope.builtin").oldfiles()<CR>', opts)
-    nmap(
-        "<leader>fc",
-        '<cmd>lua require("telescope.builtin").find_files({prompt_title="Config", cwd="$XDG_CONFIG_HOME/nvim"})<CR>',
-        opts
-    )
-    nmap("<leader>f?", '<cmd>lua require("telescope.builtin").builtin()<CR>', opts)
+    nmap("<leader>n", require("telescope.builtin").find_files, opts)
+    nmap("<leader>g", require("telescope.builtin").live_grep, opts)
+    nmap("<leader>fb", function()
+        require("telescope.builtin").buffers(require("telescope.themes").get_dropdown())
+    end, opts)
+    nmap("<leader>fh", require("telescope.builtin").help_tags, opts)
+    nmap("<leader>fo", require("telescope.builtin").oldfiles, opts)
+    nmap("<leader>fc", function()
+        require("telescope.builtin").find_files({ prompt_title = "Config", cwd = "$XDG_CONFIG_HOME/nvim" })
+    end, opts)
+    nmap("<leader>f?", require("telescope.builtin").builtin, opts)
     -- Telescope LSP
-    nmap("<leader>la", '<cmd>lua require("telescope.builtin").lsp_code_actions()<CR>', opts)
-    nmap("<leader>lr", '<cmd>lua require("telescope.builtin").lsp_references()<CR>', opts)
-    nmap("<leader>ld", '<cmd>lua require("telescope.builtin").lsp_definitions()<CR>', opts)
-    nmap("<leader>ls", '<cmd>lua require("telescope.builtin").lsp_document_symbols()<CR>', opts)
-    nmap("<leader>lS", '<cmd>lua require("telescope.builtin").lsp_workspace_symbols()<CR>', opts)
+    -- nmap("<leader>la", require("telescope.builtin").lsp_code_actions, opts)
+    nmap("<leader>lr", require("telescope.builtin").lsp_references, opts)
+    nmap("<leader>ld", require("telescope.builtin").lsp_definitions, opts)
+    nmap("<leader>ls", require("telescope.builtin").lsp_document_symbols, opts)
+    nmap("<leader>lS", require("telescope.builtin").lsp_workspace_symbols, opts)
 end
 
 -- Extra toggles
@@ -181,12 +176,12 @@ end
 
 M.dap = function()
     local opts = { silent = true }
-    nmap("<leader>d", "<cmd>lua require'dapui'.toggle()<CR>", opts)
-    nmap("<space>b", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", opts)
-    nmap("<F5>", "<cmd>lua require'dap'.continue()<CR>", opts)
-    nmap("<F10>", "<cmd>lua require'dap'.step_over()<CR>", opts)
-    nmap("<F11>", "<cmd>lua require'dap'.step_into()<CR>", opts)
-    nmap("<F12>", "<cmd>lua require'dap'.step_out()<CR>", opts)
+    nmap("<leader>d", require("dapui").toggle, opts)
+    nmap("<space>b", require("dap").toggle_breakpoint, opts)
+    nmap("<F5>", require("dap").continue, opts)
+    nmap("<F10>", require("dap").step_over, opts)
+    nmap("<F11>", require("dap").step_into, opts)
+    nmap("<F12>", require("dap").step_out, opts)
 end
 -- -- Vim surround ( noremap need to be false to work)
 -- nmap('ds', '<Plug>Dsurround', {noremap = false})
@@ -219,6 +214,6 @@ vim.cmd([[
 ]])
 
 -- Command to install the language servers I use.
-vim.cmd([[command! LspInstallUsed lua require('utils').install_lsp()]])
+-- vim.cmd([[command! LspInstallUsed lua require('utils').install_lsp()]])
 
 return M
