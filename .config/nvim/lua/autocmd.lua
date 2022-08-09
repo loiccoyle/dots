@@ -1,26 +1,49 @@
-require("utils").nvim_create_augroup({
-    ftplugin = {
-        { "BufRead", "NvimTree", "setl scl=no" }, -- TODO: fix this
-        { "BufRead,BufNewFile", "*.conf,*.ini", "set filetype=dosini" },
-        { "BufRead,BufNewFile", "*.zsh", "set filetype=sh" },
-        { "FileType", "man", "setl laststatus=0 noruler" },
-        -- {'FileType', 'vim,lua,css,javascript,sh', 'setl sw=2'},
-        { "TermOpen", "term://*", "setl nornu nonu nocul so=0 scl=no" },
-    },
-    on_save = {
-        -- {'BufWritePre', '*', '%s/\s\+$//e'},            -- Remove whitespace on save
-        -- reload configs
-        -- { "BufWritePost", "*.vim,*.lua", "source %" },
-        { "BufWritePost", "*bspwmrc", "!./%; notify-send -i reload 'Running bspwmrc'" },
-        { "BufWritePost", "*dunstrc", "!killall dunst; notify-send -i reload 'Restarting dunst'" },
-        { "BufWritePost", "*sxhkdrc", "!pkill -USR1 sxhkd; notify-send -i reload 'Reloading sxhkd'" },
-        { "BufWritePost", "*polybar/config", "!polybar-msg cmd restart; notify-send -i reload 'Restarting polybar'" },
-        { "BufWritePost", "*Xresources,*Xdefaults", "!xrdb %; notify-send -i reload 'Setting xrdb'" },
-    },
-    general = {
-        { "TextYankPost", "*", "silent! lua vim.highlight.on_yank { timeout = 300 }" },
-        -- { "FileType", "*", "set formatoptions-=cro" }, -- Avoid newline continuation of comments
-    },
-    resize_windows_proportionally = { { "VimResized", "*", [[tabdo wincmd =]] } },
-    -- toggle_search_highlighting = { { "InsertEnter", "*", ":nohl" } }, -- This is broken
+local au_filetypes = vim.api.nvim_create_augroup("FileTypes", { clear = true })
+vim.api.nvim_create_autocmd(
+    { "BufRead", "BufNewFile" },
+    { group = au_filetypes, pattern = { "*.conf", "*.ini" }, command = "setl filetype=dosini" }
+)
+vim.api.nvim_create_autocmd(
+    { "BufRead", "BufNewFile" },
+    { group = au_filetypes, pattern = { "*.zsh" }, command = "setl filetype=sh" }
+)
+
+local au_on_save = vim.api.nvim_create_augroup("OnSave", { clear = true })
+vim.api.nvim_create_autocmd(
+    { "BufWritePost" },
+    { group = au_on_save, pattern = { "*bspwrc" }, command = "!./%; notify-send -i reload 'Running bspwmrc'" }
+)
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+    group = au_on_save,
+    pattern = { "*dunstrc" },
+    command = "!killall dunst; notify-send -i reload 'Restarting dunst'",
+})
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+    group = au_on_save,
+    pattern = { "*sxhkdrc" },
+    command = "!pkill -USR1 sxhkd; notify-send -i reload 'Reloading sxhkd'",
+})
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+    group = au_on_save,
+    pattern = { "*polybar/config" },
+    command = "!polybar-msg cmd restart; notify-send -i reload 'Restarting polybar'",
+})
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+    group = au_on_save,
+    pattern = { "*Xresources", "*Xdefaults" },
+    command = "!xrdb %; notify-send -i reload 'Setting xrdb'",
+})
+
+local au_yank_highlight = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
+vim.api.nvim_create_autocmd({ "TextYankPost" }, {
+    group = au_yank_highlight,
+    callback = function()
+        vim.highlight.on_yank({ timeout = 300 })
+    end,
+})
+
+local au_resize_propor = vim.api.nvim_create_augroup("ResizePropor", { clear = true })
+vim.api.nvim_create_autocmd({ "VimResized" }, {
+    group = au_resize_propor,
+    command = "tabdo wincmd =",
 })

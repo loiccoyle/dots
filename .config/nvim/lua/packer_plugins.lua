@@ -123,9 +123,11 @@ return packer.startup(function(use)
             config = function()
                 require("plugins.nvim-lspconfig")
             end,
-            event = { "BufReadPre", "BufNewFile" },
+            -- event = { "BufReadPre", "BufNewFile" },
             requires = {
-                { "williamboman/nvim-lsp-installer", module = "nvim-lsp-installer" },
+                { "williamboman/mason.nvim", module = "mason" },
+                { "williamboman/mason-lspconfig.nvim", module = "mason-lspconfig" },
+                -- { "WhoIsSethDaniel/mason-tool-installer.nvim", module = "mason-tool-installer" },
                 { "jose-elias-alvarez/nvim-lsp-ts-utils", module = "nvim-lsp-ts-utils" },
                 { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
                 { "nvim-lua/lsp_extensions.nvim", module = "lsp_extensions" },
@@ -137,9 +139,13 @@ return packer.startup(function(use)
             "kosayoda/nvim-lightbulb",
             event = { "CursorHold", "CursorHoldI" },
             config = function()
-                vim.cmd(
-                    [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb({ignore = {"null-ls"}})]]
-                )
+                local au_lightbulb = vim.api.nvim_create_augroup("LightBulb", { clear = true })
+                vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+                    group = au_lightbulb,
+                    callback = function()
+                        require("nvim-lightbulb").update_lightbulb({ ignore = { "null-ls" } })
+                    end,
+                })
             end,
         },
         {
@@ -154,7 +160,7 @@ return packer.startup(function(use)
             cmd = "SymbolsOutline",
             setup = function()
                 require("mappings").symbols_outline()
-                vim.g.symbols_outline = { width = 45 }
+                vim.g.symbols_outline = { width = 32 }
             end,
         },
     })
@@ -272,8 +278,6 @@ return packer.startup(function(use)
         cmd = "Telescope", ]]
         config = function()
             require("plugins.telescope")
-        end,
-        setup = function()
             require("mappings").telescope()
         end,
     })
@@ -338,8 +342,6 @@ return packer.startup(function(use)
         requires = { "mfussenegger/nvim-dap" },
         config = function()
             require("dapui").setup({})
-        end,
-        setup = function()
             require("mappings").dap()
         end,
     })

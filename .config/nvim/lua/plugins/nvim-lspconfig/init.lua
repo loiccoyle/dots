@@ -1,58 +1,74 @@
 -- https://github.com/neovim/nvim-lspconfig
 -- https://github.com/williamboman/nvim-lsp-installer
+local lspconfig = require("lspconfig")
 local on_attach = require("plugins.nvim-lspconfig.on-attach")
-local lsp_installer = require("nvim-lsp-installer")
 local utils = require("utils")
+local mason = require("mason")
+local mason_lsp = require("mason-lspconfig")
+-- local mason_tool_installer = require("mason-tool-installer")
 
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
--- configure LSP servers
-lsp_installer.on_server_ready(function(server)
-    local servers = {
-        sumneko_lua = {
-            fyletypes = { "lua" },
+mason.setup()
+mason_lsp.setup({
+    ensure_installed = {
+        "bashls",
+        "clangd",
+        "cssls",
+        -- "dartls",
+        "dockerls",
+        "html",
+        "jsonls",
+        "pyright",
+        "rust_analyzer",
+        "sumneko_lua",
+        "tsserver",
+    },
+})
+-- mason_tool_installer.setup({
+--     ensure_installed = {
+--         "stylua",
+--         "shellcheck",
+--         "shfmt",
+--         "isort",
+--         "black",
+--         "prettier",
+--         "eslint_d",
+--     },
+-- })
+
+local opts = { on_attach = on_attach, capabilities = capabilities }
+mason_lsp.setup_handlers({
+    -- The first entry (without a key) will be the default handler
+    -- and will be called for each installed server that doesn't have
+    -- a dedicated handler.
+    function(server_name) -- default handler (optional)
+        lspconfig[server_name].setup(opts)
+    end,
+    -- Next, you can provide targeted overrides for specific servers.
+    -- For example, a handler override for the `rust_analyzer`:
+    ["rust_analyzer"] = function()
+        if utils.prequire("rust-tools") then
+            require("rust-tools").setup(opts)
+        end
+    end,
+    ["sumneko_lua"] = function()
+        lspconfig.sumneko_lua.setup({
             settings = {
                 Lua = {
-                    diagnostics = { globals = { "vim" } },
-                    workspace = {
-                        library = {
-                            [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                            [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
-                        },
-                        maxPreload = 100000,
-                        preloadFileSize = 10000,
+                    diagnostics = {
+                        globals = { "vim" },
                     },
-                    telemetry = { enable = false },
                 },
             },
-        },
-    }
-
-    local opts = servers[server.name] or { flags = { debounce_text_changes = 500 } }
-    if server.name == "rust_analyzer" and utils.prequire("rust-tools") then
-        -- adapted from: https://github.com/williamboman/nvim-lsp-installer/wiki/Rust
-        opts = vim.tbl_deep_extend("force", server:get_default_options(), opts)
-        opts.on_attach = on_attach
-        require("rust-tools").setup({
-            server = opts,
         })
-    elseif server.name == "dartls" and utils.prequire("flutter-tools") then
-        opts = vim.tbl_deep_extend("force", server:get_default_options(), opts)
-        opts.on_attach = on_attach
-        require("flutter-tools").setup({
-            lsp = opts,
-        })
-    else
-        opts.capabilities = capabilities
-        opts.on_attach = on_attach
-        -- I'm not sure why this is required
-        opts.filetypes = server:get_supported_filetypes()
-        -- This setup() function is exactly the same as lspconfig's setup function (:help lspconfig-quickstart)
-        server:setup(opts)
-    end
-    server:attach_buffers()
-    -- vim.cmd([[ do User LspAttachBuffers ]])
-end)
+    end,
+    -- ["dartls"] = function()
+    --     if utils.prequire("rust-tools") then
+    --         require("flutter-tools").setup(opts)
+    --     end
+    -- end,
+})
 
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 for type, icon in pairs(signs) do
@@ -62,9 +78,4 @@ end
 
 -- Appearance
 vim.diagnostic.config({ virtual_text = false, float = { focusable = false, border = "rounded" } })
---[[ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = false,
-    signs = true,
-    update_in_insert = false,
-}) ]]
 vim.cmd([[autocmd CursorHold * lua vim.diagnostic.open_float(0, {scope="line"})]])

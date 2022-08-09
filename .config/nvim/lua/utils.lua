@@ -22,7 +22,7 @@ function M.term_wrapper(cmd, fmt)
 end
 
 local is_transparent = true
-function M.toogle_background()
+function M.toggle_background()
     if is_transparent == true then
         vim.cmd([[ hi Normal guibg=NONE ctermbg=NONE ]])
         is_transparent = false
@@ -30,65 +30,6 @@ function M.toogle_background()
         vim.cmd([[ set background=dark ]])
         is_transparent = true
     end
-end
-
--- Autocmds
-function M.nvim_create_augroup(definitions) -- {{{1
-    for group_name, definition in pairs(definitions) do
-        vim.cmd("augroup " .. group_name)
-        vim.cmd("autocmd!")
-        for _, def in pairs(definition) do
-            local command = table.concat(vim.tbl_flatten({ "autocmd", def }), " ")
-            vim.cmd(command)
-        end
-        vim.cmd("augroup END")
-    end
-end
-
--- Keybindings
-M.keymap = {}
-
-function M.keymap.buf_map(mode, key, cmd, opts)
-    local options = { noremap = true, silent = true }
-    if opts then
-        options = vim.tbl_extend("force", options, opts)
-    end
-    vim.api.nvim_buf_set_keymap(0, mode, key, cmd, options)
-end
-
-function M.keymap.map(mode, key, cmd, opts)
-    local options = { noremap = true, silent = true }
-    if opts then
-        options = vim.tbl_extend("force", options, opts)
-    end
-    vim.api.nvim_set_keymap(mode, key, cmd, options)
-end
-
--- LspInstall helper
-function M.install_lsp()
-    local lsp_servers = require("nvim-lsp-installer.servers")
-    local language_servers = {
-        "bashls",
-        "clangd",
-        "cssls",
-        "dartls",
-        "dockerls",
-        "html",
-        "jsonls",
-        "pyright",
-        "rust_analyzer",
-        "sumneko_lua",
-        "tsserver",
-    }
-    for _, value in ipairs(language_servers) do
-        local ok, server = lsp_servers.get_server(value)
-        if ok then
-            if not server:is_installed() then
-                server:install()
-            end
-        end
-    end
-    require("nvim-lsp-installer").info_window.open()
 end
 
 -- Check if module is available

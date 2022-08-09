@@ -5,8 +5,6 @@ o.cmdheight = 1
 o.colorcolumn = "80"
 o.cursorline = true
 o.foldmethod = "expr"
-o.foldexpr = "nvim_treesitter#foldexpr()"
-o.foldlevelstart = 99
 o.number = true
 o.relativenumber = true
 o.ruler = false
@@ -14,8 +12,15 @@ o.showmode = false
 o.signcolumn = "yes"
 o.termguicolors = true -- Required by colorizer
 o.wrap = true
+-- Folds
+o.foldexpr = "nvim_treesitter#foldexpr()"
+o.foldlevelstart = 99
+o.foldtext =
+    [[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) . ' (' . (v:foldend - v:foldstart + 1) . ' lines)']]
+o.foldnestmax = 3
+o.foldminlines = 1
 -- Removes ~ on eof
-o.fillchars = { eob = " " }
+o.fillchars = { eob = " ", fold= " "}
 
 -- Backups
 o.backup = false
