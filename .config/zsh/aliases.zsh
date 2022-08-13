@@ -105,6 +105,7 @@ alias -g H="| head"
 alias -g T="| tail"
 alias -g C="| wc -l" # count lines
 alias -g N="> /dev/null"
+alias -g PING="; notify-send 'PING'"
 
 # Directory shortcuts
 # hash -d config="$XDG_CONFIG_HOME"
