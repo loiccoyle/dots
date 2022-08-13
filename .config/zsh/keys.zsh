@@ -10,7 +10,6 @@
 # |_|\_\___|\__, |___/
 #           |___/
 
-zmodload zsh/complist
 # vi mode
 bindkey -v
 # Value in ms to wait for another key in the shortcut
@@ -26,22 +25,27 @@ lfcd() {
         [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir" || return
     fi
 }
+zle -N lfcd
 # shell commands
-bindkey -s '^o' 'lfcd\n'
-type lazygit >/dev/null && bindkey -s '^G' 'lazygit\n'
+type lfcd >/dev/null && bindkey '^o' lfcd
+type lazygit >/dev/null && bindkey -s '^G' 'lazygit^M'
 # Home and end
 bindkey '^[[F' end-of-line       # End key
 bindkey '^[[H' beginning-of-line # Home key
 # delete key
 bindkey '^[[3~' delete-char
 # Navigate words with ctrl+arrow keys
-bindkey '^[Oc' forward-word     # forward word with ctrl-left
+bindkey '^[Oc' forward-word     # forward word with ctrl-right
 bindkey '^[Od' backward-word    # back word with ctrl-left
-bindkey '^[[1;5C' forward-word  # forward word with ctrl-left
+bindkey '^[[1;5C' forward-word  # forward word with ctrl-right
 bindkey '^[[1;5D' backward-word # back word with ctrl-left
 bindkey '^H' backward-kill-word # delete previous word with ctrl+backspace
 bindkey '^[[3;5~' kill-word     # delete word with ctrl-delete
+# easy history navigation
+bindkey '^K' up-history
+bindkey '^J' down-history
 # Use vim keys in tab complete menu:
+zmodload zsh/complist
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
