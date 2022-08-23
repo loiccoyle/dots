@@ -25,9 +25,8 @@ lfcd() {
         [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir" || return
     fi
 }
-zle -N lfcd
 # shell commands
-type lfcd >/dev/null && bindkey '^o' lfcd
+type lfcd >/dev/null && bindkey -s '^o' 'lfcd^M'
 type lazygit >/dev/null && bindkey -s '^G' 'lazygit^M'
 # Home and end
 bindkey '^[[F' end-of-line       # End key
