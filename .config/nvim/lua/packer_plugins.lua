@@ -351,7 +351,6 @@ return packer.startup(function(use)
             -- currently somewhat broken, see:
             -- https://github.com/simrat39/rust-tools.nvim/issues/124
             "simrat39/rust-tools.nvim",
-            ft = { "rust" },
             requires = {
                 { "neovim/nvim-lspconfig", module = "lspconfig" },
                 { "nvim-lua/plenary.nvim", module = "plenary" },
