@@ -12,6 +12,7 @@ o.showmode = false
 o.signcolumn = "yes"
 o.termguicolors = true -- Required by colorizer
 o.wrap = true
+o.laststatus = 3
 -- Folds
 o.foldexpr = "nvim_treesitter#foldexpr()"
 o.foldlevelstart = 99
@@ -20,7 +21,7 @@ o.foldtext =
 o.foldnestmax = 3
 o.foldminlines = 1
 -- Removes ~ on eof
-o.fillchars = { eob = " ", fold= " "}
+o.fillchars = { eob = " ", fold = " " }
 
 -- Backups
 o.backup = false
