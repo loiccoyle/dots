@@ -18,4 +18,11 @@ require("nvim-tree").setup({
         },
     },
     diagnostics = { enable = true },
+    renderer = {
+        icons = { glyphs = { git = {
+            unstaged = "⦾",
+            staged = "⦿",
+            untracked = "⮿",
+        } } },
+    },
 })
