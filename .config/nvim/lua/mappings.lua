@@ -33,6 +33,7 @@ nmap("<A-j>", "<cmd>m .+1<CR>==")
 nmap("<A-k>", "<cmd>m .-2<CR>==")
 nmap("S", ":%s//g<Left><Left>", { silent = false })
 nmap("<leader>Q", "<cmd>q<CR>")
+nmap("<A-.>", "gv")
 -- nmap('<C-n>', '*Nciw', {noremap = true}) -- Poor man's multi cursor
 M.whichkey = function()
     nmap("<leader>?", "<cmd>WhichKey<CR>")
