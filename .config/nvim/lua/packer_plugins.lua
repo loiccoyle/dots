@@ -157,10 +157,11 @@ return packer.startup(function(use)
         },
         {
             "simrat39/symbols-outline.nvim",
-            cmd = "SymbolsOutline",
             setup = function()
                 require("mappings").symbols_outline()
-                vim.g.symbols_outline = { width = 32 }
+            end,
+            config = function()
+                require("symbols-outline").setup()
             end,
         },
     })
