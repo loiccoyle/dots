@@ -7,7 +7,7 @@ local mason = require("mason")
 local mason_lsp = require("mason-lspconfig")
 -- local mason_tool_installer = require("mason-tool-installer")
 
-local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 mason.setup()
 mason_lsp.setup({

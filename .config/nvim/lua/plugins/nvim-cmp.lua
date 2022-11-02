@@ -50,13 +50,16 @@ cmp.setup({
         ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<C-e>"] = cmp.mapping({ i = cmp.mapping.abort(), c = cmp.mapping.close() }),
-        ["<CR>"] = cmp.mapping.confirm({ select = false }),
+        ["<CR>"] = cmp.mapping.confirm({
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = false,
+        }),
         -- cmp.mapping.confirm({
         --     behavior = cmp.ConfirmBehavior.Insert,
         --     select = false,
         -- }),
-        ["<Tab>"] = cmp.mapping(tab_complete, { "i", "s", "c" }),
-        ["<S-Tab>"] = cmp.mapping(s_tab_complete, { "i", "s", "c" }),
+        ["<Tab>"] = cmp.mapping(tab_complete, { "i", "s" }),
+        ["<S-Tab>"] = cmp.mapping(s_tab_complete, { "i", "s" }),
     },
 
     -- You should specify your *installed* sources.
