@@ -49,7 +49,7 @@ mason_lsp.setup_handlers({
     -- For example, a handler override for the `rust_analyzer`:
     ["rust_analyzer"] = function()
         if utils.prequire("rust-tools") then
-            require("rust-tools").setup({ server = opts })
+            require("rust-tools").setup({ server = opts, tools = { hover_actions = { auto_focus = true } } })
         end
     end,
     ["sumneko_lua"] = function()

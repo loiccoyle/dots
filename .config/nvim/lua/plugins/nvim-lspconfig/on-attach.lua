@@ -45,6 +45,11 @@ end
 -- LSP settings
 return function(client, bufnr)
     mappings()
+    if client.name == "rust_analyzer" and utils.prequire("rust-tools") then
+        local rt = require("rust-tools")
+        -- Hover actions
+        vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+    end
     -- only allow null-ls to format
     if client.name == "null-ls" then
         formatting_callback(client, bufnr)
