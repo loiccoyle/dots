@@ -11,7 +11,7 @@ xset s 3600 3600 &
 type nvidia-settings >/dev/null && nvidia-settings --load-config-only &
 
 # Start compositor
-picom --experimental-backends -b &
+picom -b &
 
 # Set the screenlayout
 # ~/.config/screenlayout/dual.sh
