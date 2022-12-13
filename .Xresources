@@ -1,1 +1,3 @@
 #include ".config/xresources/Xcolors"
+
+Xcursor.theme: capitaine-cursors-light
