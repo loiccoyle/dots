@@ -1,6 +1,3 @@
--- https://github.com/glepnir/lspsaga.nvim
-local signature = require("lsp_signature")
-
 -- All of these are buffer mappings
 local function mappings()
     vim.keymap.set("n", "<space>d", vim.lsp.buf.definition, { buffer = true })
@@ -56,12 +53,4 @@ return function(client, bufnr)
     end
     -- Set the border
     vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-    vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-
-    signature.on_attach({
-        bind = true,
-        hint_prefix = " ",
-        hint_scheme = "String",
-        handler_opts = { border = "rounded" },
-    })
 end

@@ -36,6 +36,7 @@ return packer.startup(function(use)
             { "hrsh7th/cmp-path", after = "nvim-cmp" },
             { "hrsh7th/cmp-calc", after = "nvim-cmp" },
             { "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
+            { "hrsh7th/cmp-nvim-lsp-signature-help", after = "nvim-cmp" },
             { "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
             {
                 "L3MON4D3/LuaSnip",
@@ -132,7 +133,6 @@ return packer.startup(function(use)
                 { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
                 { "nvim-lua/lsp_extensions.nvim", module = "lsp_extensions" },
                 { "onsails/lspkind-nvim", module = "lspkind" },
-                { "ray-x/lsp_signature.nvim", module = "lsp_signature" },
             },
         },
         {
