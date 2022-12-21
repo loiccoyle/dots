@@ -151,6 +151,7 @@ return packer.startup(function(use)
         {
             "folke/trouble.nvim",
             cmd = "Trouble",
+            module = "trouble",
             setup = function()
                 require("mappings").trouble()
             end,
@@ -275,8 +276,8 @@ return packer.startup(function(use)
             { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
             { "nvim-telescope/telescope-ui-select.nvim" },
         },
-        --[[ module = "telescope",
-        cmd = "Telescope", ]]
+        -- module = "telescope",
+        -- cmd = "Telescope",
         config = function()
             require("plugins.telescope")
             require("mappings").telescope()

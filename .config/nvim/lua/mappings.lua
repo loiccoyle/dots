@@ -32,11 +32,10 @@ nmap("<C-s>", "<cmd>w<CR>")
 nmap("<A-j>", "<cmd>m .+1<CR>==")
 nmap("<A-k>", "<cmd>m .-2<CR>==")
 nmap("S", ":%s//g<Left><Left>", { silent = false })
-nmap("<leader>Q", "<cmd>q<CR>")
 nmap("<A-.>", "gv")
 -- nmap('<C-n>', '*Nciw', {noremap = true}) -- Poor man's multi cursor
 M.whichkey = function()
-    nmap("<leader>?", "<cmd>WhichKey<CR>")
+    nmap("<leader>?", "<cmd>WhichKey<CR>", { desc = "WhichKey" })
 end
 
 -- Buffers
@@ -46,7 +45,7 @@ nmap("<S-t>", "<cmd>enew<CR>")
 M.bufferline = function()
     nmap("<Tab>", "<cmd>BufferLineCycleNext<CR>")
     nmap("<S-Tab>", "<cmd>BufferLineCyclePrev<CR>")
-    nmap("<leader>b", "<cmd>BufferLinePick<CR>")
+    nmap("<leader>b", "<cmd>BufferLinePick<CR>", { desc = "BufferLine Pick" })
     nmap("<A-1>", "<cmd>BufferLineGoToBuffer 1<CR>")
     nmap("<A-2>", "<cmd>BufferLineGoToBuffer 2<CR>")
     nmap("<A-3>", "<cmd>BufferLineGoToBuffer 3<CR>")
@@ -58,7 +57,7 @@ M.bufferline = function()
     nmap("<A-9>", "<cmd>BufferLineGoToBuffer 9<CR>")
 end
 M.bufdelete = function()
-    nmap("<leader>q", "<cmd>Bdelete<CR>")
+    nmap("<leader>q", "<cmd>Bdelete<CR>", { desc = "Delete Buffer" })
 end
 -- nmap("<leader><space>", "<cmd>:TZFocus<CR>")
 
@@ -67,7 +66,17 @@ nmap("<C-h>", "<cmd>wincmd h<CR>")
 nmap("<C-j>", "<cmd>wincmd j<CR>")
 nmap("<C-k>", "<cmd>wincmd k<CR>")
 nmap("<C-l>", "<cmd>wincmd l<CR>")
-nmap("<leader>=", "<cmd>wincmd =<CR>")
+nmap("<leader>=", "<cmd>wincmd =<CR>", { desc = "Window Balance" })
+
+-- Terminal
+tmap("<C-w>h", "<cmd>wincmd h<CR>")
+tmap("<C-w>j", "<cmd>wincmd j<CR>")
+tmap("<C-w>k", "<cmd>wincmd k<CR>")
+tmap("<C-w>l", "<cmd>wincmd l<CR>")
+tmap("<C-w><C-h>", "<cmd>wincmd h<CR>")
+tmap("<C-w><C-j>", "<cmd>wincmd j<CR>")
+tmap("<C-w><C-k>", "<cmd>wincmd k<CR>")
+tmap("<C-w><C-l>", "<cmd>wincmd l<CR>")
 
 -- Insert
 imap("<C-c>", "<Esc>")
@@ -85,16 +94,6 @@ xmap(">", ">gv")
 xmap("<A-j>", ":move '>+1<CR>gv-gv")
 xmap("<A-k>", ":move '<-2<CR>gv-gv")
 
--- Terminal
-tmap("<C-w>h", "<cmd>wincmd h<CR>")
-tmap("<C-w>j", "<cmd>wincmd j<CR>")
-tmap("<C-w>k", "<cmd>wincmd k<CR>")
-tmap("<C-w>l", "<cmd>wincmd l<CR>")
-tmap("<C-w><C-h>", "<cmd>wincmd h<CR>")
-tmap("<C-w><C-j>", "<cmd>wincmd j<CR>")
-tmap("<C-w><C-k>", "<cmd>wincmd k<CR>")
-tmap("<C-w><C-l>", "<cmd>wincmd l<CR>")
-
 -- Command
 cmap("<C-a>", "<Home>")
 cmap("<C-e>", "<End>")
@@ -108,47 +107,81 @@ cmap("<C-BS>", "<C-W>")
 cmap("<C-h>", "<C-W>")
 
 -- Git
--- nmap('<leader>G', '<cmd>Neogit<CR>')
 M.lazygit = function()
-    nmap("<leader>G", "<cmd>LazyGit<CR>")
+    nmap("<leader>G", "<cmd>LazyGit<CR>", { desc = "LazyGit" })
 end
 
 -- Telescope
 M.telescope = function()
-    local opts = { noremap = true, silent = true }
-    nmap("<leader>n", require("telescope.builtin").find_files, opts)
-    nmap("<leader>g", require("telescope.builtin").live_grep, opts)
-    nmap("<leader>fb", function()
+    local telescope_mapping = function(key, func, desc)
+        vim.keymap.set("n", key, func, { noremap = true, silent = true, desc = desc })
+    end
+    telescope_mapping("<leader>n", function()
+        require("telescope.builtin").find_files()
+    end, "Telescope")
+    telescope_mapping("<leader>g", function()
+        require("telescope.builtin").live_grep()
+    end, "Telescope Grep")
+    telescope_mapping("<leader>fb", function()
         require("telescope.builtin").buffers(require("telescope.themes").get_dropdown())
-    end, opts)
-    nmap("<leader>fh", require("telescope.builtin").help_tags, opts)
-    nmap("<leader>fo", require("telescope.builtin").oldfiles, opts)
-    nmap("<leader>fc", function()
+    end, "Telescope Buffers")
+    telescope_mapping("<leader>fh", function()
+        require("telescope.builtin").help_tags()
+    end, "Telescope Help Tags")
+    telescope_mapping("<leader>fo", function()
+        require("telescope.builtin").oldfiles()
+    end, "Telescope Old Files")
+    telescope_mapping("<leader>fc", function()
         require("telescope.builtin").find_files({ prompt_title = "Config", cwd = "$XDG_CONFIG_HOME/nvim" })
-    end, opts)
-    nmap("<leader>f?", require("telescope.builtin").builtin, opts)
-    -- Telescope LSP
-    -- nmap("<leader>la", require("telescope.builtin").lsp_code_actions, opts)
-    nmap("<leader>lr", require("telescope.builtin").lsp_references, opts)
-    nmap("<leader>ld", require("telescope.builtin").lsp_definitions, opts)
-    nmap("<leader>ls", require("telescope.builtin").lsp_document_symbols, opts)
-    nmap("<leader>lS", require("telescope.builtin").lsp_workspace_symbols, opts)
+    end, "Telescope File Nvim Config")
+    telescope_mapping("<leader>f?", function()
+        require("telescope.builtin").builtin()
+    end, "Telescope Builtins")
+    -- telescope_mapping("<leader>la", function()
+    --     require("telescope.builtin").lsp_code_actions()
+    -- end, "Telescope LSP Code Actions")
+    telescope_mapping("<leader>lr", function()
+        require("telescope.builtin").lsp_references()
+    end, "Telescope LSP References")
+    telescope_mapping("<leader>ld", function()
+        require("telescope.builtin").lsp_definitions()
+    end, "Telescope LSP Definitions")
+    telescope_mapping("<leader>ls", function()
+        require("telescope.builtin").lsp_document_symbols()
+    end, "Telescope LSP Document Symbols")
+    telescope_mapping("<leader>lS", function()
+        require("telescope.builtin").lsp_workspace_symbols()
+    end, "Telescope LSP Workspace Symbols")
 end
 
 -- Extra toggles
 M.colorizer = function()
-    nmap("yoC", "<cmd>ColorizerToggle<CR>")
+    nmap("yoC", "<cmd>ColorizerToggle<CR>", { desc = "Colorizer Toggle" })
 end
 
 -- Trouble
 M.trouble = function()
-    local opts = { noremap = true, silent = true }
-    nmap("<leader>xx", "<cmd>Trouble<cr>", opts)
-    nmap("<leader>xw", "<cmd>Trouble lsp_workspace_diagnostics<cr>", opts)
-    nmap("<leader>xd", "<cmd>Trouble lsp_document_diagnostics<cr>", opts)
-    nmap("<leader>xl", "<cmd>Trouble loclist<cr>", opts)
-    nmap("<leader>xq", "<cmd>Trouble quickfix<cr>", opts)
-    nmap("gR", "<cmd>Trouble lsp_references<cr>", opts)
+    local trouble_mapping = function(key, func, desc)
+        vim.keymap.set("n", key, func, { noremap = true, silent = true, desc = desc })
+    end
+    trouble_mapping("<leader>xx", function()
+        require("trouble").toggle()
+    end, "Trouble")
+    trouble_mapping("<leader>xw", function()
+        require("trouble").toggle({ mode = "workspace_diagnostics" })
+    end, "Trouble Workspace Diagnostics")
+    trouble_mapping("<leader>xd", function()
+        require("trouble").toggle({ mode = "document_diagnostics" })
+    end, "Trouble Document Diagnostics")
+    trouble_mapping("<leader>xl", function()
+        require("trouble").toggle({ mode = "loclist" })
+    end, "Trouble Loclist")
+    trouble_mapping("<leader>xq", function()
+        require("trouble").toggle("quickfix")
+    end, "Trouble Quickfix")
+    trouble_mapping("gR", function()
+        require("trouble").toggle("lsp_references")
+    end, "Touble LSP References")
 end
 
 -- fzf
@@ -168,21 +201,20 @@ end
 -- nmap('<leader>fd', '<cmd>:Dots<CR>')
 -- Tree
 M.nvimtree = function()
-    nmap("<leader>N", "<cmd>NvimTreeToggle<CR>")
+    nmap("<leader>N", "<cmd>NvimTreeToggle<CR>", { desc = "NvimTree Toggle" })
 end
 
 M.symbols_outline = function()
-    nmap("<leader>s", "<cmd>SymbolsOutline<CR>")
+    nmap("<leader>s", "<cmd>SymbolsOutline<CR>", { desc = "Symbols Outline" })
 end
 
 M.dap = function()
-    local opts = { silent = true }
-    nmap("<leader>d", require("dapui").toggle, opts)
-    nmap("<space>b", require("dap").toggle_breakpoint, opts)
-    nmap("<F5>", require("dap").continue, opts)
-    nmap("<F10>", require("dap").step_over, opts)
-    nmap("<F11>", require("dap").step_into, opts)
-    nmap("<F12>", require("dap").step_out, opts)
+    nmap("<leader>d", require("dapui").toggle, { desc = "DAP UI" })
+    nmap("<leader>db", require("dap").toggle_breakpoint, { desc = "DAP Toggle Breakpoint" })
+    nmap("<F5>", require("dap").continue, { desc = "DAP Continue" })
+    nmap("<F10>", require("dap").step_over, { desc = "DAP Step Over" })
+    nmap("<F11>", require("dap").step_into, { desc = "DAP Step Into" })
+    nmap("<F12>", require("dap").step_out, { desc = "DAP Step Out" })
 end
 -- -- Vim surround ( noremap need to be false to work)
 -- nmap('ds', '<Plug>Dsurround', {noremap = false})
