@@ -128,6 +128,7 @@ listview {
 }
 
 element {
+    children: [ element-text, element-icon ];
     padding: @unit-small-h;
     border-radius: @radius;
     margin: @unit-h;
