@@ -22,7 +22,7 @@ super + b
     polybar-msg cmd toggle;
 # Password manager
 super + p
-    passmenu
+    bspc rule --add Arandr -o state=floating && arandr
 # Set a random wallpaper
 super + shift + Home
     setwall -r -g
@@ -40,6 +40,9 @@ super + question
 # Torrent search
 super + t
     rofi-cuff -s -k
+# Twitch
+super + shift + t
+    rofi-ttv
 # Rice control panel
 super + Home
     rofi-rice
