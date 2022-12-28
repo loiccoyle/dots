@@ -181,7 +181,15 @@ cmd link %{{
 }}
 
 map P link
-map a push %mkdir<space>
+map <c-n> push $mkdir<space>
+map <a-n> push $touch<space>
+
+map A rename # at the very end
+# map c push A<c-u> # new rename
+map I push A<c-a> # at the very beginning
+map a push A<a-b><a-b><a-f> # before extension
+# map a push A<a-b> # after extension
+
 map D delete
 # fasd_cd fzf
 map gf fasd_cd
