@@ -23,6 +23,10 @@ check_jackett() {
     [ "$(systemctl is-active jackett.service)" = "active" ]
 }
 
+check_prowlarr() {
+    [ "$(systemctl is-active prowlarr.service)" = "active" ]
+}
+
 check_transmission() {
     pgrep -x "transmission-da" >/dev/null
 }
@@ -44,6 +48,7 @@ check_glava() {
 }
 
 # Toggles
+
 toggle_ssh() {
     if check_ssh; then
         sudo systemctl stop sshd.service && notify-send -i "process-stop" "ssh" "Stopped ssh"
@@ -57,6 +62,14 @@ toggle_jackett() {
         sudo systemctl stop jackett.service && notify-send -i "process-stop" "Jackett" "Stopped Jackett"
     else
         sudo systemctl start jackett.service && notify-send -i "downloading" "Jackett" "Started Jackett"
+    fi
+}
+
+toggle_prowlarr() {
+    if check_prowlarr; then
+        sudo systemctl stop prowlarr.service && notify-send -i "process-stop" "Prowlarr" "Stopped Prowlarr"
+    else
+        sudo systemctl start prowlarr.service && notify-send -i "downloading" "Prowlarr" "Started Prowlarr"
     fi
 }
 
@@ -115,6 +128,7 @@ init_menu() {
     local thqm_status
     local ssh_status
     local jackett_status
+    local prowlarr_status
     local transmission_status
     local http_status
     local picom_status
@@ -122,6 +136,7 @@ init_menu() {
     thqm_status="$(check_thqm && echo $RUNNING || echo $STOPPED)"
     ssh_status="$(check_ssh && echo $RUNNING || echo $STOPPED)"
     jackett_status="$(check_jackett && echo $RUNNING || echo $STOPPED)"
+    prowlarr_status="$(check_prowlarr && echo $RUNNING || echo $STOPPED)"
     transmission_status="$(check_transmission && echo $RUNNING || echo $STOPPED)"
     http_status="$(check_http && echo $RUNNING || echo $STOPPED)"
     picom_status="$(check_picom && echo $RUNNING || echo $STOPPED)"
@@ -134,6 +149,7 @@ init_menu() {
     type thqm >/dev/null && menu_string="$menu_string$thqm_status Toggle thqm\\n"
     type ssh >/dev/null && menu_string="$menu_string$ssh_status Toggle ssh\\n"
     systemctl list-unit-files jackett.service >/dev/null && menu_string="$menu_string$jackett_status Toggle Jackett\\n"
+    systemctl list-unit-files prowlarr.service >/dev/null && menu_string="$menu_string$prowlarr_status Toggle Prowlarr\\n"
     type transmission-daemon >/dev/null && menu_string="$menu_string$transmission_status Toggle Transmission\\n"
     type python3 >/dev/null && menu_string="$menu_string$http_status Toggle http\\n"
     type picom >/dev/null && menu_string="$menu_string$picom_status Toggle Picom\\n"
@@ -152,6 +168,9 @@ case "$(init_menu)" in
     ;;
 *"Toggle Jackett")
     toggle_jackett
+    ;;
+*"Toggle Prowlarr")
+    toggle_prowlarr
     ;;
 *"Toggle Transmission")
     toggle_transmission
