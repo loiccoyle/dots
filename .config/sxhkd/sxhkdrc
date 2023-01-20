@@ -39,7 +39,7 @@ super + question
     rofi-hag
 # Torrent search
 super + t
-    rofi-cuff -s -k
+    rofi-prowlet -s -k
 # Twitch
 super + shift + t
     rofi-ttv

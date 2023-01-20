@@ -13,7 +13,7 @@ fi
 # XDG paths
 export XDG_DOWNLOAD_DIR="$HOME/downloads"
 export XDG_TEMPLATES_DIR="$HOME/templates"
-export XDG_DOCUMENTS_DIR="$HOME/projects"
+export XDG_DOCUMENTS_DIR="$HOME/documents"
 export XDG_MUSIC_DIR="$HOME/music"
 export XDG_PICTURES_DIR="$HOME/pictures"
 export XDG_VIDEOS_DIR="$HOME/videos"
@@ -27,6 +27,9 @@ export EDITOR="vim"
 export VISUAL="vim"
 export BROWSER="qutebrowser"
 export PAGER="less"
+_PAGER="less"
+type "nvimpager" >/dev/null && _PAGER="nvimpager"
+export PAGER="$_PAGER"
 export OPENER="xdg-open"
 export TERM="alacritty"
 export TERMINAL="alacritty"
@@ -87,6 +90,9 @@ export __GL_SHADER_DISK_CACHE_PATH="$XDG_CACHE_HOME/nv"
 export SQLITE_HISTORY="$XDG_STATE_HOME/sqlite_history"
 # node history
 export NODE_REPL_HISTORY="$XDG_STATE_HOME/node_history"
+# npm
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+export NPM_CONFIG_CACHE="$XDG_CACHE_HOME/npm"
 # dart pub cache
 export PUB_CACHE="$XDG_CACHE_HOME/pub-cache"
 # gradle home

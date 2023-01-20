@@ -6,7 +6,8 @@ INSTALL_AUR = paru -S --needed --removemake
 
 .PHONY: terminal
 terminal: ## Install terminal application
-	$(INSTALL_AUR) alacritty
+	$(INSTALL) alacritty
+	$(INSTALL_AUR) xterm-alacritty-symlink
 
 .PHONY: file-manager
 file-manager: ## Install file manager and dependencies
@@ -87,7 +88,7 @@ flavours: ## Colourscheme manager
 .PHONY: torrents
 torrents: ## Install torrenting setup, with transmission
 	$(INSTALL) transmission-cli mpv
-	$(INSTALL_AUR) jackett-bin rofi-cuff-git webtorrent-cli
+	$(INSTALL_AUR) prowlarr rofi-prowlet-git webtorrent-cli
 
 .PHONY: hooks
 hooks: ## Install pacman hooks
@@ -106,7 +107,7 @@ startup: hotkeys ## Startup programs (xinit and .xprofile)
 .PHONY: other
 other: ## Other useful software
 	$(INSTALL) lazygit rsync arandr yt-dlp fzf
-	$(INSTALL_AUR) shazam-cli-git
+	$(INSTALL_AUR) shazam-cli-git nvimpager
 
 .PHONY: walls
 walls: ## Fetch wallpapers
