@@ -180,14 +180,20 @@ cmd link %{{
     lf -remote "send clear"
 }}
 
+cmd new_node %{{
+  node="$1"
+  [[ "$node" == */ ]] && mkdir "$node" || touch "$node"
+}}
+
 map P link
-map <c-n> push $mkdir<space>
-map <a-n> push $touch<space>
+map a push :new_node<space>
 
 map A rename # at the very end
-# map c push A<c-u> # new rename
 map I push A<c-a> # at the very beginning
-map a push A<a-b><a-b><a-f> # before extension
+map r push A<a-b><a-b><a-f> # before extension
+map R $vidir
+# map c push A<c-u> # new rename
+# map a push A<a-b><a-b><a-f> # before extension
 # map a push A<a-b> # after extension
 
 map D delete
@@ -196,10 +202,17 @@ map gf fasd_cd
 # $EDITOR on selected files
 map E $$EDITOR $fx
 # bulkrename
-map R $vidir
 # copy selected path
 map Y $printf '%s' "$fx" | xclip -i -selection clipboard
 map gd :drag
 # compress and extract
 map gt push :tar<space>
 map gx :extract
+map gp $papis add $fx
+# chmod
+map gcx $chmod +x $fx
+map gcX $chmod -x $fx
+map gcr $chmod +r $fx
+map gcR $chmod -r $fx
+map gcw $chmod +w $fx
+map gcW $chmod -w $fx
