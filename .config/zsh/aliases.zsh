@@ -52,6 +52,8 @@ alias gc="git commit"
 alias gp="git push"
 alias gs="git status"
 alias lg="lazygit"
+type docker >/dev/null && alias docker="sudo docker"
+type lazydocker >/dev/null && alias lazydocker="sudo lazydocker"
 # other
 alias wifiqr="nmcli dev wifi show-password"
 
