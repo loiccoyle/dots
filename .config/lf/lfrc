@@ -37,6 +37,12 @@ set icons on
 set info size
 set autoquit
 
+# cmd line mappings
+cmap <tab> cmd-menu-complete
+cmap <backtab> cmd-menu-complete-back
+# for some reason backspace is c-backspace
+cmap <backspace> cmd-delete-unix-word
+
 # use enter for shell commands
 map <enter> shell
 # execute current file (must be executable)
@@ -216,3 +222,6 @@ map gcr $chmod +r $fx
 map gcR $chmod -r $fx
 map gcw $chmod +w $fx
 map gcW $chmod -w $fx
+# Parent folder cycle
+map J push hjl
+map K push hkl
