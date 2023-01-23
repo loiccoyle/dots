@@ -1,0 +1,46 @@
+return {
+  "nvim-treesitter/nvim-treesitter",
+  opts = {
+    rainbow = { enable = true, extended_mode = true },
+    matchup = { enable = true },
+    ensure_installed = {
+      "bash",
+      "bibtex",
+      "c",
+      "cmake",
+      "comment",
+      "cpp",
+      "css",
+      "dockerfile",
+      "glsl",
+      "go",
+      "help",
+      "html",
+      "javascript",
+      "json",
+      "latex",
+      "lua",
+      "make",
+      "markdown",
+      "markdown_inline",
+      "python",
+      "rasi",
+      "regex",
+      "rust",
+      "toml",
+      "tsx",
+      "typescript",
+      "vim",
+      "yaml",
+    },
+  },
+  dependencies = {
+    { "mrjones2014/nvim-ts-rainbow" },
+    {
+      "andymass/vim-matchup",
+      config = function()
+        vim.g.matchup_matchparen_offscreen = { method = "status_manual" }
+      end,
+    },
+  },
+}
