@@ -32,6 +32,10 @@ vim.keymap.set("n", "<leader>?", "<cmd>WhichKey<CR>", { desc = "WhichKey" })
 -- Plugin related mappings
 local M = {}
 
+M.transparent = {
+  { "<leader>ut", "<cmd>TransparentToggle<CR>" },
+}
+
 M.symbols_outline = {
   { "<leader>cs", "<cmd>SymbolsOutline<CR>", desc = "Symbols Outline" },
 }

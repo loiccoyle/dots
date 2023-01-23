@@ -2,7 +2,7 @@ local au_filetypes = vim.api.nvim_create_augroup("FileTypes", { clear = true })
 vim.api.nvim_create_autocmd(
   { "BufRead", "BufNewFile" },
   -- See https://github.com/LazyVim/LazyVim/issues/80
-  { group = au_filetypes, pattern = { "*.lua" }, command = "set fo=jcqlnt" }
+  { group = au_filetypes, pattern = { "*" }, command = "set fo=jcqlnt" }
 )
 vim.api.nvim_create_autocmd(
   { "BufRead", "BufNewFile" },
