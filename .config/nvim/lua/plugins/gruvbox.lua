@@ -13,7 +13,7 @@ return {
       GruvboxAquaSign = { bg = "none" },
       GruvboxOrangeSign = { bg = "none" },
 
-      NormalFloat = { bg = "none" },
+      -- NormalFloat = { bg = "none" },
     },
   },
 }

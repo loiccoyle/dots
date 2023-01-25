@@ -1,8 +1,8 @@
-local au_filetypes = vim.api.nvim_create_augroup("FileTypes", { clear = true })
+local au_filetypes = vim.api.nvim_create_augroup("ConfigFileType", { clear = true })
 vim.api.nvim_create_autocmd(
   { "BufRead", "BufNewFile" },
   -- See https://github.com/LazyVim/LazyVim/issues/80
-  { group = au_filetypes, pattern = { "*" }, command = "set fo=jcqlnt" }
+  { group = au_filetypes, pattern = { "*" }, command = "set fo-=ro" }
 )
 vim.api.nvim_create_autocmd(
   { "BufRead", "BufNewFile" },
@@ -13,16 +13,15 @@ vim.api.nvim_create_autocmd(
   { group = au_filetypes, pattern = { "*.zsh" }, command = "setl filetype=sh" }
 )
 
-local au_on_save = vim.api.nvim_create_augroup("OnSave", { clear = true })
+local au_on_save = vim.api.nvim_create_augroup("ConfigOnSave", { clear = true })
 vim.api.nvim_create_autocmd(
   { "BufWritePost" },
   { group = au_on_save, pattern = { "*bspwrc" }, command = "!./%; notify-send -i reload 'Running bspwmrc'" }
 )
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-  group = au_on_save,
-  pattern = { "*dunstrc" },
-  command = "!killall dunst; notify-send -i reload 'Restarting dunst'",
-})
+vim.api.nvim_create_autocmd(
+  { "BufWritePost" },
+  { group = au_on_save, pattern = { "*dunstrc" }, command = "!killall dunst; notify-send -i reload 'Restarting dunst'" }
+)
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
   group = au_on_save,
   pattern = { "*sxhkdrc" },
@@ -30,7 +29,7 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 })
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
   group = au_on_save,
-  pattern = { "*polybar/config" },
+  pattern = { "*polybar/config.ini" },
   command = "!polybar-msg cmd restart; notify-send -i reload 'Restarting polybar'",
 })
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
@@ -38,14 +37,6 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
   pattern = { "*Xresources", "*Xdefaults" },
   command = "!xrdb %; notify-send -i reload 'Setting xrdb'",
 })
-
--- local au_yank_highlight = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
--- vim.api.nvim_create_autocmd({ "TextYankPost" }, {
---   group = au_yank_highlight,
---   callback = function()
---     vim.highlight.on_yank({ timeout = 300 })
---   end,
--- })
 
 local au_resize_propor = vim.api.nvim_create_augroup("ResizePropor", { clear = true })
 vim.api.nvim_create_autocmd({ "VimResized" }, {

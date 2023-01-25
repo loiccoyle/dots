@@ -1,5 +1,5 @@
 return {
-  "akinsho/nvim-bufferline.lua",
+  "akinsho/bufferline.nvim",
   opts = {
     options = {
       right_mouse_command = "vertical sbuffer %d",

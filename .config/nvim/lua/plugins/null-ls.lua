@@ -9,7 +9,7 @@ return {
         nls.builtins.formatting.black,
         nls.builtins.formatting.stylua.with({ extra_args = { "--indent-type", "Spaces" } }),
         nls.builtins.formatting.prettier,
-        nls.builtins.formatting.shfmt.with({ extra_args = { "-i", "4", "-ln", "bash" } }),
+        nls.builtins.formatting.shfmt.with({ extra_args = { "-i", "4" } }),
         nls.builtins.formatting.rustfmt,
         --nls.builtins.diagnostics.eslint_d.with({ extra_args = { "--no-eslintrc" } }),
         --nls.builtins.diagnostics.shellcheck.with({ extra_args = { "-s", "bash" } }),

@@ -32,6 +32,18 @@ vim.keymap.set("n", "<leader>?", "<cmd>WhichKey<CR>", { desc = "WhichKey" })
 -- Plugin related mappings
 local M = {}
 
+M.telescope = {
+  {
+    "<leader>fp",
+    function()
+      require("telescope.builtin").find_files({
+        cwd = require("lazy.core.config").options.root,
+      })
+    end,
+    desc = "Find Plugin File",
+  },
+}
+
 M.transparent = {
   { "<leader>ut", "<cmd>TransparentToggle<CR>" },
 }

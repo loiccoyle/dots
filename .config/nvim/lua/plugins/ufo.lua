@@ -3,7 +3,7 @@ local keymaps = require("config.keymaps")
 return {
   "kevinhwang91/nvim-ufo",
   dependencies = { "kevinhwang91/promise-async", "nvim-treesitter/nvim-treesitter" },
-  event = "VeryLazy",
+  event = "BufReadPost",
   keys = keymaps.ufo,
   opts = {
     ---@diagnostic disable-next-line: unused-local

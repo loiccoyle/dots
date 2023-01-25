@@ -14,12 +14,10 @@ vim.opt.foldenable = true
 -- vim.opt.shiftwidth = 4
 -- vim.opt.softtabstop = 4
 -- vim.opt.tabstop = 4
-vim.opt.shortmess = vim.opt.shortmess
-  + {
-    a = true, -- All abreviations
-    s = true, -- No search top bottom msgs
-    I = true, -- No intro msg
-  }
+vim.opt.shortmess = vim.opt.shortmess + {
+  s = true, -- No search top bottom msgs
+  I = true, -- No intro msg
+}
 -- vim.opt.formatoptions = vim.opt.formatoptions + {
 --   r = false, -- Pressing Enter will continue comments
 --   o = false,
