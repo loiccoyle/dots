@@ -36,12 +36,15 @@ set incsearch on
 set icons on
 set info size
 set autoquit
+set mouse on
 
 # cmd line mappings
 cmap <tab> cmd-menu-complete
 cmap <backtab> cmd-menu-complete-back
 # for some reason backspace is c-backspace
 cmap <backspace> cmd-delete-unix-word
+cmap <up> cmd-history-prev
+cmap <down> cmd-history-next
 
 # use enter for shell commands
 map <enter> shell
@@ -223,5 +226,6 @@ map gcR $chmod -r $fx
 map gcw $chmod +w $fx
 map gcW $chmod -w $fx
 # Parent folder cycle
-map J push hjl
-map K push hkl
+map zd set dironly!
+map J push zdhjlzd
+map K push zdhklzd
