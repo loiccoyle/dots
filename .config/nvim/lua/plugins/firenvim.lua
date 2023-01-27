@@ -1,6 +1,6 @@
 return {
   "glacambre/firenvim",
-  enable = false,
+  enabled = false,
   lazy = false,
   run = function()
     vim.fn["firenvim#install"](0)
