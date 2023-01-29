@@ -10,6 +10,7 @@ return {
       tsserver = {},
       rust_analyzer = {},
       yamlls = {},
+      ruff_lsp = {},
     },
   },
 }
