@@ -127,15 +127,25 @@ cmd tar ${{
 #     rm -rf $1
 # }}
 
-cmd fasd_cd ${{
-    res="$(fasd -dl | grep -iv cache | fzf 2>/dev/tty | sed 's/\\/\\\\/g;s/"/\\"/g')"
-    if [ -d "$res" ]; then
-        cmd="cd"
-    else
-        cmd="select"
-    fi
-    lf -remote "send $id $cmd \"$res\""
- }}
+# cmd fasd_cd ${{
+#     res="$(fasd -dl | grep -iv cache | fzf 2>/dev/tty | sed 's/\\/\\\\/g;s/"/\\"/g')"
+#     if [ -d "$res" ]; then
+#         cmd="cd"
+#     else
+#         cmd="select"
+#     fi
+#     lf -remote "send $id $cmd \"$res\""
+#  }}
+
+ cmd z %{{
+	result="$(zoxide query --exclude $PWD $@)"
+	lf -remote "send $id cd $result"
+}}
+
+cmd zi ${{
+	result="$(zoxide query -i)"
+	lf -remote "send $id cd $result"
+}}
 
 # Share files through https://ix.io
 cmd share ${{
