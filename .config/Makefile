@@ -29,7 +29,7 @@ image-viewer: ## Install image viewer and dependencies
 
 .PHONY: editor
 editor: ## Install text editor and dependencies
-	$(INSTALL) neovim nodejs npm python-pynvim ripgrep
+	$(INSTALL) neovim nodejs npm python-pynvim ripgrep ripgrep-all
 	$(INSTALL_AUR) neovim-symlinks
 
 .PHONY: dev
@@ -106,7 +106,7 @@ startup: hotkeys ## Startup programs (xinit and .xprofile)
 
 .PHONY: other
 other: ## Other useful software
-	$(INSTALL) lazygit rsync arandr yt-dlp fzf zoxide
+	$(INSTALL) lazygit rsync arandr yt-dlp fzf zoxide jq
 	$(INSTALL_AUR) shazam-cli-git nvimpager
 
 .PHONY: walls
