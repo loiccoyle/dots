@@ -56,31 +56,30 @@ type lazydocker >/dev/null && alias lazydocker="sudo lazydocker"
 alias wifiqr="nmcli dev wifi show-password"
 
 # Functions
+
+# Dots git management.
 dots() {
-    # Dots git management.
     if [ "$#" = 0 ]; then
         dots edit
     else
         git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME" "$@"
     fi
 }
+# Open command in $EDITOR
 edit() {
-    # Open command in $EDITOR
     $EDITOR "$(which "$1")"
 }
+# Find package that owns a command.
 pacwhich() {
-    # Find package that owns a command.
     sudo pacman -Qo "$(which "$1")"
 }
-
+# List current explicit packages with package information preview.
 pacinspect() {
-    # List current explicit packages with package information preview.
     pacman -Q "$@" | fzf -m --preview 'pacman -Qi {1} && echo "Pactree:" && pactree {1}' \
         --preview-window '80%:wrap' --height 100%
 }
-
+# Activate python venv
 ae() {
-    # Activate python venv
     local venv_dir
     venv_dir="${1:-venv}"
     if [ -f "$venv_dir/bin/activate" ]; then
@@ -91,6 +90,23 @@ ae() {
         [ -n "$venv_poetry" ] && source "$venv_poetry/bin/activate"
     fi
 }
+if type rga >/dev/null; then
+    # Interactive rga:
+    # https://github.com/phiresky/ripgrep-all#integration-with-fzf
+    rga-fzf() {
+        RG_PREFIX="rga --files-with-matches"
+        local file
+        file="$(
+            FZF_DEFAULT_COMMAND="$RG_PREFIX '$1'" \
+                fzf --sort --preview="[[ ! -z {} ]] && rga --pretty --context 5 {q} {}" \
+                --phony -q "$1" \
+                --bind "change:reload:$RG_PREFIX {q}" \
+                --preview-window="70%:wrap"
+        )" &&
+            echo "opening $file" &&
+            xdg-open "$file"
+    }
+fi
 
 # Function completions
 compdef dots=git
@@ -99,7 +115,7 @@ compdef pacwhich=which
 compdef '_files -/' ae # folders
 
 # Globals
-alias -g P="| $PAGER"
+alias -g P='| $PAGER'
 alias -g G="| grep"
 alias -g H="| head"
 alias -g T="| tail"
