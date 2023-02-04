@@ -63,7 +63,7 @@ dev_web: ## web dev setup
 .PHONY: launcher
 launcher: ## Install launcher and exentions
 	$(INSTALL) rofi rofi-emoji rofi-calc
-	$(INSTALL_AUR) rofi-greenclip rofi-nordvpn-git rofi-greenclip rofi-dmenu
+	$(INSTALL_AUR) rofi-greenclip rofi-nordvpn-git rofi-greenclip
 
 .PHONY: ui-theme
 ui-theme: ## Install ui themes
