@@ -47,6 +47,7 @@ dev_c: ## C dev setup
 .PHONY: dev_rust
 dev_rust: ## rust dev setup
 	$(INSTALL) rustup rust-src
+	rustup default stable
 
 .PHONY: launcher
 launcher: ## Install launcher and exentions
