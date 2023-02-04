@@ -25,6 +25,7 @@ hotkeys: launcher scripts terminal ## Install hotkey daemon and related programs
 
 .PHONY: image-viewer
 image-viewer: ## Install image viewer and dependencies
+  # gpg key for python-exiv2
 	gpg --keyserver keyserver.ubuntu.com --recv-keys 068346EEA7A91F52
 	$(INSTALL_AUR) vimiv-qt-git python-exiv2
 
@@ -71,8 +72,12 @@ fonts: ## Install fonts
 .PHONY: flavours
 flavours: ## Colourscheme manager
 	$(INSTALL_AUR) flavours
+# Don't do this if in a docker container because the cloning fails as ssh isn't set up.
+# So the test recipe doesn't fail.
+ifeq ("$(wildcard /.dockerenv)","")
 	flavours update all
 	flavours apply gruvbox-dark-hard
+endif
 
 .PHONY: torrents
 torrents: ## Install torrenting setup, with transmission
