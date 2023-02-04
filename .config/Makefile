@@ -25,6 +25,7 @@ hotkeys: launcher scripts terminal ## Install hotkey daemon and related programs
 
 .PHONY: image-viewer
 image-viewer: ## Install image viewer and dependencies
+	gpg --keyserver keyserver.ubuntu.com --recv-keys 068346EEA7A91F52
 	$(INSTALL_AUR) vimiv-qt-git python-exiv2
 
 .PHONY: editor
