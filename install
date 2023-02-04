@@ -1,15 +1,15 @@
 #!/bin/sh
-git clone --bare git@github.com:loiccoyle/dots.git "$HOME/.dotfiles" || exit 1
-function dots {
-    git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME" $@
+set -e
+git clone --bare git@github.com:loiccoyle/dots.git "$HOME/.dotfiles"
+dots() {
+    git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME" "$@"
 }
-checkout_log="$(dots checkout 2>&1)"
-if [ $? = 0 ]; then
-  printf "Checked out dotfiles.\n"
-  else
+if checkout_log="$(dots checkout 2>&1)"; then
+    printf "Checked out dotfiles.\n"
+else
     printf "Backing up conflicting dotfiles to ~/.config-backup/\n"
     printf "$checkout_log" | grep -E "\s+\." | tr -d "[:blank:]" | xargs -I{} sh -c 'mkdir --parents ~/.config-backup/$(dirname {}) && mv -v {} ~/.config-backup/{}'
-    dots checkout && printf "Checked out dotfiles.\n" || exit 1
+    dots checkout && printf "Checked out dotfiles.\n"
 fi
 dots config status.showUntrackedFiles no
 printf "It's probably a good idea to relog.\n"
