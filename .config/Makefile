@@ -40,18 +40,9 @@ dev: dev_python dev_sh dev_c dev_lua dev_web dev_rust ## Install dev setup
 dev_python: ## Python dev setup
 	$(INSTALL) python-pipx python-poetry pyenv ipython python-black
 
-.PHONY: dev_sh
-dev_sh: ## sh dev setup
-	$(INSTALL) shfmt
-	$(INSTALL_AUR) shellcheck-bin
-
 .PHONY: dev_c
 dev_c: ## C dev setup
 	$(INSTALL) clang
-
-.PHONY: dev_lua
-dev_lua: ## lua dev setup
-	$(INSTALL_AUR) stylua
 
 .PHONY: dev_rust
 dev_rust: ## rust dev setup
