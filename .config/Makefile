@@ -34,7 +34,7 @@ editor: ## Install text editor and dependencies
 	$(INSTALL_AUR) neovim-symlinks
 
 .PHONY: dev
-dev: dev_python dev_sh dev_c dev_lua dev_web dev_rust ## Install dev setup
+dev: dev_python dev_c dev_rust ## Install dev setup
 
 .PHONY: dev_python
 dev_python: ## Python dev setup
