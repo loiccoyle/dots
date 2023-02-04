@@ -25,7 +25,7 @@ export XDG_DATA_HOME="$HOME/.local/share"
 # Programs
 export EDITOR="vim"
 export VISUAL="vim"
-export BROWSER="qutebrowser"
+export BROWSER="firefox"
 _PAGER="less"
 type "nvimpager" >/dev/null && _PAGER="nvimpager"
 export PAGER="$_PAGER"

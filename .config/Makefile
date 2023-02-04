@@ -73,7 +73,7 @@ ui-theme: ## Install ui themes
 
 .PHONY: browser
 browser: file-manager ## Install browser and dependencies
-	$(INSTALL) qutebrowser python-adblock
+	$(INSTALL) firefox
 
 .PHONY: fonts
 fonts: ## Install fonts
