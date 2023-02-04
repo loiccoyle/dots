@@ -77,7 +77,7 @@ browser: file-manager ## Install browser and dependencies
 
 .PHONY: fonts
 fonts: ## Install fonts
-	$(INSTALL) noto-fonts noto-fonts-emoji ttf-hack ttf-nerd-fonts-symbols
+	$(INSTALL) noto-fonts noto-fonts-emoji ttf-hack ttf-nerd-fonts-symbols-common ttf-nerd-fonts-symbols-2048-em
 
 .PHONY: flavours
 flavours: ## Colourscheme manager
