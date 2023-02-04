@@ -9,6 +9,7 @@ return {
       "isort",
       "prettier",
       "rustfmt",
+      "eslint_d",
     },
   },
 }

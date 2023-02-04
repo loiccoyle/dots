@@ -48,10 +48,6 @@ dev_c: ## C dev setup
 dev_rust: ## rust dev setup
 	$(INSTALL) rustup rust-src
 
-.PHONY: dev_web
-dev_web: ## web dev setup
-	$(INSTALL) prettier eslint
-
 .PHONY: launcher
 launcher: ## Install launcher and exentions
 	$(INSTALL) rofi rofi-emoji rofi-calc
