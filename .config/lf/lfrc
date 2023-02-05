@@ -239,3 +239,4 @@ map gcW $chmod -w $fx
 map zd set dironly!
 map J push zdhjlzd
 map K push zdhklzd
+map <c-z> $ kill -STOP $PPID
