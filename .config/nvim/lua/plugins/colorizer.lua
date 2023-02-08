@@ -1,9 +1,7 @@
-local keymaps = require("config.keymaps")
-
 -- from https://github.com/folke/dot
 return {
   "NvChad/nvim-colorizer.lua",
-  event = "BufReadPre",
+  event = { "BufReadPre", "BufNewFile" },
   opts = {
     filetypes = { "*", "!lazy" },
     buftype = { "*", "!prompt", "!nofile" },
