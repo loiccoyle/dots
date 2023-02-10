@@ -39,8 +39,8 @@ alias jup="jupyter notebook"
 # dotfile git
 # alias dots="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 alias lgdots="lazygit --git-dir=\"$HOME/.dotfiles/\" --work-tree=\"$HOME\""
-# vimwiki
-alias vimwiki="vim -c VimwikiIndex"
+# neorg
+alias neorg="vim -c 'Neorg workspace home'"
 # colours
 alias diff="diff --color=auto"
 alias grep="grep --colour=auto"
