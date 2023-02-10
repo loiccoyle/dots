@@ -100,7 +100,7 @@ startup: hotkeys ## Startup programs (xinit and .xprofile)
 
 .PHONY: other
 other: ## Other useful software
-	$(INSTALL) lazygit rsync arandr yt-dlp fzf zoxide jq sioyek
+	$(INSTALL) gh lazygit rsync arandr yt-dlp fzf zoxide jq sioyek
 	$(INSTALL_AUR) shazam-cli-git nvimpager
 
 .PHONY: walls
