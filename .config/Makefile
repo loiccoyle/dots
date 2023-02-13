@@ -51,9 +51,9 @@ dev_rust: ## rust dev setup
 	rustup default stable
 
 .PHONY: launcher
-launcher: ## Install launcher and exentions
+launcher: ## Install launcher and extensions
 	$(INSTALL) rofi rofi-emoji rofi-calc
-	$(INSTALL_AUR) rofi-greenclip rofi-nordvpn-git rofi-greenclip
+	$(INSTALL_AUR) rofi-greenclip rofi-nordvpn-git
 
 .PHONY: ui-theme
 ui-theme: ## Install ui themes
@@ -62,7 +62,7 @@ ui-theme: ## Install ui themes
 	@echo "Run 'qt5ct' and select adwaita"
 
 .PHONY: browser
-browser: file-manager ## Install browser and dependencies
+browser: file-manager ## Install browser
 	$(INSTALL) firefox
 
 .PHONY: fonts
