@@ -57,3 +57,8 @@ file='$XDG_CONFIG_HOME/nvim/lua/plugins/nvim-base16-colors.lua'
 template='luakit'
 subtemplate='colors'
 rewrite=true
+
+[[item]]
+file='$XDG_CONFIG_HOME/zsh/fzf-base16.zsh'
+template='fzf'
+rewrite=true
