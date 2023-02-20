@@ -1,10 +1,9 @@
 return {
   "nvim-treesitter/nvim-treesitter",
-  opts = {
-    rainbow = { enable = true, extended_mode = true },
-    matchup = { enable = true },
-    ensure_installed = {
-      "bash",
+  opts = function(_, opts)
+    opts.rainbow = { enable = true, extended_mode = true }
+    opts.matchup = { enable = true }
+    vim.list_extend(opts.ensure_installed, {
       "bibtex",
       "c",
       "cmake",
@@ -16,26 +15,13 @@ return {
       "gitignore",
       "glsl",
       "go",
-      "help",
-      "html",
-      "javascript",
-      "json",
       "latex",
-      "lua",
       "make",
-      "markdown",
-      "markdown_inline",
-      "python",
       "rasi",
-      "regex",
       "rust",
       "toml",
-      "tsx",
-      "typescript",
-      "vim",
-      "yaml",
-    },
-  },
+    })
+  end,
   dependencies = {
     { "mrjones2014/nvim-ts-rainbow" },
     {
