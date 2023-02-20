@@ -6,7 +6,7 @@ return {
       clangd = {},
       cssls = {},
       dockerls = {},
-      -- pyright = {},
+      pyright = {},
       tsserver = {},
       rust_analyzer = {},
       yamlls = {},
