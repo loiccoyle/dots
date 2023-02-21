@@ -64,6 +64,10 @@ ui-theme: ## Install ui themes
 .PHONY: browser
 browser: file-manager ## Install browser
 	$(INSTALL) firefox
+	$(INSTALL_AUR) python-pywalfox
+	sudo pywalfox install -g
+	@echo "Install the pywalfox extension for colour scheme integration"
+	@echo "https://github.com/frewacom/pywalfox"
 
 .PHONY: fonts
 fonts: ## Install fonts

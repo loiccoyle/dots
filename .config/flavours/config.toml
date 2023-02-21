@@ -62,3 +62,10 @@ rewrite=true
 file='$XDG_CONFIG_HOME/zsh/fzf-base16.zsh'
 template='fzf'
 rewrite=true
+
+[[item]]
+file='$XDG_CACHE_HOME/wal/colors.json'
+template='pywal'
+subtemplate='wallpaper'
+rewrite=true
+hook="pywalfox update"
