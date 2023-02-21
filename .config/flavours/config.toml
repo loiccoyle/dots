@@ -53,7 +53,7 @@ template='vimiv'
 rewrite=true
 
 [[item]]
-file='$XDG_CONFIG_HOME/nvim/lua/plugins/nvim-base16-colors.lua'
+file='$XDG_CONFIG_HOME/nvim/lua/config/base16-colors.lua'
 template='luakit'
 subtemplate='colors'
 rewrite=true
