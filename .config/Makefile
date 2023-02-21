@@ -39,7 +39,7 @@ dev: dev_python dev_c dev_rust ## Install dev setup
 
 .PHONY: dev_python
 dev_python: ## Python dev setup
-	$(INSTALL) python-pipx python-poetry pyenv ipython python-black
+	$(INSTALL) python-pipx python-poetry pyenv ipython
 
 .PHONY: dev_c
 dev_c: ## C dev setup
