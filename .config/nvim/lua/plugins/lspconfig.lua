@@ -10,7 +10,10 @@ return {
       tsserver = {},
       rust_analyzer = {},
       yamlls = {},
-      ruff_lsp = {},
+      ruff_lsp = {
+        --ignore line too long
+        init_options = { settings = { args = { "--ignore E501" } } },
+      },
     },
   },
 }
