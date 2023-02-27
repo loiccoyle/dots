@@ -25,6 +25,8 @@ zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zcompcache"
 zstyle ':completion:*' menu select
+# Disable highlighting of pasted text: https://www.reddit.com/r/zsh/comments/c160o2/comment/erbg6hy/
+zle_highlight=('paste:none')
 
 # Create folders
 [ ! -d "$XDG_STATE_HOME/zsh" ] && mkdir -p "$XDG_STATE_HOME/zsh"
