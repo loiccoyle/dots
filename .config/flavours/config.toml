@@ -69,3 +69,8 @@ template='pywal'
 subtemplate='wallpaper'
 rewrite=true
 hook="pywalfox update"
+
+[[item]]
+file="$XDG_CONFIG_HOME/sioyek/colors.config"
+template="sioyek"
+rewrite=true
