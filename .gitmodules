@@ -1,3 +1,0 @@
-[submodule ".config/flavours/templates/sioyek"]
-	path = .config/flavours/templates/sioyek
-	url = https://github.com/loiccoyle/base16-sioyek
