@@ -1,8 +1,9 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   opts = function(_, opts)
-    opts.rainbow = { enable = true, extended_mode = true }
+    opts.rainbow = { enable = true }
     opts.matchup = { enable = true }
+    ---@diagnostic disable-next-line: missing-parameter
     vim.list_extend(opts.ensure_installed, {
       "bibtex",
       "c",
@@ -23,7 +24,7 @@ return {
     })
   end,
   dependencies = {
-    { "mrjones2014/nvim-ts-rainbow" },
+    { "HiPhish/nvim-ts-rainbow2" },
     {
       "andymass/vim-matchup",
       config = function()
