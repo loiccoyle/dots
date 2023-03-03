@@ -11,8 +11,10 @@ terminal: ## Install terminal application
 
 .PHONY: file-manager
 file-manager: ## Install file manager and dependencies
-	$(INSTALL_AUR) lf vidir dragon-drop ix
-	$(INSTALL) xclip highlight
+	# for ctpv
+	gpg --receive-keys 6E656AC5B97B5133
+	$(INSTALL_AUR) lf vidir dragon-drop ix ctpv-git
+	$(INSTALL) xclip highlight perl-image-exiftool ueberzug atool
 
 .PHONY: bar
 bar: launcher fonts ## Install bar and dependencies
