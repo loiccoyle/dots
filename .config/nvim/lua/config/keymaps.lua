@@ -1,11 +1,7 @@
 vim.keymap.set("i", "<C-BS>", "<C-W>")
 vim.keymap.set("i", "<C-h>", "<C-W>")
-
 vim.keymap.set("n", "Y", "y$", { desc = "Yank to EOL" })
 vim.keymap.set("n", "yil", "0y$", { desc = "Yank in Line" })
--- vim.keymap.set("n", "<CR>", '{-> v:hlsearch ? ":nohl\\<CR>" : "\\<ESC>"}()', { expr = true })
-vim.keymap.set("n", "<ESC>", '{-> v:hlsearch ? ":nohl\\<CR><ESC>" : "\\<ESC>"}()', { expr = true })
-vim.keymap.set("n", "<A-.>", "gv", { desc = "Repeat selection" })
 
 -- inset mode navigation
 vim.keymap.set("i", "<A-h>", "<left>")
@@ -28,6 +24,9 @@ vim.keymap.set("n", "<A-8>", "<cmd>BufferLineGoToBuffer 8<CR>", { desc = "Go to 
 vim.keymap.set("n", "<A-9>", "<cmd>BufferLineGoToBuffer 9<CR>", { desc = "Go to Buffer 9" })
 
 vim.keymap.set("n", "<leader>?", "<cmd>WhichKey<CR>", { desc = "WhichKey" })
+
+-- save with sudo
+vim.cmd([[cab w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!]])
 
 -- Plugin related mappings
 local M = {}
@@ -82,24 +81,5 @@ M.dap = function()
   vim.keymap.set("n", "<F11>", require("dap").step_into, { desc = "DAP Step Into" })
   vim.keymap.set("n", "<F12>", require("dap").step_out, { desc = "DAP Step Out" })
 end
-
-vim.cmd([[cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!]])
-vim.cmd([[command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor]])
-
--- Typos be gone
-vim.cmd([[
-    cnoreabbrev W! w!
-    cnoreabbrev Q! q!
-    cnoreabbrev Qa! qa!
-    cnoreabbrev Qall! qall!
-    cnoreabbrev Wq wq
-    cnoreabbrev Wa wa
-    cnoreabbrev wQ wq
-    cnoreabbrev WQ wq
-    cnoreabbrev W w
-    cnoreabbrev Q q
-    cnoreabbrev Qa qa
-    cnoreabbrev Qall qall
-]])
 
 return M
