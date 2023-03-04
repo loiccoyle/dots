@@ -1,7 +1,7 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   opts = function(_, opts)
-    opts.rainbow = { enable = true }
+    opts.rainbow = { enable = true, disable = { "html" } }
     opts.matchup = { enable = true }
     ---@diagnostic disable-next-line: missing-parameter
     vim.list_extend(opts.ensure_installed, {
