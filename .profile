@@ -1,6 +1,10 @@
 #!/bin/sh
 # Profile file. Runs on login. Environmental variables are set here.
 
+for file in ~/.config/profile.d/*.sh; do
+    [ -r "$file" ] && [ -f "$file" ] && . "$file"
+done
+
 # set PATH so it includes user's private bin if it exists
 # add script dir and any subdirectories
 [ -d "$HOME/.local/bin" ] && export PATH="$PATH:$(find "$HOME/.local/bin" -type d -printf ":%p")"
