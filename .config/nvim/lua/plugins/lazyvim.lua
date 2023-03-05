@@ -10,6 +10,7 @@ return {
   },
   -- replaced with Comment.nvim
   { "echasnovski/mini.comment", enabled = false },
+  { "echasnovski/mini.pairs", enabled = false },
   { "folke/tokyonight.nvim", enabled = false },
   { "catppuccin/nvim", enabled = false },
 }
