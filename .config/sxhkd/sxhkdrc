@@ -42,7 +42,7 @@ super + t
     rofi-prowlet -s -k
 # Twitch
 super + shift + t
-    rofi-ttv
+    notify-send -t 2000 -i "search" "Twitch" "Fetching followed"; rofi-ttv followed
 # Rice control panel
 super + Home
     rofi-rice
