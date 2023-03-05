@@ -168,21 +168,6 @@ cmd drag ${{
     dragon-drop $fx
 }}
 
-# Git prompt
-cmd on-cd &{{
-    # display git repository status in your prompt
-    source /usr/share/git/completion/git-prompt.sh
-    GIT_PS1_SHOWDIRTYSTATE=auto
-    GIT_PS1_SHOWUPSTREAM=auto
-    git=$(__git_ps1 " (%s)") || true
-    fmt="\033[32;1m%u@%h\033[0m:\033[34;1m%d\033[0m\033[1m%f$git\033[0m"
-    lf -remote "send $id set promptfmt \"$fmt\""
-    # add cwd to window title
-    printf "\033]0;lf: ${PWD/$HOME/~}\007" > /dev/tty
-}}
-# update on startup
-on-cd
-
 # y (select for copy) and P to paste soft-link
 # d (select for cut) and P to paste hard-link
 cmd link %{{
