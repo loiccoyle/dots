@@ -80,9 +80,9 @@ zinit wait'0c' lucid light-mode for \
     atload"_zsh_autosuggest_start" \
         zsh-users/zsh-autosuggestions \
     blockf atpull'zinit creinstall -q .' \
-       zsh-users/zsh-completions
-    # pick'fasd.plugin.zsh' \
-    #     whjvenyl/fasd
+       zsh-users/zsh-completions \
+    pick'lazyshell.zsh' \
+        not-poma/lazyshell
 
 # add pure prompt
 zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
