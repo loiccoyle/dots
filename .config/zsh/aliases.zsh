@@ -23,13 +23,12 @@ alias open="$OPENER"
 alias pacman="sudo pacman"
 alias pacdiff="sudo -E pacdiff"
 # full upgrade
-# TODO: figure out how to run PackerUpdate without fully starting vim.
+# TODO: TSUpdate is lazy-loaded won't run in headless
 alias sysupdate="paru;\
     { type qutebrowser > /dev/null && qutebrowser ':adblock-update' 2>/dev/null; };\
     { type pipx > /dev/null && pipx upgrade-all; };\
     zinit self-update && zinit update --all;\
-    vim --headless +TSUpdate  +qall > /dev/null;\
-    vim -c PackerUpdate"
+    nvim --headless '+Lazy! sync' +qa"
 # python venv
 alias venv="python3 -m venv"
 alias de="deactivate"
