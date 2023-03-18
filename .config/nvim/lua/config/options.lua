@@ -1,6 +1,3 @@
--- Leade
--- vim.g.mapleader = ","
--- vim.g.maplocalleader = ","
 -- Folds
 vim.opt.termguicolors = true -- Required by colorizer
 vim.opt.wrap = true
@@ -18,10 +15,3 @@ vim.opt.shortmess = vim.opt.shortmess + {
   s = true, -- No search top bottom msgs
   I = true, -- No intro msg
 }
--- vim.opt.formatoptions = vim.opt.formatoptions + {
---   r = false, -- Pressing Enter will continue comments
---   o = false,
--- }
-vim.opt.formatoptions = "jcqlnt" -- tcqj
--- Python nvim path
--- vim.g.python3_host_prog = "/usr/bin/python"
