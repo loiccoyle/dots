@@ -64,13 +64,13 @@ dots() {
         git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME" "$@"
     fi
 }
-# Open command in $EDITOR
+# Open command script in $EDITOR
 edit() {
     $EDITOR "$(which "$1")"
 }
 # Find package that owns a command.
 pacwhich() {
-    sudo pacman -Qo "$(which "$1")"
+    pacman -Qo "$(which "$1")"
 }
 # List current explicit packages with package information preview.
 pacinspect() {
