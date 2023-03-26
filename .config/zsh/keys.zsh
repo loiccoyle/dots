@@ -39,7 +39,7 @@ bindkey '^[Od' vi-backward-word    # back word with ctrl-left
 bindkey '^[[1;5C' vi-forward-word  # forward word with ctrl-right
 bindkey '^[[1;5D' vi-backward-word # back word with ctrl-left
 bindkey '^H' vi-backward-kill-word # delete previous word with ctrl+backspace
-bindkey '^[[3;5~' kill-word     # delete word with ctrl-delete
+bindkey '^[[3;5~' kill-word        # delete word with ctrl-delete
 # easy history navigation
 bindkey '^K' up-history
 bindkey '^J' down-history

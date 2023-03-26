@@ -5,7 +5,6 @@ function zle-line-init zle-keymap-select {
 		vicmd)
 			printf '\e[0 q' # Box.
 			;;
-
 		viins|main)
 			printf '\e[6 q' # Vertical bar.
 			;;
