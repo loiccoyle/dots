@@ -1,11 +1,12 @@
-#!/bin/sh
+#!/usr/bin/env bash
 #
 # Set the wallpaper, generate colour scheme and log the current wallpaper file to $XDG_CACHE_HOME/wall.
-# Requires hsetroot, flavours
+# Requires hsetroot or swaybg, flavours
 
 set -e
 
 usage() {
+    # shellcheck disable=2016
     printf 'Usage: %s [-r] [-g] [WALLPAPER]
 
 Set the wallpaper and generate colour scheme using flavours.
@@ -26,10 +27,18 @@ Example:
 ' "$(basename "$0")" "$XDG_STATE_HOME" "$WALLPAPER_DIR"
 }
 
+_set_wallpaper() {
+    if [[ "$XDG_SESSION_TYPE" == "wayland" ]]; then
+        swaybg -m fill -i "$1" >/dev/null
+    else
+        hsetroot -cover "$1" >/dev/null
+    fi
+}
+
 set_wallpaper() {
     local abspath
     abspath="$(readlink -f "$1")"
-    hsetroot -cover "$abspath" >/dev/null
+    _set_wallpaper "$abspath"
     printf "%s" "$abspath" >"$XDG_STATE_HOME/wall"
     ln -sf "$abspath" "$XDG_STATE_HOME/wallpaper"
     notify-send --icon="$abspath" "Set wallpaper" "$(basename "$abspath")"
@@ -49,21 +58,21 @@ RANDOM_WALL=0
 # Parse options to the `setwall` command
 while getopts ":hrg" opt; do
     case ${opt} in
-        "h")
-            usage
-            exit 0
-            ;;
-        "r")
-            RANDOM_WALL=1
-            ;;
-        "g")
-            GENERATE_COLOURS=1
-            ;;
-        \?)
-            printf "Invalid Option: -%s\n" "$OPTARG" 1>&2
-            usage
-            exit 1
-            ;;
+    "h")
+        usage
+        exit 0
+        ;;
+    "r")
+        RANDOM_WALL=1
+        ;;
+    "g")
+        GENERATE_COLOURS=1
+        ;;
+    \?)
+        printf "Invalid Option: -%s\n" "$OPTARG" 1>&2
+        usage
+        exit 1
+        ;;
     esac
 done
 shift $((OPTIND - 1))
