@@ -12,4 +12,5 @@ lfcd() {
     fi
 }
 
-lfcd "$@" && zsh -i
+lfcd "$@"
+zsh -i
