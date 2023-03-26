@@ -43,6 +43,18 @@ export WALLPAPER_DIR="$XDG_PICTURES_DIR/walls"
 # Settings
 export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 export _JAVA_AWT_WM_NONREPARENTING=1
+# Wayland
+if [[ "$XDG_SESSION_TYPE" == "wayland" ]]; then
+    export MOZ_ENABLE_WAYLAND=1
+    export QT_QPA_PLATFORM="wayland"
+    export XCURSOR_SIZE=24
+    # https://wiki.hyprland.org/Configuring/Environment-variables/
+    export QT_QPA_PLATFORM="wayland;xcb"
+    export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+    export SDL_VIDEODRIVER=wayland
+    export GDK_BACKEND="wayland,x11"
+    export CLUTTER_BACKEND=wayland
+fi
 
 # Color man pages
 export LESS_TERMCAP_mb=$'\E[01;32m'
