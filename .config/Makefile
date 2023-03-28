@@ -113,6 +113,22 @@ other: ## Other useful software
 walls: ## Fetch wallpapers
 	[ -d ${WALLPAPER_DIR} ] || git clone https://github.com/loiccoyle/walls ${WALLPAPER_DIR}
 
+.PHONY: wayland
+wayland: hyprland waybar ## Wayland wm
+
+.PHONY: hyprland
+hyprland: wayland-utils ## Install hyprland
+	$(INSTALL_AUR) hyprland grimblast-git waybar-hyprland-git
+
+.PHONY: wayland-utils
+wayland-utils: ## Install wayland utils
+	$(INSTALL) swaylock swayidle swaybg light grim slurp wf-recorder wl-clipboard
+	$(INSTALL_AUR) wdisplays way-displays cliphist hyprpicker-git
+
+.PHONY: waybar
+waybar: wayland-utils ## Install waybar
+	$(INSTALL) gnome-system-monitor
+
 .PHONY: test
 test: ## Test this Makefile with docker
 	docker build --rm -t dotfiles ${PWD};\

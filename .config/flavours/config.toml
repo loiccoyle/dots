@@ -71,6 +71,22 @@ rewrite=true
 hook="pywalfox update"
 
 [[item]]
+file='$XDG_CONFIG_HOME/waybar/colors.css'
+template='waybar'
+rewrite=true
+hook="killall -SIGUSR2 waybar"
+
+[[item]]
 file="$XDG_CONFIG_HOME/sioyek/colors.config"
 template="sioyek"
+rewrite=true
+
+[[item]]
+file="$XDG_CONFIG_HOME/hypr/colors.conf"
+template="hyprland"
+rewrite=true
+
+[[item]]
+file="$XDG_CONFIG_HOME/swaylock/config"
+template="swaylock"
 rewrite=true
