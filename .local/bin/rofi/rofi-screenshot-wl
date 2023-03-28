@@ -1,0 +1,124 @@
+#!/usr/bin/env bash
+#
+# requires jq, slurp, grimblast, wf-recorder, rofi, hyprctl
+
+set -e
+
+# Options
+declare -a ENTRY_OPTIONS
+# shellcheck disable=2034
+ENTRY_OPTIONS=("󰹑 Capture" " Record" "󰁫 Timer")
+
+declare -A TARGET_OPTIONS
+# shellcheck disable=2034
+TARGET_OPTIONS=(
+    ["󰍺 All Screen"]="screen"
+    ["󰍹 Capture Active Screen"]="output"
+    ["󱣴 Capture Area/Window/Application"]="area"
+)
+
+declare -a TIMER_OPTIONS
+# shellcheck disable=2034
+TIMER_OPTIONS=("5s" "10s" "20s" "30s" "60s")
+
+declare -A ACTION_OPTIONS
+ACTION_OPTIONS=(
+    [" Copy"]="copy"
+    [" Save"]="save"
+    ["Copy & Save"]="copysave"
+    ["Edit Screenshot"]="edit"
+)
+
+# Rofi CMD
+rofi_cmd() {
+    local -n opts
+    local prompt
+    opts="$1"
+    prompt="$2"
+    n_rows="${#opts[@]}"
+
+    # handle both arrays and associative arrays
+    if [ -n "${opts[0]}" ]; then
+        opts_array=("${opts[@]}")
+    else
+        opts_array=("${!opts[@]}")
+    fi
+    printf "%s\n" "${opts_array[@]}" |
+        rofi -dmenu -p "$prompt" -l "$n_rows" -theme-str "window {width:50%;}" -sort
+}
+
+# Confirm and execute
+timer_menu() {
+    local selected
+    selected="$(rofi_cmd TIMER_OPTIONS "Select")"
+    # strip trailing char
+    COUNTDOWN=${selected::-1}
+}
+
+# Confirm and execute
+target_menu() {
+    local selected
+    selected="$(rofi_cmd TARGET_OPTIONS "Select")"
+    TARGET=${TARGET_OPTIONS[$selected]}
+}
+
+# Confirm and execute
+action_menu() {
+    local selected
+    selected="$(rofi_cmd ACTION_OPTIONS "Select")"
+    ACTION=${ACTION_OPTIONS[$selected]}
+}
+
+timer() {
+    if [[ $COUNTDOWN -gt 10 ]]; then
+        notify-send -t 1000 "Taking Screenshot in ${COUNTDOWN} seconds"
+        sleep $((COUNTDOWN - 10))
+        COUNTDOWN=10
+    fi
+    while [[ $COUNTDOWN -ne 0 ]]; do
+        notify-send -t 1000 "Taking Screenshot in ${COUNTDOWN}"
+        COUNTDOWN=$((COUNTDOWN - 1))
+        sleep 1
+    done
+}
+
+takescreenshot() {
+    grimblast --notify "$ACTION" "$TARGET"
+}
+
+ACTION=""
+TARGET=""
+COUNTDOWN=""
+case "$(rofi_cmd ENTRY_OPTIONS "Screenshot")" in
+*"Capture")
+    target_menu
+    action_menu
+    takescreenshot
+    ;;
+*"Record")
+    target_menu
+    FILENAME="${XDG_VIDEOS_DIR:-$HOME}/$(date -Ins).webm"
+    case "$TARGET" in
+    "screen")
+        wf-recorder -f "$FILENAME"
+        ;;
+    "output")
+        MONITOR="$(hyprctl monitors -j | jq -r '.[] | select(.focused == true).name')"
+        wf-recorder -o "$MONITOR" -f "$FILENAME"
+        ;;
+    "area")
+        WORKSPACES="$(hyprctl monitors -j | jq -r 'map(.activeWorkspace.id)')"
+        WINDOWS="$(hyprctl clients -j | jq -r --argjson workspaces "$WORKSPACES" 'map(select([.workspace.id] | inside($workspaces)))')"
+        GEOM=$(echo "$WINDOWS" | jq -r '.[] | "\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"' | slurp)
+        wf-recorder -g "$GEOM" -f "$FILENAME"
+        ;;
+    esac
+    ;;
+*"Timer")
+    timer_menu
+    target_menu
+    action_menu
+    timer
+    takescreenshot
+    ;;
+esac
