@@ -3,12 +3,6 @@ vim.keymap.set("i", "<C-h>", "<C-W>")
 vim.keymap.set("n", "Y", "y$", { desc = "Yank to EOL" })
 vim.keymap.set("n", "yil", "0y$", { desc = "Yank in Line" })
 
--- inset mode navigation
-vim.keymap.set("i", "<A-h>", "<left>")
-vim.keymap.set("i", "<A-j>", "<down>")
-vim.keymap.set("i", "<A-k>", "<up>")
-vim.keymap.set("i", "<A-l>", "<right>")
-
 -- Replace
 vim.keymap.set("n", "R", ":%s//g<Left><Left>", { desc = "Replace in file" })
 
