@@ -2,10 +2,18 @@
 
 set -e
 
-token="$GH_NOTIF_TOKEN"
-count="$(curl -s -u "loiccoyle:${token} https://api.github.com/notifications" | jq '. | length')"
-tooltip='Open GitHub notifications'
+TOKEN="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"
+RESPONSE="$(curl -s -u "loiccoyle:$TOKEN" "https://api.github.com/notifications")"
 
-if [[ "$count" != "0" ]]; then
-    printf '{"text":"%s","tooltip":"%s","class":"class"}\n' "$count" "$tooltip"
+if echo "$RESPONSE" | jq -e 'has("message")?' >/dev/null; then
+    echo "Bad credentials" >&2
+    echo "$RESPONSE" >&2
+    exit 1
+fi
+
+COUNT="$(echo "$RESPONSE" | jq '. | length')"
+TOOLTIP='Open GitHub notifications'
+
+if [[ "$COUNT" != "0" ]]; then
+    printf '{"text":"%s","tooltip":"%s","class":"class"}\n' "$COUNT" "$TOOLTIP"
 fi
