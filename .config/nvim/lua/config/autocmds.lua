@@ -35,6 +35,11 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 })
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
   group = au_on_save,
+  pattern = { "*waybar/config" },
+  command = "!killall -SIGUSR2 waybar; notify-send -i reload 'Reloading waybar'",
+})
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+  group = au_on_save,
   pattern = { "*Xresources", "*Xdefaults" },
   command = "!xrdb %; notify-send -i reload 'Setting xrdb'",
 })
