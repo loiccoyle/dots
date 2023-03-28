@@ -3,7 +3,7 @@ return {
     "LazyVim/LazyVim",
     opts = {
       colorscheme = function()
-        -- require("mini.base16")
+        -- require("lazy").load({ plugins = { "mini.base16" } })
         require("gruvbox").load()
       end,
     },
