@@ -29,7 +29,7 @@ ACTION_OPTIONS=(
     ["Edit Screenshot"]="edit"
 )
 
-# Rofi CMD
+# Rofi command
 rofi_cmd() {
     local -n opts
     local prompt
@@ -44,7 +44,7 @@ rofi_cmd() {
         opts_array=("${!opts[@]}")
     fi
     printf "%s\n" "${opts_array[@]}" |
-        rofi -dmenu -p "$prompt" -l "$n_rows" -theme-str "window {width:50%;}" -sort
+        rofi -dmenu -p "$prompt" -l "$n_rows" -theme-str "window {width:50%;}" -sort -i
 }
 
 # Confirm and execute
@@ -86,6 +86,12 @@ takescreenshot() {
     grimblast --notify "$ACTION" "$TARGET"
 }
 
+notify() {
+    if type notify-send &>/dev/null; then
+        notify-send -t 1000 "$@"
+    fi
+}
+
 ACTION=""
 TARGET=""
 COUNTDOWN=""
@@ -113,6 +119,7 @@ case "$(rofi_cmd ENTRY_OPTIONS "Screenshot")" in
         wf-recorder -g "$GEOM" -f "$FILENAME"
         ;;
     esac
+    notify -i "video" "Recorging done" "Saved to \'$FILENAME\'"
     ;;
 *"Timer")
     timer_menu
