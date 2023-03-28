@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 status="$(nordvpn status | tr -d '\r -')"
 

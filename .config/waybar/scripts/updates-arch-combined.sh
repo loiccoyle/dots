@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 #
 # Check for pakages updates, from pacman and the AUR.
 # Requires pacman-contrib, paru, dunstify (optional).
