@@ -1,0 +1,34 @@
+#!/bin/sh
+
+# Background
+swaybg -m fill -i "$XDG_STATE_HOME/wallpaper" &
+
+# Clipboard manager
+wl-paste --type text --watch cliphist store &
+wl-paste --type image --watch cliphist store &
+
+# Notifications
+dunst &
+
+# Display output manager
+way-displays >"/tmp/way-displays.${XDG_VTNR}.${USER}.log" 2>&1 &
+
+# idle settings
+swayidle -w \
+    timeout 300 'swaylock -f' \
+    timeout 600 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' \
+    before-sleep 'swaylock -f' &
+
+playerctld daemon &
+
+waybar &
+
+systemctl --user import-environment &
+dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+systemctl start --user graphical-session.target &
+
+# applets
+udiskie --appindicator --smart --file-manager="$TERMINAL --working-directory" &
+blueman-applet &
+lxqt-powermanagemhnt &
+nm-applet --indicator &

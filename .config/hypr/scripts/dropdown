@@ -1,0 +1,18 @@
+#!/bin/env bash
+
+class="${1:-dropdown}"
+WORKSPACE=$(hyprctl clients -j | jq -rec '.[] | select(.class == "dropdown") | .workspace .name')
+# TERM_CMD="wezterm start --class quake"
+# TERM_CMD="kitty -1 --class quake -o background_opacity=0.90 -o hide_window_decorations=yes -o remember_window_size=no"
+TERM_CMD="$TERMINAL --class $class"
+
+if [ -z "$WORKSPACE" ]; then
+    echo "start"
+    hyprctl dispatch -- exec "[float;center] $TERM_CMD"
+elif [ "$WORKSPACE" == "special:$class" ]; then
+    echo "show"
+    hyprctl dispatch movetoworkspace "+0,^($class)\$"
+else
+    echo "hide"
+    hyprctl dispatch movetoworkspace "special:$class,^($class)\$"
+fi

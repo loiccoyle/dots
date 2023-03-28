@@ -1,0 +1,118 @@
+@import "colors.css";
+
+/* define color */
+@define-color background @base00;
+@define-color background-soft @base01;
+@define-color background-softer @base02;
+@define-color foreground-muted @base03;
+@define-color foreground @base05;
+@define-color highlight-soft  @base0B;
+@define-color highlight-alt  @base0C;
+@define-color warn @base08;
+
+* {
+  font-family: Hack, Symbols Nerd Font, sans-serif;
+  margin: 0 0.33em;
+  padding: 0 0.33em;
+  border: none;
+  border-radius: 0;
+  background: @background;
+  color: @foreground;
+  min-height: 0;
+}
+
+window#waybar {
+}
+#pulseaudio.muted {
+  color: @foreground-muted;
+}
+
+#custom-github-notif,
+#custom-updates {
+  color: @highlight-alt;
+  background: @background-soft;
+  margin: 2px 1px;
+  padding: 0 0.5em;
+  border-radius: 0.33em;
+}
+/* Everything to the left of the cpu is a more tightly packed */
+/* #cpu { */
+/*   margin: 0 0.33em 0 1em; */
+/* } */
+
+#custom-nordvpn.off {
+  color: @foreground-muted;
+}
+#custom-nordvpn.on {
+  border-bottom: 2px solid @highlight-soft;
+}
+#idle_inhibitor.deactivated {
+  color: @foreground-muted;
+}
+#idle_inhibitor.activated {
+  border-bottom: 2px solid @highlight-soft;
+}
+
+#temperature.critical {
+  border-bottom: 2px solid @warn;
+}
+
+#tags button {
+  padding: 1px 0;
+  margin: 0 1px;
+  border-top: 2px solid @background;
+  border-bottom: 2px solid @background;
+}
+#tags,
+#workspaces button.focused {
+  border-bottom: 2px solid @highlight-soft;
+}
+#workspaces button.active {
+  border-bottom: 2px solid @highlight-alt;
+}
+#tags button.occupied {
+  border-top: 2px solid @highlight-alt;
+}
+#tags,
+#workspaces button.urgent {
+  border-top: 2px solid @warn;
+}
+
+#submap {
+  border-bottom: 2px solid @highlight-soft;
+}
+#workspaces button {
+  padding: 1px 0;
+  margin: 0 1px;
+  /* border-top: 2px solid @highlight-alt; */
+  border-bottom: 2px solid @background;
+}
+#workspaces button.persistent {
+  border-top: 2px solid @background;
+  border-bottom: 2px solid @background;
+}
+
+#battery.charging {
+  border-bottom: 2px solid @highlight-soft;
+}
+@keyframes blink {
+  to {
+    border-bottom: 2px solid @warn;
+  }
+}
+#battery.warning:not(.charging) {
+  animation-name: blink;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#tray {
+  margin: 0;
+  padding: 0;
+}
+
+tooltip {
+  border: 1px solid @background-softer;
+}

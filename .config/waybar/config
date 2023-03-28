@@ -1,0 +1,224 @@
+{
+  "layer": "top",
+    "output": "eDP-1",
+    "modules-left" : [
+      "pulseaudio",
+      "backlight",
+      /* "river/mode", */
+      /* "river/window", */
+      /* "sway/mode", */
+      /* "sway/scratchpad", */
+      /* "sway/window", */
+      "hyprland/submap",
+      "hyprland/window",
+    ],
+    "modules-center" : [
+      /* "river/tags", */
+      /* "sway/workspaces", */
+      "wlr/workspaces",
+    ],
+    "modules-right" : [
+    "custom/github-notif",
+    "custom/updates",
+    "idle_inhibitor",
+    "custom/nordvpn",
+    "cpu",
+    "temperature",
+    "memory",
+    "disk",
+    "network",
+    "clock",
+    "battery",
+    "tray"
+    ],
+
+    "pulseaudio": {
+      "format": "<span size='12pt'>{icon}</span> {volume}%",
+      "format-bluetooth": "<span size='12pt'>{icon}</span> {volume}% <span size='12pt'></span>",
+      "format-muted": "<span size='12pt'>󰝟</span>",
+      "format-icons": {
+        "headphone": "",
+        "hands-free": "",
+        "headset": "",
+        "phone": "",
+        "portable": "",
+        "car": "",
+        "default": ["󰕿","", ""]
+      },
+      "scroll-step": 1,
+      "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+      "on-click-right": "pavucontrol-qt",
+      "ignored-sinks": ["Easy Effects Sink"]
+    },
+    "backlight":{
+      "format": "<span size='12pt'>{icon}</span> {}%",
+      "format-icons": ["󰃞", "󰃟", "󰃝", "󰃠"]
+    },
+    "river/mode": {
+      "format": "<span size='12pt'></span> {}",
+    },
+    "river/window": {
+      "format": "<span size='12pt'></span> {}",
+      "max-length": 60,
+    },
+    "sway/window": {
+      "max-length": 60,
+      "icon": true,
+      "icon-size": 20,
+      "all-outputs": true
+
+    },
+    "sway/mode":{
+      "format": "<span size='12pt'></span> {}",
+    },
+    "hyprland/submap":{
+      "format": "<span size='12pt'></span> {}",
+    },
+    "hyprland/window":{
+      "format": "<span size='12pt'></span> {}",
+    },
+    "wlr/workspaces":{
+      "format": "<span size='12pt'>{}</span>",
+      "sort-by-number": true,
+      "on-click": "activate",
+      "on-scroll-up": "hyprctl dispatch workspace e+1",
+      "on-scroll-down": "hyprctl dispatch workspace e-1",
+    },
+    "sway/workspaces":{
+      "format": "<span size='12pt'>{icon}</span>",
+      "persistent_workspaces": {
+        "1": ["eDP-1"],
+        "2": ["eDP-1"],
+        "3": ["eDP-1"],
+        "4": ["eDP-1"],
+        "5": ["eDP-1"],
+        "6": ["eDP-1"],
+        "7": ["eDP-1"],
+        "8": ["eDP-1"],
+        "9": ["eDP-1"],
+        "10": ["eDP-1"],
+      },
+      "format-icons": {
+        "1": "󰲡",
+        "2": "󰲣",
+        "3": "󰲥",
+        "4": "󰲧",
+        "5": "󰲩",
+        "6": "󰲫",
+        "7": "󰲭",
+        "8": "󰲯",
+        "9": "󰲱",
+        "10": "󰿭",
+        "urgent": "",
+        "focused": "",
+        "default": "",
+      },
+    },
+    "sway/scratchpad":{
+      "format": "<span size='12pt'>{icon}</span> {count}",
+      "format-icons": ["", ""],
+    },
+
+    "custom/github-notif":{
+      "format": "<span size='12pt'></span> {}",
+      "return-type": "json",
+      "interval": 600,
+      "exec": "$HOME/.config/waybar/scripts/github.sh",
+      "on-click": "xdg-open https://github.com/notifications"
+    },
+    "custom/updates": {
+      "format": "<span size='12pt'></span> {}",
+      "exec": "~/.config/waybar/scripts/updates-arch-combined.sh",
+      "return-type": "json",
+      "interval": 600,
+      "on-click": "$TERMINAL --class float --hold -e paru; pkill -SIGRTMIN+8 waybar",
+      "signal": 8
+    },
+    "custom/nordvpn": {
+      "format": "<span size='12pt'>󰊠</span>{}",
+      "exec": "~/.config/waybar/scripts/nordvpn-status.sh",
+      "return-type": "json",
+      "interval": 10,
+      "on-click": "~/.config/waybar/scripts/nordvpn-toggle.sh; pkill -SIGRTMIN+9 waybar",
+      "on-click-right": "rofi-nordvpn; pkill -SIGRTMIN+9 waybar",
+      "signal": 9
+    },
+    "idle_inhibitor":{
+      "format": "<span size='12pt'>{icon}</span>",
+      "format-icons": {
+        "activated": "",
+        "deactivated": ""
+      },
+      "tooltip-format-deactivated": "Activate idle inhibit",
+      "tooltip-format-activated": "Deactivate idle inhibit",
+    },
+
+    "memory": {
+      "format": "<span size='12pt'>󰍛</span> {percentage:02}%",
+    },
+    "disk": {
+      "format": "<span size='12pt'>󰋊</span> {percentage_free:02}%",
+    },
+
+    "cpu": {
+      "interval": 10,
+      "format": "<span size='12pt'></span> {usage:02}%",
+      "max-length": 10,
+      "on-click": "gnome-system-monitor"
+    },
+    "temperature": {
+      "thermal-zone": 6,
+      "format": "<span size='12pt'>{icon}</span> {temperatureC}°C",
+      "format-icons": ["", "", "", "", ""],
+      "critical-threshold": 90
+    },
+    "network":{
+      "format-wifi":"<span size='12pt'>{icon}</span> {essid}",
+      "format-ethernet": "",
+      "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+    },
+
+    "battery": {
+      "interval": 60,
+      "states": {
+        "warning": 30,
+        "critical": 15
+      },
+      "format": "<span size='12pt'>{icon}</span> {capacity:02}%",
+      "format.charging": "<span size='12pt'>󰂄</span> {capacity:02}%",
+      "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+      "tooltip-format": "{timeTo}\nDraw: {power}W",
+      "max-length": 25
+    },
+    "clock": {
+      "format": "<span size='12pt'></span> {:%H:%M}",
+      "format-alt": "<span size='12pt'></span> {:%A, %B %d, %Y (%R)}",
+      "tooltip-format": "<tt><small>{calendar}</small></tt>",
+      "calendar": {
+        "mode"          : "year",
+        "mode-mon-col"  : 3,
+        "weeks-pos"     : "right",
+        "on-scroll"     : 1,
+        "on-click-right": "mode",
+        "format": {
+          "months":     "<b>{}</b>",
+          "days":       "<b>{}</b>",
+          "weeks":      "<b>W{}</b>",
+          "weekdays":   "<b>{}</b>",
+          "today":      "<b><u>{}</u></b>"
+        }
+      },
+      "actions":  {
+        "on-click-right": "mode",
+        "on-click-forward": "tz_up",
+        "on-click-backward": "tz_down",
+        "on-scroll-up": "shift_up",
+        "on-scroll-down": "shift_down"
+      }
+    },
+
+    "tray":{
+      "icon-size": 16,
+      "spacing": 0,
+    }
+}
