@@ -2,8 +2,12 @@
 
 set -e
 
-TOKEN="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"
-RESPONSE="$(curl -s -u "loiccoyle:$TOKEN" "https://api.github.com/notifications")"
+if [ -z "$GH_NOTIF_TOKEN" ]; then
+    echo "GH_NOTIF_TOKEN not set" >&2
+    exit 1
+fi
+
+RESPONSE="$(curl -s -u "loiccoyle:$GH_NOTIF_TOKEN" "https://api.github.com/notifications")"
 
 if echo "$RESPONSE" | jq -e 'has("message")?' >/dev/null; then
     echo "Bad credentials" >&2
