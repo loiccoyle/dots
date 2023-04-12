@@ -30,5 +30,5 @@ systemctl start --user graphical-session.target &
 # applets
 udiskie --appindicator --smart --file-manager="$TERMINAL --working-directory" &
 blueman-applet &
-lxqt-powermanagemhnt &
+lxqt-powermanagement &
 nm-applet --indicator &
