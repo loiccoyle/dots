@@ -14,5 +14,5 @@ elif [ "$WORKSPACE" == "special:$class" ]; then
     hyprctl dispatch movetoworkspace "+0,^($class)\$"
 else
     echo "hide"
-    hyprctl dispatch movetoworkspace "special:$class,^($class)\$"
+    hyprctl dispatch movetoworkspacesilent "special:$class,^($class)\$"
 fi
