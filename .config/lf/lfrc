@@ -35,12 +35,12 @@ set previewer ctpv
 set cleaner ctpvclear
 &ctpv -s $id
 &ctpvquit $id
-set hidden on
-set incsearch on
-set icons on
+set hidden
+set incsearch
+set icons
 set info size
 set autoquit
-set mouse on
+set mouse
 
 # cmd line mappings
 cmap <tab> cmd-menu-complete
@@ -195,6 +195,8 @@ cmd new_node %{{
 
 map P link
 map a push :new_node<space>
+# show the result of execution of previous commands
+map ` !true
 
 map A rename # at the very end
 map I push A<c-a> # at the very beginning
