@@ -25,6 +25,7 @@ if [[ "$SELECTION" != *"(copy)" ]]; then
     # filename doesn't have an extension
     [ -z "${FILENAME##*.*}" ] || FILENAME="$FILENAME.png"
     FILEPATH="${XDG_PICTURES_DIR:-$HOME}/$FILENAME"
+    sleep 0.5
 fi
 
 case "$SELECTION" in
