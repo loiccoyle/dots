@@ -3,8 +3,6 @@ return {
   opts = function(_, opts)
     local nls = require("null-ls")
     local extra_sources = {
-      nls.builtins.formatting.isort,
-      nls.builtins.formatting.ruff,
       nls.builtins.formatting.prettier,
       nls.builtins.formatting.rustfmt,
       -- nls.builtins.diagnostics.shellcheck,

@@ -3,7 +3,6 @@ return {
   opts = function(_, opts)
     ---@diagnostic disable-next-line: missing-parameter
     opts.ensure_installed = vim.list_extend(opts.ensure_installed, {
-      "isort",
       "prettier",
       "rustfmt",
     })
