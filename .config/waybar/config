@@ -15,7 +15,8 @@
     "modules-center" : [
       /* "river/tags", */
       /* "sway/workspaces", */
-      "wlr/workspaces",
+      /* "wlr/workspaces", */
+      "hyprland/workspaces",
     ],
     "modules-right" : [
     "custom/github-notif",
@@ -48,11 +49,11 @@
       "scroll-step": 1,
       "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
       "on-click-right": "pavucontrol-qt",
-      "ignored-sinks": ["Easy Effects Sink"]
+      "ignored-sinks": ["Easy Effects Sink"],
     },
     "backlight":{
-      "format": "<span size='12pt'>{icon}</span> {}%",
-      "format-icons": ["󰃞", "󰃟", "󰃝", "󰃠"]
+      "format": "<span size='12pt'>{icon}</span> {percent}%",
+      "format-icons": ["󰃞", "󰃟", "󰃝", "󰃠"],
     },
     "river/mode": {
       "format": "<span size='12pt'></span> {}",
