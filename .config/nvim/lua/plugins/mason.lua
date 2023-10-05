@@ -5,6 +5,8 @@ return {
     opts.ensure_installed = vim.list_extend(opts.ensure_installed, {
       "prettier",
       "rustfmt",
+      "black",
+      "isort",
     })
   end,
 }
