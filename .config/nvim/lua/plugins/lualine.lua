@@ -1,3 +1,4 @@
+-- remove triangle separators from lualine
 return {
   "nvim-lualine/lualine.nvim",
   event = "VeryLazy",
