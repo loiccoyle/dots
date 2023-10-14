@@ -1,5 +1,5 @@
--- Base16 {{ scheme-name }} color 
--- Author: {{ scheme-author }}
+-- Base16 Gruvbox dark, hard color 
+-- Author: Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)
 -- to be use in your theme.lua
 -- symlink or copy to config folder `local color = require('color')`
 
