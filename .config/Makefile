@@ -19,7 +19,7 @@ file-manager: ## Install file manager and dependencies
 .PHONY: bar
 bar: launcher fonts ## Install bar and dependencies
 	$(INSTALL_AUR) polybar bluez-utils
-	$(INSTALL) pavucontrol-qt
+	$(INSTALL) pavucontrol
 
 .PHONY: hotkeys
 hotkeys: launcher scripts terminal ## Install hotkey daemon and related programs
