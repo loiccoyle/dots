@@ -1,0 +1,19 @@
+[papers]
+dir = ~/documents/papers
+
+[settings]
+default-library = papers
+editmode = vi
+picktool = fzf
+fzf-extra-flags = ["--ansi", "--multi", "-i",
+                   "--preview", "echo {} | sed -r 's/~~/\\n/g; /^ *$/d' ",
+                   "--preview-window", "bottom:wrap:20%%",
+                   "--color", "preview-fg:#F6E6E4,preview-bg:#5B6D5B"]
+
+fzf-extra-bindings = ["ctrl-s:jump",
+                      "ctrl-t:toggle-preview"]
+
+fzf-header-format = {c.Fore.MAGENTA}{doc[title]}{c.Style.RESET_ALL}~~ {c.Fore.CYAN}{doc[author]}{c.Style.RESET_ALL}~~ {c.Fore.YELLOW}«{doc[year]}»{c.Style.RESET_ALL}~~ {c.Fore.YELLOW}{doc[journal]}{c.Style.RESET_ALL}~~ :{doc[tags]}
+
+add-folder-name = {doc[title]}
+add-file-name = {doc[title]}
