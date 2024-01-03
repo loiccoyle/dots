@@ -6,87 +6,87 @@ template = 'alacritty'
 rewrite = true
 
 [[item]]
-file='$XDG_CONFIG_HOME/xresources/Xcolors'
-template='xresources'
-subtemplate='default-256'
-rewrite=true
-hook='xrdb ~/.Xresources'
+file = '$XDG_CONFIG_HOME/xresources/Xcolors'
+template = 'xresources'
+subtemplate = 'default-256'
+rewrite = true
+hook = 'xrdb ~/.Xresources'
 
 [[item]]
-file='$XDG_CONFIG_HOME/qutebrowser/colors.py'
-template='qutebrowser'
-subtemplate='minimal'
-rewrite=true
-hook='pgrep -x qutebrowser && qutebrowser :config-source'
+file = '$XDG_CONFIG_HOME/qutebrowser/colors.py'
+template = 'qutebrowser'
+subtemplate = 'minimal'
+rewrite = true
+hook = 'pgrep -x qutebrowser && qutebrowser :config-source'
 
 [[item]]
-file='$XDG_CONFIG_HOME/zathura/zathurarc'
-template='zathura'
+file = '$XDG_CONFIG_HOME/zathura/zathurarc'
+template = 'zathura'
 
 [[item]]
-file='$XDG_CONFIG_HOME/dunst/dunstrc'
-template='dunst'
-subtemplate='background'
-hook='killall dunst'
+file = '$XDG_CONFIG_HOME/dunst/dunstrc'
+template = 'dunst'
+subtemplate = 'background'
+hook = 'killall dunst'
 
 [[item]]
-file='$XDG_CONFIG_HOME/polybar/colors.ini'
-template='polybar'
-hook='polybar-msg cmd restart'
-rewrite=true
+file = '$XDG_CONFIG_HOME/polybar/colors.ini'
+template = 'polybar'
+hook = 'polybar-msg cmd restart'
+rewrite = true
 
 [[item]]
-file='$XDG_CONFIG_HOME/bspwm/bspwm_colors.sh'
-template='bspwm'
-hook='$XDG_CONFIG_HOME/bspwm/bspwm_colors.sh'
-rewrite=true
+file = '$XDG_CONFIG_HOME/bspwm/bspwm_colors.sh'
+template = 'bspwm'
+hook = '$XDG_CONFIG_HOME/bspwm/bspwm_colors.sh'
+rewrite = true
 
 [[item]]
-file='$XDG_CONFIG_HOME/rofi/themes/colors/colors.rasi'
-template='rofi'
-subtemplate='colors'
-rewrite=true
+file = '$XDG_CONFIG_HOME/rofi/themes/colors/colors.rasi'
+template = 'rofi'
+subtemplate = 'colors'
+rewrite = true
 
 [[item]]
-file='$XDG_CONFIG_HOME/vimiv/styles/base16'
-template='vimiv'
-rewrite=true
+file = '$XDG_CONFIG_HOME/vimiv/styles/base16'
+template = 'vimiv'
+rewrite = true
 
 [[item]]
-file='$XDG_CONFIG_HOME/nvim/lua/config/base16-colors.lua'
-template='luakit'
-subtemplate='colors'
-rewrite=true
+file = '$XDG_CONFIG_HOME/nvim/lua/config/base16-colors.lua'
+template = 'luakit'
+subtemplate = 'colors'
+rewrite = true
 
 [[item]]
-file='$XDG_CONFIG_HOME/zsh/fzf-base16.zsh'
-template='fzf'
-rewrite=true
+file = '$XDG_CONFIG_HOME/zsh/fzf-base16.zsh'
+template = 'fzf'
+rewrite = true
 
 [[item]]
-file='$XDG_CACHE_HOME/wal/colors.json'
-template='pywal'
-subtemplate='wallpaper'
-rewrite=true
-hook="pywalfox update"
+file = '$XDG_CACHE_HOME/wal/colors.json'
+template = 'pywal'
+subtemplate = 'wallpaper'
+rewrite = true
+hook = "pywalfox update"
 
 [[item]]
-file='$XDG_CONFIG_HOME/waybar/colors.css'
-template='waybar'
-rewrite=true
-hook="killall -SIGUSR2 waybar"
+file = '$XDG_CONFIG_HOME/waybar/colors.css'
+template = 'waybar'
+rewrite = true
+hook = "killall -SIGUSR2 waybar"
 
 [[item]]
-file="$XDG_CONFIG_HOME/sioyek/colors.config"
-template="sioyek"
-rewrite=true
+file = "$XDG_CONFIG_HOME/sioyek/colors.config"
+template = "sioyek"
+rewrite = true
 
 [[item]]
-file="$XDG_CONFIG_HOME/hypr/colors.conf"
-template="hyprland"
-rewrite=true
+file = "$XDG_CONFIG_HOME/hypr/colors.conf"
+template = "hyprland"
+rewrite = true
 
 [[item]]
-file="$XDG_CONFIG_HOME/swaylock/config"
-template="swaylock"
-rewrite=true
+file = "$XDG_CONFIG_HOME/swaylock/config"
+template = "swaylock"
+rewrite = true
