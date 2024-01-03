@@ -1,9 +1,9 @@
 shell = "sh -c '{}'"
 
 [[item]]
-file='$XDG_CONFIG_HOME/alacritty/colors.yml'
-template='alacritty'
-rewrite=true
+file = '$XDG_CONFIG_HOME/alacritty/colors.toml'
+template = 'alacritty'
+rewrite = true
 
 [[item]]
 file='$XDG_CONFIG_HOME/xresources/Xcolors'
