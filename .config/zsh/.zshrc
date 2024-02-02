@@ -82,13 +82,6 @@ zinit wait'0c' lucid light-mode for \
     blockf atpull'zinit creinstall -q .' \
        zsh-users/zsh-completions 
 
-# install lazyshell if OPENAI_API_KEY is set
-if [ -n "$OPENAI_API_KEY" ]; then
-    zinit wait'0c' lucid light-mode for \
-        pick'lazyshell.zsh' \
-            not-poma/lazyshell
-fi
-
 # add pure prompt
 zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
 zinit light 'sindresorhus/pure'
