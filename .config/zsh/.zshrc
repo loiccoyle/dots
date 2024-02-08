@@ -82,6 +82,9 @@ zinit wait'0c' lucid light-mode for \
     blockf atpull'zinit creinstall -q .' \
        zsh-users/zsh-completions 
 
+zinit wait'0c' lucid light-mode for \
+    loiccoyle/zsh-github-copilot
+
 # add pure prompt
 zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
 zinit light 'sindresorhus/pure'

@@ -17,13 +17,13 @@ export KEYTIMEOUT=1
 
 # Use lf to switch directories and bind it to ctrl-o
 lfcd() {
-    tmp="$(mktemp)"
-    lf -last-dir-path="$tmp" "$@"
-    if [ -f "$tmp" ]; then
-        dir="$(cat "$tmp")"
-        rm -f "$tmp"
-        [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir" || return
-    fi
+	tmp="$(mktemp)"
+	lf -last-dir-path="$tmp" "$@"
+	if [ -f "$tmp" ]; then
+		dir="$(cat "$tmp")"
+		rm -f "$tmp"
+		[ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir" || return
+	fi
 }
 # shell commands
 type lfcd >/dev/null && bindkey -s '^o' 'lfcd^M'
@@ -60,3 +60,6 @@ bindkey '^e' edit-command-line # ctrl-e to edit line in editor
 # history substring search
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+# github copilot
+bindkey '^\' zsh_gh_copilot_explain  # bind Alt+\ to explain
+bindkey '^[\' zsh_gh_copilot_suggest # bind Ctrl+\ to suggest
