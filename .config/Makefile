@@ -13,8 +13,8 @@ terminal: ## Install terminal application
 file-manager: ## Install file manager and dependencies
 	# for ctpv
 	gpg --receive-keys 6E656AC5B97B5133
-	$(INSTALL_AUR) lf vidir dragon-drop ix ctpv-git
-	$(INSTALL) xclip highlight perl-image-exiftool ueberzug atool
+	$(INSTALL_AUR) lf vidir dragon-drop ix ctpv-git ueberzugpp
+	$(INSTALL) xclip highlight perl-image-exiftool atool
 
 .PHONY: bar
 bar: launcher fonts ## Install bar and dependencies

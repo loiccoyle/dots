@@ -131,24 +131,19 @@ cmd tar ${{
 #     rm -rf $1
 # }}
 
-# cmd fasd_cd ${{
-#     res="$(fasd -dl | grep -iv cache | fzf 2>/dev/tty | sed 's/\\/\\\\/g;s/"/\\"/g')"
-#     if [ -d "$res" ]; then
-#         cmd="cd"
-#     else
-#         cmd="select"
-#     fi
-#     lf -remote "send $id $cmd \"$res\""
-#  }}
-
- cmd z %{{
-	result="$(zoxide query --exclude $PWD $@)"
-	lf -remote "send $id cd $result"
+# zoxide integration https://github.com/gokcehan/lf/wiki/Integrations#zoxide
+cmd z %{{
+	result="$(zoxide query --exclude $PWD $@ | sed 's/\\/\\\\/g;s/"/\\"/g')"
+	lf -remote "send $id cd \"$result\""
 }}
 
 cmd zi ${{
-	result="$(zoxide query -i)"
-	lf -remote "send $id cd $result"
+	result="$(zoxide query -i | sed 's/\\/\\\\/g;s/"/\\"/g')"
+	lf -remote "send $id cd \"$result\""
+}}
+
+cmd on-cd &{{
+        zoxide add "$PWD"
 }}
 
 # Share files through https://ix.io
@@ -193,25 +188,25 @@ cmd new_node %{{
   [[ "$node" == */ ]] && mkdir "$node" || touch "$node"
 }}
 
+# zoxide
+map gf push :z<space>
+map gF zi
+
 map P link
 map a push :new_node<space>
 # show the result of execution of previous commands
 map ` !true
 
-map A rename # at the very end
+# rename
+map r rename # before extension
+map A push r<end> # at the end
 map I push A<c-a> # at the very beginning
-map r push A<a-b><a-b><a-f> # before extension
-map R $vidir
-# map c push A<c-u> # new rename
-# map a push A<a-b><a-b><a-f> # before extension
-# map a push A<a-b> # after extension
+# bulkrename
+map R $vidir $fs
 
 map D delete
-# fasd_cd fzf
-map gf fasd_cd
 # $EDITOR on selected files
 map E $$EDITOR $fx
-# bulkrename
 # copy selected path
 map Y $printf '%s' "$fx" | xclip -i -selection clipboard
 map gd :drag
@@ -226,8 +221,9 @@ map gcr $chmod +r $fx
 map gcR $chmod -r $fx
 map gcw $chmod +w $fx
 map gcW $chmod -w $fx
-# Parent folder cycle
+
 map zd set dironly!
+map <c-z> $ kill -STOP $PPID
+# Parent folder cycle
 map J push zdhjlzd
 map K push zdhklzd
-map <c-z> $ kill -STOP $PPID
