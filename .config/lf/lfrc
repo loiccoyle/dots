@@ -37,6 +37,7 @@ set cleaner ctpvclear
 &ctpvquit $id
 set hidden
 set incsearch
+set incfilter
 set icons
 set info size
 set autoquit
@@ -227,3 +228,4 @@ map <c-z> $ kill -STOP $PPID
 # Parent folder cycle
 map J push zdhjlzd
 map K push zdhklzd
+map <a-/> filter
