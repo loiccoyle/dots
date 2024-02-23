@@ -38,7 +38,7 @@ Check `~/.config/Makefile` to install dependencies (requires `paru`).
 | Shell                | [`zsh`](https://www.zsh.org/)                               | `~/.config/zsh/`         |
 | File viewer          | [`lf`](https://github.com/gokcehan/lf)                      | `~/.config/lf/`          |
 | Image viewer         | [`vimiv-qt`](https://github.com/karlch/vimiv-qt)            | `~/.config/vimiv/`        |
-| PDF viewer           | [`zathura`](https://github.com/pwmt/zathura)                | `~/.config/zathura/`     |
+| PDF viewer           | [`sioyek`](https://github.com/ahrm/sioyek)                | `~/.config/sioyek/`     |
 | Colour management    | [`flavours`](https://github.com/Misterio77/flavours)        | `~/.config/flavours/`    |
 | Application launcher | [`rofi`](https://github.com/davatorium/rofi)                | `~/.config/rofi/`        |
 
@@ -49,9 +49,9 @@ Check `~/.config/Makefile` to install dependencies (requires `paru`).
 - **zsh**:
   - Plugin manager: [`zinit`](https://github.com/zdharma-continuum/zinit)
   - Prompt: [`pure`](https://github.com/sindresorhus/pure)
-  - Quick jump: [`fasd`](https://github.com/clvv/fasd)
+  - Quick jump: [`zoxide`](https://github.com/ajeetdsouza/zoxide)
 - **neovim**:
-  - Plugin manager: [`packer.nvim`](https://github.com/wbthomason/packer.nvim)
+  - [`lazyvim`](https://github.com/LazyVim/LazyVim)
 - **Keeping the `$HOME` clean**:
   - In `~/.profile` there are a bunch of environment variables to keep files out of the home dir.
 - **`python` dev environment**:
