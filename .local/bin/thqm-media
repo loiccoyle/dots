@@ -1,44 +1,68 @@
 #!/bin/sh
 
 # Media control panel using thqm
-# requires: thqm
+# requires: thqm, dotool, pactl
 
-function media_control {
-    while IFS= read -r event; do
-        case "$event" in
-            "fas fa-volume-up")
-                pactl set-sink-volume @DEFAULT_SINK@ +10%
-                ;;
-            "fas fa-volume-down")
-                pactl set-sink-volume @DEFAULT_SINK@ -10%
-                ;;
-            "fas fa-volume-mute")
-                pactl set-sink-mute @DEFAULT_SINK@ toggle
-                ;;
-            "fas fa-play")
-                xdotool key --clearmodifiers XF86AudioPlay
-                ;;
-            "fas fa-step-backward")
-                xdotool key --clearmodifiers XF86AudioPrev
-                ;;
-            "fas fa-step-forward")
-                xdotool key --clearmodifiers XF86AudioNext
-                ;;
-            "fas fa-arrow-right")
-                xdotool key --clearmodifiers Right
-                ;;
-            "fas fa-arrow-left")
-                xdotool key --clearmodifiers Left
-                ;;
-            "fas fa-play-circle")
-                xdotool key --clearmodifiers space
-                ;;
-            *)
-                # pass through for qr code printing
-                echo "$event"
-                ;;
-        esac
-    done
+SCRIPT_NAME=$(basename "$0")
+
+check_dependency() {
+	type "$1" >/dev/null 2>&1 || {
+		notify-send "$1 is required for $SCRIPT_NAME"
+		exit 1
+	}
 }
 
-echo -e "fas fa-volume-mute\nfas fa-volume-down\nfas fa-volume-up\nfas fa-step-backward\nfas fa-play\nfas fa-step-forward\nfas fa-arrow-left\nfas fa-play-circle\nfas fa-arrow-right" | thqm --title="media control" --style fa-grid "$@" --port 8901 | media_control
+check_dependency dotool
+check_dependency pactl
+check_dependency thqm
+
+media_control() {
+	while IFS= read -r event; do
+		case "$event" in
+		"fas fa-volume-up")
+			pactl set-sink-volume @DEFAULT_SINK@ +10%
+			;;
+		"fas fa-volume-down")
+			pactl set-sink-volume @DEFAULT_SINK@ -10%
+			;;
+		"fas fa-volume-mute")
+			pactl set-sink-mute @DEFAULT_SINK@ toggle
+			;;
+		"fas fa-play")
+			echo key playpause | sudo dotool
+			;;
+		"fas fa-step-backward")
+			echo key previoussong | sudo dotool
+			;;
+		"fas fa-step-forward")
+			echo key nextsong | sudo dotool
+			;;
+		"fas fa-arrow-right")
+			echo key right | sudo dotool
+			;;
+		"fas fa-arrow-left")
+			echo key left | sudo dotool
+			;;
+		"fas fa-play-circle")
+			echo key space | sudo dotool
+			;;
+		*)
+			# pass through for qr code printing
+			echo "$event"
+			;;
+		esac
+	done
+}
+
+printf \
+	"fas fa-volume-mute
+fas fa-volume-down
+fas fa-volume-up
+fas fa-step-backward
+fas fa-play
+fas fa-step-forward
+fas fa-arrow-left
+fas fa-play-circle
+fas fa-arrow-right" |
+	thqm --title="media control" --style fa-grid "$@" --port 8901 |
+	media_control

@@ -97,7 +97,7 @@ hooks: ## Install pacman hooks
 .PHONY: scripts
 scripts: ## Install script dependencies
 	$(INSTALL) ffmpeg hsetroot shotgun slop xclip xdotool python-pipx
-	$(INSTALL_AUR) thqm
+	$(INSTALL_AUR) thqm dotool
 	pipx install hag
 
 .PHONY: startup
