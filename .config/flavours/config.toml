@@ -61,6 +61,7 @@ rewrite = true
 [[item]]
 file = '$XDG_CONFIG_HOME/zsh/fzf-base16.zsh'
 template = 'fzf'
+subtemplate = 'base16-default'
 rewrite = true
 
 [[item]]
