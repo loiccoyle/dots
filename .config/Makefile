@@ -118,7 +118,8 @@ wayland: hyprland waybar ## Wayland wm
 
 .PHONY: hyprland
 hyprland: wayland-utils ## Install hyprland
-	$(INSTALL_AUR) hyprland grimblast-git waybar-hyprland-git
+	$(INSTALL) hyprland waybar
+	$(INSTALL_AUR) grimblast-git
 
 .PHONY: wayland-utils
 wayland-utils: ## Install wayland utils
