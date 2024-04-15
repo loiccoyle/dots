@@ -1,0 +1,146 @@
+@import "./colors.scss";
+
+$foreground: $base05;
+$foreground-dim: $base03;
+$foreground-light: $base07;
+$background: $base00;
+$background-light: $base01;
+
+$accent: $base0B;
+$urgent: $base08;
+
+* {
+  all: unset;
+}
+
+
+tooltip.background {
+  font-family: "Hack";
+  background-color: $background-light;
+  color: $foreground;
+  border: 1px solid $foreground-dim;
+}
+
+// tooltip label {
+//   margin: 6px;
+// }
+
+window {
+  background: $background;
+  color: $foreground;
+  font-family: "Hack";
+  font-size: 13px;
+}
+
+.bar {
+  margin: 0 4px;
+}
+
+// icon size
+.label {
+  font-family: "Symbols Nerd Font";
+  font-size: 16px;
+  margin: 0 5px;
+}
+
+.circular-module {
+  button {
+    font-size: 10px;
+    margin: 2px;
+    color: $foreground;
+  }
+}
+
+.metric-module scale trough {
+  background-color: $background-light;
+  // box-shadow: 0 2px 3px 2px #06060b;
+  min-width: 64px;
+  min-height: 4px;
+  border-radius: 10px;
+}
+
+.metric-module scale trough highlight {
+  background-color: $foreground-light;
+  border-radius: 10px;
+}
+
+// the volume icons have different widths so I set a min-width
+.volume .label {
+
+  min-width: 1.5em;
+}
+
+.volume :hover {
+  color: $foreground-light;
+}
+
+.volume scale trough highlight {
+
+  background-color: $base0A;
+}
+
+.cpu scale trough highlight {
+  background-color: $base0B;
+}
+
+.gpu scale trough highlight {
+  background-color: $base0C;
+}
+
+.ram scale trough highlight {
+  background-color: $base0D;
+}
+
+
+.workspaces {
+  button {
+    margin: 0px 3px;
+  }
+
+  .occupied {
+    color: $foreground-dim
+  }
+
+  .focused {
+    color: $foreground-light;
+  }
+
+  .urgent {
+    color: $urgent;
+  }
+
+  .empty {
+    color: $background-light;
+  }
+}
+
+.notification {
+  background-color: $background-light;
+  border-radius: 4px;
+  padding: 0 4px 0 2px;
+
+  :hover {
+    color: $foreground-light;
+  }
+
+}
+
+.nordvpn :hover {
+  color: $foreground-light;
+}
+
+.nordvpn-on .label {
+  color: $accent;
+}
+
+.github .label {
+  color: $base0E;
+}
+
+.updates .label {
+  color: $base0E;
+}
+
+.temperature-hot .label {
+  color: $urgent;
+}
