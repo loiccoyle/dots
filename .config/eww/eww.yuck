@@ -169,8 +169,8 @@
     :cursor "pointer"
     (tooltip "Toggle NordVPN"
       (button
-        :onclick "notify-send -i info 'Toggling nordvpn'; nordvpn ${nordvpn_poll=="Off" ? "connect" : "disconnect"}"
-        :onclickright "rofi-nordvpn &"
+        :onclick "(notify-send -i info 'Toggling nordvpn'; nordvpn ${nordvpn_poll=="Off" ? "connect" : "disconnect"}) &"
+        :onrightclick "rofi-nordvpn &"
         (icon-module
           :class "nordvpn"
           :icon "󰊠"
