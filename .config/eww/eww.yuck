@@ -1,14 +1,24 @@
 (include "pollers.yuck")
 (include "listeners.yuck")
+(include "variables.yuck")
+
 
 (defwindow bar
-  :monitor 0
-  :hexpand false
-  :vexpand false
-  :geometry (geometry :x 0 :y 0 :width "100%")
-  :anchor "top left"
-  :reserve (struts :distance "10px" :side "top")
+  :geometry (geometry
+    :x 0
+    :y 0
+    :width "100%"
+    :height "18px"
+    :anchor "top center")
+    :reserve (struts :distance "0px" :side "top")
   (bar))
+
+(defwindow calendar
+  :geometry (geometry
+    :x "-64px"
+    :y "18px"
+    :anchor "top right")
+  (cal))
 
 (defwidget bar []
   (centerbox :orientation "h"
@@ -42,7 +52,7 @@
       (disk)
       (date)
       (time)
-      (systray :pack-direction "ltr" :icon-size 16)
+      (systray :class "systray" :pack-direction "ltr" :icon-size 16)
     )))
 
 (defwidget icon-module [icon ?class ?visible]
@@ -88,8 +98,8 @@
         :class "volume"
         :icon "${volume_poll.icon}"
         :value {volume_poll.content}
-        :onchange "pactl set-sink-volume @DEFAULT_SINK@ {}%; eww update volume_poll=\"$(./modules/volume.sh)\""
-        :onclickicon "pactl set-sink-mute @DEFAULT_SINK@ toggle; eww update volume_poll=\"$(./modules/volume.sh)\""))))
+        :onchange `pactl set-sink-volume @DEFAULT_SINK@ {}%; eww update volume_poll="$(./modules/volume.sh)"`
+        :onclickicon `pactl set-sink-mute @DEFAULT_SINK@ toggle; eww update volume_poll="$(./modules/volume.sh)"`))))
 
 (defwidget cpu []
   (tooltip "CPU usage: ${round(EWW_CPU.avg, 0)}%"
@@ -121,10 +131,13 @@
 
 ; Right modules
 (defwidget date []
-  (icon-module
-    :class "date"
-    :icon ""
-    (label :text date_poll)))
+  (eventbox :onclick {calendar_open ?
+    "${EWW_CMD} close calendar; ${EWW_CMD} update calendar_open=false":
+    "${EWW_CMD} open calendar; ${EWW_CMD} update calendar_open=true"}
+    (icon-module
+      :class "date"
+      :icon ""
+      (label :text date_poll))))
 
 (defwidget time []
   (icon-module
@@ -190,6 +203,12 @@
              EWW_TEMPS.K10TEMP_TCCD1 >= 70 ? "" :
              ""}"
       (label :text "${round(EWW_TEMPS.K10TEMP_TCCD1, 0)}°C")))
+
+(defwidget cal []
+  (box :class "calendar-container"
+    (calendar
+      :class "calendar"
+    )))
 
 ; (defwidget network []
   ; (icon-module :class "network" :icon "󰛳"

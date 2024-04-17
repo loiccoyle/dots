@@ -22,7 +22,7 @@ print_workspaces() {
             class="focused"
         elif [ "$(contains "$occupied_desktops" "$d")" -eq 1 ]; then
             ws=$d
-            icon=""
+            icon=""
             class="occupied"
         elif [ "$(contains "$urgent_desktops" "$d")" -eq 1 ]; then
             ws=$d
@@ -30,7 +30,7 @@ print_workspaces() {
             class="urgent"
         else
             ws=$d
-            icon=""
+            icon=""
             class="empty"
         fi
 
