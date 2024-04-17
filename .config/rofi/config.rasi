@@ -3,8 +3,8 @@ configuration {
     show-icons: true;
     display-drun: "";
     display-run: "";
-    display-calc: "";
-    display-ssh: "";
+    display-calc: "";
+    display-ssh: "󰢩";
     display-emoji: "";
     display-keys: "";
     display-window: "ﬓ";
