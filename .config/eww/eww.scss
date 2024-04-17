@@ -125,11 +125,11 @@ scale trough highlight {
   }
 
   .occupied {
-    color: $foreground-light
+    color: $foreground;
   }
 
   .focused {
-    color: $foreground-light;
+    color: $foreground;
   }
 
   .urgent {
