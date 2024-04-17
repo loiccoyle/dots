@@ -13,12 +13,19 @@
     :reserve (struts :distance "0px" :side "top")
   (bar))
 
-(defwindow calendar
+(defwindow calendar_popup
   :geometry (geometry
     :x "-64px"
     :y "18px"
     :anchor "top right")
   (cal))
+
+(defwindow cpu_popup
+  :geometry (geometry
+    :x "-6px"
+    :y "24px"
+    :anchor "top right")
+  (cpu_details))
 
 (defwidget bar []
   (centerbox :orientation "h"
@@ -85,6 +92,16 @@
       :onchange {onchange ?: ""}
       :orientation "h")))
 
+(defwidget progress-module [icon value ?onclickicon ?class]
+  (box
+    :class "${class} progress-module"
+    :orientation "h"
+    :space-evenly false
+    (button :class "label" :onclick {onclickicon ?: ""} "${icon}")
+    (progress
+      :valign "center"
+      :value {value}
+      :orientation "h")))
 
 ; Left modules
 (defwidget player []
@@ -92,32 +109,36 @@
     (literal :content {player_listen.content})))
 
 (defwidget volume []
-  (tooltip "Volume: ${volume_poll.content}%"
-    (eventbox :cursor "pointer" :onrightclick "pavucontrol &"
-      (metric-module
-        :class "volume"
-        :icon "${volume_poll.icon}"
-        :value {volume_poll.content}
-        :onchange `pactl set-sink-volume @DEFAULT_SINK@ {}%; eww update volume_poll="$(./modules/volume.sh)"`
-        :onclickicon `pactl set-sink-mute @DEFAULT_SINK@ toggle; eww update volume_poll="$(./modules/volume.sh)"`))))
+  (eventbox :cursor "pointer" :onrightclick "pavucontrol &" :tooltip "Volume: ${volume_poll.content}%"
+    (metric-module
+      :class "volume"
+      :icon "${volume_poll.icon}"
+      :value {volume_poll.content}
+      :onchange `pactl set-sink-volume @DEFAULT_SINK@ {}%; eww update volume_poll="$(./modules/volume.sh)"`
+      :onclickicon `pactl set-sink-mute @DEFAULT_SINK@ toggle; eww update volume_poll="$(./modules/volume.sh)"`)))
 
 (defwidget cpu []
-  (tooltip "CPU usage: ${round(EWW_CPU.avg, 0)}%"
-    (metric-module
+  (eventbox
+    :cursor "pointer"
+    :onclick {cpu_open ?
+      "${EWW_CMD} close cpu_popup; ${EWW_CMD} update cpu_open=false":
+      "${EWW_CMD} open cpu_popup; ${EWW_CMD} update cpu_open=true"}
+    :tooltip "CPU usage: ${round(EWW_CPU.avg, 0)}%"
+    (progress-module
       :class "cpu"
       :icon ""
       :value {round(EWW_CPU.avg, 0)})))
 
 (defwidget gpu []
   (tooltip "GPU usage: ${nvidia_listen}%"
-    (metric-module
+    (progress-module
       :class "gpu"
       :icon ""
       :value {nvidia_listen})))
 
 (defwidget ram []
   (tooltip "RAM usage: ${round(EWW_RAM.used_mem_perc, 0)}%"
-    (metric-module
+    (progress-module
       :class "ram"
       :icon ""
       :value {round(EWW_RAM.used_mem_perc, 0)})))
@@ -132,8 +153,8 @@
 ; Right modules
 (defwidget date []
   (eventbox :onclick {calendar_open ?
-    "${EWW_CMD} close calendar; ${EWW_CMD} update calendar_open=false":
-    "${EWW_CMD} open calendar; ${EWW_CMD} update calendar_open=true"}
+    "${EWW_CMD} close calendar_popup; ${EWW_CMD} update calendar_open=false":
+    "${EWW_CMD} open calendar_popup; ${EWW_CMD} update calendar_open=true"}
     (icon-module
       :class "date"
       :icon ""
@@ -169,25 +190,26 @@
     :halign "center"
     :visible {updates_poll != "0"}
     (eventbox :cursor "pointer"
-      (tooltip "Update system"
-        (button :onclick "$TERMINAL --class=float --hold -e paru -Syu &"
-          (icon-module
-            :class "updates"
-            :icon ""
-            (label :text updates_poll)))))))
+      (button
+        :onclick "$TERMINAL --class=float --hold -e paru -Syu &" 
+        :tooltip "Update system"
+        (icon-module
+          :class "updates"
+          :icon ""
+          (label :text updates_poll))))))
 
 (defwidget nordvpn []
   (eventbox
     :class "nordvpn ${nordvpn_poll != "Off" ? "nordvpn-on" : "nordvpn-off"}"
     :cursor "pointer"
-    (tooltip "Toggle NordVPN"
-      (button
-        :onclick "(notify-send -i info 'Toggling nordvpn'; nordvpn ${nordvpn_poll=="Off" ? "connect" : "disconnect"}) &"
-        :onrightclick "rofi-nordvpn &"
-        (icon-module
-          :class "nordvpn"
-          :icon "󰊠"
-          (label :text nordvpn_poll))))))
+    :tooltip "Toggle NordVPN"
+    (button
+      :onclick "(notify-send -i info 'Toggling nordvpn'; nordvpn ${nordvpn_poll=="Off" ? "connect" : "disconnect"}) &"
+      :onrightclick "rofi-nordvpn &"
+      (icon-module
+        :class "nordvpn"
+        :icon "󰊠"
+        (label :text nordvpn_poll)))))
 
 (defwidget ping []
   (icon-module
@@ -205,10 +227,44 @@
       (label :text "${round(EWW_TEMPS.K10TEMP_TCCD1, 0)}°C")))
 
 (defwidget cal []
-  (box :class "calendar-container"
+  (box :class "calendar-popup"
     (calendar
       :class "calendar"
     )))
+
+(defwidget cpu_details []
+  (box
+    :class "cpu-popup"
+    :orientation "h"
+    (for core_group in {jq(EWW_CPU.cores, "[while(.!=[]; .[8:])[:8]]")} ; split cores into groups of 8
+      (box
+        :class "cpu-popup-col"
+        :orientation "v"
+        :width 120
+        (for core in core_group
+          (box
+            :class "cpu-core ${core.usage >= 90 ? "cpu-core-high" :
+              core.usage >= 60 ? "cpu-core-medium" : ""}"
+            :orientation "h"
+            :tooltip "${core.core}"
+            :space-evenly false
+            :spacing 8
+            (circular-progress 
+              :value "${core.usage}"
+              :width 32
+              :thickness 8
+              :start-at 25)
+            (box
+              :class "cpu-core-details"
+              :orientation "v"
+              (label
+                :text "${core.freq} MHz"
+                :halign "end")
+              (label 
+                :text "${round(core.usage, 2)}%"
+                :halign "end"))
+          ))
+      ))))
 
 ; (defwidget network []
   ; (icon-module :class "network" :icon "󰛳"

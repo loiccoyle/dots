@@ -27,6 +27,18 @@ scale {
   all: unset;
 }
 
+progressbar {
+  all: unset;
+}
+
+trough {
+  all: unset;
+}
+
+progress {
+  all: unset;
+}
+
 tooltip {
   all: unset;
 
@@ -68,24 +80,17 @@ window {
   margin: 0 5px;
 }
 
-.circular-module {
-  button {
-    font-size: 10px;
-    margin: 2px;
-    color: $foreground;
-  }
-}
-
-.metric-module scale trough {
+trough {
   background-color: $background-light;
-  // box-shadow: 0 2px 3px 2px #06060b;
   min-width: 64px;
   min-height: 6px;
   border-radius: 12px;
 
-  & highlight {
+  &>progress,
+  &>highlight {
+    all: unset;
     background-color: $foreground-light;
-    border-radius: 10px;
+    border-radius: 12px;
   }
 }
 
@@ -100,11 +105,7 @@ window {
   }
 }
 
-scale trough highlight {
-  .volume & {
-    background-color: $base0A;
-  }
-
+progressbar>trough>progress {
   .cpu & {
     background-color: $base0B;
   }
@@ -115,6 +116,12 @@ scale trough highlight {
 
   .ram & {
     background-color: $base0D;
+  }
+}
+
+scale trough>highlight {
+  .volume & {
+    background-color: $base0A;
   }
 }
 
@@ -173,7 +180,7 @@ scale trough highlight {
 }
 
 
-.calendar-container {
+.calendar-popup {
   background-color: $background-light;
   border: 1px solid $foreground-dim;
   border-radius: $radius;
@@ -202,5 +209,41 @@ calendar {
 
   .highlight {
     color: $foreground-light;
+  }
+}
+
+.cpu-popup {
+  padding: 2px 2px 2px 2px;
+  background-color: $background;
+  border: 1px solid $foreground-dim;
+  border-radius: $radius;
+}
+
+.cpu-core {
+  background-color: $background-light;
+  margin: 2px;
+  padding: 2px;
+  border-radius: $radius;
+
+  circular-progress {
+    color: $accent;
+    background-color: $background;
+
+    .cpu-core-label {
+      color: $foreground;
+      font-size: 16px;
+    }
+  }
+}
+
+.cpu-core-high {
+  circular-progress {
+    color: $urgent;
+  }
+}
+
+.cpu-core-medium {
+  circular-progress {
+    color: $base09;
   }
 }
