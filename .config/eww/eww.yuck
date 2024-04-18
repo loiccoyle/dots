@@ -123,11 +123,14 @@
     :onclick {cpu_open ?
       "${EWW_CMD} close cpu_popup; ${EWW_CMD} update cpu_open=false":
       "${EWW_CMD} open cpu_popup; ${EWW_CMD} update cpu_open=true"}
-    :tooltip "CPU usage: ${round(EWW_CPU.avg, 0)}%"
+    :onhover "${EWW_CMD} update cpu_hover=true"
+    :onhoverlost "${EWW_CMD} update cpu_hover=false"
+    :tooltip "CPU usage: ${round(EWW_CPU.avg, 0)}%
+${cpu_processes}"
     (progress-module
       :class "cpu"
       :icon ""
-      :value {round(EWW_CPU.avg, 0)})))
+      :value {EWW_CPU.avg})))
 
 (defwidget gpu []
   (tooltip "GPU usage: ${nvidia_listen}%"
@@ -260,7 +263,7 @@
               (label
                 :text "${core.freq} MHz"
                 :halign "end")
-              (label 
+              (label
                 :text "${round(core.usage, 2)}%"
                 :halign "end"))
           ))

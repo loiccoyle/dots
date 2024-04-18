@@ -1,0 +1,3 @@
+(defvar calendar_open false)
+(defvar cpu_hover false)
+(defvar cpu_open false)
