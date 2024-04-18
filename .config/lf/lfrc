@@ -30,7 +30,7 @@ set shellopts '-euy'
 set ifs "\n"
 # leave some space at the top and the bottom of the screen
 set scrolloff 10
-# ctpv config: https://nikitaivanovv.github.io/ctpv/
+# ctpv config: https://github.com/NikitaIvanovV/ctpv
 set previewer ctpv
 set cleaner ctpvclear
 &ctpv -s $id
