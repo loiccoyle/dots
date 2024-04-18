@@ -140,7 +140,11 @@ ${cpu_processes}"
       :value {nvidia_listen})))
 
 (defwidget ram []
-  (tooltip "RAM usage: ${round(EWW_RAM.used_mem_perc, 0)}%"
+  (eventbox
+    :onhover "${EWW_CMD} update ram_hover=true"
+    :onhoverlost "${EWW_CMD} update ram_hover=false"
+    :tooltip "RAM usage: ${round(EWW_RAM.used_mem_perc, 0)}%
+${ram_processes}"
     (progress-module
       :class "ram"
       :icon ""
