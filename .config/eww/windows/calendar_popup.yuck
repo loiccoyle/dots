@@ -1,0 +1,10 @@
+(defwindow calendar_popup
+  :geometry (geometry
+    :x "-64px"
+    :y "18px"
+    :anchor "top right")
+  (box :class "calendar-popup"
+    (calendar
+      :class "calendar"
+    )))
+

@@ -1,0 +1,13 @@
+(defwidget notification [icon text ?tooltip ?class ?onclick ?visible]
+  (box
+    :class "notification ${class}"
+    :halign "center"
+    :visible {visible?: true}
+    (eventbox :cursor "pointer"
+      (button
+        :onclick {onclick}
+        :tooltip {tooltip}
+        (text_icon
+          :class "notification-icon"
+          :icon {icon}
+          :text {text})))))

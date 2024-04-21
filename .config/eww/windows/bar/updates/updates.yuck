@@ -1,0 +1,14 @@
+(include "windows/bar/notification.yuck")
+
+(defpoll updates_poll :initial 0 :interval "5m" "./windows/bar/updates/updates.sh")
+
+(defwidget updates []
+  (notification
+    :class "updates"
+    :icon ""
+    :text {updates_poll}
+    :tooltip "Update system"
+    :onclick "$TERMINAL --class=float --hold -e paru -Syu &"
+    :visible {updates_poll != "0"}
+  ))
+

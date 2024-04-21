@@ -1,0 +1,13 @@
+(include "windows/bar/notification.yuck")
+
+(defpoll github_poll :initial 0 :interval "5m" `gh api notifications 2> /dev/null | jq '. | length'`)
+
+(defwidget github []
+  (notification
+    :class "github"
+    :icon ""
+    :text {github_poll}
+    :tooltip "GitHub notifications"
+    :onclick "$BROWSER https://github.com/notifications"
+    :visible {github_poll != "0"}
+  ))

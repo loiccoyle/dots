@@ -1,0 +1,32 @@
+.calendar-popup {
+  background-color: $background-light;
+  border: 1px solid $foreground-dim;
+  border-radius: $radius;
+
+  calendar {
+    all: unset;
+    padding: 2px 2px 2px 2px;
+    margin-left: 10px;
+
+    :selected {
+      color: $accent;
+    }
+
+    :indeterminate {
+      color: $foreground-dim;
+    }
+
+    .header {
+      color: $foreground-light;
+    }
+
+    .button {
+      color: $accent;
+    }
+
+    .highlight {
+      color: $foreground-light;
+    }
+  }
+
+}

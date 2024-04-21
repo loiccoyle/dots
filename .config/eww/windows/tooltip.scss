@@ -1,0 +1,16 @@
+tooltip {
+  all: unset;
+
+  &.background {
+    font-family: "Hack";
+    background-color: $background-light;
+    color: $foreground;
+    border: 1px solid $foreground-dim;
+    border-radius: $radius;
+  }
+
+  label {
+    font-family: "Hack";
+    color: $foreground;
+  }
+}

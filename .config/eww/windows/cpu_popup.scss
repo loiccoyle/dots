@@ -1,0 +1,36 @@
+.cpu-popup {
+  padding: 2px 2px 2px 2px;
+  background-color: $background;
+  border: 1px solid $foreground-dim;
+  border-radius: $radius;
+
+}
+
+.cpu-core {
+  background-color: $background-light;
+  margin: 2px;
+  padding: 2px;
+  border-radius: $radius;
+
+  circular-progress {
+    color: $accent;
+    background-color: $background;
+
+    .cpu-core-label {
+      color: $foreground;
+      font-size: 16px;
+    }
+  }
+}
+
+.cpu-core-high {
+  circular-progress {
+    color: $urgent;
+  }
+}
+
+.cpu-core-medium {
+  circular-progress {
+    color: $base09;
+  }
+}

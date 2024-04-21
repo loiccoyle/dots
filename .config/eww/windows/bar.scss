@@ -1,0 +1,134 @@
+.bar {
+  button {
+    all: unset;
+  }
+
+  slider {
+    all: unset;
+  }
+
+  box {
+    all: unset;
+  }
+
+  scale {
+    all: unset;
+  }
+
+  progressbar {
+    all: unset;
+  }
+
+  trough {
+    all: unset;
+    background-color: $background-light;
+    min-width: 64px;
+    min-height: 6px;
+    border-radius: 12px;
+
+    >progress,
+    >highlight {
+      all: unset;
+      background-color: $foreground-light;
+      border-radius: 12px;
+    }
+  }
+
+  progress {
+    all: unset;
+  }
+
+  window {
+    all: unset;
+  }
+
+  margin: 0 4px;
+  background: $background;
+  color: $foreground;
+  font-family: "Hack";
+  font-size: 13px;
+
+  .icon {
+    font-family: "Symbols Nerd Font";
+    font-size: 16px;
+    margin: 0 5px;
+  }
+
+  .volume {
+    .icon {
+      min-width: 1.5em;
+    }
+
+    &:hover {
+      color: $foreground-light;
+    }
+  }
+
+  .volume scale trough>highlight {
+    background-color: $base0A;
+  }
+
+  .cpu progressbar>trough>progress {
+    background-color: $base0B;
+  }
+
+  .gpu progressbar>trough>progress {
+    background-color: $base0C;
+  }
+
+  .ram progressbar>trough>progress {
+    background-color: $base0D;
+  }
+
+  .workspaces {
+    button {
+      margin: 0px 3px;
+    }
+
+    .occupied {
+      color: $foreground;
+    }
+
+    .focused {
+      color: $foreground;
+    }
+
+    .urgent {
+      color: $urgent;
+    }
+
+    .empty {
+      color: $foreground-dim;
+    }
+  }
+
+  .notification {
+    background-color: $background-light;
+    border-radius: $radius;
+    padding: 0 4px 0 2px;
+
+    :hover {
+      color: $foreground-light;
+    }
+  }
+
+  .nordvpn :hover {
+    color: $foreground-light;
+  }
+
+  .nordvpn-on .icon {
+    color: $accent;
+  }
+
+  .github .icon {
+    color: $base0E;
+  }
+
+  .updates .icon {
+    color: $base0E;
+  }
+
+  .temperature-hot .icon {
+    color: $urgent;
+  }
+}

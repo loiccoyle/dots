@@ -1,0 +1,11 @@
+(defwidget progress_icon [icon value ?onclickicon ?class]
+  (box
+    :class "${class} progress-icon"
+    :orientation "h"
+    :space-evenly false
+    (button :class "icon" :onclick {onclickicon} {icon})
+    (progress
+      :valign "center"
+      :value {value}
+      :orientation "h")))
+

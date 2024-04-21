@@ -1,0 +1,7 @@
+(deflisten workspaces_listen "./windows/bar/workspaces/bspwm.sh")
+
+(defwidget workspaces []
+  (eventbox
+    :onscroll "d=$([ {} = up ] && echo prev || echo next); bspc desktop -f $d"
+    :cursor "pointer"
+    (literal :content workspaces_listen)))

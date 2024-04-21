@@ -1,0 +1,7 @@
+(defwidget text_icon [icon text ?class ?visible]
+  (box :class "${class} text-icon"
+    :orientation "h"
+    :space-evenly false
+    :visible {visible?: true}
+    (label :class "icon" :text {icon})
+    (label :text {text})))

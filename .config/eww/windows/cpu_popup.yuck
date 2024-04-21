@@ -1,0 +1,41 @@
+(defwindow cpu_popup
+  :geometry (geometry
+    :x "-6px"
+    :y "24px"
+    :anchor "top right")
+  (cpu_cores))
+
+(defwidget cpu_cores []
+  (box
+    :class "cpu-popup"
+    :orientation "h"
+    (for core_group in {jq(EWW_CPU.cores, "[while(.!=[]; .[8:])[:8]]")} ; split cores into groups of 8
+      (box
+        :class "cpu-popup-col"
+        :orientation "v"
+        :width 120
+        (for core in core_group
+          (box
+            :class "cpu-core ${core.usage >= 90 ? "cpu-core-high" :
+              core.usage >= 60 ? "cpu-core-medium" : ""}"
+            :orientation "h"
+            :tooltip "${core.core}"
+            :space-evenly false
+            :spacing 8
+            (circular-progress
+              :value "${core.usage}"
+              :width 32
+              :thickness 8
+              :start-at 25)
+            (box
+              :class "cpu-core-details"
+              :orientation "v"
+              (label
+                :text "${core.freq} MHz"
+                :halign "end")
+              (label
+                :text "${round(core.usage, 2)}%"
+                :halign "end"))
+          ))
+      ))))
+

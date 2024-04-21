@@ -1,0 +1,16 @@
+(include "windows/bar/progress_icon.yuck")
+
+(defvar memory_hover false)
+
+(defpoll memory_processes :interval "5s" :run-while ram_hover "ps -N -C ps -o pid,comm,%mem --sort=-%mem | head -n 5" )
+
+(defwidget memory []
+  (eventbox
+    :onhover "${EWW_CMD} update memory_hover=true"
+    :onhoverlost "${EWW_CMD} update memory_hover=false"
+    :tooltip "RAM usage: ${round(EWW_RAM.used_mem_perc, 0)}%
+${memory_processes}"
+    (progress_icon
+      :class "ram"
+      :icon ""
+      :value {round(EWW_RAM.used_mem_perc, 0)})))

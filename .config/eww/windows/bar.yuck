@@ -1,0 +1,78 @@
+(defwindow bar
+  :geometry (geometry
+    :x 0
+    :y 0
+    :width "100%"
+    :height "18px"
+    :anchor "top center")
+    :reserve (struts :distance "0px" :side "top")
+  (bar))
+
+(include "windows/bar/cpu.yuck")
+(include "windows/bar/date.yuck")
+(include "windows/bar/github.yuck")
+(include "windows/bar/gpu/gpu.yuck")
+(include "windows/bar/memory.yuck")
+(include "windows/bar/nordvpn.yuck")
+(include "windows/bar/ping/ping.yuck")
+(include "windows/bar/updates/updates.yuck")
+(include "windows/bar/volume/volume.yuck")
+(include "windows/bar/workspaces/workspaces.yuck")
+
+(include "windows/bar/text_icon.yuck")
+
+(defwidget bar []
+  (centerbox :orientation "h"
+       :class "bar"
+    (box
+      :halign "start"
+      :spacing 12
+      :space-evenly false
+      (volume)
+      (cpu)
+      (gpu)
+      (memory))
+      ; (player))
+    (box
+      :halign "center"
+      :space-evenly false
+      (workspaces))
+    (box
+      :halign "end"
+      :spacing 12
+      :hexpand true
+      :space-evenly false
+      (github)
+      (updates)
+      (nordvpn)
+      (temperature)
+      ; (microphone)
+      ; (speaker)
+      (ping)
+      ; (network)
+      (disk)
+      (date)
+      (time)
+      (systray :class "systray" :pack-direction "ltr" :icon-size 16)
+    )))
+
+(defwidget temperature []
+  (text_icon
+    :class "temperature ${EWW_TEMPS.K10TEMP_TCCD1 >= 90 ? "temperature-hot" : ""}"
+    :icon "${EWW_TEMPS.K10TEMP_TCCD1 >= 90 ? "" :
+             EWW_TEMPS.K10TEMP_TCCD1 >= 80 ? "" :
+             EWW_TEMPS.K10TEMP_TCCD1 >= 70 ? "" :
+             ""}"
+    :text "${round(EWW_TEMPS.K10TEMP_TCCD1, 0)}°C"))
+
+(defwidget time []
+  (text_icon
+    :class "time"
+    :icon ""
+    :text "${formattime(EWW_TIME, "%H:%M")}"))
+
+(defwidget disk []
+  (text_icon
+    :class "disk"
+    :icon ""
+    :text "${round(EWW_DISK["/"].used_perc, 0)}%"))

@@ -1,0 +1,16 @@
+(include "windows/bar/text_icon.yuck")
+
+(defvar calendar_open false)
+
+(defpoll date_poll :interval "1m" "date +%d/%m/%Y")
+
+; Right modules
+(defwidget date []
+  (eventbox :onclick {calendar_open ?
+    "${EWW_CMD} close calendar_popup; ${EWW_CMD} update calendar_open=false":
+    "${EWW_CMD} open calendar_popup; ${EWW_CMD} update calendar_open=true"}
+    (text_icon
+      :class "date"
+      :icon ""
+      :text date_poll)))
+

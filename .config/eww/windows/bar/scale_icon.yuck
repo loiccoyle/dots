@@ -1,0 +1,12 @@
+(defwidget scale_icon [icon value ?onclickicon ?onchange ?class]
+  (box
+    :class "${class} scale-icon"
+    :orientation "h"
+    :space-evenly false
+    (button :class "icon" :onclick {onclickicon} {icon})
+    (scale
+      :min 0
+      :max 101
+      :value {value}
+      :onchange {onchange}
+      :orientation "h")))

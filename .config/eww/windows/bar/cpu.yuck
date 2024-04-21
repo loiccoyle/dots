@@ -1,0 +1,22 @@
+(include "windows/bar/progress_icon.yuck")
+
+(defvar cpu_open false)
+(defvar cpu_hover false)
+
+(defpoll cpu_processes :interval "5s" :run-while cpu_hover "ps -N -C ps -o pid,comm,%cpu --sort=-%cpu | head -n 5" )
+
+(defwidget cpu []
+  (eventbox
+    :cursor "pointer"
+    :onclick {cpu_open ?
+      "${EWW_CMD} close cpu_popup; ${EWW_CMD} update cpu_open=false":
+      "${EWW_CMD} open cpu_popup; ${EWW_CMD} update cpu_open=true"}
+    :onhover "${EWW_CMD} update cpu_hover=true"
+    :onhoverlost "${EWW_CMD} update cpu_hover=false"
+    :tooltip "CPU usage: ${round(EWW_CPU.avg, 0)}%
+${cpu_processes}"
+    (progress_icon
+      :class "cpu"
+      :icon ""
+      :value {EWW_CPU.avg})))
+

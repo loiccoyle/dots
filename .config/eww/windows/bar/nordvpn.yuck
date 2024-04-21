@@ -1,0 +1,16 @@
+(include "windows/bar/text_icon.yuck")
+
+(defpoll nordvpn_poll :interval "5s" "rofi-nordvpn -s")
+
+(defwidget nordvpn []
+  (eventbox
+    :class "nordvpn ${nordvpn_poll != "Off" ? "nordvpn-on" : "nordvpn-off"}"
+    :cursor "pointer"
+    :tooltip "Toggle NordVPN"
+    (button
+      :onclick "(notify-send -i info 'Toggling nordvpn'; nordvpn ${nordvpn_poll=="Off" ? "connect" : "disconnect"}) &"
+      :onrightclick "rofi-nordvpn &"
+      (text_icon
+        :class "nordvpn"
+        :icon "󰊠"
+        :text nordvpn_poll))))

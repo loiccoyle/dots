@@ -1,0 +1,9 @@
+(include "windows/bar/text_icon.yuck")
+
+(defpoll ping_poll :interval "10s" "./windows/bar/ping/ping.sh")
+
+(defwidget ping []
+  (text_icon
+    :class "ping"
+    :icon "󰐷"
+    :text ping_poll))

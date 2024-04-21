@@ -1,3 +1,0 @@
-(deflisten workspaces_listen "./modules/bspwm_workspaces.sh")
-(deflisten player_listen :initial '{"show": "no", "content": ""}' "./modules/player.sh")
-(deflisten nvidia_listen :initial 0 "./modules/nvidia.sh")

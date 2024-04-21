@@ -1,0 +1,10 @@
+(include "windows/bar/progress_icon.yuck")
+
+(deflisten nvidia_listen :initial 0 "./windows/bar/gpu/nvidia.sh")
+
+(defwidget gpu []
+  (tooltip "GPU usage: ${nvidia_listen}%"
+    (progress_icon
+      :class "gpu"
+      :icon ""
+      :value {nvidia_listen})))
