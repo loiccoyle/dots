@@ -11,6 +11,8 @@ else
         ICON=""
     elif [ "$VOLUME" -gt 33 ]; then
         ICON=""
+    elif [ "$VOLUME" -eq 0 ]; then
+        ICON=""
     else
         ICON=""
     fi
