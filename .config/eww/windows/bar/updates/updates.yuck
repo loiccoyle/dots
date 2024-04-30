@@ -1,14 +1,18 @@
 (include "windows/bar/notification.yuck")
 
-(defpoll updates_poll :initial 0 :interval "5m" "./windows/bar/updates/updates.sh")
+(defpoll updates_poll :initial '{"packages": [], "n_packages":0}' :interval "5m" "./windows/bar/updates/updates.sh")
 
 (defwidget updates []
-  (notification
-    :class "updates"
-    :icon ""
-    :text {updates_poll}
-    :tooltip "Update system"
-    :onclick "$TERMINAL --class=float --hold -e paru -Syu &"
-    :visible {updates_poll != "0"}
-  ))
-
+  (tooltip
+    (box :orientation "vertical" :spacing 0 :space-evenly false
+      (label :halign "start" :text "${updates_poll.n_packages} updates available:")
+      (box :orientation "vertical" :spacing -10
+        (for pkg in {updates_poll.packages}
+          (label :halign "start" :unindent false :text pkg))))
+    (notification
+      :class "updates"
+      :icon ""
+      :text {updates_poll.n_packages}
+      :onclick "$TERMINAL --class=float --hold -e paru -Syu &"
+      :visible {updates_poll.n_packages != 0}
+    )))

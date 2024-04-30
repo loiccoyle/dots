@@ -1,27 +1,30 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Check for pakages updates, from pacman and the AUR.
 # Requires pacman-contrib, paru, dunstify (optional).
 
 UPDATE_FILE_TMP="/tmp/eww_updates_arch"
-[ ! -f "$UPDATE_FILE_TMP" ] && printf "0\n" >"$UPDATE_FILE_TMP"
+[ ! -f "$UPDATE_FILE_TMP" ] && printf "" >"$UPDATE_FILE_TMP"
 
-UPDATES_ARCH="$(checkupdates 2>/dev/null | wc -l)" || UPDATES_ARCH=0
-UPDATES_AUR="$(paru -Qum 2>/dev/null | wc -l)" || UPDATES_AUR=0
+# fetch the packages that need updates, sort them
+TO_UPDATE="$(cat <(checkupdates --nocolor) <(paru -Qum) | sort)"
+# count them
+N_UPDATES="$(echo "$TO_UPDATE" | wc -l)"
+# and convert to a json array
+TO_UPDATE="$(printf "%s" "$TO_UPDATE" | jq -R -s -c 'split("\n")')"
 
-UPDATES=$(("$UPDATES_ARCH" + "$UPDATES_AUR"))
-
-PREVIOUS_UPDATES="$(cat "$UPDATE_FILE_TMP")"
-if [ "$UPDATES" -gt "$PREVIOUS_UPDATES" ]; then
+PREVIOUS_TO_UPDATE="$(cat "$UPDATE_FILE_TMP")"
+if [ "$TO_UPDATE" != "$PREVIOUS_TO_UPDATE" ]; then
     if type dunstify >/dev/null; then
         ([ "$(dunstify -i "system-software-update" \
             "Software Update" \
-            "$UPDATES update(s) available." \
-            --action="update,udpate")" = "update" ] && $TERMINAL --hold --class=float -e "paru") &
-    else
-        notify-send -i "system-software-update" "Software Update" "$UPDATES update(s) available." &
+            "$N_UPDATES update(s) available." \
+            --action="update,update")" = "update" ] && $TERMINAL --hold --class=float -e "paru") &
+        disown -h
     fi
+else
+    notify-send -i "system-software-update" "Software Update" "$N_UPDATES update(s) available." &
 fi
-printf "%s\n" "$UPDATES" >"$UPDATE_FILE_TMP"
+printf "%s" "$TO_UPDATE" >"$UPDATE_FILE_TMP"
 
-printf "%s\n" "$UPDATES"
+printf '{"packages": %s, "n_packages": %d}' "$TO_UPDATE" "$N_UPDATES"
