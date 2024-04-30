@@ -9,7 +9,7 @@ UPDATE_FILE_TMP="/tmp/eww_updates_arch"
 # fetch the packages that need updates, sort them
 TO_UPDATE="$(cat <(checkupdates --nocolor) <(paru -Qum) | sort)"
 # count them
-N_UPDATES="$(echo "$TO_UPDATE" | wc -l)"
+N_UPDATES="$(printf "%s" "$TO_UPDATE" | wc -l)"
 # and convert to a json array
 TO_UPDATE="$(printf "%s" "$TO_UPDATE" | jq -R -s -c 'split("\n")')"
 
@@ -20,10 +20,10 @@ if [ "$TO_UPDATE" != "$PREVIOUS_TO_UPDATE" ]; then
             "Software Update" \
             "$N_UPDATES update(s) available." \
             --action="update,update")" = "update" ] && $TERMINAL --hold --class=float -e "paru") &
-        disown -h
+    else
+        notify-send -i "system-software-update" "Software Update" "$N_UPDATES update(s) available." &
     fi
-else
-    notify-send -i "system-software-update" "Software Update" "$N_UPDATES update(s) available." &
+    disown -h
 fi
 printf "%s" "$TO_UPDATE" >"$UPDATE_FILE_TMP"
 
