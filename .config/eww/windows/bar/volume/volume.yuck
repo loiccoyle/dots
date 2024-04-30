@@ -1,12 +1,12 @@
 (include "windows/bar/scale_icon.yuck")
 
-(defpoll volume_poll :interval "1s" "./windows/bar/volume/volume.sh")
+(defpoll volume_poll :initial '{"volume": "0", "icon": ""}' :interval "1s" "./windows/bar/volume/volume.sh")
 
 (defwidget volume []
-  (eventbox :cursor "pointer" :onrightclick "pavucontrol &" :tooltip "Volume: ${volume_poll.content}%"
+  (eventbox :cursor "pointer" :onrightclick "pavucontrol &" :tooltip "Volume: ${volume_poll.volume}%"
     (scale_icon
       :class "volume"
-      :icon "${volume_poll.icon}"
-      :value {volume_poll.content}
+      :icon {volume_poll.icon}
+      :value {volume_poll.volume}
       :onchange `pactl set-sink-volume @DEFAULT_SINK@ {}%; ${EWW_CMD} update volume_poll="$(${EWW_CONFIG_DIR}/windows/bar/volume/volume.sh)"`
       :onclickicon `pactl set-sink-mute @DEFAULT_SINK@ toggle; ${EWW_CMD} update volume_poll="$(${EWW_CONFIG_DIR}/windows/bar/volume/volume.sh)"`)))

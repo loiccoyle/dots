@@ -18,4 +18,4 @@ else
     fi
 fi
 
-echo "{\"content\": \"$VOLUME\", \"icon\": \"$ICON\"}"
+printf '{"volume": %d, "icon": "%s"}' "$VOLUME" "$ICON"
