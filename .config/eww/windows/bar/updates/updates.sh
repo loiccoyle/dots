@@ -19,7 +19,7 @@ fi
 TO_UPDATE="$(printf "%s" "$TO_UPDATE" | jq -R -s -c 'split("\n")')"
 
 PREVIOUS_TO_UPDATE="$(cat "$UPDATE_FILE_TMP")"
-if [ "$TO_UPDATE" != "$PREVIOUS_TO_UPDATE" ]; then
+if [ "$N_UPDATES" -gt 0 ] && [ "$TO_UPDATE" != "$PREVIOUS_TO_UPDATE" ]; then
     if type dunstify >/dev/null; then
         ([ "$(dunstify -i "system-software-update" \
             "Software Update" \
