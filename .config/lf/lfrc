@@ -201,7 +201,7 @@ map ` !true
 # rename
 map r rename # before extension
 map A push r<end> # at the end
-map I push A<c-a> # at the very beginning
+map I push r<home> # at the very beginning
 # bulkrename
 map R $vidir $fs
 
