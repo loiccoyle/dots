@@ -13,4 +13,5 @@
       (text_icon
         :class "nordvpn"
         :icon "󰊠"
+        :show_text {nordvpn_poll != "Off"}
         :text nordvpn_poll))))

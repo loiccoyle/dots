@@ -116,6 +116,10 @@
     color: $foreground-light;
   }
 
+  .nordvpn-off {
+    color: $foreground-dim;
+  }
+
   .nordvpn-on .icon {
     color: $accent;
   }
