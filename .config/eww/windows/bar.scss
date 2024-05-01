@@ -112,8 +112,14 @@
     }
   }
 
-  .nordvpn :hover {
-    color: $foreground-light;
+  .nordvpn {
+    :hover {
+      color: $foreground-light;
+    }
+
+    .icon {
+      font-size: 18px;
+    }
   }
 
   .nordvpn-off {
