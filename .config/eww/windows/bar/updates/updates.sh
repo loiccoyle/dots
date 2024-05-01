@@ -8,8 +8,13 @@ UPDATE_FILE_TMP="/tmp/eww_updates_arch"
 
 # fetch the packages that need updates, sort them
 TO_UPDATE="$(cat <(checkupdates --nocolor) <(paru -Qum) | sort)"
+
 # count them
-N_UPDATES="$(printf "%s" "$TO_UPDATE" | wc -l)"
+if [ -z "$TO_UPDATE" ]; then
+    N_UPDATES=0
+else
+    N_UPDATES="$(printf "%s\n" "$TO_UPDATE" | wc -l)"
+fi
 # and convert to a json array
 TO_UPDATE="$(printf "%s" "$TO_UPDATE" | jq -R -s -c 'split("\n")')"
 
