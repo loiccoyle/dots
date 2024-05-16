@@ -82,7 +82,8 @@ zinit wait'0c' lucid light-mode for \
     blockf atpull'zinit creinstall -q .' \
        zsh-users/zsh-completions 
 
-zinit wait'0c' lucid light-mode for \
+gh copilot --help > /dev/null 2>&1 && \
+  zinit wait'0c' lucid light-mode for \
     loiccoyle/zsh-github-copilot
 
 # add pure prompt
