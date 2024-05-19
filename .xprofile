@@ -37,8 +37,8 @@ unclutter &
 
 # Applets
 # Start usb mounting daemon
-udiskie --smart --file-manager="$TERMINAL --working-directory" &
+udiskie --smart --appindicator --file-manager="$TERMINAL --working-directory" &
 # Start network manager applet
-nm-applet --appindicator &
+nm-applet --indicator &
 # Start bluetooth applet
 blueman-applet &
