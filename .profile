@@ -118,6 +118,19 @@ export GRADLE_USER_HOME="$XDG_DATA_HOME/gradle"
 export ANDROID_SDK_HOME="$XDG_DATA_HOME/android"
 # zoom folder
 export SSB_HOME="$XDG_DATA_HOME/zoom"
+# python hitory
+export PYTHON_HISTORY="$XDG_STATE_HOME/python/history"
+export PYTHONPYCACHEPREFIX="$XDG_CACHE_HOME/python"
+export PYTHONUSERBASE="$XDG_DATA_HOME/python"
+# bash history
+export HISTFILE="$XDG_STATE_HOME/bash_history"
+# keras
+export KERAS_HOME="$XDG_STATE_HOME/keras"
+
+export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
+export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
+export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
+export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
 
 # Start graphical server on tty1 if not already running.
 [ "$(tty)" = "/dev/tty1" ] && ! pgrep -x Xorg >/dev/null && exec startx
