@@ -11,7 +11,6 @@ return {
     },
     servers = {
       bashls = {},
-      clangd = {},
       cssls = {},
       dockerls = {},
       tsserver = {},
