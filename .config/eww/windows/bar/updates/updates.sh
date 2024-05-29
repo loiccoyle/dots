@@ -18,18 +18,18 @@ fi
 # and convert to a json array
 TO_UPDATE="$(printf "%s" "$TO_UPDATE" | jq -R -s -c 'split("\n")')"
 
-PREVIOUS_TO_UPDATE="$(cat "$UPDATE_FILE_TMP")"
-if [ "$N_UPDATES" -gt 0 ] && [ "$TO_UPDATE" != "$PREVIOUS_TO_UPDATE" ]; then
-    if type dunstify >/dev/null; then
-        ([ "$(dunstify -i "system-software-update" \
-            "Software Update" \
-            "$N_UPDATES update(s) available." \
-            --action="update,update")" = "update" ] && $TERMINAL --hold --class=float -e "paru") &
-    else
-        notify-send -i "system-software-update" "Software Update" "$N_UPDATES update(s) available." &
-    fi
-    disown -h
-fi
+# PREVIOUS_TO_UPDATE="$(cat "$UPDATE_FILE_TMP")"
+# if [ "$N_UPDATES" -gt 0 ] && [ "$TO_UPDATE" != "$PREVIOUS_TO_UPDATE" ]; then
+#     if type dunstify >/dev/null; then
+#         ([ "$(dunstify -i "system-software-update" \
+#             "Software Update" \
+#             "$N_UPDATES update(s) available." \
+#             --action="update,update")" = "update" ] && $TERMINAL --hold --class=float -e "paru") &
+#     else
+#         notify-send -i "system-software-update" "Software Update" "$N_UPDATES update(s) available." &
+#     fi
+#     disown -h
+# fi
 printf "%s" "$TO_UPDATE" >"$UPDATE_FILE_TMP"
 
 printf '{"packages": %s, "n_packages": %d}' "$TO_UPDATE" "$N_UPDATES"
