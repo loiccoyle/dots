@@ -1,5 +1,3 @@
--- Folds
-vim.opt.termguicolors = true -- Required by colorizer
 vim.opt.wrap = true
 -- Folds
 vim.opt.foldcolumn = "0" -- '0' is not bad
@@ -11,7 +9,3 @@ vim.opt.foldenable = true
 -- vim.opt.shiftwidth = 4
 -- vim.opt.softtabstop = 4
 -- vim.opt.tabstop = 4
-vim.opt.shortmess = vim.opt.shortmess + {
-  s = true, -- No search top bottom msgs
-  I = true, -- No intro msg
-}
