@@ -13,8 +13,6 @@ return {
       "css",
       "diff",
       "dockerfile",
-      "gitcommit",
-      "gitignore",
       "glsl",
       "go",
       "latex",
@@ -26,11 +24,5 @@ return {
   end,
   dependencies = {
     { "HiPhish/nvim-ts-rainbow2" },
-    {
-      "andymass/vim-matchup",
-      config = function()
-        vim.g.matchup_matchparen_offscreen = { method = "status_manual" }
-      end,
-    },
   },
 }
