@@ -9,11 +9,6 @@ customCommands:
     command: "gh run watch"
     description: "Watch gh workflow run"
     subprocess: true
-  - key: "<c-t>"
-    context: "global"
-    command: "git push --tags"
-    description: "Push tags"
-    stream: true
   - key: "<c-u>"
     context: "localBranches"
     command: "gh pr create --head {{.SelectedLocalBranch.Name}}"
