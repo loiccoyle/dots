@@ -6,6 +6,7 @@
     "lazyvim.plugins.extras.coding.yanky",
     "lazyvim.plugins.extras.dap.core",
     "lazyvim.plugins.extras.editor.dial",
+    "lazyvim.plugins.extras.editor.fzf",
     "lazyvim.plugins.extras.editor.inc-rename",
     "lazyvim.plugins.extras.editor.mini-move",
     "lazyvim.plugins.extras.editor.refactoring",
@@ -26,7 +27,7 @@
     "lazyvim.plugins.extras.vscode"
   ],
   "news": {
-    "NEWS.md": "5204"
+    "NEWS.md": "6077"
   },
   "version": 6
 }
