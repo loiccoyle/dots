@@ -1,3 +1,7 @@
+if true then
+  return {}
+end
+
 return {
   "nvim-treesitter/nvim-treesitter",
   opts = function(_, opts)
@@ -10,13 +14,11 @@ return {
       "cpp",
       "css",
       "diff",
-      "dockerfile",
       "glsl",
       "go",
       "latex",
       "make",
       "rasi",
-      "rust",
       "toml",
     })
   end,
