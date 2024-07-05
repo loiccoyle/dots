@@ -1,7 +1,7 @@
 customCommands:
   - key: "<c-a>"
     context: "commits"
-    command: "gh run list --commit {{.SelectedLocalCommit.Hash}}"
+    command: "gh run list --commit {{.SelectedLocalCommit.Hash}} | cat"
     stream: true
     description: "Show commit's gh workflow run"
   - key: "<c-a>"
