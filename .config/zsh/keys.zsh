@@ -17,7 +17,7 @@ export KEYTIMEOUT=1
 
 # Use lf to switch directories and bind it to ctrl-o
 lfcd() {
-    cd "$(command lf -print-last-dir "$@")"
+  cd "$(command lf -print-last-dir "$@")"
 }
 # shell commands
 type lfcd >/dev/null && bindkey -s '^o' 'lfcd^M'
@@ -55,5 +55,5 @@ bindkey '^e' edit-command-line # ctrl-e to edit line in editor
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 # github copilot
-bindkey '^\' zsh_gh_copilot_explain  # bind Alt+\ to explain
-bindkey '^[\' zsh_gh_copilot_suggest # bind Ctrl+\ to suggest
+bindkey '^[|' zsh_gh_copilot_explain # bind Alt+shift+\ to explain
+bindkey '^[\' zsh_gh_copilot_suggest # bind Alt+\ to suggest
