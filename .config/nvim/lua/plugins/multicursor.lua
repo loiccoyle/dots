@@ -88,22 +88,22 @@ return {
       desc = "Add cursor with 'b' motion",
     },
     -- Rotate the main cursor
-    {
-      "<left>",
-      function()
-        require("multicursor-nvim").prevCursor()
-      end,
-      mode = { "n", "v" },
-      desc = "Move to previous cursor",
-    },
-    {
-      "<right>",
-      function()
-        require("multicursor-nvim").nextCursor()
-      end,
-      mode = { "n", "v" },
-      desc = "Move to next cursor",
-    },
+    -- {
+    --   "<left>",
+    --   function()
+    --     require("multicursor-nvim").prevCursor()
+    --   end,
+    --   mode = { "n", "v" },
+    --   desc = "Move to previous cursor",
+    -- },
+    -- {
+    --   "<right>",
+    --   function()
+    --     require("multicursor-nvim").nextCursor()
+    --   end,
+    --   mode = { "n", "v" },
+    --   desc = "Move to next cursor",
+    -- },
     -- Delete the main cursor
     {
       "<C-x>",
