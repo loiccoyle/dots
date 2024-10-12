@@ -13,6 +13,7 @@ return {
           mc.clearCursors()
         else
           -- Default <esc> handler.
+          vim.cmd([[noh]])
         end
       end,
       desc = "Clear cursors",
