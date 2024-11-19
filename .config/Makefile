@@ -59,7 +59,7 @@ launcher: ## Install launcher and extensions
 
 .PHONY: ui-theme
 ui-theme: ## Install ui themes
-	$(INSTALL) qt5ct
+	$(INSTALL) qt5ct capitaine-cursors
 	$(INSTALL_AUR) adwaita-qt5 la-capitaine-icon-theme
 	@echo "Run 'qt5ct' and select adwaita"
 
