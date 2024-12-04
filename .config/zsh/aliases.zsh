@@ -80,7 +80,7 @@ pacinspect() {
 # Activate python venv
 ae() {
     local venv_dir
-    venv_dir="${1:-venv}"
+    venv_dir="${1:-.venv}"
     if [ -f "$venv_dir/bin/activate" ]; then
         source "$venv_dir/bin/activate"
     elif type poetry >/dev/null 2>&1; then
