@@ -1,13 +1,9 @@
 return {
-  {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = function()
-        -- require("lazy").load({ plugins = { "mini.base16" } })
-        require("gruvbox").load()
-      end,
-    },
+  "LazyVim/LazyVim",
+  opts = {
+    colorscheme = "catppuccin",
   },
-  { "folke/tokyonight.nvim", enabled = false },
-  { "catppuccin/nvim", enabled = false },
+  -- },
+  -- { "folke/tokyonight.nvim", enabled = false },
+  -- { "catppuccin/nvim", enabled = false },
 }

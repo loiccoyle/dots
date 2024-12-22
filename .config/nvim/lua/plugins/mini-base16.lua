@@ -1,4 +1,4 @@
-local colors = require("config.base16-colors")
+local colors = require("config.colors-base16")
 local keymaps = require("config.keymaps")
 
 -- do some color swapping
@@ -10,6 +10,7 @@ colors.base0D = red
 return {
   "echasnovski/mini.base16",
   lazy = true,
+  enable = false,
   opts = { palette = colors },
   config = function(_, opts)
     require("mini.base16").setup(opts)
