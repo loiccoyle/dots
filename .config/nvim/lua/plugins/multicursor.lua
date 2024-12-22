@@ -20,7 +20,7 @@ return {
     },
     -- Add or skip cursor above/below the main cursor.
     {
-      "<C-S-Up>",
+      "<C-S-k>",
       function()
         require("multicursor-nvim").lineAddCursor(-1)
       end,
@@ -28,7 +28,7 @@ return {
       desc = "Add cursor above",
     },
     {
-      "<C-S-Down>",
+      "<C-S-j>",
       function()
         require("multicursor-nvim").lineAddCursor(1)
       end,
@@ -72,20 +72,20 @@ return {
     { "<leader>m", "", desc = "+multicursor", mode = { "n", "v" } },
     -- You can also add cursors with any motion you prefer
     {
-      "<leader>mw",
+      "<leader>mW",
       function()
-        require("multicursor-nvim").addCursor("w")
+        require("multicursor-nvim").addCursor("W")
       end,
       mode = "n",
-      desc = "Add cursor with 'w' motion",
+      desc = "Add cursor with 'W' motion",
     },
     {
-      "<leader>mb",
+      "<leader>mB",
       function()
-        require("multicursor-nvim").addCursor("b")
+        require("multicursor-nvim").addCursor("B")
       end,
       mode = "n",
-      desc = "Add cursor with 'b' motion",
+      desc = "Add cursor with 'B' motion",
     },
     -- Rotate the main cursor
     -- {
@@ -137,7 +137,7 @@ return {
       function()
         require("multicursor-nvim").restoreCursors()
       end,
-      mode = "n",
+      mode = "v",
       desc = "Restore cursors",
     },
     -- Append/insert for each line of visual selections
