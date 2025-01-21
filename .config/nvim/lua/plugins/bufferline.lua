@@ -4,7 +4,8 @@ return {
     options = {
       right_mouse_command = "vertical sbuffer %d",
       middle_mouse_command = function(n)
-        LazyVim.ui.bufremove(n)
+        local snacks = require("snacks")
+        snacks.bufdelete(n)
       end,
     },
   },
